@@ -17,6 +17,7 @@ dependencies:
   # UI
   google_fonts: ^3.0.1
   font_awesome_flutter: ^10.2.1
+  equatable: ^2.0.5
   
   # DI
   get_it: ^7.2.0
@@ -27,6 +28,9 @@ dependencies:
   # Starter kit
   pocket:
     path: /Users/zoro/dev/flutter-projects/starter_kit_flutter/pocket
+  drip:
+    path: /Users/zoro/dev/flutter-projects/starter_kit_flutter/drip
+
   # pocket:
   #   git:
   #     url: https://github.com/jamescardona11/starter_kit_flutter.git

@@ -5,5 +5,8 @@ abstract class BaseUseCase<R extends Object?, I extends dynamic> {
 abstract class CommandUseCase<I extends Object?>
     implements BaseUseCase<void, I> {}
 
+abstract class FutureCommandUseCase<I extends Object?>
+    implements BaseUseCase<Future<void>, I> {}
+
 abstract class QueryUseCase<R extends Object?, I extends dynamic>
     implements BaseUseCase<R, I> {}

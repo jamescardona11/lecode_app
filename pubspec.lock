@@ -155,6 +155,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.4"
+  drip:
+    dependency: "direct main"
+    description:
+      path: "/Users/zoro/dev/flutter-projects/starter_kit_flutter/drip"
+      relative: false
+    source: path
+    version: "0.0.1"
+  equatable:
+    dependency: "direct main"
+    description:
+      name: equatable
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.5"
   fake_async:
     dependency: transitive
     description:
