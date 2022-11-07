@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:lepath_app/base/base.dart';
+import 'package:lepath_app/core/path_detail/path_detail_view_model.dart';
 
-class ContentView extends StatelessWidget {
+class ContentView extends BaseWidget<PathDetailViewModel, PathDetailState> {
   /// default constructor
   const ContentView({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  PathDetailViewModel get viewModelBuilder =>
+      PathDetailViewModel(PathDetailState());
+
+  @override
+  Widget buildWidget(BuildContext context, PathDetailViewModel viewModel) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 40),
       child: Column(
