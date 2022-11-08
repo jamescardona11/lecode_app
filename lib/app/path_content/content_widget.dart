@@ -1,20 +1,21 @@
-import 'package:drip/drip/export_drip.dart';
+import 'package:drip/drip.dart';
 import 'package:flutter/material.dart';
-import 'package:lepath_app/base/base.dart';
+import 'package:lepath_app/core/base/base.dart';
 import 'package:lepath_app/config/di/di.dart';
-import 'package:lepath_app/core/path_detail/viewmodel/viewmodel.dart';
 
-class ContentView extends BaseWidget<PathDetailViewModel, PathDetailState> {
+import 'viewmodel/viewmodel.dart';
+
+class ContentView extends BaseWidget<PathContentViewModel, PathContentState> {
   /// default constructor
   const ContentView({
     super.key,
   });
 
   @override
-  PathDetailViewModel get viewModelBuilder => getIt<PathDetailViewModel>();
+  PathContentViewModel get viewModelBuilder => getIt<PathContentViewModel>();
 
   @override
-  Widget buildWidget(BuildContext context, PathDetailViewModel viewModel) {
+  Widget buildWidget(BuildContext context, PathContentViewModel viewModel) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 40),
       child: Column(
@@ -55,7 +56,7 @@ class _ItemWidgetState extends State<_ItemWidget> {
         setState(() {
           enable = !enable;
         });
-        DripProvider.of<PathDetailViewModel>(context).markProblemAsRead('');
+        DripProvider.of<PathContentViewModel>(context).markProblemAsRead('');
       },
       child: SizedBox(
         height: 60,

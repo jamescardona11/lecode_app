@@ -30,6 +30,8 @@ dependencies:
     path: /Users/zoro/dev/flutter-projects/starter_kit_flutter/pocket
   drip:
     path: /Users/zoro/dev/flutter-projects/starter_kit_flutter/drip
+  projectile:
+    path: /Users/zoro/dev/flutter-projects/starter_kit_flutter/projectile
 
   # pocket:
   #   git:

@@ -1,12 +1,14 @@
 import 'package:injectable/injectable.dart';
-
-import 'package:lepath_app/core/path_detail/model/use_cases/use_cases.dart';
+import 'package:pocket/pocket.dart';
+import 'package:projectile/projectile.dart';
 
 @module
 abstract class ModelModule {
   @singleton
-  MarkAsComplete get markAsComplete;
+  Projectile get projectile => Projectile();
 
-  @singleton
-  PathDetailUseCases get pathDetailUseCases;
+  @preResolve
+  Future<IPocketAdapter> get dbApp async {
+    return await SembastPocket.initAdapter('lepath_app.db');
+  }
 }

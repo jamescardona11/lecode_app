@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'app/path_detail/project_layout.dart';
+import 'app/path_content/project_layout.dart';
+import 'config/di/di.dart';
 
-void main() => runApp(const MyApp());
+Future<void> main() async {
+  await configureDependencies();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

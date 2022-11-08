@@ -1,8 +1,8 @@
 import 'package:injectable/injectable.dart';
-import 'package:lepath_app/core/path_detail/model/entities/path_detail.dart';
+import 'package:lepath_app/app/path_content/model/entities/path_content.dart';
 
 @module
 abstract class ViewModelModule {
   @singleton
-  PathDetailModel get pathDetailModel;
+  PathContentModel get pathDetailModel;
 }

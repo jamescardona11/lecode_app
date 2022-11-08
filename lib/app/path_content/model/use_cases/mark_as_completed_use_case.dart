@@ -1,4 +1,4 @@
-import 'package:lepath_app/base/base.dart';
+import 'package:lepath_app/core/base/base.dart';
 
 class MarkAsCompleteParam {
   MarkAsCompleteParam(this.id);
