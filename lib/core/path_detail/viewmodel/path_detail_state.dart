@@ -1,10 +1,8 @@
 import 'package:lepath_app/base/base.dart';
 
-class PathDetailViewModel extends BaseViewModel<PathDetailState> {
-  PathDetailViewModel(super.initialState);
-}
-
 class PathDetailState extends BaseState {
+  const PathDetailState();
+
   @override
   List<Object?> get props => [];
 }
