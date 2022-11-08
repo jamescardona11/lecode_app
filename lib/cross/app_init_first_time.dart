@@ -4,12 +4,25 @@ import 'app_repository.dart';
 
 class AppInitFirstTimeData {}
 
-class AppInitFirstTime extends CommandUseCase<AppInitFirstTimeData> {
-  final AppRepository _repository;
-
+class AppInitFirstTime extends FacadeUseCase<AppInitFirstTimeData> {
   AppInitFirstTime(this._repository);
 
+  final AppRepository _repository;
+
   @override
-  void call(AppInitFirstTimeData data) =>
-      _repository.initAppInformationForFirstTime();
+  Future<void> call(AppInitFirstTimeData data) async {
+    final lastUpdateTime = await _repository.lastUpdateDate();
+    final firstTime = lastUpdateTime.isBefore(DateTime(2022, 1, 1));
+    bool updateInfo = false;
+
+    if (!firstTime) {
+      final response = await _repository.getUpdatesInformation();
+      updateInfo =
+          response.forceUpdate || lastUpdateTime.isBefore(response.lastUpdate);
+    }
+
+    if (firstTime || updateInfo) {
+      await _repository.initAppInformationForFirstTime();
+    }
+  }
 }

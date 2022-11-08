@@ -1,14 +1,12 @@
 import 'package:injectable/injectable.dart';
-import 'package:pocket/pocket.dart';
-import 'package:projectile/projectile.dart';
+import 'package:lepath_app/app/path_content/model/services/path_content_db.dart';
+import 'package:lepath_app/core/database/database.dart';
 
 @module
 abstract class ModelModule {
   @singleton
-  Projectile get projectile => Projectile();
+  AppSharedPreferences get appSharedPreferences;
 
-  @preResolve
-  Future<IPocketAdapter> get dbApp async {
-    return await SembastPocket.initAdapter('lepath_app.db');
-  }
+  @singleton
+  PathContentDatabase get pathContentDatabase;
 }

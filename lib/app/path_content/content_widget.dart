@@ -1,7 +1,7 @@
 import 'package:drip/drip.dart';
 import 'package:flutter/material.dart';
-import 'package:lepath_app/core/base/base.dart';
 import 'package:lepath_app/config/di/di.dart';
+import 'package:lepath_app/core/base/base.dart';
 
 import 'viewmodel/viewmodel.dart';
 
