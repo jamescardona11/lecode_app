@@ -5,11 +5,13 @@ import 'package:projectile/projectile.dart';
 @module
 abstract class ExternalModule {
   @Named('BaseURL')
-  String get baseUrl => '';
+  String get baseUrl =>
+      'https://script.google.com/macros/s/AKfycbwKW3HrjlipCaiEccXm7dFKKn3JWM1kiRJYUhE9gl_G0OBQFoitdBbIeRrkVq-Q9fV0zA/exec?action={action}';
 
   @singleton
   Projectile projectile(@Named('BaseURL') String baseUrl) => Projectile(
         config: BaseConfig(
+          enableLog: false,
           baseUrl: baseUrl,
         ),
       );

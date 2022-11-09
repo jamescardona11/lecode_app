@@ -22,7 +22,7 @@ class AppRepository {
           ProjectileRequest(
             target: '',
             method: Method.GET,
-            urlParams: {'action': 'getUpdateInfo'},
+            query: {'action': 'getUpdateInfo'},
           ),
         )
         .fire();
@@ -45,10 +45,12 @@ class AppRepository {
           ProjectileRequest(
             target: '',
             method: Method.GET,
-            urlParams: {'action': 'getLeetCode'},
+            urlParams: {'action': 'getLeetcode'},
           ),
         )
         .fire();
+
+    if (response.isFailure) {}
   }
 
   DateTime get _d1990 => DateTime.fromMillisecondsSinceEpoch(658033724000);

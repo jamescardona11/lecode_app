@@ -10,13 +10,13 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:pocket/pocket.dart' as _i5;
 import 'package:projectile/projectile.dart' as _i9;
 
-import '../../app/path_content/model/entities/path_content.dart' as _i7;
 import '../../app/path_content/model/services/path_content_db.dart' as _i6;
 import '../../app/path_content/model/use_cases/use_cases.dart' as _i4;
+import '../../app/path_content/viewmodel/viewmodel.dart' as _i7;
 import '../../core/base/base.dart' as _i3;
 import '../../core/database/database.dart' as _i8;
-import '../../cross/app_init_first_time.dart' as _i11;
-import '../../cross/app_repository.dart' as _i10;
+import '../../cross/app_init/app_init_first_time.dart' as _i11;
+import '../../cross/app_init/app_repository.dart' as _i10;
 import 'di_core.dart' as _i16;
 import 'di_external_libs.dart' as _i13;
 import 'di_model.dart' as _i14;
@@ -47,9 +47,9 @@ Future<_i1.GetIt> $initGetIt(
     preResolve: true,
   );
   gh.singleton<_i6.PathContentDatabase>(modelModule.pathContentDatabase);
-  gh.singleton<_i7.PathContentModel>(viewModelModule.pathDetailModel);
   gh.singleton<_i4.PathContentUseCasesFacade>(
       useCasesModule.pathDetailUseCasesFacade);
+  gh.singleton<_i7.PathContentViewModel>(viewModelModule.pathContentModel);
   gh.factory<String>(
     () => externalModule.baseUrl,
     instanceName: 'BaseURL',
@@ -100,8 +100,8 @@ class _$ViewModelModule extends _i15.ViewModelModule {
   final _i1.GetIt _getIt;
 
   @override
-  _i7.PathContentModel get pathDetailModel =>
-      _i7.PathContentModel(id: _getIt<String>());
+  _i7.PathContentViewModel get pathContentModel =>
+      _i7.PathContentViewModel(_getIt<_i4.PathContentUseCasesFacade>());
 }
 
 class _$CoreModule extends _i16.CoreModule {
@@ -110,6 +110,8 @@ class _$CoreModule extends _i16.CoreModule {
   final _i1.GetIt _getIt;
 
   @override
-  _i10.AppRepository get appRepository =>
-      _i10.AppRepository(_getIt<_i9.Projectile>());
+  _i10.AppRepository get appRepository => _i10.AppRepository(
+        _getIt<_i9.Projectile>(),
+        _getIt<_i8.AppSharedPreferences>(),
+      );
 }
