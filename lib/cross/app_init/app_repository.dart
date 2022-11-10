@@ -20,13 +20,11 @@ class AppRepository extends RemoteRepository {
   }
 
   // crear my either dynamic para este caso
-  Future<RemoteAppResponse<UpdateInfoModel>> getUpdatesInformation() async {
-    final response = await getSingle<UpdateInfoModel>(
+  Future<RemoteAppResponse<UpdateInfoModel>> getUpdatesInformation() {
+    return getSingle<UpdateInfoModel>(
       RemotePackage.get('', queries: {'action': 'getUpdateInfo'}),
       UpdateInfoModel.fromJson,
     );
-
-    response.fold((error) => null, (success) => null)
   }
 
   Future<void> initAppInformationForFirstTime() async {
@@ -44,9 +42,4 @@ class AppRepository extends RemoteRepository {
   }
 
   DateTime get _d1990 => DateTime.fromMillisecondsSinceEpoch(658033724000);
-
-  UpdateInfoModel _fromJsonUpdateInfo(Map<String, dynamic> json) {
-    // TODO: implement fromJson
-    throw UnimplementedError();
-  }
 }
