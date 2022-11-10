@@ -1,5 +1,6 @@
-import 'package:lepath_app/core/base/misc/app_either.dart';
 import 'package:meta/meta.dart';
+
+import 'app_either.dart';
 
 @immutable
 class AppRight<L, R> extends AppEither<L, R> {

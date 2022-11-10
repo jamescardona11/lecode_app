@@ -4,14 +4,14 @@ import 'remote_app_response.dart';
 typedef FromJson<R> = R Function(Map<String, dynamic> json);
 
 abstract class IRemoteRepository {
-  Future<RemoteAppResponse<R>> getSingle<R>(
+  Future<RemoteAppResponse<T>> getSingle<T>(
     RemotePackage package,
-    FromJson<R> fromJson,
+    FromJson<T> fromJson,
   );
 
-  Future<RemoteAppResponse<Iterable<R>>> getMany<R>(
+  Future<RemoteAppResponse<Iterable<T>>> getMany<T>(
     RemotePackage package,
-    FromJson<R> fromJson,
+    FromJson<T> fromJson,
   );
 
   Future<RemoteAppResponse<bool>> post(RemotePackage package);

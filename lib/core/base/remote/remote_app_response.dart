@@ -1,13 +1,17 @@
-import 'package:lepath_app/core/base/misc/app_either.dart';
+import 'package:lepath_app/core/base/misc/either/either.dart';
 
 import 'remote_app_errors.dart';
 
-typedef RemoteAppResponse<R> = AppEither<RemoteError, R>;
+typedef RemoteAppResponse<T> = AppEither<RemoteError, RemoteSuccess<T>>;
 
-class RemoteSuccess<R> extends RemoteAppResponse<R> {}
+class RemoteSuccess<T> {
+  RemoteSuccess(this.value);
 
-class RemoteError<R> {
+  T value;
+}
+
+class RemoteError {
   RemoteError(this.error);
 
-  final AppRemoteError error;
+  AppRemoteError error;
 }

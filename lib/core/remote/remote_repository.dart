@@ -1,3 +1,4 @@
+import 'package:lepath_app/core/base/misc/either/either.dart';
 import 'package:lepath_app/core/base/remote/remote_package.dart';
 import 'package:projectile/projectile.dart';
 
@@ -20,7 +21,7 @@ abstract class RemoteRepository implements IRemoteRepository {
           ProjectileRequest(
             target: package.url,
             method: Method.GET,
-            query: package.queries,
+            queries: package.queries,
             urlParams: package.urlParams,
             headers: package.headers,
           ),
@@ -28,11 +29,11 @@ abstract class RemoteRepository implements IRemoteRepository {
         .fire();
 
     return response.fold(
-      (error) => RemoteError(_mapFromFailureResult(error)),
+      (error) => AppLeft(RemoteError(_mapFromFailureResult(error))),
       (success) {
         final data = (success.data as Map<String, dynamic>)['data'];
 
-        return RemoteSuccess(fromJson(data));
+        return AppRight(RemoteSuccess(fromJson(data)));
       },
     );
   }
@@ -47,7 +48,7 @@ abstract class RemoteRepository implements IRemoteRepository {
           ProjectileRequest(
             target: package.url,
             method: Method.GET,
-            query: package.queries,
+            queries: package.queries,
             urlParams: package.urlParams,
             headers: package.headers,
           ),
@@ -55,12 +56,12 @@ abstract class RemoteRepository implements IRemoteRepository {
         .fire();
 
     return response.fold(
-      (error) => RemoteError(_mapFromFailureResult(error)),
+      (error) => AppLeft(RemoteError(_mapFromFailureResult(error))),
       (success) {
         final data =
             (success.data as Map<String, dynamic>)['data'] as List<dynamic>;
 
-        return RemoteSuccess(data.map((e) => fromJson(e)));
+        return AppRight(RemoteSuccess(data.map((e) => fromJson(e))));
       },
     );
   }
@@ -73,7 +74,7 @@ abstract class RemoteRepository implements IRemoteRepository {
             target: package.url,
             method: Method.POST,
             headers: package.headers,
-            query: package.queries,
+            queries: package.queries,
             urlParams: package.urlParams,
             data: package.data,
           ),
@@ -81,8 +82,8 @@ abstract class RemoteRepository implements IRemoteRepository {
         .fire();
 
     return response.fold(
-      (error) => RemoteError(_mapFromFailureResult(error)),
-      (success) => RemoteSuccess<bool>(true),
+      (error) => AppLeft(RemoteError(_mapFromFailureResult(error))),
+      (success) => AppRight(RemoteSuccess(true)),
     );
   }
 
