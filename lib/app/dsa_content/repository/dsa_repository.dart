@@ -5,11 +5,11 @@ import 'package:lepath_app/core/remote/remote_repository.dart';
 import 'package:pocket/pocket.dart';
 import 'package:projectile/projectile.dart';
 
-class PathContentDatabase
+class DsaRepository
     with
         PocketDatabase<IPocketAdapter, DsaExerciseModel>,
         RemoteRepository<Projectile> {
-  PathContentDatabase(
+  DsaRepository(
     this.adapterDb,
     this.projectile,
   );

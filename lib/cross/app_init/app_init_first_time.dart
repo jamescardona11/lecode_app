@@ -13,14 +13,14 @@ class AppInitFirstTimeData implements CommandData {
 class AppInitFirstTime implements FutureCommandUseCase<AppInitFirstTimeData> {
   AppInitFirstTime(
     this._appRepository,
-    this._fetchAllPathContent,
-    this._saveAllPathContent,
+    this._fetchDsaProblems,
+    this._saveDsaProblems,
   );
 
   final AppRepository _appRepository;
   final FutureQueryUseCase<RemoteAppResponse<DsaExerciseModel>,
-      FetchAllDsaExercisesData> _fetchAllPathContent;
-  final FutureCommandUseCase<SaveAllDsaExercisesData> _saveAllPathContent;
+      FetchDsaProblemsData> _fetchDsaProblems;
+  final FutureCommandUseCase<SaveDsaProblemsData> _saveDsaProblems;
 
   @override
   Future<void> call(
@@ -32,11 +32,10 @@ class AppInitFirstTime implements FutureCommandUseCase<AppInitFirstTimeData> {
     final shouldUpdate = shouldUpdateInfo(response.right.value, lastUpdateTime);
 
     final elementsResult =
-        await _fetchAllPathContent.call(FetchAllDsaExercisesData(shouldUpdate));
+        await _fetchDsaProblems.call(FetchDsaProblemsData(shouldUpdate));
 
     if (elementsResult.isRight) {
-      await _saveAllPathContent(
-          SaveAllDsaExercisesData(elementsResult.right.value));
+      await _saveDsaProblems(SaveDsaProblemsData(elementsResult.right.value));
     }
   }
 

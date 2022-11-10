@@ -26,6 +26,7 @@ dependencies:
 
   # Misc
   meta: ^1.7.0
+  json_annotation: ^4.7.0
 
   # Starter kit
   pocket:
@@ -47,6 +48,7 @@ dev_dependencies:
   build_runner: ^2.3.0
   flutter_lints: ^2.0.0
   injectable_generator: ^1.5.4
+  json_serializable: ^6.5.4
 
 # The following section is specific to Flutter packages.
 flutter:

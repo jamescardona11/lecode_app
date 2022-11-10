@@ -4,25 +4,25 @@ import 'package:lepath_app/core/base/base.dart';
 import 'package:lepath_app/core/base/misc/either/app_right.dart';
 import 'package:lepath_app/core/base/remote/remote_app_response.dart';
 
-class FetchAllDsaExercisesData implements CommandData {
+class FetchDsaProblemsData implements CommandData {
   final bool shouldFetch;
 
-  const FetchAllDsaExercisesData(this.shouldFetch);
+  const FetchDsaProblemsData(this.shouldFetch);
 }
 
-class FetchAllDsaExercises
+class FetchDsaProblems
     implements
         FutureQueryUseCase<RemoteAppResponse<DsaExerciseModel>,
-            FetchAllDsaExercisesData> {
-  final PathContentDatabase _repository;
+            FetchDsaProblemsData> {
+  final DsaRepository _repository;
 
-  FetchAllDsaExercises(
+  FetchDsaProblems(
     this._repository,
   );
 
   @override
   Future<RemoteAppResponse<DsaExerciseModel>> call(
-      FetchAllDsaExercisesData data) async {
+      FetchDsaProblemsData data) async {
     print('here');
     // if (!data.shouldFetch) return AppRight(RemoteSuccess([]));
 

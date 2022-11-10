@@ -7,14 +7,14 @@ import 'use_cases.dart';
 class DsaContentUseCasesFacade {
   DsaContentUseCasesFacade(
     this.markAsComplete,
-    this.fetchAllPathContent,
-    this.saveAllPathContentData,
+    this.fetchDsaProblems,
+    this.saveDsaProblems,
   );
 
   final FutureCommandUseCase<MarkAsCompleteData> markAsComplete;
 
-  final FutureCommandUseCase<SaveAllDsaExercisesData> saveAllPathContentData;
+  final FutureCommandUseCase<SaveDsaProblemsData> saveDsaProblems;
 
   final FutureQueryUseCase<RemoteAppResponse<DsaExerciseModel>,
-      FetchAllDsaExercisesData> fetchAllPathContent;
+      FetchDsaProblemsData> fetchDsaProblems;
 }

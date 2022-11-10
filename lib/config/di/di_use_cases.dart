@@ -10,17 +10,17 @@ abstract class UseCasesModule {
   @Singleton(as: FutureCommandUseCase<MarkAsCompleteData>)
   MarkAsComplete get markAsComplete;
 
-  @Singleton(as: FutureCommandUseCase<SaveAllDsaExercisesData>)
-  SaveAllPathContent get saveAllPathContentData;
+  @Singleton(as: FutureCommandUseCase<SaveDsaProblemsData>)
+  SaveDsaProblems get saveDsaProblems;
 
   @Singleton(
       as: FutureQueryUseCase<RemoteAppResponse<DsaExerciseModel>,
-          FetchAllDsaExercisesData>)
-  FetchAllDsaExercises get fetchAllPathContent;
+          FetchDsaProblemsData>)
+  FetchDsaProblems get fetchDsaProblems;
 
   /// facade
   @singleton
-  DsaContentUseCasesFacade get pathDetailUseCasesFacade;
+  DsaContentUseCasesFacade get dsaUseCasesFacade;
 
   @Singleton(as: FutureCommandUseCase<AppInitFirstTimeData>)
   AppInitFirstTime get appInitFirstTime;

@@ -8,5 +8,5 @@ abstract class ModelModule {
   AppRepository get appRepository;
 
   @singleton
-  PathContentDatabase get pathContentDatabase;
+  DsaRepository get dsaRepository;
 }
