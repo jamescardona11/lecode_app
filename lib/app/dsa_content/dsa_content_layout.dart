@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lepath_app/config/context_extension.dart';
 
-import 'content_widget.dart';
+import 'dsa_content_widget.dart';
 
 class ProjectLayout extends StatelessWidget {
   /// default constructor

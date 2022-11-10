@@ -5,17 +5,17 @@ import 'package:lepath_app/core/base/base.dart';
 
 import 'viewmodel/viewmodel.dart';
 
-class ContentView extends BaseWidget<PathContentViewModel, PathContentState> {
+class ContentView extends BaseWidget<DsaContentViewModel, DsaContentState> {
   /// default constructor
   const ContentView({
     super.key,
   });
 
   @override
-  PathContentViewModel get viewModelBuilder => getIt<PathContentViewModel>();
+  DsaContentViewModel get viewModelBuilder => getIt<DsaContentViewModel>();
 
   @override
-  Widget buildWidget(BuildContext context, PathContentViewModel viewModel) {
+  Widget buildWidget(BuildContext context, DsaContentViewModel viewModel) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 40),
       child: Column(
@@ -56,7 +56,7 @@ class _ItemWidgetState extends State<_ItemWidget> {
         setState(() {
           enable = !enable;
         });
-        DripProvider.of<PathContentViewModel>(context).markProblemAsRead('');
+        DripProvider.of<DsaContentViewModel>(context).markProblemAsRead('');
       },
       child: SizedBox(
         height: 60,

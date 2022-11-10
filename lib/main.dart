@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-import 'app/path_content/project_layout.dart';
+import 'app/dsa_content/dsa_content_layout.dart';
 import 'config/di/di.dart';
 import 'core/base/use_cases/i_use_case.dart';
 import 'cross/app_init/app_init_first_time.dart';
@@ -14,7 +14,8 @@ Future<void> main() async {
 
   getIt<FutureCommandUseCase<AppInitFirstTimeData>>()
       .call(const AppInitFirstTimeData())
-      .then((value) {
+      .then((value) async {
+    // await Future.delayed(const Duration(milliseconds: 800));
     FlutterNativeSplash.remove();
   });
 

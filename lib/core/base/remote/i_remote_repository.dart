@@ -9,12 +9,5 @@ abstract class IRemoteRepository {
     FromJson<T> fromJson,
   );
 
-  Future<RemoteAppResponse<Iterable<T>>> getMany<T>(
-    RemotePackage package,
-    FromJson<T> fromJson,
-  );
-
   Future<RemoteAppResponse<bool>> post(RemotePackage package);
-
-  // R fromJson(Map<String, dynamic> json);
 }

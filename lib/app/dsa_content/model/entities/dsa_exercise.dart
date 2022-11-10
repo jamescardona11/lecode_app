@@ -1,25 +1,22 @@
 import 'package:pocket/pocket.dart';
 
-class PathModel extends IPocketModel {
+class DsaExerciseModel extends IPocketModel {
   @override
   final String id;
-  final String name;
 
-  PathModel({
+  DsaExerciseModel({
     required this.id,
-    required this.name,
   });
 
   @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'id': id,
-      'name': name,
     };
   }
 
-  factory PathModel.fromJson(Map<String, dynamic> json) => PathModel(
+  factory DsaExerciseModel.fromJson(Map<String, dynamic> json) =>
+      DsaExerciseModel(
         id: json['id'] as String,
-        name: json['name'] as String,
       );
 }

@@ -1,4 +1,4 @@
-import 'package:lepath_app/app/path_content/model/entities/path_content.dart';
+import 'package:lepath_app/app/dsa_content/model/entities/dsa_exercise.dart';
 import 'package:lepath_app/core/base/remote/remote_app_response.dart';
 import 'package:lepath_app/core/base/remote/remote_package.dart';
 import 'package:lepath_app/core/remote/remote_repository.dart';
@@ -7,7 +7,7 @@ import 'package:projectile/projectile.dart';
 
 class PathContentDatabase
     with
-        PocketDatabase<IPocketAdapter, PathContentModel>,
+        PocketDatabase<IPocketAdapter, DsaExerciseModel>,
         RemoteRepository<Projectile> {
   PathContentDatabase(
     this.adapterDb,
@@ -21,20 +21,19 @@ class PathContentDatabase
   final Projectile projectile;
 
   @override
-  PathContentModel fromJson(Map<String, dynamic> json) =>
-      PathContentModel.fromJson(json);
+  DsaExerciseModel fromJson(Map<String, dynamic> json) =>
+      DsaExerciseModel.fromJson(json);
 
   @override
-  String get tableName => 'path_content_table';
+  String get tableName => 'dsa_exercises_table';
 
-  Future<RemoteAppResponse<Iterable<PathContentModel>>>
-      fetchPathContentInformation() {
-    return getMany<PathContentModel>(
+  Future<RemoteAppResponse<DsaExerciseModel>> fetchDSAExercisesInformation() {
+    return getSingle<DsaExerciseModel>(
       RemotePackage.get(
         '',
         queries: {'action': 'getLeetCode'},
       ),
-      PathContentModel.fromJson,
+      DsaExerciseModel.fromJson,
     );
   }
 }

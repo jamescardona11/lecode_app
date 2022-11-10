@@ -31,39 +31,9 @@ abstract class RemoteRepository<P extends Projectile>
     return response.fold(
       (error) => AppLeft(RemoteError(_mapFromFailureResult(error))),
       (success) {
-        print('Data: $success');
         final data = (success.data as Map<String, dynamic>)['data'];
 
         return AppRight(RemoteSuccess(fromJson(data)));
-      },
-    );
-  }
-
-  @override
-  Future<RemoteAppResponse<Iterable<R>>> getMany<R>(
-    RemotePackage package,
-    FromJson<R> fromJson,
-  ) async {
-    final response = await projectile
-        .request(
-          ProjectileRequest(
-            target: package.url,
-            method: Method.GET,
-            queries: package.queries,
-            urlParams: package.urlParams,
-            headers: package.headers,
-            customSuccess: _customSuccess,
-          ),
-        )
-        .fire();
-
-    return response.fold(
-      (error) => AppLeft(RemoteError(_mapFromFailureResult(error))),
-      (success) {
-        final data =
-            (success.data as Map<String, dynamic>)['data'] as List<dynamic>;
-
-        return AppRight(RemoteSuccess(data.map((e) => fromJson(e))));
       },
     );
   }
