@@ -9,6 +9,6 @@ class PathContentViewModel extends BaseViewModel<PathContentState> {
   final PathContentUseCasesFacade useCases;
 
   Future<void> markProblemAsRead(String id) async {
-    await useCases.markAsComplete.call(MarkAsCompleteParam(id));
+    await useCases.markAsComplete.call(MarkAsCompleteData(id));
   }
 }

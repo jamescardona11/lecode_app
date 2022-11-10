@@ -1,28 +1,44 @@
+import 'package:lepath_app/app/path_content/model/use_cases/use_cases.dart';
 import 'package:lepath_app/core/base/base.dart';
 
 import 'app_repository.dart';
+import 'update_info_model.dart';
 
-class AppInitFirstTimeData implements CommandParam {}
+class AppInitFirstTimeData implements CommandData {}
 
 class AppInitFirstTime implements FutureCommandUseCase<AppInitFirstTimeData> {
-  AppInitFirstTime(this._repository);
+  AppInitFirstTime(
+    this._appRepository,
+    this._fetchAllPathContent,
+    this._saveAllPathContent,
+  );
 
-  final AppRepository _repository;
+  final AppRepository _appRepository;
+  final QueryUseCasePathItems _fetchAllPathContent;
+  final FutureCommandUseCase<SaveAllPathContentData> _saveAllPathContent;
 
   @override
   Future<void> call([AppInitFirstTimeData? data]) async {
-    final response = await _repository.getUpdatesInformation();
+    final response = await _appRepository.getUpdatesInformation();
     if (response.isLeft) return;
 
-    final updateInfoModel = response.right.value;
-    final lastUpdateTime = await _repository.lastUpdateDate();
+    final lastUpdateTime = await _appRepository.lastUpdateDate();
+    final shouldUpdate = shouldUpdateInfo(response.right.value, lastUpdateTime);
 
-    // final isFirstTime = lastUpdateTime.isBefore(DateTime(2022, 1, 1));
-    final shouldUpdateInfo = updateInfoModel.forceUpdate ||
-        lastUpdateTime.isBefore(updateInfoModel.lastUpdate);
+    final elementsResult =
+        await _fetchAllPathContent.call(FetchAllPathContentData(shouldUpdate));
 
-    if (shouldUpdateInfo) {
-      await _repository.initAppInformationForFirstTime();
+    if (elementsResult.isRight) {
+      await _saveAllPathContent(
+          SaveAllPathContentData(elementsResult.right.value));
     }
   }
+
+  // final isFirstTime = lastUpdateTime.isBefore(DateTime(2022, 1, 1));
+  bool shouldUpdateInfo(
+    UpdateInfoModel updateInfoModel,
+    DateTime lastUpdateTime,
+  ) =>
+      updateInfoModel.forceUpdate ||
+      lastUpdateTime.isBefore(updateInfoModel.lastUpdate);
 }

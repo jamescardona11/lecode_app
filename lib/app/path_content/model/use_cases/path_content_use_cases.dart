@@ -1,9 +1,17 @@
 import 'package:lepath_app/core/base/base.dart';
 
-import 'mark_as_completed_use_case.dart';
+import 'use_cases.dart';
 
 class PathContentUseCasesFacade {
-  PathContentUseCasesFacade(this.markAsComplete);
+  PathContentUseCasesFacade(
+    this.markAsComplete,
+    this.fetchAllPathContent,
+    this.saveAllPathContentData,
+  );
 
-  final FutureCommandUseCase<MarkAsCompleteParam> markAsComplete;
+  final FutureCommandUseCase<MarkAsCompleteData> markAsComplete;
+
+  final FutureCommandUseCase<SaveAllPathContentData> saveAllPathContentData;
+
+  final QueryUseCasePathItems fetchAllPathContent;
 }

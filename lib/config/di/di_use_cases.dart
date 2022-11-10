@@ -5,8 +5,14 @@ import 'package:lepath_app/cross/app_init/app_init_first_time.dart';
 
 @module
 abstract class UseCasesModule {
-  @Singleton(as: FutureCommandUseCase<MarkAsCompleteParam>)
+  @Singleton(as: FutureCommandUseCase<MarkAsCompleteData>)
   MarkAsComplete get markAsComplete;
+
+  @Singleton(as: FutureCommandUseCase<SaveAllPathContentData>)
+  SaveAllPathContent get saveAllPathContentData;
+
+  @Singleton(as: QueryUseCasePathItems)
+  FetchAllPathContent get fetchAllPathContent;
 
   /// facade
   @singleton

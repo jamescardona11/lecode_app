@@ -6,10 +6,13 @@ import '../base/remote/i_remote_repository.dart';
 import '../base/remote/remote_app_errors.dart';
 import '../base/remote/remote_app_response.dart';
 
-abstract class RemoteRepository implements IRemoteRepository {
-  RemoteRepository(this.projectile);
+abstract class RemoteRepository<P extends Projectile>
+    implements IRemoteRepository {
+  // RemoteRepository(this.projectile);
 
-  final Projectile projectile;
+  // final Projectile projectile;
+
+  P get projectile;
 
   @override
   Future<RemoteAppResponse<R>> getSingle<R>(

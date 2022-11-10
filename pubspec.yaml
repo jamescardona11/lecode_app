@@ -24,7 +24,7 @@ dependencies:
   injectable: ^1.5.3
 
   # Misc
-  meta: ^1.8.0
+  meta: ^1.7.0
 
   # Starter kit
   pocket:
