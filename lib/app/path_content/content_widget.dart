@@ -29,7 +29,7 @@ class ContentView extends BaseWidget<PathContentViewModel, PathContentState> {
               itemCount: 10,
               itemBuilder: (_, index) => _ItemWidget(),
             ),
-          )
+          ),
         ],
       ),
     );

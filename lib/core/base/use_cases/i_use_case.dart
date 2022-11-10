@@ -8,8 +8,9 @@ typedef CommandUseCase<I extends CommandParam> = BaseUseCase<void, I>;
 
 typedef QueryUseCase<I extends CommandParam> = BaseUseCase<void, I>;
 
-// typedef FutureCommandUseCase<I extends CommandParam>
-//     = BaseUseCase<Future<void>, I>;
+typedef FutureCommandUseCase<I extends CommandParam>
+    = BaseUseCase<Future<void>, I>;
+
 
 // typedef FutureQueryUseCase<I extends CommandParam>
 //     = BaseUseCase<Future<void>, I>;

@@ -1,6 +1,6 @@
 import 'package:lepath_app/core/base/base.dart';
 
-class MarkAsCompleteParam {
+class MarkAsCompleteParam extends CommandParam {
   MarkAsCompleteParam(this.id);
 
   final String id;

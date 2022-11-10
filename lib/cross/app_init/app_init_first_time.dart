@@ -4,7 +4,7 @@ import 'app_repository.dart';
 
 class AppInitFirstTimeData implements CommandParam {}
 
-class AppInitFirstTime implements CommandUseCase<AppInitFirstTimeData> {
+class AppInitFirstTime implements FutureCommandUseCase<AppInitFirstTimeData> {
   AppInitFirstTime(this._repository);
 
   final AppRepository _repository;

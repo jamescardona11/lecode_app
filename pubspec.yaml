@@ -23,7 +23,8 @@ dependencies:
   get_it: ^7.2.0
   injectable: ^1.5.3
 
-  # 
+  # Misc
+  meta: ^1.8.0
 
   # Starter kit
   pocket:

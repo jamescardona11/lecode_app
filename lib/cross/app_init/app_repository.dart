@@ -1,12 +1,15 @@
-import 'package:lepath_app/core/database/database.dart';
+import 'package:lepath_app/core/base/remote/remote_app_response.dart';
+import 'package:lepath_app/core/base/remote/remote_package.dart';
+import 'package:lepath_app/core/remote/remote_repository.dart';
+import 'package:lepath_app/core/storage/database.dart';
 import 'package:projectile/projectile.dart';
 
 import 'update_info_model.dart';
 
-class AppRepository {
-  AppRepository(this.projectile, this._sharedPreferences);
+class AppRepository extends RemoteRepository {
+  AppRepository(Projectile projectile, this._sharedPreferences)
+      : super(projectile);
 
-  final Projectile projectile;
   final AppSharedPreferences _sharedPreferences;
 
   Future<DateTime> lastUpdateDate() async {
@@ -16,27 +19,14 @@ class AppRepository {
         : _d1990;
   }
 
-  Future<UpdateInfoModel> getUpdatesInformation() async {
-    final response = await projectile
-        .request(
-          ProjectileRequest(
-            target: '',
-            method: Method.GET,
-            query: {'action': 'getUpdateInfo'},
-          ),
-        )
-        .fire();
-
-    return response.fold(
-      (error) => UpdateInfoModel(_d1990, false),
-      (success) {
-        final data = (success.data as Map<String, dynamic>)['data'];
-        return UpdateInfoModel(
-          DateTime.parse(data['last_update'] as String),
-          data['force'] as bool,
-        );
-      },
+  // crear my either dynamic para este caso
+  Future<RemoteAppResponse<UpdateInfoModel>> getUpdatesInformation() async {
+    final response = await getSingle<UpdateInfoModel>(
+      RemotePackage.get('', queries: {'action': 'getUpdateInfo'}),
+      UpdateInfoModel.fromJson,
     );
+
+    response.fold((error) => null, (success) => null)
   }
 
   Future<void> initAppInformationForFirstTime() async {
@@ -45,7 +35,7 @@ class AppRepository {
           ProjectileRequest(
             target: '',
             method: Method.GET,
-            urlParams: {'action': 'getLeetcode'},
+            urlParams: {'action': 'getLeetCode'},
           ),
         )
         .fire();
@@ -54,4 +44,9 @@ class AppRepository {
   }
 
   DateTime get _d1990 => DateTime.fromMillisecondsSinceEpoch(658033724000);
+
+  UpdateInfoModel _fromJsonUpdateInfo(Map<String, dynamic> json) {
+    // TODO: implement fromJson
+    throw UnimplementedError();
+  }
 }

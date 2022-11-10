@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:lepath_app/core/storage/database.dart';
 import 'package:pocket/pocket.dart';
 import 'package:projectile/projectile.dart';
 
@@ -20,4 +21,7 @@ abstract class ExternalModule {
   Future<IPocketAdapter> get dbApp async {
     return await SembastPocket.initAdapter('lepath_app.db');
   }
+
+  @singleton
+  AppSharedPreferences get appSharedPreferences;
 }

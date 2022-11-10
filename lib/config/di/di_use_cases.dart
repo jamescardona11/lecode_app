@@ -12,6 +12,6 @@ abstract class UseCasesModule {
   @singleton
   PathContentUseCasesFacade get pathDetailUseCasesFacade;
 
-  @Singleton(as: FacadeUseCase<AppInitFirstTimeData>)
+  @Singleton(as: FutureCommandUseCase<AppInitFirstTimeData>)
   AppInitFirstTime get appInitFirstTime;
 }

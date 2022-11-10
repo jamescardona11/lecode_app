@@ -1,28 +1,20 @@
-import 'package:lepath_app/core/remote/remote_package.dart';
+import 'package:lepath_app/core/base/remote/remote_package.dart';
 import 'package:projectile/projectile.dart';
 
-abstract class IBaseModel<T> {
-  T fromJson(Map<String, dynamic> json);
-}
+import '../base/remote/i_remote_repository.dart';
+import '../base/remote/remote_app_errors.dart';
+import '../base/remote/remote_app_response.dart';
 
-abstract class IRemoteRepository<R extends IBaseModel> {
-  Future<RemoteResponse<R>> getSingle(RemotePackage package);
-
-  Future<RemoteResponse<Iterable<R>>> getMany(RemotePackage package);
-
-  Future<RemoteResponse<bool>> post(RemotePackage package);
-
-  R fromJson(Map<String, dynamic> json);
-}
-
-abstract class RemoteRepository<R extends IBaseModel>
-    implements IRemoteRepository<R> {
+abstract class RemoteRepository implements IRemoteRepository {
   RemoteRepository(this.projectile);
 
   final Projectile projectile;
 
   @override
-  Future<RemoteResponse<R>> getSingle(RemotePackage package) async {
+  Future<RemoteAppResponse<R>> getSingle<R>(
+    RemotePackage package,
+    FromJson<R> fromJson,
+  ) async {
     final response = await projectile
         .request(
           ProjectileRequest(
@@ -36,19 +28,20 @@ abstract class RemoteRepository<R extends IBaseModel>
         .fire();
 
     return response.fold(
-      (error) => RemoteError(),
+      (error) => RemoteError(_mapFromFailureResult(error)),
       (success) {
         final data = (success.data as Map<String, dynamic>)['data'];
 
-        fromJson(data);
-
-        return RemoteSuccess();
+        return RemoteSuccess(fromJson(data));
       },
     );
   }
 
   @override
-  Future<RemoteResponse<Iterable<R>>> getMany(RemotePackage package) async {
+  Future<RemoteAppResponse<Iterable<R>>> getMany<R>(
+    RemotePackage package,
+    FromJson<R> fromJson,
+  ) async {
     final response = await projectile
         .request(
           ProjectileRequest(
@@ -62,19 +55,18 @@ abstract class RemoteRepository<R extends IBaseModel>
         .fire();
 
     return response.fold(
-      (error) => RemoteError(),
+      (error) => RemoteError(_mapFromFailureResult(error)),
       (success) {
-        final data = (success.data as Map<String, dynamic>)['data'];
+        final data =
+            (success.data as Map<String, dynamic>)['data'] as List<dynamic>;
 
-        fromJson(data);
-
-        return RemoteSuccess();
+        return RemoteSuccess(data.map((e) => fromJson(e)));
       },
     );
   }
 
   @override
-  Future<RemoteResponse<bool>> post(RemotePackage package) async {
+  Future<RemoteAppResponse<bool>> post(RemotePackage package) async {
     final response = await projectile
         .request(
           ProjectileRequest(
@@ -89,57 +81,18 @@ abstract class RemoteRepository<R extends IBaseModel>
         .fire();
 
     return response.fold(
-      (error) => RemoteError(),
-      (success) => RemoteSuccess<bool>(),
+      (error) => RemoteError(_mapFromFailureResult(error)),
+      (success) => RemoteSuccess<bool>(true),
     );
+  }
+
+  AppRemoteError _mapFromFailureResult(FailureResult error) {
+    if (error.type == ProjectileErrorType.other) {
+      return RemoteExceptionError();
+    } else if (error.type == ProjectileErrorType.response) {
+      return RemoteResponseError();
+    }
+
+    return NoInternetConnection();
   }
 }
-
-typedef Err<T, R> = R Function(T error);
-typedef Completion<T, R> = R Function(T success);
-
-abstract class RemoteResponse<T> {
-  /// Returns true if [Result] is [Error].
-  bool get isError => this is RemoteError;
-
-  /// Returns true if [Result] is [Success].
-  bool get isSuccess => this is RemoteSuccess;
-
-  /// Returns a new value of [Failure] result.
-  ///
-  RemoteError get failure {
-    if (isError) {
-      return (this as RemoteError);
-    }
-
-    throw Exception(
-      'Make sure that result [isError] before accessing [error properties]',
-    );
-  }
-
-  /// Returns a new value of [Success] result.
-  RemoteSuccess get success {
-    if (isSuccess) {
-      return (this as RemoteSuccess);
-    }
-
-    throw Exception(
-      'Make sure that result [isSuccess] before accessing [success]',
-    );
-  }
-
-  /// Returns a new value of [Result] from closure
-  R fold<R>(Err<RemoteError, R> failure, Completion<RemoteSuccess, R> success) {
-    if (isSuccess) {
-      final right = this as RemoteSuccess<R>;
-      return success(right);
-    } else {
-      final left = this as RemoteError;
-      return failure(left);
-    }
-  }
-}
-
-class RemoteSuccess<R> extends RemoteResponse<R> {}
-
-class RemoteError<R> extends RemoteResponse<R> {}
