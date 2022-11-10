@@ -7,7 +7,7 @@ import 'package:lepath_app/core/base/remote/remote_app_response.dart';
 class FetchAllPathContentData implements CommandData {
   final bool shouldFetch;
 
-  FetchAllPathContentData(this.shouldFetch);
+  const FetchAllPathContentData(this.shouldFetch);
 }
 
 typedef QueryUseCasePathItems = FutureQueryUseCase<

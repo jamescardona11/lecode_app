@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:lepath_app/cross/app_init/app_init_first_time.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'app/path_content/project_layout.dart';
 import 'config/di/di.dart';
-import 'core/base/base.dart';
+import 'core/base/use_cases/i_use_case.dart';
+import 'cross/app_init/app_init_first_time.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   await configureDependencies();
 
-  // await getIt<FacadeUseCase<AppInitFirstTimeData>>().call();
+  getIt<FutureCommandUseCase<AppInitFirstTimeData>>()
+      .call(const AppInitFirstTimeData())
+      .then((value) {
+    FlutterNativeSplash.remove();
+  });
 
   runApp(const MyApp());
 }

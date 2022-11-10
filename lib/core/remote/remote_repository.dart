@@ -8,10 +8,6 @@ import '../base/remote/remote_app_response.dart';
 
 abstract class RemoteRepository<P extends Projectile>
     implements IRemoteRepository {
-  // RemoteRepository(this.projectile);
-
-  // final Projectile projectile;
-
   P get projectile;
 
   @override
@@ -27,6 +23,7 @@ abstract class RemoteRepository<P extends Projectile>
             queries: package.queries,
             urlParams: package.urlParams,
             headers: package.headers,
+            customSuccess: _customSuccess,
           ),
         )
         .fire();
@@ -34,6 +31,7 @@ abstract class RemoteRepository<P extends Projectile>
     return response.fold(
       (error) => AppLeft(RemoteError(_mapFromFailureResult(error))),
       (success) {
+        print('Data: $success');
         final data = (success.data as Map<String, dynamic>)['data'];
 
         return AppRight(RemoteSuccess(fromJson(data)));
@@ -54,6 +52,7 @@ abstract class RemoteRepository<P extends Projectile>
             queries: package.queries,
             urlParams: package.urlParams,
             headers: package.headers,
+            customSuccess: _customSuccess,
           ),
         )
         .fire();
@@ -88,6 +87,14 @@ abstract class RemoteRepository<P extends Projectile>
       (error) => AppLeft(RemoteError(_mapFromFailureResult(error))),
       (success) => AppRight(RemoteSuccess(true)),
     );
+  }
+
+  bool _customSuccess(json) {
+    if (json is Map<String, dynamic>) {
+      return json['success'];
+    }
+
+    return false;
   }
 
   AppRemoteError _mapFromFailureResult(FailureResult error) {

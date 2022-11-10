@@ -7,12 +7,12 @@ import 'package:projectile/projectile.dart';
 abstract class ExternalModule {
   @Named('BaseURL')
   String get baseUrl =>
-      'https://script.google.com/macros/s/AKfycbwKW3HrjlipCaiEccXm7dFKKn3JWM1kiRJYUhE9gl_G0OBQFoitdBbIeRrkVq-Q9fV0zA/exec?action={action}';
+      'https://script.google.com/macros/s/AKfycbx0Ba7PQ_TG1PMLL7GksdPRUO_Qmu_Wx4S7vsb_fmMhAJfYaqqo50oE2oMN65A7VfsEvg/exec';
 
   @singleton
   Projectile projectile(@Named('BaseURL') String baseUrl) => Projectile(
         config: BaseConfig(
-          enableLog: false,
+          enableLog: true,
           baseUrl: baseUrl,
         ),
       );

@@ -4,7 +4,9 @@ import 'package:lepath_app/core/base/base.dart';
 import 'app_repository.dart';
 import 'update_info_model.dart';
 
-class AppInitFirstTimeData implements CommandData {}
+class AppInitFirstTimeData implements CommandData {
+  const AppInitFirstTimeData();
+}
 
 class AppInitFirstTime implements FutureCommandUseCase<AppInitFirstTimeData> {
   AppInitFirstTime(
@@ -18,7 +20,8 @@ class AppInitFirstTime implements FutureCommandUseCase<AppInitFirstTimeData> {
   final FutureCommandUseCase<SaveAllPathContentData> _saveAllPathContent;
 
   @override
-  Future<void> call([AppInitFirstTimeData? data]) async {
+  Future<void> call(
+      [AppInitFirstTimeData data = const AppInitFirstTimeData()]) async {
     final response = await _appRepository.getUpdatesInformation();
     if (response.isLeft) return;
 
