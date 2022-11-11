@@ -37,7 +37,7 @@ class DsaExerciseDto extends IPocketModel {
   @JsonKey(name: 'my_rate')
   final double myRate;
 
-  @JsonKey(defaultValue: false)
+  @JsonKey(fromJson: _fromJsonSolved)
   final bool solved;
 
   @JsonKey(name: 'my_solution', defaultValue: '')
@@ -50,4 +50,7 @@ class DsaExerciseDto extends IPocketModel {
       _$DsaExerciseDtoFromJson(json);
 
   static String _fromJsonId(int value) => value.toString();
+
+  static bool _fromJsonSolved(String value) =>
+      value.isEmpty ? false : value.toLowerCase() == 'true';
 }

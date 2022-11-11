@@ -15,7 +15,6 @@ class SaveDsaProblems implements FutureCommandUseCase<SaveDsaProblemsData> {
   );
 
   @override
-  Future<void> call([SaveDsaProblemsData? data]) async {
-    print('msg');
-  }
+  Future<void> call(SaveDsaProblemsData data) =>
+      _repository.saveDsaProblems(data.dsaProblems);
 }

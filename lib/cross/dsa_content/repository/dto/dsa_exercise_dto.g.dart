@@ -22,7 +22,7 @@ DsaExerciseDto _$DsaExerciseDtoFromJson(Map<String, dynamic> json) =>
       explanation: (json['explanation'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
-      solved: json['solved'] as bool? ?? false,
+      solved: DsaExerciseDto._fromJsonSolved(json['solved'] as String),
       mySolution: json['my_solution'] as String? ?? '',
     );
 

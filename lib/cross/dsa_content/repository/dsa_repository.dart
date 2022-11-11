@@ -34,13 +34,17 @@ class DsaRepository
     );
   }
 
-  Future<void> saveDsaProblems(DsaProblemsAggregateDto problems) => create(
-        problems.dsaProblemsDto,
-        tableDsaProblems,
-      );
+  Future<void> saveDsaProblems(DsaProblemsDto problems) async {
+    await create(
+      problems,
+      tableDsaProblems,
+    );
+  }
 
-  Future<void> saveDsaExercises(List<DsaExerciseDto> items) => createMany(
-        items,
-        tableDsaExercise,
-      );
+  Future<void> saveDsaExercises(List<DsaExerciseDto> items) async {
+    await createMany(
+      items,
+      tableDsaExercise,
+    );
+  }
 }

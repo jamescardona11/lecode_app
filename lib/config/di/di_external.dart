@@ -12,7 +12,7 @@ abstract class ExternalModule {
   @singleton
   Projectile projectile(@Named('BaseURL') String baseUrl) => Projectile(
         config: BaseConfig(
-          enableLog: true,
+          enableLog: false,
           baseUrl: baseUrl,
         ),
       );

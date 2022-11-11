@@ -15,7 +15,6 @@ class SaveDsaExercise implements FutureCommandUseCase<SaveDsaExerciseData> {
   );
 
   @override
-  Future<void> call([SaveDsaExerciseData? data]) async {
-    print('msg');
-  }
+  Future<void> call(SaveDsaExerciseData data) =>
+      _repository.saveDsaExercises(data.items);
 }

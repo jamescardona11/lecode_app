@@ -1,12 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
-
 import 'package:pocket/pocket.dart';
 import 'dsa_exercise_dto.dart';
 import 'dsa_problems_dto.dart';
 
-part 'dsa_problems_aggregate_dto.g.dart';
-
-@JsonSerializable()
 class DsaProblemsAggregateDto extends IPocketModel {
   DsaProblemsAggregateDto({
     required this.dsaExerciseDto,
@@ -22,11 +17,19 @@ class DsaProblemsAggregateDto extends IPocketModel {
   String get id => 'dsaProblemsAggregate';
 
   List<DsaExerciseDto> dsaExerciseDto;
+
   DsaProblemsDto dsaProblemsDto;
 
   @override
-  Map<String, dynamic> toJson() => _$DsaProblemsAggregateDtoToJson(this);
+  Map<String, dynamic> toJson() => {
+        'entries': dsaExerciseDto,
+      }..addAll(dsaProblemsDto.toJson());
 
   factory DsaProblemsAggregateDto.fromJson(Map<String, dynamic> json) =>
-      _$DsaProblemsAggregateDtoFromJson(json);
+      DsaProblemsAggregateDto(
+        dsaExerciseDto: (json['entries'] as List<dynamic>)
+            .map((e) => DsaExerciseDto.fromJson(e as Map<String, dynamic>))
+            .toList(),
+        dsaProblemsDto: DsaProblemsDto.fromJson(json),
+      );
 }

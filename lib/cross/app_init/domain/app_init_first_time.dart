@@ -15,8 +15,7 @@ class AppInitFirstTime implements FutureCommandUseCase<AppInitFirstTimeData> {
   final DsaContentUseCasesFacade _dsaFacade;
 
   @override
-  Future<void> call(
-      [AppInitFirstTimeData data = const AppInitFirstTimeData()]) async {
+  Future<void> call(AppInitFirstTimeData data) async {
     final response = await _appRepository.getUpdatesInformation();
     if (response.isLeft) return;
 

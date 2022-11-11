@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
@@ -15,7 +17,6 @@ Future<void> main() async {
   getIt<FutureCommandUseCase<AppInitFirstTimeData>>()
       .call(const AppInitFirstTimeData())
       .then((value) async {
-    // await Future.delayed(const Duration(milliseconds: 800));
     FlutterNativeSplash.remove();
   });
 
