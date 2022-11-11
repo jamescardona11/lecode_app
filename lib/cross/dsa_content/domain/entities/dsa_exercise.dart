@@ -1,10 +1,4 @@
-import 'package:json_annotation/json_annotation.dart';
-import 'package:pocket/pocket.dart';
-
-part 'dsa_exercise.g.dart';
-
-@JsonSerializable()
-class DsaExerciseModel extends IPocketModel {
+class DsaExerciseModel {
   DsaExerciseModel({
     required this.id,
     required this.name,
@@ -20,8 +14,6 @@ class DsaExerciseModel extends IPocketModel {
     required this.mySolution,
   });
 
-  @override
-  @JsonKey(fromJson: _fromJsonId)
   final String id;
   final String name;
   final String url;
@@ -30,24 +22,8 @@ class DsaExerciseModel extends IPocketModel {
   final List<String> groups;
   final String notes;
   final List<String> explanation;
-
-  @JsonKey(name: 'acceptance_rate')
   final double acceptanceRate;
-
-  @JsonKey(name: 'my_rate')
   final double myRate;
-
-  @JsonKey(defaultValue: false)
   final bool solved;
-
-  @JsonKey(name: 'my_solution', defaultValue: '')
   final String mySolution;
-
-  @override
-  Map<String, dynamic> toJson() => _$DsaExerciseModelToJson(this);
-
-  factory DsaExerciseModel.fromJson(Map<String, dynamic> json) =>
-      _$DsaExerciseModelFromJson(json);
-
-  static String _fromJsonId(int value) => value.toString();
 }

@@ -1,15 +1,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dsa_problems.dart';
+part of 'dsa_problems_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-DsaProblemsModel _$DsaProblemsModelFromJson(Map<String, dynamic> json) =>
-    DsaProblemsModel(
+DsaProblemsDto _$DsaProblemsDtoFromJson(Map<String, dynamic> json) =>
+    DsaProblemsDto(
       problems: (json['entries'] as List<dynamic>?)
-              ?.map((e) => DsaExerciseModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => DsaExerciseDto.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
       blind75:
@@ -36,7 +36,7 @@ DsaProblemsModel _$DsaProblemsModelFromJson(Map<String, dynamic> json) =>
           [],
     );
 
-Map<String, dynamic> _$DsaProblemsModelToJson(DsaProblemsModel instance) =>
+Map<String, dynamic> _$DsaProblemsDtoToJson(DsaProblemsDto instance) =>
     <String, dynamic>{
       'entries': instance.problems,
       'blind_75': instance.blind75,

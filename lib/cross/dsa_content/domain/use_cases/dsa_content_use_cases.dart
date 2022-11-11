@@ -1,7 +1,5 @@
-import 'package:lepath_app/core/base/base.dart';
-
-import '../entities/dsa_exercise.dart';
-import 'use_cases.dart';
+import 'package:lepath_app/core/core.dart';
+import 'package:lepath_app/cross/cross.dart';
 
 class DsaContentUseCasesFacade {
   DsaContentUseCasesFacade(
@@ -14,6 +12,6 @@ class DsaContentUseCasesFacade {
 
   final FutureCommandUseCase<SaveDsaProblemsData> saveDsaProblems;
 
-  final FutureQueryUseCase<RemoteAppResponse<DsaExerciseModel>,
+  final FutureQueryUseCase<RemoteAppResponse<DsaProblemsAggregateDto>,
       FetchDsaProblemsData> fetchDsaProblems;
 }

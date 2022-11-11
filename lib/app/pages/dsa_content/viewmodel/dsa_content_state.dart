@@ -1,4 +1,4 @@
-import 'package:lepath_app/core/base/base.dart';
+import 'package:lepath_app/core/core.dart';
 
 class DsaContentState extends BaseState {
   const DsaContentState();

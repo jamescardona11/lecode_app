@@ -1,14 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
-
 import 'package:pocket/pocket.dart';
+import 'dsa_exercise_dto.dart';
 
-import 'dsa_exercise.dart';
-
-part 'dsa_problems.g.dart';
+part 'dsa_problems_dto.g.dart';
 
 @JsonSerializable()
-class DsaProblemsModel extends IPocketModel {
-  DsaProblemsModel({
+class DsaProblemsDto extends IPocketModel {
+  DsaProblemsDto({
     required this.problems,
     required this.blind75,
     required this.grind75,
@@ -19,10 +17,10 @@ class DsaProblemsModel extends IPocketModel {
   });
 
   @override
-  String get id => 'dsaProblemsModels';
+  String get id => 'dsaProblems';
 
   @JsonKey(name: 'entries', defaultValue: [])
-  final List<DsaExerciseModel> problems;
+  final List<DsaExerciseDto> problems;
 
   @JsonKey(name: 'blind_75', defaultValue: [])
   final List<int> blind75;
@@ -43,8 +41,8 @@ class DsaProblemsModel extends IPocketModel {
   final List<int> curatedAlgo170;
 
   @override
-  Map<String, dynamic> toJson() => _$DsaProblemsModelToJson(this);
+  Map<String, dynamic> toJson() => _$DsaProblemsDtoToJson(this);
 
-  factory DsaProblemsModel.fromJson(Map<String, dynamic> json) =>
-      _$DsaProblemsModelFromJson(json);
+  factory DsaProblemsDto.fromJson(Map<String, dynamic> json) =>
+      _$DsaProblemsDtoFromJson(json);
 }

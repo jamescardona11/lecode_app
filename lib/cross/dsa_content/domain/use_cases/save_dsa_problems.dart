@@ -1,8 +1,8 @@
 import 'package:lepath_app/cross/cross.dart';
-import 'package:lepath_app/core/base/base.dart';
+import 'package:lepath_app/core/core.dart';
 
 class SaveDsaProblemsData implements CommandData {
-  DsaExerciseModel items;
+  DsaProblemsAggregateDto items;
 
   SaveDsaProblemsData(this.items);
 }

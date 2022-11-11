@@ -1,2 +1,2 @@
 export 'domain/domain.dart';
-export 'reository/reository.dart';
+export 'repository/repository.dart';

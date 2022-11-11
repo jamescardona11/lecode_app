@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dsa_exercise.dart';
+part of 'dsa_exercise_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-DsaExerciseModel _$DsaExerciseModelFromJson(Map<String, dynamic> json) =>
-    DsaExerciseModel(
-      id: DsaExerciseModel._fromJsonId(json['id'] as int),
+DsaExerciseDto _$DsaExerciseDtoFromJson(Map<String, dynamic> json) =>
+    DsaExerciseDto(
+      id: DsaExerciseDto._fromJsonId(json['id'] as int),
       name: json['name'] as String,
       url: json['url'] as String,
       difficulty: json['difficulty'] as String,
@@ -26,7 +26,7 @@ DsaExerciseModel _$DsaExerciseModelFromJson(Map<String, dynamic> json) =>
       mySolution: json['my_solution'] as String? ?? '',
     );
 
-Map<String, dynamic> _$DsaExerciseModelToJson(DsaExerciseModel instance) =>
+Map<String, dynamic> _$DsaExerciseDtoToJson(DsaExerciseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

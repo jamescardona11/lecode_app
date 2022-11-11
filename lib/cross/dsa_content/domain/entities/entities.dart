@@ -1,2 +1,2 @@
 export 'dsa_exercise.dart';
-export 'dsa_problems.dart';
+export 'dsa_groups_problems.dart';

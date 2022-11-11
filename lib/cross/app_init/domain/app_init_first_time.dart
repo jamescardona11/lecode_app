@@ -13,7 +13,7 @@ class AppInitFirstTime implements FutureCommandUseCase<AppInitFirstTimeData> {
   );
 
   final AppRepository _appRepository;
-  final FutureQueryUseCase<RemoteAppResponse<DsaExerciseModel>,
+  final FutureQueryUseCase<RemoteAppResponse<DsaProblemsAggregateDto>,
       FetchDsaProblemsData> _fetchDsaProblems;
   final FutureCommandUseCase<SaveDsaProblemsData> _saveDsaProblems;
 

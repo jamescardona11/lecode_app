@@ -6,12 +6,16 @@ import 'package:projectile/projectile.dart';
 
 class DsaRepository
     with
-        PocketMultiDataSourceMixin<IPocketAdapter, DsaExerciseModel>,
+        PocketMultiDataSourceMixin<IPocketAdapter>,
         RemoteRepositoryMixin<Projectile> {
   DsaRepository(
     this.adapterDb,
     this.projectile,
   );
+
+  String get tableDsaProblems => 'dsa_problems_table';
+
+  String get tableDsaExercise => 'dsa_exercises_table';
 
   @override
   final IPocketAdapter adapterDb;
@@ -19,23 +23,21 @@ class DsaRepository
   @override
   final Projectile projectile;
 
-  @override
-  DsaExerciseModel fromJson(Map<String, dynamic> json) =>
-      DsaExerciseModel.fromJson(json);
-
-  String get tableDsaName => 'dsa_exercises_table';
-
-  Future<RemoteAppResponse<DsaExerciseModel>> fetchDSAExercisesInformation() {
-    return getSingle<DsaExerciseModel>(
+  Future<RemoteAppResponse<DsaProblemsAggregateDto>>
+      fetchDSAExercisesInformation() {
+    return getSingle<DsaProblemsAggregateDto>(
       RemotePackage.get(
         'exec',
         queries: {'action': 'getLeetCode'},
       ),
-      DsaExerciseModel.fromJson,
+      DsaProblemsAggregateDto.fromJson,
     );
   }
 
-  Future<void> saveDsaExercises(List<DsaExerciseModel> items) async {}
+  Future<void> saveDsaProblems(DsaProblemsAggregateDto problems) async {
+    await create(problems, tableDsaProblems);
+  }
 
-  Future<void> saveDsaProblems(DsaProblemsModel problems) async {}
+  Future<void> _saveDsaExercises(List<DsaExerciseDto> items) =>
+      createMany(items, tableDsaExercise);
 }

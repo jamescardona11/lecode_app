@@ -1,4 +1,4 @@
-import 'package:lepath_app/core/base/base.dart';
+import 'package:lepath_app/core/core.dart';
 import 'package:lepath_app/cross/cross.dart';
 
 class FetchDsaProblemsData implements CommandData {
@@ -9,7 +9,7 @@ class FetchDsaProblemsData implements CommandData {
 
 class FetchDsaProblems
     implements
-        FutureQueryUseCase<RemoteAppResponse<DsaExerciseModel>,
+        FutureQueryUseCase<RemoteAppResponse<DsaProblemsAggregateDto>,
             FetchDsaProblemsData> {
   final DsaRepository _repository;
 
@@ -18,7 +18,7 @@ class FetchDsaProblems
   );
 
   @override
-  Future<RemoteAppResponse<DsaExerciseModel>> call(
+  Future<RemoteAppResponse<DsaProblemsAggregateDto>> call(
       FetchDsaProblemsData data) async {
     print('here');
     // if (!data.shouldFetch) return AppRight(RemoteSuccess([]));

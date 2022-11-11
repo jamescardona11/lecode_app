@@ -58,7 +58,7 @@ Future<_i1.GetIt> $initGetIt(
       _i3.BaseUseCase<
           _i4.Future<
               _i3.AppEither<_i3.RemoteError,
-                  _i3.RemoteSuccess<_i5.DsaExerciseModel>>>,
+                  _i3.RemoteSuccess<_i5.DsaProblemsAggregateDto>>>,
           _i5.FetchDsaProblemsData>>(useCasesModule.fetchDsaProblems);
   gh.singleton<_i3.BaseUseCase<_i4.Future<void>, _i5.AppInitFirstTimeData>>(
       useCasesModule.appInitFirstTime);
@@ -87,7 +87,7 @@ class _$UseCasesModule extends _i9.UseCasesModule {
             _i3.BaseUseCase<
                 _i4.Future<
                     _i3.AppEither<_i3.RemoteError,
-                        _i3.RemoteSuccess<_i5.DsaExerciseModel>>>,
+                        _i3.RemoteSuccess<_i5.DsaProblemsAggregateDto>>>,
                 _i5.FetchDsaProblemsData>>(),
         _getIt<_i3.BaseUseCase<_i4.Future<void>, _i5.SaveDsaProblemsData>>(),
       );
@@ -99,7 +99,7 @@ class _$UseCasesModule extends _i9.UseCasesModule {
             _i3.BaseUseCase<
                 _i4.Future<
                     _i3.AppEither<_i3.RemoteError,
-                        _i3.RemoteSuccess<_i5.DsaExerciseModel>>>,
+                        _i3.RemoteSuccess<_i5.DsaProblemsAggregateDto>>>,
                 _i5.FetchDsaProblemsData>>(),
         _getIt<_i3.BaseUseCase<_i4.Future<void>, _i5.SaveDsaProblemsData>>(),
       );
