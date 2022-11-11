@@ -1,5 +1,5 @@
-import 'package:lepath_app/core/base/base.dart';
-import 'package:lepath_app/app/dsa_content/model/use_cases/use_cases.dart';
+import 'package:lepath_app/core/core.dart';
+import 'package:lepath_app/cross/cross.dart';
 
 import 'dsa_content_state.dart';
 

@@ -1,6 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:lepath_app/app/dsa_content/model/entities/dsa_exercise.dart';
+
 import 'package:pocket/pocket.dart';
+
+import 'dsa_exercise.dart';
 
 part 'dsa_problems.g.dart';
 

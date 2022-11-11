@@ -1,8 +1,5 @@
-import 'package:lepath_app/app/dsa_content/model/entities/dsa_exercise.dart';
-import 'package:lepath_app/app/dsa_content/repository/dsa_repository.dart';
 import 'package:lepath_app/core/base/base.dart';
-import 'package:lepath_app/core/base/misc/either/app_right.dart';
-import 'package:lepath_app/core/base/remote/remote_app_response.dart';
+import 'package:lepath_app/cross/cross.dart';
 
 class FetchDsaProblemsData implements CommandData {
   final bool shouldFetch;

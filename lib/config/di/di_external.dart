@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:lepath_app/core/storage/database.dart';
+import 'package:lepath_app/core/core.dart';
 import 'package:pocket/pocket.dart';
 import 'package:projectile/projectile.dart';
 
@@ -7,7 +7,7 @@ import 'package:projectile/projectile.dart';
 abstract class ExternalModule {
   @Named('BaseURL')
   String get baseUrl =>
-      'https://script.google.com/macros/s/AKfycbx0Ba7PQ_TG1PMLL7GksdPRUO_Qmu_Wx4S7vsb_fmMhAJfYaqqo50oE2oMN65A7VfsEvg/exec';
+      'https://script.google.com/macros/s/AKfycbx0Ba7PQ_TG1PMLL7GksdPRUO_Qmu_Wx4S7vsb_fmMhAJfYaqqo50oE2oMN65A7VfsEvg/';
 
   @singleton
   Projectile projectile(@Named('BaseURL') String baseUrl) => Projectile(

@@ -1,10 +1,5 @@
-import 'package:lepath_app/app/dsa_content/model/entities/dsa_exercise.dart';
-import 'package:lepath_app/app/dsa_content/model/use_cases/use_cases.dart';
-import 'package:lepath_app/core/base/base.dart';
-import 'package:lepath_app/core/base/remote/remote_app_response.dart';
-
-import 'app_repository.dart';
-import 'update_info_model.dart';
+import 'package:lepath_app/core/core.dart';
+import 'package:lepath_app/cross/cross.dart';
 
 class AppInitFirstTimeData implements CommandData {
   const AppInitFirstTimeData();

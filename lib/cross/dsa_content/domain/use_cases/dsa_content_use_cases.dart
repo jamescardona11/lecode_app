@@ -1,7 +1,6 @@
-import 'package:lepath_app/app/dsa_content/model/entities/dsa_exercise.dart';
 import 'package:lepath_app/core/base/base.dart';
-import 'package:lepath_app/core/base/remote/remote_app_response.dart';
 
+import '../entities/dsa_exercise.dart';
 import 'use_cases.dart';
 
 class DsaContentUseCasesFacade {

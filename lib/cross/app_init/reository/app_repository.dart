@@ -1,12 +1,8 @@
-import 'package:lepath_app/core/base/remote/remote_app_response.dart';
-import 'package:lepath_app/core/base/remote/remote_package.dart';
-import 'package:lepath_app/core/remote/remote_repository.dart';
-import 'package:lepath_app/core/storage/database.dart';
+import 'package:lepath_app/core/core.dart';
+import 'package:lepath_app/cross/cross.dart';
 import 'package:projectile/projectile.dart';
 
-import 'update_info_model.dart';
-
-class AppRepository with RemoteRepository {
+class AppRepository with RemoteRepositoryMixin {
   AppRepository(
     this.projectile,
     this._sharedPreferences,
@@ -27,7 +23,7 @@ class AppRepository with RemoteRepository {
   Future<RemoteAppResponse<UpdateInfoModel>> getUpdatesInformation() {
     return getSingle<UpdateInfoModel>(
       RemotePackage.get(
-        '',
+        'exec',
         queries: {'action': 'getUpdateInfo'},
       ),
       UpdateInfoModel.fromJson,

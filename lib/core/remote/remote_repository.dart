@@ -6,7 +6,7 @@ import '../base/remote/i_remote_repository.dart';
 import '../base/remote/remote_app_errors.dart';
 import '../base/remote/remote_app_response.dart';
 
-abstract class RemoteRepository<P extends Projectile>
+abstract class RemoteRepositoryMixin<P extends Projectile>
     implements IRemoteRepository {
   P get projectile;
 

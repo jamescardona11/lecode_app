@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-import 'app/dsa_content/dsa_content_layout.dart';
+import 'app/pages/dsa_content/dsa_content_layout.dart';
 import 'config/di/di.dart';
-import 'core/base/use_cases/i_use_case.dart';
-import 'cross/app_init/app_init_first_time.dart';
+import 'core/core.dart';
+import 'cross/cross.dart';
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
