@@ -54,16 +54,18 @@ Future<_i1.GetIt> $initGetIt(
   gh.singleton<_i5.DsaRepository>(modelModule.dsaRepository);
   gh.singleton<_i3.BaseUseCase<_i4.Future<void>, _i5.SaveDsaProblemsData>>(
       useCasesModule.saveDsaProblems);
+  gh.singleton<_i3.BaseUseCase<_i4.Future<void>, _i5.SaveDsaExerciseData>>(
+      useCasesModule.saveDsaExercise);
   gh.singleton<
       _i3.BaseUseCase<
           _i4.Future<
               _i3.AppEither<_i3.RemoteError,
                   _i3.RemoteSuccess<_i5.DsaProblemsAggregateDto>>>,
           _i5.FetchDsaProblemsData>>(useCasesModule.fetchDsaProblems);
-  gh.singleton<_i3.BaseUseCase<_i4.Future<void>, _i5.AppInitFirstTimeData>>(
-      useCasesModule.appInitFirstTime);
   gh.singleton<_i5.DsaContentUseCasesFacade>(useCasesModule.dsaUseCasesFacade);
   gh.singleton<_i8.DsaContentViewModel>(viewModelModule.dsaContentModel);
+  gh.singleton<_i3.BaseUseCase<_i4.Future<void>, _i5.AppInitFirstTimeData>>(
+      useCasesModule.appInitFirstTime);
   return get;
 }
 
@@ -78,19 +80,11 @@ class _$UseCasesModule extends _i9.UseCasesModule {
   _i5.SaveDsaProblems get saveDsaProblems =>
       _i5.SaveDsaProblems(_getIt<_i5.DsaRepository>());
   @override
+  _i5.SaveDsaExercise get saveDsaExercise =>
+      _i5.SaveDsaExercise(_getIt<_i5.DsaRepository>());
+  @override
   _i5.FetchDsaProblems get fetchDsaProblems =>
       _i5.FetchDsaProblems(_getIt<_i5.DsaRepository>());
-  @override
-  _i5.AppInitFirstTime get appInitFirstTime => _i5.AppInitFirstTime(
-        _getIt<_i5.AppRepository>(),
-        _getIt<
-            _i3.BaseUseCase<
-                _i4.Future<
-                    _i3.AppEither<_i3.RemoteError,
-                        _i3.RemoteSuccess<_i5.DsaProblemsAggregateDto>>>,
-                _i5.FetchDsaProblemsData>>(),
-        _getIt<_i3.BaseUseCase<_i4.Future<void>, _i5.SaveDsaProblemsData>>(),
-      );
   @override
   _i5.DsaContentUseCasesFacade get dsaUseCasesFacade =>
       _i5.DsaContentUseCasesFacade(
@@ -102,6 +96,12 @@ class _$UseCasesModule extends _i9.UseCasesModule {
                         _i3.RemoteSuccess<_i5.DsaProblemsAggregateDto>>>,
                 _i5.FetchDsaProblemsData>>(),
         _getIt<_i3.BaseUseCase<_i4.Future<void>, _i5.SaveDsaProblemsData>>(),
+        _getIt<_i3.BaseUseCase<_i4.Future<void>, _i5.SaveDsaExerciseData>>(),
+      );
+  @override
+  _i5.AppInitFirstTime get appInitFirstTime => _i5.AppInitFirstTime(
+        _getIt<_i5.AppRepository>(),
+        _getIt<_i5.DsaContentUseCasesFacade>(),
       );
 }
 

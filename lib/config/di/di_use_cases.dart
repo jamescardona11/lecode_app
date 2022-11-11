@@ -10,6 +10,9 @@ abstract class UseCasesModule {
   @Singleton(as: FutureCommandUseCase<SaveDsaProblemsData>)
   SaveDsaProblems get saveDsaProblems;
 
+  @Singleton(as: FutureCommandUseCase<SaveDsaExerciseData>)
+  SaveDsaExercise get saveDsaExercise;
+
   @Singleton(
       as: FutureQueryUseCase<RemoteAppResponse<DsaExerciseDto>,
           FetchDsaProblemsData>)

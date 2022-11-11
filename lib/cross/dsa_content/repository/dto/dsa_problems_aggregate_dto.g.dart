@@ -9,9 +9,10 @@ part of 'dsa_problems_aggregate_dto.dart';
 DsaProblemsAggregateDto _$DsaProblemsAggregateDtoFromJson(
         Map<String, dynamic> json) =>
     DsaProblemsAggregateDto(
-      dsaExerciseDto: DsaExerciseDto.fromJson(
-          json['dsaExerciseDto'] as Map<String, dynamic>),
-      dsaProblemsDto: DsaExerciseDto.fromJson(
+      dsaExerciseDto: (json['dsaExerciseDto'] as List<dynamic>)
+          .map((e) => DsaExerciseDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      dsaProblemsDto: DsaProblemsDto.fromJson(
           json['dsaProblemsDto'] as Map<String, dynamic>),
     );
 

@@ -2,9 +2,9 @@ import 'package:lepath_app/cross/cross.dart';
 import 'package:lepath_app/core/core.dart';
 
 class SaveDsaProblemsData implements CommandData {
-  DsaProblemsAggregateDto items;
+  DsaProblemsDto dsaProblems;
 
-  SaveDsaProblemsData(this.items);
+  SaveDsaProblemsData(this.dsaProblems);
 }
 
 class SaveDsaProblems implements FutureCommandUseCase<SaveDsaProblemsData> {

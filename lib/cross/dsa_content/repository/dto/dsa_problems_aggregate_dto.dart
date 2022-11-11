@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 import 'package:pocket/pocket.dart';
 import 'dsa_exercise_dto.dart';
+import 'dsa_problems_dto.dart';
 
 part 'dsa_problems_aggregate_dto.g.dart';
 
@@ -15,8 +16,8 @@ class DsaProblemsAggregateDto extends IPocketModel {
   @override
   String get id => 'dsaProblemsAggregate';
 
-  DsaExerciseDto dsaExerciseDto;
-  DsaExerciseDto dsaProblemsDto;
+  List<DsaExerciseDto> dsaExerciseDto;
+  DsaProblemsDto dsaProblemsDto;
 
   @override
   Map<String, dynamic> toJson() => _$DsaProblemsAggregateDtoToJson(this);

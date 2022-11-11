@@ -34,10 +34,9 @@ class DsaRepository
     );
   }
 
-  Future<void> saveDsaProblems(DsaProblemsAggregateDto problems) async {
-    await create(problems, tableDsaProblems);
-  }
+  Future<void> saveDsaProblems(DsaProblemsAggregateDto problems) =>
+      create(problems.dsaProblemsDto, tableDsaProblems);
 
-  Future<void> _saveDsaExercises(List<DsaExerciseDto> items) =>
+  Future<void> saveDsaExercises(List<DsaExerciseDto> items) =>
       createMany(items, tableDsaExercise);
 }
