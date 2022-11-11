@@ -34,9 +34,13 @@ class DsaRepository
     );
   }
 
-  Future<void> saveDsaProblems(DsaProblemsAggregateDto problems) =>
-      create(problems.dsaProblemsDto, tableDsaProblems);
+  Future<void> saveDsaProblems(DsaProblemsAggregateDto problems) => create(
+        problems.dsaProblemsDto,
+        tableDsaProblems,
+      );
 
-  Future<void> saveDsaExercises(List<DsaExerciseDto> items) =>
-      createMany(items, tableDsaExercise);
+  Future<void> saveDsaExercises(List<DsaExerciseDto> items) => createMany(
+        items,
+        tableDsaExercise,
+      );
 }

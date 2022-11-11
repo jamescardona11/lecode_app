@@ -8,10 +8,6 @@ part of 'dsa_problems_dto.dart';
 
 DsaProblemsDto _$DsaProblemsDtoFromJson(Map<String, dynamic> json) =>
     DsaProblemsDto(
-      problems: (json['entries'] as List<dynamic>?)
-              ?.map((e) => DsaExerciseDto.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
       blind75:
           (json['blind_75'] as List<dynamic>?)?.map((e) => e as int).toList() ??
               [],
@@ -38,7 +34,6 @@ DsaProblemsDto _$DsaProblemsDtoFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$DsaProblemsDtoToJson(DsaProblemsDto instance) =>
     <String, dynamic>{
-      'entries': instance.problems,
       'blind_75': instance.blind75,
       'grind_75': instance.grind75,
       'leet_code_60': instance.leetCode60,

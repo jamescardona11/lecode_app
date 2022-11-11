@@ -13,6 +13,11 @@ class DsaProblemsAggregateDto extends IPocketModel {
     required this.dsaProblemsDto,
   });
 
+  factory DsaProblemsAggregateDto.def() => DsaProblemsAggregateDto(
+        dsaExerciseDto: [],
+        dsaProblemsDto: DsaProblemsDto.def(),
+      );
+
   @override
   String get id => 'dsaProblemsAggregate';
 

@@ -20,8 +20,9 @@ class FetchDsaProblems
   @override
   Future<RemoteAppResponse<DsaProblemsAggregateDto>> call(
       FetchDsaProblemsData data) async {
-    print('here');
-    // if (!data.shouldFetch) return AppRight(RemoteSuccess([]));
+    if (!data.shouldFetch) {
+      return AppRight(RemoteSuccess(DsaProblemsAggregateDto.def()));
+    }
 
     return await _repository.fetchDSAExercisesInformation();
   }

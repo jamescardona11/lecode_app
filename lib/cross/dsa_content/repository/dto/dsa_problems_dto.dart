@@ -7,7 +7,6 @@ part 'dsa_problems_dto.g.dart';
 @JsonSerializable()
 class DsaProblemsDto extends IPocketModel {
   DsaProblemsDto({
-    required this.problems,
     required this.blind75,
     required this.grind75,
     required this.leetCode60,
@@ -16,11 +15,16 @@ class DsaProblemsDto extends IPocketModel {
     required this.curatedAlgo170,
   });
 
+  factory DsaProblemsDto.def() => DsaProblemsDto(
+      blind75: [],
+      grind75: [],
+      leetCode60: [],
+      topInterviewQuestions: [],
+      topLikedQuestions: [],
+      curatedAlgo170: []);
+
   @override
   String get id => 'dsaProblems';
-
-  @JsonKey(name: 'entries', defaultValue: [])
-  final List<DsaExerciseDto> problems;
 
   @JsonKey(name: 'blind_75', defaultValue: [])
   final List<int> blind75;

@@ -8,11 +8,11 @@ class AppInitFirstTimeData implements CommandData {
 class AppInitFirstTime implements FutureCommandUseCase<AppInitFirstTimeData> {
   AppInitFirstTime(
     this._appRepository,
-    this._dsaUseCasesFacade,
+    this._dsaFacade,
   );
 
   final AppRepository _appRepository;
-  final DsaContentUseCasesFacade _dsaUseCasesFacade;
+  final DsaContentUseCasesFacade _dsaFacade;
 
   @override
   Future<void> call(
@@ -21,16 +21,26 @@ class AppInitFirstTime implements FutureCommandUseCase<AppInitFirstTimeData> {
     if (response.isLeft) return;
 
     final lastUpdateTime = await _appRepository.lastUpdateDate();
-    final shouldUpdate = shouldUpdateInfo(response.right.value, lastUpdateTime);
+    final shouldUpdate = shouldUpdateInfo(
+      response.right.value,
+      lastUpdateTime,
+    );
 
-    final elementsResult = await _dsaUseCasesFacade.fetchDsaProblems
+    final elementsResult = await _dsaFacade.fetchDsaProblems
         .call(FetchDsaProblemsData(shouldUpdate));
 
     if (elementsResult.isRight) {
-      await _dsaUseCasesFacade.saveDsaProblems(
-          SaveDsaProblemsData(elementsResult.right.value.dsaProblemsDto));
-      await _dsaUseCasesFacade.saveDsaExercise(
-          SaveDsaExerciseData(elementsResult.right.value.dsaExerciseDto));
+      await _dsaFacade.saveDsaProblems(
+        SaveDsaProblemsData(
+          elementsResult.right.value.dsaProblemsDto,
+        ),
+      );
+
+      await _dsaFacade.saveDsaExercise(
+        SaveDsaExerciseData(
+          elementsResult.right.value.dsaExerciseDto,
+        ),
+      );
     }
   }
 
