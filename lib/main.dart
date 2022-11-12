@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'app/pages/dsa_content/dsa_content_layout.dart';
+import 'app/pages/home/home_page.dart';
 import 'config/di/di.dart';
+import 'config/theme/app_theme.dart';
 import 'core/core.dart';
 import 'cross/cross.dart';
 
@@ -31,7 +33,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Material App',
       debugShowCheckedModeBanner: false,
-      home: ProjectLayout(),
+      theme: AppTheme.lightTheme(),
+      home: HomePage(),
     );
   }
 }

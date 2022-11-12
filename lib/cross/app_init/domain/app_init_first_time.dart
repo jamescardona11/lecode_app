@@ -19,7 +19,7 @@ class AppInitFirstTime implements FutureCommandUseCase<AppInitFirstTimeData> {
     final response = await _appRepository.getUpdatesInformation();
     if (response.isLeft) return;
 
-    final lastUpdateTime = await _appRepository.lastUpdateDate();
+    final lastUpdateTime = await _appRepository.readLastUpdateDate();
     final shouldUpdate = shouldUpdateInfo(
       response.right.value,
       lastUpdateTime,
@@ -40,6 +40,10 @@ class AppInitFirstTime implements FutureCommandUseCase<AppInitFirstTimeData> {
           elementsResult.right.value.dsaExerciseDto,
         ),
       );
+    }
+
+    if (shouldUpdate) {
+      _appRepository.setNewLastUpdateDate();
     }
   }
 
