@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:lepath_app/app/widgets/round_container.dart';
 import 'package:lepath_app/config/context_extension.dart';
 
-class HomePage extends StatelessWidget {
+class DashboardPage extends StatelessWidget {
   /// default constructor
-  const HomePage({
+  const DashboardPage({
     super.key,
   });
 
@@ -14,9 +13,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 10,
-            horizontal: 16,
+          padding: const EdgeInsets.only(
+            top: 10,
+            left: 16,
+            right: 16,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
