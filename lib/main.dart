@@ -2,10 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:lepath_app/app/pages/dashboard/dashboard_page.dart';
 
 import 'app/pages/dsa_list/dsa_list_page.dart';
-import 'app/pages/path/path_steps_page.dart';
 
 import 'config/di/di.dart';
 import 'config/theme/app_theme.dart';

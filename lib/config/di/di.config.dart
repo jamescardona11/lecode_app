@@ -48,9 +48,13 @@ Future<_i1.GetIt> $initGetIt(
     instanceName: 'BaseURL',
   );
   gh.singleton<_i3.AppSharedPreferences>(externalModule.appSharedPreferences);
+  gh.singleton<_i5.DsaListRepository>(modelModule.dsaListRepository);
   gh.singleton<_i7.Projectile>(
       externalModule.projectile(get<String>(instanceName: 'BaseURL')));
   gh.singleton<_i5.AppRepository>(modelModule.appRepository);
+  gh.singleton<
+      _i3.BaseUseCase<Iterable<_i5.DsaExerciseDto>,
+          _i5.ReadAllDsaExercisesData>>(useCasesModule.readAllDsaExercises);
   gh.singleton<_i5.DsaRepository>(modelModule.dsaRepository);
   gh.singleton<_i3.BaseUseCase<_i4.Future<void>, _i5.SaveDsaProblemsData>>(
       useCasesModule.saveDsaProblems);
@@ -63,9 +67,9 @@ Future<_i1.GetIt> $initGetIt(
                   _i3.RemoteSuccess<_i5.DsaProblemsAggregateDto>>>,
           _i5.FetchDsaProblemsData>>(useCasesModule.fetchDsaProblems);
   gh.singleton<_i5.DsaUseCasesFacade>(useCasesModule.dsaUseCasesFacade);
-  gh.singleton<_i8.DsaContentViewModel>(viewModelModule.dsaContentModel);
   gh.singleton<_i3.BaseUseCase<_i4.Future<void>, _i5.AppInitFirstTimeData>>(
       useCasesModule.appInitFirstTime);
+  gh.singleton<_i8.DsaContentViewModel>(viewModelModule.dsaContentModel);
   return get;
 }
 
@@ -76,6 +80,9 @@ class _$UseCasesModule extends _i9.UseCasesModule {
 
   @override
   _i5.MarkAsComplete get markAsComplete => _i5.MarkAsComplete();
+  @override
+  _i5.ReadAllDsaExercises get readAllDsaExercises =>
+      _i5.ReadAllDsaExercises(_getIt<_i5.DsaListRepository>());
   @override
   _i5.SaveDsaProblems get saveDsaProblems =>
       _i5.SaveDsaProblems(_getIt<_i5.DsaRepository>());
@@ -96,6 +103,9 @@ class _$UseCasesModule extends _i9.UseCasesModule {
                 _i5.FetchDsaProblemsData>>(),
         _getIt<_i3.BaseUseCase<_i4.Future<void>, _i5.SaveDsaProblemsData>>(),
         _getIt<_i3.BaseUseCase<_i4.Future<void>, _i5.SaveDsaExerciseData>>(),
+        _getIt<
+            _i3.BaseUseCase<Iterable<_i5.DsaExerciseDto>,
+                _i5.ReadAllDsaExercisesData>>(),
       );
   @override
   _i5.AppInitFirstTime get appInitFirstTime => _i5.AppInitFirstTime(
@@ -119,6 +129,9 @@ class _$ModelModule extends _i11.ModelModule {
 
   final _i1.GetIt _getIt;
 
+  @override
+  _i5.DsaListRepository get dsaListRepository =>
+      _i5.DsaListRepository(_getIt<_i6.IPocketAdapter>());
   @override
   _i5.AppRepository get appRepository => _i5.AppRepository(
         _getIt<_i7.Projectile>(),

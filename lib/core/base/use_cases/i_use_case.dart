@@ -6,7 +6,7 @@ abstract class BaseUseCase<R extends dynamic, I extends CommandData> {
 
 typedef CommandUseCase<I extends CommandData> = BaseUseCase<void, I>;
 
-typedef QueryUseCase<I extends CommandData> = BaseUseCase<void, I>;
+typedef QueryUseCase<R, I extends CommandData> = BaseUseCase<R, I>;
 
 typedef FutureCommandUseCase<I extends CommandData>
     = BaseUseCase<Future<void>, I>;

@@ -14,7 +14,7 @@ abstract class UseCasesModule {
   SaveDsaExercise get saveDsaExercise;
 
   @Singleton(
-      as: StreamQueryUseCase<Iterable<DsaExerciseDto>, ReadAllDsaExercisesData>)
+      as: QueryUseCase<Iterable<DsaExerciseDto>, ReadAllDsaExercisesData>)
   ReadAllDsaExercises get readAllDsaExercises;
 
   @Singleton(

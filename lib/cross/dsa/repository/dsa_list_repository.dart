@@ -26,13 +26,10 @@ class DsaListRepository with PocketMultiDataSourceMixin<IPocketAdapter> {
 
   void _listenElements() {
     adapterDb
-        .readWhere(
-          table: tableDsaExercise,
-          pocketQueries: [],
-        )
+        .readWhere(table: tableDsaExercise)
         .map((items) => items.map((item) => DsaExerciseDto.fromJson(item.data)))
         .listen((items) {
-          _dsaExercisesListStream.value = items;
-        });
+      _dsaExercisesListStream.value = items;
+    });
   }
 }
