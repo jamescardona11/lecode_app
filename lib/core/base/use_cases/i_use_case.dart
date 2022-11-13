@@ -14,5 +14,5 @@ typedef FutureCommandUseCase<I extends CommandData>
 typedef FutureQueryUseCase<R, I extends CommandData>
     = BaseUseCase<Future<R>, I>;
 
-// typedef StreamQueryUseCase<I extends CommandParam>
-//     = BaseUseCase<Stream<void>, I>;
+typedef StreamQueryUseCase<R, I extends CommandData>
+    = BaseUseCase<Stream<R>, I>;

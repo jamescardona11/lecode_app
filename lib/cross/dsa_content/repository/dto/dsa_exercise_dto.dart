@@ -18,6 +18,7 @@ class DsaExerciseDto extends IPocketModel {
     required this.explanation,
     required this.solved,
     required this.mySolution,
+    this.completedDate,
   });
 
   @override
@@ -30,6 +31,7 @@ class DsaExerciseDto extends IPocketModel {
   final List<String> groups;
   final String notes;
   final List<String> explanation;
+  final DateTime? completedDate;
 
   @JsonKey(name: 'acceptance_rate')
   final double acceptanceRate;

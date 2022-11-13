@@ -12,7 +12,7 @@ class AppInitFirstTime implements FutureCommandUseCase<AppInitFirstTimeData> {
   );
 
   final AppRepository _appRepository;
-  final DsaContentUseCasesFacade _dsaFacade;
+  final DsaUseCasesFacade _dsaFacade;
 
   @override
   Future<void> call(AppInitFirstTimeData data) async {

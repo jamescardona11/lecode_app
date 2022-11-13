@@ -8,7 +8,7 @@ class DsaRepository
     with
         PocketMultiDataSourceMixin<IPocketAdapter>,
         RemoteRepositoryMixin<Projectile> {
-  DsaRepository(
+  const DsaRepository(
     this.adapterDb,
     this.projectile,
   );

@@ -1,10 +1,10 @@
 import 'package:lepath_app/core/core.dart';
 import 'package:lepath_app/cross/cross.dart';
 
-import 'dsa_content_state.dart';
+import 'dsa_list_state.dart';
 
-class DsaContentViewModel extends BaseViewModel<DsaContentState> {
-  DsaContentViewModel(this.useCases) : super(const DsaContentState());
+class DsaListViewModel extends BaseViewModel<DsaListState> {
+  DsaListViewModel(this.useCases) : super(const DsaListState());
 
   final DsaUseCasesFacade useCases;
 

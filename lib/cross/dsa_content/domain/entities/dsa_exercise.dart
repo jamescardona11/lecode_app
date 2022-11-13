@@ -12,6 +12,7 @@ class DsaExerciseModel {
     required this.explanation,
     required this.solved,
     required this.mySolution,
+    this.completedDate,
   });
 
   final String id;
@@ -26,4 +27,5 @@ class DsaExerciseModel {
   final double myRate;
   final bool solved;
   final String mySolution;
+  final DateTime? completedDate;
 }

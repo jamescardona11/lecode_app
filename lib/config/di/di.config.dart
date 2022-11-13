@@ -62,7 +62,7 @@ Future<_i1.GetIt> $initGetIt(
               _i3.AppEither<_i3.RemoteError,
                   _i3.RemoteSuccess<_i5.DsaProblemsAggregateDto>>>,
           _i5.FetchDsaProblemsData>>(useCasesModule.fetchDsaProblems);
-  gh.singleton<_i5.DsaContentUseCasesFacade>(useCasesModule.dsaUseCasesFacade);
+  gh.singleton<_i5.DsaUseCasesFacade>(useCasesModule.dsaUseCasesFacade);
   gh.singleton<_i8.DsaContentViewModel>(viewModelModule.dsaContentModel);
   gh.singleton<_i3.BaseUseCase<_i4.Future<void>, _i5.AppInitFirstTimeData>>(
       useCasesModule.appInitFirstTime);
@@ -86,8 +86,7 @@ class _$UseCasesModule extends _i9.UseCasesModule {
   _i5.FetchDsaProblems get fetchDsaProblems =>
       _i5.FetchDsaProblems(_getIt<_i5.DsaRepository>());
   @override
-  _i5.DsaContentUseCasesFacade get dsaUseCasesFacade =>
-      _i5.DsaContentUseCasesFacade(
+  _i5.DsaUseCasesFacade get dsaUseCasesFacade => _i5.DsaUseCasesFacade(
         _getIt<_i3.BaseUseCase<_i4.Future<void>, _i5.MarkAsCompleteData>>(),
         _getIt<
             _i3.BaseUseCase<
@@ -101,7 +100,7 @@ class _$UseCasesModule extends _i9.UseCasesModule {
   @override
   _i5.AppInitFirstTime get appInitFirstTime => _i5.AppInitFirstTime(
         _getIt<_i5.AppRepository>(),
-        _getIt<_i5.DsaContentUseCasesFacade>(),
+        _getIt<_i5.DsaUseCasesFacade>(),
       );
 }
 
@@ -139,5 +138,5 @@ class _$ViewModelModule extends _i12.ViewModelModule {
 
   @override
   _i8.DsaContentViewModel get dsaContentModel =>
-      _i8.DsaContentViewModel(_getIt<_i5.DsaContentUseCasesFacade>());
+      _i8.DsaContentViewModel(_getIt<_i5.DsaUseCasesFacade>());
 }

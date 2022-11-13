@@ -1,12 +1,13 @@
 import 'package:lepath_app/core/core.dart';
 import 'package:lepath_app/cross/cross.dart';
 
-class DsaContentUseCasesFacade {
-  DsaContentUseCasesFacade(
+class DsaUseCasesFacade {
+  DsaUseCasesFacade(
     this.markAsComplete,
     this.fetchDsaProblems,
     this.saveDsaProblems,
     this.saveDsaExercise,
+    this.readAllDsaExercises,
   );
 
   final FutureCommandUseCase<MarkAsCompleteData> markAsComplete;
@@ -17,4 +18,7 @@ class DsaContentUseCasesFacade {
 
   final FutureQueryUseCase<RemoteAppResponse<DsaProblemsAggregateDto>,
       FetchDsaProblemsData> fetchDsaProblems;
+
+  final StreamQueryUseCase<Iterable<DsaExerciseDto>, ReadAllDsaExercisesData>
+      readAllDsaExercises;
 }

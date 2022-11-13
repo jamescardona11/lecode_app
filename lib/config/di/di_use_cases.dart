@@ -14,13 +14,17 @@ abstract class UseCasesModule {
   SaveDsaExercise get saveDsaExercise;
 
   @Singleton(
+      as: StreamQueryUseCase<Iterable<DsaExerciseDto>, ReadAllDsaExercisesData>)
+  ReadAllDsaExercises get readAllDsaExercises;
+
+  @Singleton(
       as: FutureQueryUseCase<RemoteAppResponse<DsaExerciseDto>,
           FetchDsaProblemsData>)
   FetchDsaProblems get fetchDsaProblems;
 
   /// facade
   @singleton
-  DsaContentUseCasesFacade get dsaUseCasesFacade;
+  DsaUseCasesFacade get dsaUseCasesFacade;
 
   @Singleton(as: FutureCommandUseCase<AppInitFirstTimeData>)
   AppInitFirstTime get appInitFirstTime;
