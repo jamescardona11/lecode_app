@@ -1,3 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/foundation.dart';
+
 class DsaExerciseModel {
   DsaExerciseModel({
     required this.id,
@@ -28,4 +31,45 @@ class DsaExerciseModel {
   final bool solved;
   final String mySolution;
   final DateTime? completedDate;
+
+  @override
+  bool operator ==(covariant DsaExerciseModel other) {
+    if (identical(this, other)) return true;
+
+    return other.id == id &&
+        other.name == name &&
+        other.url == url &&
+        other.difficulty == difficulty &&
+        listEquals(other.topics, topics) &&
+        listEquals(other.groups, groups) &&
+        other.notes == notes &&
+        listEquals(other.explanation, explanation) &&
+        other.acceptanceRate == acceptanceRate &&
+        other.myRate == myRate &&
+        other.solved == solved &&
+        other.mySolution == mySolution &&
+        other.completedDate == completedDate;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        name.hashCode ^
+        url.hashCode ^
+        difficulty.hashCode ^
+        topics.hashCode ^
+        groups.hashCode ^
+        notes.hashCode ^
+        explanation.hashCode ^
+        acceptanceRate.hashCode ^
+        myRate.hashCode ^
+        solved.hashCode ^
+        mySolution.hashCode ^
+        completedDate.hashCode;
+  }
+
+  @override
+  String toString() {
+    return 'DsaExerciseModel(id: $id, name: $name, url: $url, difficulty: $difficulty, topics: $topics, groups: $groups, notes: $notes, explanation: $explanation, acceptanceRate: $acceptanceRate, myRate: $myRate, solved: $solved, mySolution: $mySolution, completedDate: $completedDate)';
+  }
 }

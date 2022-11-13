@@ -6,7 +6,8 @@ import 'package:lepath_app/core/base/base.dart';
 
 import 'viewmodel/viewmodel.dart';
 
-class ContentView extends BaseWidget<DsaContentViewModel, DsaContentState> {
+class ContentView
+    extends MvvMProviderWidget<DsaContentViewModel, DsaContentState> {
   /// default constructor
   const ContentView({
     super.key,
@@ -16,7 +17,7 @@ class ContentView extends BaseWidget<DsaContentViewModel, DsaContentState> {
   DsaContentViewModel get viewModelBuilder => getIt<DsaContentViewModel>();
 
   @override
-  Widget buildWidget(BuildContext context, DsaContentViewModel viewModel) {
+  Widget buildWidget(BuildContext context, DsaContentState state) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 40),
       child: Column(

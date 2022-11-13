@@ -14,6 +14,7 @@ class DsaListState extends BaseState {
   @override
   List<Object?> get props => [
         itemsPagination,
+        items,
       ];
 
   DsaListState copyWith({

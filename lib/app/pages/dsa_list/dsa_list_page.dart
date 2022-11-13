@@ -2,78 +2,59 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:lepath_app/app/pages/dsa_list/viewmodel/viewmodel.dart';
+import 'package:lepath_app/app/widgets/exercise_item_widget.dart';
 import 'package:lepath_app/config/context_extension.dart';
 import 'package:lepath_app/config/di/di.dart';
 import 'package:lepath_app/core/core.dart';
 import 'package:drip/drip.dart';
+import 'package:lepath_app/cross/cross.dart';
 
-class DsaListPage extends BaseWidget<DsaListViewModel, DsaListState> {
+class DsaListPage extends MvvMProviderWidget<DsaListViewModel, DsaListState> {
   /// default constructor
   const DsaListPage({
     super.key,
+    this.title = '',
+    this.description = '',
+    this.group = '',
   });
+
+  final String title;
+  final String description;
+  final String group;
 
   @override
   DsaListViewModel get viewModelBuilder => getIt<DsaListViewModel>();
 
   @override
-  Widget buildWidget(BuildContext context, DsaListViewModel viewModel) {
+  Widget buildWidget(BuildContext context, DsaListState state) {
     return Scaffold(
-      body: _DsaListPage(),
-    );
-  }
-}
-
-class _DsaListPage extends StatelessWidget {
-  /// default constructor
-  const _DsaListPage({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 40),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Grind 75 questions'),
-          GestureDetector(
-            onTap: () {
-              context.read<DsaListViewModel>().readDsaExercises();
-            },
-            child: Text(
-                'Customize LeetCode study plans according to your needs. You are recommended to work on the questions in order'),
+      body: SafeArea(
+        bottom: false,
+        child: Padding(
+          // padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 40),
+          padding: const EdgeInsets.only(
+            top: 16,
+            left: 16,
+            right: 16,
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) => Container(
-                width: context.widthPx,
-                height: 50,
-                margin: const EdgeInsets.all(8),
-                color: Colors.red,
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Text('ajsasnaisn'),
               ),
-            ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  childCount: state.items.length,
+                  (context, index) => ExerciseItemWidget(
+                    exercise: state.items.elementAt(index),
+                    isLast: index == state.items.length - 1,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
 }
-
-
-// array: FaIcon(FontAwesomeIcons.ellipsis),
-// stack: FaIcon(FontAwesomeIcons.layerGroup),
-// linked: FaIcon(FontAwesomeIcons.link),
-// string: FaIcon(FontAwesomeIcons.font),
-// binary-tree: FaIcon(FontAwesomeIcons.networkWired),
-// binary-search: FaIcon(FontAwesomeIcons.magnifyingGlass),
-// graph: FaIcon(FontAwesomeIcons.connectdevelop),
-// hash: FaIcon(FontAwesomeIcons.hashtag),
-// dynamic: FaIcon(FontAwesomeIcons.chartSimple),
-// heap: FaIcon(FontAwesomeIcons.grip),
-// recursion: FaIcon(FontAwesomeIcons.repeat),
-// math: FaIcon(FontAwesomeIcons.plusMinus),
-// trie: FaIcon(FontAwesomeIcons.diceTwo),
-// sort: FaIcon(FontAwesomeIcons.arrowUpRightDots),
