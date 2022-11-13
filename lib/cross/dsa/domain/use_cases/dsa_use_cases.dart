@@ -19,6 +19,6 @@ class DsaUseCasesFacade {
   final FutureQueryUseCase<RemoteAppResponse<DsaProblemsAggregateDto>,
       FetchDsaProblemsData> fetchDsaProblems;
 
-  final QueryUseCase<Iterable<DsaExerciseDto>, ReadAllDsaExercisesData>
+  final StreamQueryUseCase<Iterable<DsaExerciseModel>, ReadAllDsaExercisesData>
       readAllDsaExercises;
 }

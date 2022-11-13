@@ -4,15 +4,17 @@ abstract class BaseUseCase<R extends dynamic, I extends CommandData> {
   R call(I data);
 }
 
-typedef CommandUseCase<I extends CommandData> = BaseUseCase<void, I>;
+abstract class CommandUseCase<I extends CommandData>
+    implements BaseUseCase<void, I> {}
 
-typedef QueryUseCase<R, I extends CommandData> = BaseUseCase<R, I>;
+abstract class QueryUseCase<R, I extends CommandData>
+    extends BaseUseCase<R, I> {}
 
-typedef FutureCommandUseCase<I extends CommandData>
-    = BaseUseCase<Future<void>, I>;
+abstract class FutureCommandUseCase<I extends CommandData>
+    extends BaseUseCase<Future<void>, I> {}
 
-typedef FutureQueryUseCase<R, I extends CommandData>
-    = BaseUseCase<Future<R>, I>;
+abstract class FutureQueryUseCase<R, I extends CommandData>
+    extends BaseUseCase<Future<R>, I> {}
 
-typedef StreamQueryUseCase<R, I extends CommandData>
-    = BaseUseCase<Stream<R>, I>;
+abstract class StreamQueryUseCase<R, I extends CommandData>
+    extends BaseUseCase<Stream<R>, I> {}

@@ -8,7 +8,7 @@ part of 'dsa_exercise_dto.dart';
 
 DsaExerciseDto _$DsaExerciseDtoFromJson(Map<String, dynamic> json) =>
     DsaExerciseDto(
-      id: DsaExerciseDto._fromJsonId(json['id'] as int),
+      id: json['id'] as String,
       name: json['name'] as String,
       url: json['url'] as String,
       difficulty: json['difficulty'] as String,
@@ -22,7 +22,7 @@ DsaExerciseDto _$DsaExerciseDtoFromJson(Map<String, dynamic> json) =>
       explanation: (json['explanation'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
-      solved: DsaExerciseDto._fromJsonSolved(json['solved'] as String),
+      solved: json['solved'] as bool,
       mySolution: json['my_solution'] as String? ?? '',
       completedDate: json['completedDate'] == null
           ? null
@@ -39,9 +39,9 @@ Map<String, dynamic> _$DsaExerciseDtoToJson(DsaExerciseDto instance) =>
       'groups': instance.groups,
       'notes': instance.notes,
       'explanation': instance.explanation,
+      'solved': instance.solved,
       'completedDate': instance.completedDate?.toIso8601String(),
       'acceptance_rate': instance.acceptanceRate,
       'my_rate': instance.myRate,
-      'solved': instance.solved,
       'my_solution': instance.mySolution,
     };

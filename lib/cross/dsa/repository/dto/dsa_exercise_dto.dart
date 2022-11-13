@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:lepath_app/cross/cross.dart';
 import 'package:pocket/pocket.dart';
 
 part 'dsa_exercise_dto.g.dart';
@@ -22,7 +23,6 @@ class DsaExerciseDto extends IPocketModel {
   });
 
   @override
-  @JsonKey(fromJson: _fromJsonId)
   final String id;
   final String name;
   final String url;
@@ -31,6 +31,7 @@ class DsaExerciseDto extends IPocketModel {
   final List<String> groups;
   final String notes;
   final List<String> explanation;
+  final bool solved;
   final DateTime? completedDate;
 
   @JsonKey(name: 'acceptance_rate')
@@ -39,20 +40,28 @@ class DsaExerciseDto extends IPocketModel {
   @JsonKey(name: 'my_rate')
   final double myRate;
 
-  @JsonKey(fromJson: _fromJsonSolved)
-  final bool solved;
-
   @JsonKey(name: 'my_solution', defaultValue: '')
   final String mySolution;
 
   @override
   Map<String, dynamic> toJson() => _$DsaExerciseDtoToJson(this);
 
+  DsaExerciseModel toEntity() => DsaExerciseModel(
+        id: id,
+        name: name,
+        url: url,
+        difficulty: difficulty,
+        topics: topics,
+        groups: groups,
+        acceptanceRate: acceptanceRate,
+        myRate: myRate,
+        notes: notes,
+        explanation: explanation,
+        solved: solved,
+        mySolution: mySolution,
+        completedDate: completedDate,
+      );
+
   factory DsaExerciseDto.fromJson(Map<String, dynamic> json) =>
       _$DsaExerciseDtoFromJson(json);
-
-  static String _fromJsonId(int value) => value.toString();
-
-  static bool _fromJsonSolved(String value) =>
-      value.isEmpty ? false : value.toLowerCase() == 'true';
 }

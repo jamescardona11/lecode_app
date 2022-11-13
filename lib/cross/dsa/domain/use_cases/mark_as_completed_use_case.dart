@@ -6,7 +6,7 @@ class MarkAsCompleteData extends CommandData {
   final String id;
 }
 
-class MarkAsComplete extends BaseUseCase<Future<void>, MarkAsCompleteData> {
+class MarkAsComplete extends FutureCommandUseCase<MarkAsCompleteData> {
   @override
   Future<void> call(MarkAsCompleteData data) async {}
 }

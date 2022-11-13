@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:lepath_app/cross/cross.dart';
 
 import 'package:pocket/pocket.dart';
-import 'package:rxdart/rxdart.dart';
 
 class DsaListRepository with PocketMultiDataSourceMixin<IPocketAdapter> {
   DsaListRepository(
@@ -13,23 +12,26 @@ class DsaListRepository with PocketMultiDataSourceMixin<IPocketAdapter> {
     _listenElements();
   }
 
-  String get tableDsaExercise => 'dsa_exercises_table';
-
-  final BehaviorSubject<Iterable<DsaExerciseDto>> _dsaExercisesListStream =
-      BehaviorSubject<Iterable<DsaExerciseDto>>.seeded([]);
+  late final Stream<Iterable<DsaExerciseModel>> _dsaExercisesListStream;
 
   @override
   final IPocketAdapter adapterDb;
 
-  Stream<Iterable<DsaExerciseDto>> get readAllDsaExercises =>
+  String get tableDsaExercise => 'dsa_exercises_table';
+
+  Stream<Iterable<DsaExerciseModel>> get readAllDsaExercises =>
       _dsaExercisesListStream;
 
   void _listenElements() {
-    adapterDb
-        .readWhere(table: tableDsaExercise)
-        .map((items) => items.map((item) => DsaExerciseDto.fromJson(item.data)))
-        .listen((items) {
-      _dsaExercisesListStream.value = items;
-    });
+    _dsaExercisesListStream = adapterDb.readWhere(table: tableDsaExercise).map(
+          (items) => items.map(
+            (item) => DsaExerciseDto.fromJson(item.data).toEntity(),
+          ),
+        );
+
+    //     .listen((items) {
+    //   print('items: ${items.length}');
+    //   _dsaExercisesListStream.value = items;
+    // });
   }
 }
