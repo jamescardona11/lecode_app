@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class StatsModel {
-  StatsModel({
+  const StatsModel({
     this.last30Days = 0,
     this.daysStats = const [],
     this.difficulty = const {},

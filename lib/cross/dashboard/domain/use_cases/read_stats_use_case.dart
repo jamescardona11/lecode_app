@@ -5,11 +5,13 @@ class ReadStatsData implements CommandData {}
 
 class ReadStatsUseCase
     implements StreamQueryUseCase<StatsModel, ReadStatsData> {
+  ReadStatsUseCase(this.repository);
+
+  final DsaRepository repository;
+
   @override
-  Stream<StatsModel> call(ReadStatsData data) {
-    // TODO: implement call
-    throw UnimplementedError();
-  }
+  Stream<StatsModel> call(ReadStatsData data) =>
+      repository.readAllDsaExercises.map((items) => getStatsModel(items));
 
   StatsModel getStatsModel(Iterable<DsaExerciseModel> items) {
     int completed = 0;

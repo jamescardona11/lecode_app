@@ -19,7 +19,8 @@ class DsaRepository with PocketMultiDataSourceMixin<IPocketAdapter> {
 
   void _listenElements() {
     _dsaExercisesListStream = readWhere<DsaExerciseModel>(
-        tableDsaExercise, DsaExerciseDto.toEntityByJson);
+            tableDsaExercise, DsaExerciseDto.toEntityByJson)
+        .asBroadcastStream();
   }
 
   Stream<Iterable<DsaExerciseModel>> get readAllDsaExercises =>

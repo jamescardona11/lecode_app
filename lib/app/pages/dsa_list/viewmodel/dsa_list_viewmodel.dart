@@ -15,8 +15,9 @@ class DsaListViewModel extends BaseViewModel<DsaListState> {
   }
 
   Future<void> readDsaExercises() async {
-    final dsaExercises = await useCases.readAllDsaExercises
-        .call(ReadAllDsaExercisesData([], state.itemsPagination + 40))
+    final dsaExercises = await useCases.readAllDsaExercisesWithPagination
+        .call(ReadAllDsaExercisesWithPaginationData(
+            [], state.itemsPagination + 40))
         .first;
     // .toList();
 

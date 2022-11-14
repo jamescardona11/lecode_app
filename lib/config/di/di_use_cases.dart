@@ -27,8 +27,8 @@ abstract class UseCasesModule {
 
   @Singleton(
       as: StreamQueryUseCase<Iterable<DsaExerciseModel>,
-          ReadAllDsaExercisesData>)
-  ReadAllDsaExercises get readAllDsaExercises;
+          ReadAllDsaExercisesWithPaginationData>)
+  ReadAllDsaExercisesWithPagination get readAllDsaExercisesWithPagination;
 
   /// facade
   @singleton

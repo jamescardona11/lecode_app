@@ -4,11 +4,11 @@ import 'package:lepath_app/cross/cross.dart';
 class DsaUseCasesFacade {
   DsaUseCasesFacade(
     this.markAsComplete,
-    this.readAllDsaExercises,
+    this.readAllDsaExercisesWithPagination,
   );
 
   final FutureCommandUseCase<MarkAsCompleteData> markAsComplete;
 
-  final StreamQueryUseCase<Iterable<DsaExerciseModel>, ReadAllDsaExercisesData>
-      readAllDsaExercises;
+  final StreamQueryUseCase<Iterable<DsaExerciseModel>,
+      ReadAllDsaExercisesWithPaginationData> readAllDsaExercisesWithPagination;
 }

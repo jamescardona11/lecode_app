@@ -4,8 +4,8 @@ import 'package:lepath_app/core/core.dart';
 import 'package:lepath_app/cross/cross.dart';
 import 'package:rxdart/rxdart.dart';
 
-class ReadAllDsaExercisesData implements CommandData {
-  const ReadAllDsaExercisesData([
+class ReadAllDsaExercisesWithPaginationData implements CommandData {
+  const ReadAllDsaExercisesWithPaginationData([
     this.topics = const [],
     this.takeX = 20,
   ]);
@@ -14,13 +14,13 @@ class ReadAllDsaExercisesData implements CommandData {
   final int takeX;
 }
 
-class ReadAllDsaExercises
+class ReadAllDsaExercisesWithPagination
     implements
         StreamQueryUseCase<Iterable<DsaExerciseModel>,
-            ReadAllDsaExercisesData> {
-  final DsaRepository _repository;
+            ReadAllDsaExercisesWithPaginationData> {
+  final DsaRepository repository;
 
-  ReadAllDsaExercises(this._repository) {
+  ReadAllDsaExercisesWithPagination(this.repository) {
     _listenDsaExercises();
   }
 
@@ -30,25 +30,28 @@ class ReadAllDsaExercises
   // Iterable<DsaExerciseModel> elements = [];
 
   void _listenDsaExercises() {
-    _repository.readAllDsaExercises.asBroadcastStream().listen((items) {
+    repository.readAllDsaExercises.listen((items) {
       elementsStream.add(items);
     });
   }
 
+  // review this don't sent iterable
   @override
-  Stream<Iterable<DsaExerciseModel>> call(ReadAllDsaExercisesData data) async* {
-    final items = await elementsStream.first;
+  Stream<Iterable<DsaExerciseModel>> call(
+      ReadAllDsaExercisesWithPaginationData data) {
+    return elementsStream.switchMap((items) {
+      if (data.topics.isEmpty) {
+        return Stream.value(items.take(data.takeX));
+      }
 
-    if (data.topics.isEmpty) {
-      yield* Stream.value(items.take(data.takeX));
-    }
-
-    yield* Stream.value(items
-        .where(
-          (item) => data.topics.any(
-            (element) => item.topics.contains(element),
-          ),
-        )
-        .take(data.takeX));
+      return Stream.value(items
+          .where(
+            (item) => data.topics.any(
+              (element) => item.topics.contains(element),
+            ),
+          )
+          .take(data.takeX));
+    });
+    // final items = await elementsStream.last;
   }
 }

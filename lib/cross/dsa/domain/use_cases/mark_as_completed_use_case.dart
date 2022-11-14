@@ -14,7 +14,6 @@ class MarkAsComplete extends FutureCommandUseCase<MarkAsCompleteData> {
 
   @override
   Future<void> call(MarkAsCompleteData data) async {
-    print('id ${data.id}');
     await repository.markAsComplete(data.id);
   }
 }
