@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:lepath_app/cross/cross.dart';
 
@@ -28,10 +29,5 @@ class DsaListRepository with PocketMultiDataSourceMixin<IPocketAdapter> {
             (item) => DsaExerciseDto.fromJson(item.data).toEntity(),
           ),
         );
-
-    //     .listen((items) {
-    //   print('items: ${items.length}');
-    //   _dsaExercisesListStream.value = items;
-    // });
   }
 }

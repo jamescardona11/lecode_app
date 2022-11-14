@@ -12,9 +12,11 @@ class ExerciseItemWidget extends StatefulWidget {
     Key? key,
     required this.exercise,
     this.isLast = false,
+    this.onTap,
   }) : super(key: key);
 
   final DsaExerciseModel exercise;
+  final VoidCallback? onTap;
   final bool isLast;
 
   @override
@@ -25,23 +27,22 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        print(widget.exercise);
-      },
+      onTap: widget.onTap,
       child: Padding(
         padding: EdgeInsets.only(bottom: widget.isLast ? 40 : 8),
         child: RoundContainer(
           width: context.widthPx,
-          height: 90,
+          height: 100,
           border: 10,
           color: difficultyColor.withOpacity(0.5),
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: Row(
+              // crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 RoundContainer(
                   border: 10,
-                  // height: 70,
+                  height: 70,
                   color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -77,15 +78,17 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
                       const SizedBox(height: 5),
                       Text(
                         topicJoin,
-                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
+                        // overflow: TextOverflow.ellipsis,
                       )
                     ],
                   ),
                 ),
-                CircularCheckBox(
-                  onChange: (value) {},
-                  isChecked: false,
-                ),
+                _CompletedWidget(
+                  exercise: widget.exercise,
+                )
               ],
             ),
           ),
@@ -148,3 +151,34 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
         'Sort': FontAwesomeIcons.arrowUpRightDots,
       };
 }
+
+class _CompletedWidget extends StatelessWidget {
+  const _CompletedWidget({
+    Key? key,
+    required this.exercise,
+  }) : super(key: key);
+
+  final DsaExerciseModel exercise;
+
+  @override
+  Widget build(BuildContext context) {
+    return exercise.completedDate == null
+        ? Container(
+            height: 70,
+            width: 50,
+            color: Colors.red,
+            child: Center(
+              child: CircularCheckBox(
+                onChange: (value) {},
+                isChecked: false,
+              ),
+            ),
+          )
+        : FaIcon(
+            FontAwesomeIcons.check,
+            color: Colors.white,
+          );
+  }
+}
+
+// share, favortitee, start, completed

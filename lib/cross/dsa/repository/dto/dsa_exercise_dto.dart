@@ -1,6 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
-import 'package:lepath_app/cross/cross.dart';
 import 'package:pocket/pocket.dart';
+
+import 'package:lepath_app/cross/cross.dart';
 
 part 'dsa_exercise_dto.g.dart';
 
@@ -64,4 +66,41 @@ class DsaExerciseDto extends IPocketModel {
 
   factory DsaExerciseDto.fromJson(Map<String, dynamic> json) =>
       _$DsaExerciseDtoFromJson(json);
+
+  DsaExerciseDto copyWith({
+    String? id,
+    String? name,
+    String? url,
+    String? difficulty,
+    List<String>? topics,
+    List<String>? groups,
+    String? notes,
+    List<String>? explanation,
+    bool? solved,
+    DateTime? completedDate,
+    double? acceptanceRate,
+    double? myRate,
+    String? mySolution,
+  }) {
+    return DsaExerciseDto(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      url: url ?? this.url,
+      difficulty: difficulty ?? this.difficulty,
+      topics: topics ?? this.topics,
+      groups: groups ?? this.groups,
+      notes: notes ?? this.notes,
+      explanation: explanation ?? this.explanation,
+      solved: solved ?? this.solved,
+      completedDate: completedDate,
+      acceptanceRate: acceptanceRate ?? this.acceptanceRate,
+      myRate: myRate ?? this.myRate,
+      mySolution: mySolution ?? this.mySolution,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'DsaExerciseDto(id: $id, name: $name, url: $url, difficulty: $difficulty, topics: $topics, groups: $groups, notes: $notes, explanation: $explanation, solved: $solved, completedDate: $completedDate, acceptanceRate: $acceptanceRate, myRate: $myRate, mySolution: $mySolution)';
+  }
 }

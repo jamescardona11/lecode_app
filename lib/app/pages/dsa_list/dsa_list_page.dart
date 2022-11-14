@@ -28,33 +28,120 @@ class DsaListPage extends MvvMProviderWidget<DsaListViewModel, DsaListState> {
   @override
   Widget buildWidget(BuildContext context, DsaListState state) {
     return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        child: Padding(
-          // padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 40),
-          padding: const EdgeInsets.only(
-            top: 16,
-            left: 16,
-            right: 16,
+      body: CustomScrollView(
+        slivers: [
+          const SliverAppBar(
+            title: AppBarRow(),
+            backgroundColor: Colors.red,
+            pinned: false,
+            floating: true,
+            snap: true,
+            expandedHeight: 210.0,
+            flexibleSpace: FlexibleSpaceBar(
+              background: FlexibleBar(),
+            ),
           ),
-          child: CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(
-                child: Text('ajsasnaisn'),
-              ),
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  childCount: state.items.length,
-                  (context, index) => ExerciseItemWidget(
-                    exercise: state.items.elementAt(index),
+          SliverPadding(
+            padding: const EdgeInsets.only(
+              top: 16,
+              left: 16,
+              right: 16,
+            ),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                childCount: state.items.length,
+                (_, index) {
+                  final item = state.items.elementAt(index);
+                  return ExerciseItemWidget(
+                    exercise: item,
                     isLast: index == state.items.length - 1,
-                  ),
-                ),
+                    onTap: () {
+                      viewModelBuilder.markProblemAsRead(item.id);
+                    },
+                  );
+                },
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
+    );
+  }
+}
+
+class FlexibleBar extends StatelessWidget {
+  const FlexibleBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          Text(
+            'Total Balance',
+            style: TextStyle(fontSize: 15.0),
+          ),
+          Text(
+            "\$3,048",
+            style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+          ),
+          Icon(Icons.more_horiz),
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 40.0, right: 40.0, bottom: 5.0),
+            child: Row(
+              children: [
+                Text(
+                  "\$3,048",
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  "USD",
+                  style: TextStyle(),
+                ),
+                Spacer(),
+                Text(
+                  "AUS \$3,800",
+                  style: TextStyle(),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 40.0, right: 40.0, bottom: 10.0),
+            child: LinearProgressIndicator(
+              minHeight: 5,
+              backgroundColor: Colors.grey,
+              valueColor: AlwaysStoppedAnimation<Color>(
+                Colors.black45,
+              ),
+              value: 0.8,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class AppBarRow extends StatelessWidget {
+  const AppBarRow({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: const <Widget>[
+        Icon(Icons.circle_outlined),
+        Text(
+          'My Spending',
+          style: TextStyle(fontSize: 20.0),
+        ),
+        Icon(Icons.calendar_today),
+      ],
     );
   }
 }

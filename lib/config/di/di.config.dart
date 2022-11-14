@@ -7,16 +7,16 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:pocket/pocket.dart' as _i5;
+import 'package:pocket/pocket.dart' as _i3;
 import 'package:projectile/projectile.dart' as _i6;
 
 import '../../app/pages/dsa_content/viewmodel/viewmodel.dart' as _i7;
 import '../../app/pages/dsa_list/viewmodel/viewmodel.dart' as _i8;
-import '../../core/core.dart' as _i3;
-import '../../cross/cross.dart' as _i4;
-import 'di_external.dart' as _i10;
-import 'di_repository.dart' as _i11;
-import 'di_use_cases.dart' as _i9;
+import '../../core/core.dart' as _i4;
+import '../../cross/cross.dart' as _i5;
+import 'di_external.dart' as _i9;
+import 'di_repository.dart' as _i10;
+import 'di_use_cases.dart' as _i11;
 import 'di_viewmodel.dart' as _i12; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
@@ -31,13 +31,11 @@ Future<_i1.GetIt> $initGetIt(
     environment,
     environmentFilter,
   );
-  final useCasesModule = _$UseCasesModule(get);
   final externalModule = _$ExternalModule(get);
   final modelModule = _$ModelModule(get);
+  final useCasesModule = _$UseCasesModule(get);
   final viewModelModule = _$ViewModelModule(get);
-  gh.singleton<_i3.FutureCommandUseCase<_i4.MarkAsCompleteData>>(
-      useCasesModule.markAsComplete);
-  await gh.factoryAsync<_i5.IPocketAdapter>(
+  await gh.factoryAsync<_i3.IPocketAdapter>(
     () => externalModule.dbApp,
     preResolve: true,
   );
@@ -45,99 +43,102 @@ Future<_i1.GetIt> $initGetIt(
     () => externalModule.baseUrl,
     instanceName: 'BaseURL',
   );
-  gh.singleton<_i3.AppSharedPreferences>(externalModule.appSharedPreferences);
-  gh.singleton<_i4.DsaListRepository>(modelModule.dsaListRepository);
+  gh.singleton<_i4.AppSharedPreferences>(externalModule.appSharedPreferences);
+  gh.singleton<_i5.DsaListRepository>(modelModule.dsaListRepository);
   gh.singleton<_i6.Projectile>(
       externalModule.projectile(get<String>(instanceName: 'BaseURL')));
   gh.singleton<
-      _i3.StreamQueryUseCase<Iterable<_i4.DsaExerciseModel>,
-          _i4.ReadAllDsaExercisesData>>(useCasesModule.readAllDsaExercises);
-  gh.singleton<_i4.AppRepository>(modelModule.appRepository);
-  gh.singleton<_i4.DsaRepository>(modelModule.dsaRepository);
-  gh.singleton<_i3.FutureCommandUseCase<_i4.SaveDsaProblemsData>>(
+      _i4.StreamQueryUseCase<Iterable<_i5.DsaExerciseModel>,
+          _i5.ReadAllDsaExercisesData>>(useCasesModule.readAllDsaExercises);
+  gh.singleton<_i5.AppRepository>(modelModule.appRepository);
+  gh.singleton<_i5.DsaRepository>(modelModule.dsaRepository);
+  gh.singleton<_i4.FutureCommandUseCase<_i5.MarkAsCompleteData>>(
+      useCasesModule.markAsComplete);
+  gh.singleton<_i4.FutureCommandUseCase<_i5.SaveDsaProblemsData>>(
       useCasesModule.saveDsaProblems);
-  gh.singleton<_i3.FutureCommandUseCase<_i4.SaveDsaExerciseData>>(
+  gh.singleton<_i4.FutureCommandUseCase<_i5.SaveDsaExerciseData>>(
       useCasesModule.saveDsaExercise);
   gh.singleton<
-      _i3.FutureQueryUseCase<
-          _i3.AppEither<_i3.RemoteError,
-              _i3.RemoteSuccess<_i4.DsaProblemsAggregateDto>>,
-          _i4.FetchDsaProblemsData>>(useCasesModule.fetchDsaProblems);
-  gh.singleton<_i4.DsaUseCasesFacade>(useCasesModule.dsaUseCasesFacade);
-  gh.singleton<_i3.FutureCommandUseCase<_i4.AppInitFirstTimeData>>(
+      _i4.FutureQueryUseCase<
+          _i4.AppEither<_i4.RemoteError,
+              _i4.RemoteSuccess<_i5.DsaProblemsAggregateDto>>,
+          _i5.FetchDsaProblemsData>>(useCasesModule.fetchDsaProblems);
+  gh.singleton<_i5.DsaUseCasesFacade>(useCasesModule.dsaUseCasesFacade);
+  gh.singleton<_i4.FutureCommandUseCase<_i5.AppInitFirstTimeData>>(
       useCasesModule.appInitFirstTime);
   gh.singleton<_i7.DsaContentViewModel>(viewModelModule.dsaContentModel);
   gh.singleton<_i8.DsaListViewModel>(viewModelModule.dsaListViewModel);
   return get;
 }
 
-class _$UseCasesModule extends _i9.UseCasesModule {
-  _$UseCasesModule(this._getIt);
-
-  final _i1.GetIt _getIt;
-
-  @override
-  _i4.MarkAsComplete get markAsComplete => _i4.MarkAsComplete();
-  @override
-  _i4.ReadAllDsaExercises get readAllDsaExercises =>
-      _i4.ReadAllDsaExercises(_getIt<_i4.DsaListRepository>());
-  @override
-  _i4.SaveDsaProblems get saveDsaProblems =>
-      _i4.SaveDsaProblems(_getIt<_i4.DsaRepository>());
-  @override
-  _i4.SaveDsaExercise get saveDsaExercise =>
-      _i4.SaveDsaExercise(_getIt<_i4.DsaRepository>());
-  @override
-  _i4.FetchDsaProblems get fetchDsaProblems =>
-      _i4.FetchDsaProblems(_getIt<_i4.DsaRepository>());
-  @override
-  _i4.DsaUseCasesFacade get dsaUseCasesFacade => _i4.DsaUseCasesFacade(
-        _getIt<_i3.FutureCommandUseCase<_i4.MarkAsCompleteData>>(),
-        _getIt<
-            _i3.FutureQueryUseCase<
-                _i3.AppEither<_i3.RemoteError,
-                    _i3.RemoteSuccess<_i4.DsaProblemsAggregateDto>>,
-                _i4.FetchDsaProblemsData>>(),
-        _getIt<_i3.FutureCommandUseCase<_i4.SaveDsaProblemsData>>(),
-        _getIt<_i3.FutureCommandUseCase<_i4.SaveDsaExerciseData>>(),
-        _getIt<
-            _i3.StreamQueryUseCase<Iterable<_i4.DsaExerciseModel>,
-                _i4.ReadAllDsaExercisesData>>(),
-      );
-  @override
-  _i4.AppInitFirstTime get appInitFirstTime => _i4.AppInitFirstTime(
-        _getIt<_i4.AppRepository>(),
-        _getIt<_i4.DsaUseCasesFacade>(),
-      );
-}
-
-class _$ExternalModule extends _i10.ExternalModule {
+class _$ExternalModule extends _i9.ExternalModule {
   _$ExternalModule(this._getIt);
 
   final _i1.GetIt _getIt;
 
   @override
-  _i3.AppSharedPreferences get appSharedPreferences =>
-      _i3.AppSharedPreferences(_getIt<_i5.IPocketAdapter>());
+  _i4.AppSharedPreferences get appSharedPreferences =>
+      _i4.AppSharedPreferences(_getIt<_i3.IPocketAdapter>());
 }
 
-class _$ModelModule extends _i11.ModelModule {
+class _$ModelModule extends _i10.ModelModule {
   _$ModelModule(this._getIt);
 
   final _i1.GetIt _getIt;
 
   @override
-  _i4.DsaListRepository get dsaListRepository =>
-      _i4.DsaListRepository(_getIt<_i5.IPocketAdapter>());
+  _i5.DsaListRepository get dsaListRepository =>
+      _i5.DsaListRepository(_getIt<_i3.IPocketAdapter>());
   @override
-  _i4.AppRepository get appRepository => _i4.AppRepository(
+  _i5.AppRepository get appRepository => _i5.AppRepository(
         _getIt<_i6.Projectile>(),
-        _getIt<_i3.AppSharedPreferences>(),
+        _getIt<_i4.AppSharedPreferences>(),
       );
   @override
-  _i4.DsaRepository get dsaRepository => _i4.DsaRepository(
-        _getIt<_i5.IPocketAdapter>(),
+  _i5.DsaRepository get dsaRepository => _i5.DsaRepository(
+        _getIt<_i3.IPocketAdapter>(),
         _getIt<_i6.Projectile>(),
+      );
+}
+
+class _$UseCasesModule extends _i11.UseCasesModule {
+  _$UseCasesModule(this._getIt);
+
+  final _i1.GetIt _getIt;
+
+  @override
+  _i5.ReadAllDsaExercises get readAllDsaExercises =>
+      _i5.ReadAllDsaExercises(_getIt<_i5.DsaListRepository>());
+  @override
+  _i5.MarkAsComplete get markAsComplete =>
+      _i5.MarkAsComplete(_getIt<_i5.DsaRepository>());
+  @override
+  _i5.SaveDsaProblems get saveDsaProblems =>
+      _i5.SaveDsaProblems(_getIt<_i5.DsaRepository>());
+  @override
+  _i5.SaveDsaExercise get saveDsaExercise =>
+      _i5.SaveDsaExercise(_getIt<_i5.DsaRepository>());
+  @override
+  _i5.FetchDsaProblems get fetchDsaProblems =>
+      _i5.FetchDsaProblems(_getIt<_i5.DsaRepository>());
+  @override
+  _i5.DsaUseCasesFacade get dsaUseCasesFacade => _i5.DsaUseCasesFacade(
+        _getIt<_i4.FutureCommandUseCase<_i5.MarkAsCompleteData>>(),
+        _getIt<
+            _i4.FutureQueryUseCase<
+                _i4.AppEither<_i4.RemoteError,
+                    _i4.RemoteSuccess<_i5.DsaProblemsAggregateDto>>,
+                _i5.FetchDsaProblemsData>>(),
+        _getIt<_i4.FutureCommandUseCase<_i5.SaveDsaProblemsData>>(),
+        _getIt<_i4.FutureCommandUseCase<_i5.SaveDsaExerciseData>>(),
+        _getIt<
+            _i4.StreamQueryUseCase<Iterable<_i5.DsaExerciseModel>,
+                _i5.ReadAllDsaExercisesData>>(),
+      );
+  @override
+  _i5.AppInitFirstTime get appInitFirstTime => _i5.AppInitFirstTime(
+        _getIt<_i5.AppRepository>(),
+        _getIt<_i5.DsaUseCasesFacade>(),
       );
 }
 
@@ -148,8 +149,8 @@ class _$ViewModelModule extends _i12.ViewModelModule {
 
   @override
   _i7.DsaContentViewModel get dsaContentModel =>
-      _i7.DsaContentViewModel(_getIt<_i4.DsaUseCasesFacade>());
+      _i7.DsaContentViewModel(_getIt<_i5.DsaUseCasesFacade>());
   @override
   _i8.DsaListViewModel get dsaListViewModel =>
-      _i8.DsaListViewModel(_getIt<_i4.DsaUseCasesFacade>());
+      _i8.DsaListViewModel(_getIt<_i5.DsaUseCasesFacade>());
 }
