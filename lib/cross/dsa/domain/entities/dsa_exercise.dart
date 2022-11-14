@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/foundation.dart';
+import 'package:lepath_app/cross/dsa/domain/entities/group_type.dart';
 
 class DsaExerciseModel {
   DsaExerciseModel({
@@ -23,7 +24,7 @@ class DsaExerciseModel {
   final String url;
   final String difficulty;
   final List<String> topics;
-  final List<String> groups;
+  final List<GroupType> groups;
   final String notes;
   final List<String> explanation;
   final double acceptanceRate;
@@ -31,6 +32,17 @@ class DsaExerciseModel {
   final bool solved;
   final String mySolution;
   final DateTime? completedDate;
+
+  bool get isEasy => difficulty == 'Easy';
+  bool get isMedium => difficulty == 'Medium';
+  bool get isHard => difficulty == 'Hard';
+
+  bool get isGrind75 => groups.contains(GroupType.grind75);
+  bool get isBlind75 => groups.contains(GroupType.blind75);
+  bool get isTopInterview => groups.contains(GroupType.topInterview);
+  bool get isTopLiked => groups.contains(GroupType.topLiked);
+  bool get isLeetCode60 => groups.contains(GroupType.leetCode60);
+  bool get isAlgo => groups.contains(GroupType.algo);
 
   @override
   bool operator ==(covariant DsaExerciseModel other) {

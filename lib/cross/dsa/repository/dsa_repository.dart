@@ -51,7 +51,7 @@ class DsaRepository
   }
 
   Future<void> markAsComplete(String id) async {
-    final dto = await adapterDb.read(table: tableDsaExercise, id: id);
+    final dto = await adapterDb.read(table: tableDsaExercise, id: id).first;
     if (dto == null) return;
 
     DsaExerciseDto exercise = DsaExerciseDto.fromJson(dto.data);

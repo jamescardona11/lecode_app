@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:lepath_app/cross/cross.dart';
 
@@ -24,10 +23,7 @@ class DsaListRepository with PocketMultiDataSourceMixin<IPocketAdapter> {
       _dsaExercisesListStream;
 
   void _listenElements() {
-    _dsaExercisesListStream = adapterDb.readWhere(table: tableDsaExercise).map(
-          (items) => items.map(
-            (item) => DsaExerciseDto.fromJson(item.data).toEntity(),
-          ),
-        );
+    _dsaExercisesListStream = readWhere<DsaExerciseModel>(
+        tableDsaExercise, DsaExerciseDto.toEntityByJson);
   }
 }

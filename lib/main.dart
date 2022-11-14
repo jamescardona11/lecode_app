@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:lepath_app/app/pages/dashboard/dashboard_page.dart';
 
 import 'app/pages/dsa_list/dsa_list_page.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme(),
-      home: DsaListPage(),
+      home: DashboardPage(),
     );
   }
 }

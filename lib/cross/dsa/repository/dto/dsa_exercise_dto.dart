@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
+import 'package:lepath_app/cross/dsa/domain/entities/group_type.dart';
 import 'package:pocket/pocket.dart';
 
 import 'package:lepath_app/cross/cross.dart';
@@ -54,7 +55,7 @@ class DsaExerciseDto extends IPocketModel {
         url: url,
         difficulty: difficulty,
         topics: topics,
-        groups: groups,
+        groups: groups.map((e) => GroupType.fromString(e)).toList(),
         acceptanceRate: acceptanceRate,
         myRate: myRate,
         notes: notes,
@@ -66,6 +67,9 @@ class DsaExerciseDto extends IPocketModel {
 
   factory DsaExerciseDto.fromJson(Map<String, dynamic> json) =>
       _$DsaExerciseDtoFromJson(json);
+
+  static DsaExerciseModel toEntityByJson(Map<String, dynamic> json) =>
+      DsaExerciseDto.fromJson(json).toEntity();
 
   DsaExerciseDto copyWith({
     String? id,
