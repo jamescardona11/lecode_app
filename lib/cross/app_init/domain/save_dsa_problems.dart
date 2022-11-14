@@ -8,7 +8,7 @@ class SaveDsaProblemsData implements CommandData {
 }
 
 class SaveDsaProblems implements FutureCommandUseCase<SaveDsaProblemsData> {
-  final DsaRepository _repository;
+  final AppRepository _repository;
 
   SaveDsaProblems(
     this._repository,

@@ -1,25 +1,14 @@
 import 'package:lepath_app/core/core.dart';
 import 'package:lepath_app/cross/cross.dart';
-import 'package:pocket/pocket.dart';
 
-class DashboardRepository with PocketMultiDataSourceMixin<IPocketAdapter> {
-  DashboardRepository(
-    this.adapterDb,
-  ) {
-    _listenElements();
-  }
+class ReadStatsData implements CommandData {}
 
-  late final Stream<StatsModel> _statsModelStream;
-
+class ReadStatsUseCase
+    implements StreamQueryUseCase<StatsModel, ReadStatsData> {
   @override
-  final IPocketAdapter adapterDb;
-
-  Stream<StatsModel> get statsModelStream => _statsModelStream;
-
-  void _listenElements() {
-    _statsModelStream = readWhere<DsaExerciseModel>(
-            tableDsaExercise, DsaExerciseDto.toEntityByJson)
-        .map((items) => getStatsModel(items));
+  Stream<StatsModel> call(ReadStatsData data) {
+    // TODO: implement call
+    throw UnimplementedError();
   }
 
   StatsModel getStatsModel(Iterable<DsaExerciseModel> items) {

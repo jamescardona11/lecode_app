@@ -8,7 +8,7 @@ class SaveDsaExerciseData implements CommandData {
 }
 
 class SaveDsaExercise implements FutureCommandUseCase<SaveDsaExerciseData> {
-  final DsaRepository _repository;
+  final AppRepository _repository;
 
   SaveDsaExercise(
     this._repository,

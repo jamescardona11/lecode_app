@@ -3,15 +3,21 @@ import 'package:lepath_app/cross/cross.dart';
 import 'package:pocket/pocket.dart';
 import 'package:projectile/projectile.dart';
 
-class AppRepository with RemoteRepositoryMixin {
+class AppRepository
+    with RemoteRepositoryMixin, PocketMultiDataSourceMixin<IPocketAdapter> {
   AppRepository(
+    this.adapterDb,
     this.projectile,
     this._sharedPreferences,
   );
 
   final AppSharedPreferences _sharedPreferences;
+
   @override
   final Projectile projectile;
+
+  @override
+  final IPocketAdapter adapterDb;
 
   Future<DateTime> readLastUpdateDate() async {
     final lastUpdate = await _sharedPreferences.readInt('last_update');
@@ -33,6 +39,31 @@ class AppRepository with RemoteRepositoryMixin {
         queries: {'action': 'getUpdateInfo'},
       ),
       UpdateInfoModel.fromJson,
+    );
+  }
+
+  Future<RemoteAppResponse<DsaProblemsAggregateDto>>
+      fetchDSAExercisesInformation() {
+    return getSingle<DsaProblemsAggregateDto>(
+      RemotePackage.get(
+        'exec',
+        queries: {'action': 'getLeetCode'},
+      ),
+      DsaProblemsAggregateDto.fromJson,
+    );
+  }
+
+  Future<void> saveDsaProblems(DsaProblemsDto problems) async {
+    await create(
+      problems,
+      tableDsaProblems,
+    );
+  }
+
+  Future<void> saveDsaExercises(List<DsaExerciseDto> items) async {
+    await createMany(
+      items,
+      tableDsaExercise,
     );
   }
 

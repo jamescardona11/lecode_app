@@ -18,7 +18,7 @@ class ReadAllDsaExercises
     implements
         StreamQueryUseCase<Iterable<DsaExerciseModel>,
             ReadAllDsaExercisesData> {
-  final DsaListRepository _repository;
+  final DsaRepository _repository;
 
   ReadAllDsaExercises(this._repository) {
     _listenDsaExercises();

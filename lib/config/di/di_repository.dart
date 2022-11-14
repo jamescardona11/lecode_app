@@ -8,7 +8,4 @@ abstract class ModelModule {
 
   @singleton
   DsaRepository get dsaRepository;
-
-  @singleton
-  DsaListRepository get dsaListRepository;
 }

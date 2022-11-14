@@ -4,51 +4,26 @@ import 'package:lepath_app/core/core.dart';
 import 'package:lepath_app/cross/cross.dart';
 
 import 'package:pocket/pocket.dart';
-import 'package:projectile/projectile.dart';
 
-class DsaRepository
-    with
-        PocketMultiDataSourceMixin<IPocketAdapter>,
-        RemoteRepositoryMixin<Projectile> {
-  const DsaRepository(
+class DsaRepository with PocketMultiDataSourceMixin<IPocketAdapter> {
+  DsaRepository(
     this.adapterDb,
-    this.projectile,
-  );
-
-  String get tableDsaProblems => 'dsa_problems_table';
-
-  String get tableDsaExercise => 'dsa_exercises_table';
+  ) {
+    _listenElements();
+  }
 
   @override
   final IPocketAdapter adapterDb;
 
-  @override
-  final Projectile projectile;
+  late final Stream<Iterable<DsaExerciseModel>> _dsaExercisesListStream;
 
-  Future<RemoteAppResponse<DsaProblemsAggregateDto>>
-      fetchDSAExercisesInformation() {
-    return getSingle<DsaProblemsAggregateDto>(
-      RemotePackage.get(
-        'exec',
-        queries: {'action': 'getLeetCode'},
-      ),
-      DsaProblemsAggregateDto.fromJson,
-    );
+  void _listenElements() {
+    _dsaExercisesListStream = readWhere<DsaExerciseModel>(
+        tableDsaExercise, DsaExerciseDto.toEntityByJson);
   }
 
-  Future<void> saveDsaProblems(DsaProblemsDto problems) async {
-    await create(
-      problems,
-      tableDsaProblems,
-    );
-  }
-
-  Future<void> saveDsaExercises(List<DsaExerciseDto> items) async {
-    await createMany(
-      items,
-      tableDsaExercise,
-    );
-  }
+  Stream<Iterable<DsaExerciseModel>> get readAllDsaExercises =>
+      _dsaExercisesListStream;
 
   Future<void> markAsComplete(String id) async {
     final dto = await adapterDb.read(table: tableDsaExercise, id: id).first;

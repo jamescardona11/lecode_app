@@ -11,7 +11,7 @@ class FetchDsaProblems
     implements
         FutureQueryUseCase<RemoteAppResponse<DsaProblemsAggregateDto>,
             FetchDsaProblemsData> {
-  final DsaRepository _repository;
+  final AppRepository _repository;
 
   FetchDsaProblems(
     this._repository,

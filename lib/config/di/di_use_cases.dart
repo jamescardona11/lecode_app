@@ -4,8 +4,8 @@ import 'package:lepath_app/cross/cross.dart';
 
 @module
 abstract class UseCasesModule {
-  @Singleton(as: FutureCommandUseCase<MarkAsCompleteData>)
-  MarkAsComplete get markAsComplete;
+  @Singleton(as: FutureCommandUseCase<AppInitFirstTimeData>)
+  AppInitFirstTime get appInitFirstTime;
 
   @Singleton(as: FutureCommandUseCase<SaveDsaProblemsData>)
   SaveDsaProblems get saveDsaProblems;
@@ -14,19 +14,26 @@ abstract class UseCasesModule {
   SaveDsaExercise get saveDsaExercise;
 
   @Singleton(
-      as: StreamQueryUseCase<Iterable<DsaExerciseModel>,
-          ReadAllDsaExercisesData>)
-  ReadAllDsaExercises get readAllDsaExercises;
-
-  @Singleton(
       as: FutureQueryUseCase<RemoteAppResponse<DsaExerciseDto>,
           FetchDsaProblemsData>)
   FetchDsaProblems get fetchDsaProblems;
 
   /// facade
   @singleton
+  InitUseCasesFacade get initUseCasesFacade;
+
+  @Singleton(as: FutureCommandUseCase<MarkAsCompleteData>)
+  MarkAsComplete get markAsComplete;
+
+  @Singleton(
+      as: StreamQueryUseCase<Iterable<DsaExerciseModel>,
+          ReadAllDsaExercisesData>)
+  ReadAllDsaExercises get readAllDsaExercises;
+
+  /// facade
+  @singleton
   DsaUseCasesFacade get dsaUseCasesFacade;
 
-  @Singleton(as: FutureCommandUseCase<AppInitFirstTimeData>)
-  AppInitFirstTime get appInitFirstTime;
+  @Singleton(as: StreamQueryUseCase<StatsModel, ReadStatsData>)
+  ReadStatsUseCase get readStatsUseCase;
 }
