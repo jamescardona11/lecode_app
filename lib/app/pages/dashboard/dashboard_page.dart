@@ -6,6 +6,8 @@ import 'package:lepath_app/config/context_extension.dart';
 import 'package:lepath_app/config/di/di.dart';
 import 'package:lepath_app/core/core.dart';
 
+import 'solved_by_days_widget.dart';
+
 class DashboardPage
     extends MvvMProviderWidget<DashboardViewModel, DashboardState> {
   /// default constructor
@@ -39,10 +41,18 @@ class DashboardPage
                 height: context.heightPct(40),
                 child: LayoutBuilder(
                   builder: (context, constraints) => Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       RoundContainer(
                         width: constraints.maxWidth / 2,
-                        color: Colors.red,
+                        color: Colors.pink.shade200.withOpacity(0.4),
+                        child: Column(
+                          children: [
+                            SolvedByDays(
+                              statsModel: state.statsModel,
+                            ),
+                          ],
+                        ),
                       ),
                       SizedBox(width: 20),
                       Expanded(
