@@ -35,6 +35,7 @@ class DsaExerciseDto extends IPocketModel {
   final String notes;
   final List<String> explanation;
   final bool solved;
+  // todo change this for solvedDate
   final DateTime? completedDate;
 
   @JsonKey(name: 'acceptance_rate')
@@ -62,7 +63,7 @@ class DsaExerciseDto extends IPocketModel {
         explanation: explanation,
         solved: solved,
         mySolution: mySolution,
-        completedDate: completedDate,
+        solvedDate: completedDate,
       );
 
   factory DsaExerciseDto.fromJson(Map<String, dynamic> json) =>

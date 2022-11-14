@@ -10,14 +10,15 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:pocket/pocket.dart' as _i3;
 import 'package:projectile/projectile.dart' as _i6;
 
-import '../../app/pages/dsa_content/viewmodel/viewmodel.dart' as _i7;
-import '../../app/pages/dsa_list/viewmodel/viewmodel.dart' as _i8;
+import '../../app/pages/dashboard/viewmodel/dashboard_viewmodel.dart' as _i7;
+import '../../app/pages/dsa_content/viewmodel/viewmodel.dart' as _i8;
+import '../../app/pages/dsa_list/viewmodel/viewmodel.dart' as _i9;
 import '../../core/core.dart' as _i4;
 import '../../cross/cross.dart' as _i5;
-import 'di_external.dart' as _i9;
-import 'di_repository.dart' as _i10;
-import 'di_use_cases.dart' as _i11;
-import 'di_viewmodel.dart' as _i12; // ignore_for_file: unnecessary_lambdas
+import 'di_external.dart' as _i10;
+import 'di_repository.dart' as _i11;
+import 'di_use_cases.dart' as _i12;
+import 'di_viewmodel.dart' as _i13; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -56,6 +57,7 @@ Future<_i1.GetIt> $initGetIt(
   gh.singleton<_i4.StreamQueryUseCase<_i5.StatsModel, _i5.ReadStatsData>>(
       useCasesModule.readStatsUseCase);
   gh.singleton<_i5.AppRepository>(modelModule.appRepository);
+  gh.singleton<_i7.DashboardViewModel>(viewModelModule.dashboardViewModel);
   gh.singleton<_i5.DsaUseCasesFacade>(useCasesModule.dsaUseCasesFacade);
   gh.singleton<_i4.FutureCommandUseCase<_i5.SaveDsaProblemsData>>(
       useCasesModule.saveDsaProblems);
@@ -67,14 +69,14 @@ Future<_i1.GetIt> $initGetIt(
               _i4.RemoteSuccess<_i5.DsaProblemsAggregateDto>>,
           _i5.FetchDsaProblemsData>>(useCasesModule.fetchDsaProblems);
   gh.singleton<_i5.InitUseCasesFacade>(useCasesModule.initUseCasesFacade);
-  gh.singleton<_i7.DsaContentViewModel>(viewModelModule.dsaContentModel);
-  gh.singleton<_i8.DsaListViewModel>(viewModelModule.dsaListViewModel);
+  gh.singleton<_i8.DsaContentViewModel>(viewModelModule.dsaContentModel);
+  gh.singleton<_i9.DsaListViewModel>(viewModelModule.dsaListViewModel);
   gh.singleton<_i4.FutureCommandUseCase<_i5.AppInitFirstTimeData>>(
       useCasesModule.appInitFirstTime);
   return get;
 }
 
-class _$ExternalModule extends _i9.ExternalModule {
+class _$ExternalModule extends _i10.ExternalModule {
   _$ExternalModule(this._getIt);
 
   final _i1.GetIt _getIt;
@@ -84,7 +86,7 @@ class _$ExternalModule extends _i9.ExternalModule {
       _i4.AppSharedPreferences(_getIt<_i3.IPocketAdapter>());
 }
 
-class _$ModelModule extends _i10.ModelModule {
+class _$ModelModule extends _i11.ModelModule {
   _$ModelModule(this._getIt);
 
   final _i1.GetIt _getIt;
@@ -100,7 +102,7 @@ class _$ModelModule extends _i10.ModelModule {
       );
 }
 
-class _$UseCasesModule extends _i11.UseCasesModule {
+class _$UseCasesModule extends _i12.UseCasesModule {
   _$UseCasesModule(this._getIt);
 
   final _i1.GetIt _getIt;
@@ -147,15 +149,18 @@ class _$UseCasesModule extends _i11.UseCasesModule {
       );
 }
 
-class _$ViewModelModule extends _i12.ViewModelModule {
+class _$ViewModelModule extends _i13.ViewModelModule {
   _$ViewModelModule(this._getIt);
 
   final _i1.GetIt _getIt;
 
   @override
-  _i7.DsaContentViewModel get dsaContentModel =>
-      _i7.DsaContentViewModel(_getIt<_i5.DsaUseCasesFacade>());
+  _i7.DashboardViewModel get dashboardViewModel => _i7.DashboardViewModel(
+      _getIt<_i4.StreamQueryUseCase<_i5.StatsModel, _i5.ReadStatsData>>());
   @override
-  _i8.DsaListViewModel get dsaListViewModel =>
-      _i8.DsaListViewModel(_getIt<_i5.DsaUseCasesFacade>());
+  _i8.DsaContentViewModel get dsaContentModel =>
+      _i8.DsaContentViewModel(_getIt<_i5.DsaUseCasesFacade>());
+  @override
+  _i9.DsaListViewModel get dsaListViewModel =>
+      _i9.DsaListViewModel(_getIt<_i5.DsaUseCasesFacade>());
 }

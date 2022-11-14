@@ -29,6 +29,7 @@ dependencies:
 
   # Misc
   meta: ^1.7.0
+  intl: ^0.17.0
   json_annotation: ^4.7.0
 
   # Starter kit

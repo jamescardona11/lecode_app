@@ -16,7 +16,7 @@ class DsaExerciseModel {
     required this.explanation,
     required this.solved,
     required this.mySolution,
-    this.completedDate,
+    this.solvedDate,
   });
 
   final String id;
@@ -31,7 +31,7 @@ class DsaExerciseModel {
   final double myRate;
   final bool solved;
   final String mySolution;
-  final DateTime? completedDate;
+  final DateTime? solvedDate;
 
   bool get isEasy => difficulty == 'Easy';
   bool get isMedium => difficulty == 'Medium';
@@ -43,6 +43,13 @@ class DsaExerciseModel {
   bool get isTopLiked => groups.contains(GroupType.topLiked);
   bool get isLeetCode60 => groups.contains(GroupType.leetCode60);
   bool get isAlgo => groups.contains(GroupType.algo);
+  bool get isOther =>
+      !isGrind75 &&
+      !isBlind75 &&
+      !isTopInterview &&
+      !isTopLiked &&
+      !isLeetCode60 &&
+      !isAlgo;
 
   @override
   bool operator ==(covariant DsaExerciseModel other) {
@@ -60,7 +67,7 @@ class DsaExerciseModel {
         other.myRate == myRate &&
         other.solved == solved &&
         other.mySolution == mySolution &&
-        other.completedDate == completedDate;
+        other.solvedDate == solvedDate;
   }
 
   @override
@@ -77,11 +84,11 @@ class DsaExerciseModel {
         myRate.hashCode ^
         solved.hashCode ^
         mySolution.hashCode ^
-        completedDate.hashCode;
+        solvedDate.hashCode;
   }
 
   @override
   String toString() {
-    return 'DsaExerciseModel(id: $id, name: $name, url: $url, difficulty: $difficulty, topics: $topics, groups: $groups, notes: $notes, explanation: $explanation, acceptanceRate: $acceptanceRate, myRate: $myRate, solved: $solved, mySolution: $mySolution, completedDate: $completedDate)';
+    return 'DsaExerciseModel(id: $id, name: $name, url: $url, difficulty: $difficulty, topics: $topics, groups: $groups, notes: $notes, explanation: $explanation, acceptanceRate: $acceptanceRate, myRate: $myRate, solved: $solved, mySolution: $mySolution, completedDate: $solvedDate)';
   }
 }

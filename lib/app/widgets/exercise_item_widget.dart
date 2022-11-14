@@ -162,7 +162,7 @@ class _CompletedWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return exercise.completedDate == null
+    return exercise.solvedDate == null
         ? Container(
             height: 70,
             width: 50,

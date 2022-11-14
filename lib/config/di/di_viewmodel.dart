@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:lepath_app/app/pages/dashboard/viewmodel/dashboard_viewmodel.dart';
 import 'package:lepath_app/app/pages/dsa_content/viewmodel/viewmodel.dart';
 import 'package:lepath_app/app/pages/dsa_list/viewmodel/viewmodel.dart';
 
@@ -9,4 +10,7 @@ abstract class ViewModelModule {
 
   @singleton
   DsaListViewModel get dsaListViewModel;
+
+  @singleton
+  DashboardViewModel get dashboardViewModel;
 }

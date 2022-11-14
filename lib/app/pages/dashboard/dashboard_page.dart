@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:lepath_app/app/pages/dashboard/viewmodel/dashboard_state.dart';
+import 'package:lepath_app/app/pages/dashboard/viewmodel/dashboard_viewmodel.dart';
 import 'package:lepath_app/app/widgets/round_container.dart';
 import 'package:lepath_app/config/context_extension.dart';
+import 'package:lepath_app/config/di/di.dart';
+import 'package:lepath_app/core/core.dart';
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage
+    extends MvvMProviderWidget<DashboardViewModel, DashboardState> {
   /// default constructor
   const DashboardPage({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  DashboardViewModel get viewModelBuilder => getIt<DashboardViewModel>();
+
+  @override
+  Widget buildWidget(BuildContext context, DashboardState state) {
     return Scaffold(
       body: SafeArea(
         child: Padding(

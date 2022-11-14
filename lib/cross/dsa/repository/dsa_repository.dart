@@ -35,8 +35,10 @@ class DsaRepository with PocketMultiDataSourceMixin<IPocketAdapter> {
     print('randomDate() $r');
     print('randomDate() ${exercise}');
 
+    final dateFormat = DateTime(r.year, r.month, r.day);
+
     exercise = exercise.copyWith(
-        completedDate: exercise.completedDate == null ? r : null);
+        completedDate: exercise.completedDate == null ? dateFormat : null);
 
     print('randomDate() ${exercise.toJson()}');
 

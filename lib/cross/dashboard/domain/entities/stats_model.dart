@@ -4,6 +4,7 @@ class StatsModel {
   const StatsModel({
     this.last30Days = 0,
     this.daysStats = const [],
+    this.daysLabel = const [],
     this.difficulty = const {},
     this.difficultyCompleted = const {},
     this.groups = const {},
@@ -18,6 +19,7 @@ class StatsModel {
 
   final int last30Days;
   final List<int> daysStats;
+  final List<String> daysLabel;
   final Map<String, int> difficulty;
   final Map<String, int> difficultyCompleted;
   final Map<String, int> groups;
@@ -65,6 +67,6 @@ class StatsModel {
 
   @override
   String toString() {
-    return 'StatsModel(last30Days: $last30Days, daysStats: $daysStats, difficulty: $difficulty, difficultyCompleted: $difficultyCompleted, groups: $groups, groupsCompleted: $groupsCompleted, topics: $topics, topicsCompleted: $topicsCompleted, total: $total, completed: $completed, averageAcceptanceRate: $averageAcceptanceRate, averageRate: $averageRate)';
+    return 'StatsModel(last30Days: $last30Days, daysStats: $daysStats, daysLabel: $daysLabel, difficulty: $difficulty, difficultyCompleted: $difficultyCompleted, groups: $groups, groupsCompleted: $groupsCompleted, topics: $topics, topicsCompleted: $topicsCompleted, total: $total, completed: $completed, averageAcceptanceRate: $averageAcceptanceRate, averageRate: $averageRate)';
   }
 }

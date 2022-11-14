@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:lepath_app/core/core.dart';
 import 'package:lepath_app/cross/cross.dart';
 
@@ -14,168 +15,51 @@ class ReadStatsUseCase
       repository.readAllDsaExercises.map((items) => getStatsModel(items));
 
   StatsModel getStatsModel(Iterable<DsaExerciseModel> items) {
-    int completed = 0;
-
-    int oneDaysBefore = 0;
-    int twoDaysBefore = 0;
-    int threeDaysBefore = 0;
-    int fourDaysBefore = 0;
-    int fiveDaysBefore = 0;
-    int sixDaysBefore = 0;
-    int sevenDaysBefore = 0;
-
-    int last30Days = 0;
-
+    final now = _nowDate();
+    int solved = 0;
     double averageAcceptanceRate = 0;
     double averageRate = 0;
 
-    final difficulty = {
-      'Easy': 0,
-      'Medium': 0,
-      'Hard': 0,
-    };
+    final difficulty = <String, int>{};
+    final difficultyCompleted = <String, int>{};
 
-    final difficultyCompleted = {
-      'Easy': 0,
-      'Medium': 0,
-      'Hard': 0,
-    };
-
-    final groups = {
-      'Blind75': 0,
-      'Grind75': 0,
-      'Top Liked': 0,
-      'LeetCode60': 0,
-      'Top Interview': 0,
-      'Curated Algo': 0,
-      'others': 0,
-    };
-    final groupsCompleted = {
-      'Blind75': 0,
-      'Grind75': 0,
-      'Top Liked': 0,
-      'LeetCode60': 0,
-      'Top Interview': 0,
-      'Curated Algo': 0,
-      'Others': 0,
-    };
+    final groups = <String, int>{};
+    final groupsCompleted = <String, int>{};
 
     final topics = <String, int>{};
     final topicsCompleted = <String, int>{};
 
+    // today, 1d-b, 2d-b, 3d-b, 4d-b, 5d-b, 6d-b, 7d-b
+    List<int> daysBefore = [0, 0, 0, 0, 0, 0, 0, 0];
+    final daysBeforeLabel = _updateDaysBeforeLabel(now);
+    int last30Days = 0;
+
     for (var item in items) {
-      if (item.isEasy) difficulty['Easy'] = difficulty['Easy']! + 1;
-      if (item.isMedium) difficulty['Medium'] = difficulty['Medium']! + 1;
-      if (item.isHard) difficulty['Hard'] = difficulty['Hard']! + 1;
+      // All stats
+      _getDifficulty(difficulty, item);
+      _getGroups(groups, item);
+      _getTopics(topics, item);
 
-      if (item.isBlind75) groups['Blind75'] = groups['Blind75']! + 1;
-      if (item.isGrind75) groups['Grind75'] = groups['Grind75']! + 1;
-      if (item.isTopInterview) {
-        groups['Top Interview'] = groups['Top Interview']! + 1;
-      }
-      if (item.isTopLiked) groups['Top Liked'] = groups['Top Liked']! + 1;
-      if (item.isAlgo) groups['Curated Algo'] = groups['Curated Algo']! + 1;
-
-      for (var element in item.topics) {
-        topics[element] = (topicsCompleted[element] ?? 0) + 1;
-      }
-
-      if (item.completedDate != null) {
-        completed++;
-        averageAcceptanceRate += item.acceptanceRate;
-        averageRate += item.myRate;
-
-        if (item.isEasy) {
-          difficultyCompleted['Easy'] = difficultyCompleted['Easy']! + 1;
-        }
-        if (item.isMedium) {
-          difficultyCompleted['Medium'] = difficultyCompleted['Medium']! + 1;
-        }
-        if (item.isHard) {
-          difficultyCompleted['Hard'] = difficultyCompleted['Hard']! + 1;
-        }
-
-        if (item.isBlind75) {
-          groupsCompleted['Blind75'] = groupsCompleted['Blind75']! + 1;
-        }
-        if (item.isGrind75) {
-          groupsCompleted['Grind75'] = groupsCompleted['Grind75']! + 1;
-        }
-        if (item.isTopInterview) {
-          groupsCompleted['Top Interview'] =
-              groupsCompleted['Top Interview']! + 1;
-        }
-        if (item.isTopLiked) {
-          groupsCompleted['Top Liked'] = groupsCompleted['Top Liked']! + 1;
-        }
-        if (item.isAlgo) {
-          groupsCompleted['Curated Algo'] =
-              groupsCompleted['Curated Algo']! + 1;
-        }
-
-        if (item.completedDate ==
-            DateTime.now().subtract(const Duration(days: 1))) {
-          oneDaysBefore++;
-        }
-
-        if (item.completedDate ==
-            DateTime.now().subtract(const Duration(days: 2))) {
-          twoDaysBefore++;
-        }
-
-        if (item.completedDate ==
-            DateTime.now().subtract(const Duration(days: 3))) {
-          threeDaysBefore++;
-        }
-
-        if (item.completedDate ==
-            DateTime.now().subtract(const Duration(days: 4))) {
-          fourDaysBefore++;
-        }
-
-        if (item.completedDate ==
-            DateTime.now().subtract(const Duration(days: 5))) {
-          fiveDaysBefore++;
-        }
-
-        if (item.completedDate ==
-            DateTime.now().subtract(const Duration(days: 6))) {
-          sixDaysBefore++;
-        }
-
-        if (item.completedDate ==
-            DateTime.now().subtract(const Duration(days: 7))) {
-          sevenDaysBefore++;
-        }
-
-        if (item.completedDate!
-            .isAfter(DateTime.now().subtract(const Duration(days: 30)))) {
-          last30Days++;
-        }
-
-        for (var element in item.topics) {
-          topicsCompleted[element] = (topicsCompleted[element] ?? 0) + 1;
-        }
+      // solved stats
+      if (item.solvedDate != null) {
+        _statsForSolved(
+          item,
+          solved,
+          averageAcceptanceRate,
+          averageRate,
+          difficultyCompleted,
+          groupsCompleted,
+          topicsCompleted,
+          daysBefore,
+          last30Days,
+          now,
+        );
       }
     }
 
-    final others = items.length - groups.values.fold<int>(0, (p, e) => p + e);
-    final othersCompleted =
-        completed - groupsCompleted.values.fold<int>(0, (p, e) => p + e);
-
-    groupsCompleted['Others'] = others;
-    groups['Others'] = othersCompleted;
-
     return StatsModel(
-      daysStats: [
-        oneDaysBefore,
-        twoDaysBefore,
-        threeDaysBefore,
-        fourDaysBefore,
-        fiveDaysBefore,
-        sixDaysBefore,
-        sevenDaysBefore,
-      ],
+      daysStats: daysBefore,
+      daysLabel: daysBeforeLabel,
       last30Days: last30Days,
       difficulty: difficulty,
       difficultyCompleted: difficultyCompleted,
@@ -184,10 +68,115 @@ class ReadStatsUseCase
       topics: topics,
       topicsCompleted: topicsCompleted,
       total: items.length,
-      completed: completed,
-      averageRate: averageRate / (completed == 0 ? 1 : completed),
-      averageAcceptanceRate:
-          averageAcceptanceRate / (completed == 0 ? 1 : completed),
+      completed: solved,
+      averageRate: averageRate / (solved == 0 ? 1 : solved),
+      averageAcceptanceRate: averageAcceptanceRate / (solved == 0 ? 1 : solved),
     );
+  }
+
+  void _statsForSolved(
+    DsaExerciseModel item,
+    int solved,
+    double averageAcceptanceRate,
+    double averageRate,
+    Map<String, int> difficultyCompleted,
+    Map<String, int> groupsCompleted,
+    Map<String, int> topicsCompleted,
+    List<int> daysBefore,
+    int last30Days,
+    DateTime now,
+  ) {
+    solved++;
+    averageAcceptanceRate += item.acceptanceRate;
+    averageRate += item.myRate;
+
+    _getDifficulty(difficultyCompleted, item);
+    _getGroups(groupsCompleted, item);
+    _getTopics(topicsCompleted, item);
+
+    _updateDaysBefore(daysBefore, now, item.solvedDate!);
+    if (_isSolvedInLast30Days(item.solvedDate!, now)) last30Days++;
+  }
+
+  void _getDifficulty(Map<String, int> map, DsaExerciseModel item) {
+    if (item.isEasy) _countMap('Easy', map);
+    if (item.isMedium) _countMap('Medium', map);
+    if (item.isHard) _countMap('Hard', map);
+  }
+
+  void _getGroups(Map<String, int> map, DsaExerciseModel item) {
+    if (item.isBlind75) _countMap('Blind75', map);
+    if (item.isGrind75) _countMap('Grind75', map);
+    if (item.isLeetCode60) _countMap('LeetCode60', map);
+    if (item.isTopInterview) _countMap('Top Interview', map);
+    if (item.isTopLiked) _countMap('Top Liked', map);
+    if (item.isAlgo) _countMap('Curated Algo', map);
+    if (item.isOther) _countMap('Other', map);
+  }
+
+  void _getTopics(Map<String, int> map, DsaExerciseModel item) {
+    for (var element in item.topics) {
+      map[element] = (map[element] ?? 0) + 1;
+    }
+  }
+
+  void _updateDaysBefore(
+    List<int> daysBefore,
+    DateTime now,
+    DateTime solvedDate,
+  ) {
+    // today, 1d-b, 2d-b, 3d-b, 4d-b, 5d-b, 6d-b, 7d-b
+    if (_matchTime(solvedDate, now, 0)) daysBefore[0]++;
+    if (_matchTime(solvedDate, now, 1)) daysBefore[1]++;
+    if (_matchTime(solvedDate, now, 2)) daysBefore[2]++;
+    if (_matchTime(solvedDate, now, 3)) daysBefore[3]++;
+    if (_matchTime(solvedDate, now, 4)) daysBefore[4]++;
+    if (_matchTime(solvedDate, now, 5)) daysBefore[5]++;
+    if (_matchTime(solvedDate, now, 6)) daysBefore[6]++;
+    if (_matchTime(solvedDate, now, 7)) daysBefore[7]++;
+  }
+
+  List<String> _updateDaysBeforeLabel(DateTime now) {
+    // today, 1d-b, 2d-b, 3d-b, 4d-b, 5d-b, 6d-b, 7d-b
+    List<String> daysBeforeLabel = [
+      'Today',
+      _dayLabel(now, 1),
+      _dayLabel(now, 2),
+      _dayLabel(now, 3),
+      _dayLabel(now, 4),
+      _dayLabel(now, 5),
+      _dayLabel(now, 6),
+      _dayLabel(now, 7),
+    ];
+
+    return daysBeforeLabel;
+  }
+
+  void _countMap(String key, Map<String, int> map) {
+    map[key] = (map[key] ?? 0) + 1;
+  }
+
+  DateTime _nowDate() {
+    final dateTime = DateTime.now();
+    return DateTime(dateTime.year, dateTime.month, dateTime.day);
+  }
+
+  bool _isSolvedInLast30Days(
+    DateTime solvedDate,
+    DateTime now,
+  ) =>
+      solvedDate.isAfter(now.subtract(const Duration(days: 30)));
+
+  bool _matchTime(
+    DateTime solvedDate,
+    DateTime now,
+    int daysBefore,
+  ) {
+    return solvedDate == now.subtract(Duration(days: daysBefore));
+  }
+
+  String _dayLabel(DateTime now, int daysBefore) {
+    final date = now.subtract(Duration(days: daysBefore));
+    return DateFormat('EEEE').format(date);
   }
 }

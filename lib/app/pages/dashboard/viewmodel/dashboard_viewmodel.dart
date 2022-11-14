@@ -11,7 +11,7 @@ class DashboardViewModel extends BaseViewModel<DashboardState> {
     _listenStreams();
   }
 
-  final ReadStatsUseCase _readStatsUseCase;
+  final StreamQueryUseCase<StatsModel, ReadStatsData> _readStatsUseCase;
 
   late StreamSubscription<StatsModel> _streamSubscription;
 
