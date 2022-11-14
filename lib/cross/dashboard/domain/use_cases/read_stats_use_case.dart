@@ -21,13 +21,13 @@ class ReadStatsUseCase
     double averageRate = 0;
 
     final difficulty = <String, int>{};
-    final difficultyCompleted = <String, int>{};
+    final difficultySolved = <String, int>{};
 
     final groups = <String, int>{};
-    final groupsCompleted = <String, int>{};
+    final groupsSolved = <String, int>{};
 
     final topics = <String, int>{};
-    final topicsCompleted = <String, int>{};
+    final topicsSolved = <String, int>{};
 
     // today, 1d-b, 2d-b, 3d-b, 4d-b, 5d-b, 6d-b, 7d-b
     List<int> daysBefore = [0, 0, 0, 0, 0, 0, 0, 0];
@@ -47,9 +47,9 @@ class ReadStatsUseCase
           solved,
           averageAcceptanceRate,
           averageRate,
-          difficultyCompleted,
-          groupsCompleted,
-          topicsCompleted,
+          difficultySolved,
+          groupsSolved,
+          topicsSolved,
           daysBefore,
           last30Days,
           now,
@@ -62,13 +62,13 @@ class ReadStatsUseCase
       daysLabel: daysBeforeLabel,
       last30Days: last30Days,
       difficulty: difficulty,
-      difficultyCompleted: difficultyCompleted,
+      difficultySolved: difficultySolved,
       groups: groups,
-      groupsCompleted: groupsCompleted,
+      groupsSolved: groupsSolved,
       topics: topics,
-      topicsCompleted: topicsCompleted,
+      topicsSolved: topicsSolved,
       total: items.length,
-      completed: solved,
+      solved: solved,
       averageRate: averageRate / (solved == 0 ? 1 : solved),
       averageAcceptanceRate: averageAcceptanceRate / (solved == 0 ? 1 : solved),
     );

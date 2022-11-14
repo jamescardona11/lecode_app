@@ -6,13 +6,13 @@ class StatsModel {
     this.daysStats = const [],
     this.daysLabel = const [],
     this.difficulty = const {},
-    this.difficultyCompleted = const {},
+    this.difficultySolved = const {},
     this.groups = const {},
-    this.groupsCompleted = const {},
+    this.groupsSolved = const {},
     this.topics = const {},
-    this.topicsCompleted = const {},
+    this.topicsSolved = const {},
     this.total = 0,
-    this.completed = 0,
+    this.solved = 0,
     this.averageAcceptanceRate = 0.0,
     this.averageRate = 0.0,
   });
@@ -21,15 +21,23 @@ class StatsModel {
   final List<int> daysStats;
   final List<String> daysLabel;
   final Map<String, int> difficulty;
-  final Map<String, int> difficultyCompleted;
+  final Map<String, int> difficultySolved;
   final Map<String, int> groups;
-  final Map<String, int> groupsCompleted;
+  final Map<String, int> groupsSolved;
   final Map<String, int> topics;
-  final Map<String, int> topicsCompleted;
+  final Map<String, int> topicsSolved;
   final int total;
-  final int completed;
+  final int solved;
   final double averageAcceptanceRate;
   final double averageRate;
+
+  int get easy => difficulty['Easy']!;
+  int get medium => difficulty['Medium']!;
+  int get hard => difficulty['Hard']!;
+
+  int get easySolved => difficultySolved['Easy']!;
+  int get mediumSolved => difficultySolved['Medium']!;
+  int get hardSolved => difficultySolved['Hard']!;
 
   @override
   bool operator ==(covariant StatsModel other) {
@@ -38,13 +46,13 @@ class StatsModel {
     return other.last30Days == last30Days &&
         listEquals(other.daysStats, daysStats) &&
         mapEquals(other.difficulty, difficulty) &&
-        mapEquals(other.difficultyCompleted, difficultyCompleted) &&
+        mapEquals(other.difficultySolved, difficultySolved) &&
         mapEquals(other.groups, groups) &&
-        mapEquals(other.groupsCompleted, groupsCompleted) &&
+        mapEquals(other.groupsSolved, groupsSolved) &&
         mapEquals(other.topics, topics) &&
-        mapEquals(other.topicsCompleted, topicsCompleted) &&
+        mapEquals(other.topicsSolved, topicsSolved) &&
         other.total == total &&
-        other.completed == completed &&
+        other.solved == solved &&
         other.averageAcceptanceRate == averageAcceptanceRate &&
         other.averageRate == averageRate;
   }
@@ -54,19 +62,19 @@ class StatsModel {
     return last30Days.hashCode ^
         daysStats.hashCode ^
         difficulty.hashCode ^
-        difficultyCompleted.hashCode ^
+        difficultySolved.hashCode ^
         groups.hashCode ^
-        groupsCompleted.hashCode ^
+        groupsSolved.hashCode ^
         topics.hashCode ^
-        topicsCompleted.hashCode ^
+        topicsSolved.hashCode ^
         total.hashCode ^
-        completed.hashCode ^
+        solved.hashCode ^
         averageAcceptanceRate.hashCode ^
         averageRate.hashCode;
   }
 
   @override
   String toString() {
-    return 'StatsModel(last30Days: $last30Days, daysStats: $daysStats, daysLabel: $daysLabel, difficulty: $difficulty, difficultyCompleted: $difficultyCompleted, groups: $groups, groupsCompleted: $groupsCompleted, topics: $topics, topicsCompleted: $topicsCompleted, total: $total, completed: $completed, averageAcceptanceRate: $averageAcceptanceRate, averageRate: $averageRate)';
+    return 'StatsModel(last30Days: $last30Days, daysStats: $daysStats, daysLabel: $daysLabel, difficulty: $difficulty, difficultySolved: $difficultySolved, groups: $groups, groupsSolved: $groupsSolved, topics: $topics, topicsSolved: $topicsSolved, total: $total, completed: $solved, averageAcceptanceRate: $averageAcceptanceRate, averageRate: $averageRate)';
   }
 }

@@ -20,7 +20,8 @@ dependencies:
   font_awesome_flutter: ^10.2.1
   flutter_staggered_grid_view: ^0.6.2
   fl_chart: ^0.55.2
-  rxdart: ^0.27.6
+  percent_indicator: ^4.2.2
+  
   
   # DI
   get_it: ^7.2.0
@@ -29,8 +30,9 @@ dependencies:
 
   # Misc
   meta: ^1.7.0
-  intl: ^0.17.0
+  rxdart: ^0.27.6
   json_annotation: ^4.7.0
+  intl: ^0.17.0
 
   # Starter kit
   pocket:

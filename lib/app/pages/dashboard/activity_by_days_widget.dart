@@ -4,9 +4,9 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:lepath_app/cross/cross.dart';
 
-class SolvedByDays extends StatelessWidget {
+class ActivityByDays extends StatelessWidget {
   /// default constructor
-  const SolvedByDays({
+  const ActivityByDays({
     Key? key,
     required this.statsModel,
   }) : super(key: key);

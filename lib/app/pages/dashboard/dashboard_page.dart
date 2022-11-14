@@ -6,7 +6,8 @@ import 'package:lepath_app/config/context_extension.dart';
 import 'package:lepath_app/config/di/di.dart';
 import 'package:lepath_app/core/core.dart';
 
-import 'solved_by_days_widget.dart';
+import 'activity_by_days_widget.dart';
+import 'total_stats_widget.dart';
 
 class DashboardPage
     extends MvvMProviderWidget<DashboardViewModel, DashboardState> {
@@ -18,6 +19,11 @@ class DashboardPage
   @override
   DashboardViewModel get viewModelBuilder => getIt<DashboardViewModel>();
 
+  // activity
+  // percent completed
+  // Goal ?? Random Pick ?? Score indicator
+  // random pick first card
+  // random similar to my last solved
   @override
   Widget buildWidget(BuildContext context, DashboardState state) {
     return Scaffold(
@@ -32,7 +38,7 @@ class DashboardPage
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Hello there 🖐',
+                'Hello there <🖐>',
                 style: Theme.of(context).textTheme.headline5,
               ),
               SizedBox(height: 20),
@@ -48,9 +54,14 @@ class DashboardPage
                         color: Colors.pink.shade200.withOpacity(0.4),
                         child: Column(
                           children: [
-                            SolvedByDays(
+                            ActivityByDays(
                               statsModel: state.statsModel,
                             ),
+                            Text('Activiy'),
+                            Text('of current week'),
+                            SizedBox(height: 10),
+                            Text(
+                                'Last 30 days: ${state.statsModel.last30Days}'),
                           ],
                         ),
                       ),
@@ -59,12 +70,17 @@ class DashboardPage
                         child: Column(
                           children: [
                             Expanded(
+                              flex: 5,
                               child: RoundContainer(
-                                color: Colors.red,
+                                color: Colors.teal.shade200.withOpacity(0.4),
+                                child: TotalStatsWidget(
+                                  statsModel: state.statsModel,
+                                ),
                               ),
                             ),
                             SizedBox(height: 20),
                             Expanded(
+                              flex: 3,
                               child: RoundContainer(
                                 color: Colors.red,
                               ),
