@@ -45,7 +45,6 @@ Future<_i1.GetIt> $initGetIt(
     instanceName: 'BaseURL',
   );
   gh.singleton<_i4.AppSharedPreferences>(externalModule.appSharedPreferences);
-  gh.singleton<_i5.DashboardRepository>(modelModule.dashboardRepository);
   gh.singleton<_i5.DsaRepository>(modelModule.dsaRepository);
   gh.singleton<_i4.FutureCommandUseCase<_i5.MarkAsCompleteData>>(
       useCasesModule.markAsComplete);
@@ -97,9 +96,6 @@ class _$ModelModule extends _i11.ModelModule {
   final _i1.GetIt _getIt;
 
   @override
-  _i5.DashboardRepository get dashboardRepository =>
-      _i5.DashboardRepository(_getIt<_i3.IPocketAdapter>());
-  @override
   _i5.DsaRepository get dsaRepository =>
       _i5.DsaRepository(_getIt<_i3.IPocketAdapter>());
   @override
@@ -126,7 +122,7 @@ class _$UseCasesModule extends _i12.UseCasesModule {
       _i5.ReadStatsUseCase(_getIt<_i5.DsaRepository>());
   @override
   _i5.ReadSimilarExercisesUseCase get readSimilarExercises =>
-      _i5.ReadSimilarExercisesUseCase(_getIt<_i5.DashboardRepository>());
+      _i5.ReadSimilarExercisesUseCase(_getIt<_i5.DsaRepository>());
   @override
   _i5.DashboardFacade get dashboardUseCasesFacade => _i5.DashboardFacade(
         _getIt<

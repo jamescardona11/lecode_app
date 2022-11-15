@@ -24,14 +24,12 @@ class ReadAllDsaExercisesWithPagination
     _listenDsaExercises();
   }
 
-  final BehaviorSubject<Iterable<DsaExerciseModel>> elementsStream =
+  final BehaviorSubject<Iterable<DsaExerciseModel>> readAllDsaExercisesStream =
       BehaviorSubject<Iterable<DsaExerciseModel>>();
-
-  // Iterable<DsaExerciseModel> elements = [];
 
   void _listenDsaExercises() {
     repository.readAllDsaExercises.listen((items) {
-      elementsStream.add(items);
+      readAllDsaExercisesStream.add(items);
     });
   }
 
@@ -39,7 +37,7 @@ class ReadAllDsaExercisesWithPagination
   @override
   Stream<Iterable<DsaExerciseModel>> call(
       ReadAllDsaExercisesWithPaginationData data) {
-    return elementsStream.switchMap((items) {
+    return readAllDsaExercisesStream.switchMap((items) {
       if (data.topics.isEmpty) {
         return Stream.value(items.take(data.takeX));
       }

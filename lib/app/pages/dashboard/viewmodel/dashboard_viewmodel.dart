@@ -32,7 +32,7 @@ class DashboardViewModel extends BaseViewModel<DashboardState> {
 
     _streamSimilarExercisesSubscription = _facadeUseCases.readSimilarExercises
         .call(ReadSimilarExercisesData())
-        .doOnData((event) {})
+        .doOnData((items) {})
         .listen((_) {});
   }
 
