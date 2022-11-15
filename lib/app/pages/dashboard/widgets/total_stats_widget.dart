@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lepath_app/app/utils/app_formatter.dart';
+import 'package:lepath_app/utils/app_formatter.dart';
 import 'package:lepath_app/cross/cross.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-class TotalStatsWidget extends StatelessWidget {
+class TotalStatsWidget extends StatefulWidget {
   /// default constructor
   const TotalStatsWidget({
     Key? key,
@@ -13,6 +13,11 @@ class TotalStatsWidget extends StatelessWidget {
   final StatsModel statsModel;
 
   @override
+  State<TotalStatsWidget> createState() => _TotalStatsWidgetState();
+}
+
+class _TotalStatsWidgetState extends State<TotalStatsWidget> {
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -21,26 +26,26 @@ class TotalStatsWidget extends StatelessWidget {
         children: [
           _ItemStats(
             label: 'Total',
-            solved: statsModel.solved,
-            total: statsModel.total,
+            solved: widget.statsModel.solved,
+            total: widget.statsModel.total,
           ),
           const SizedBox(height: 5),
           _ItemStats(
             label: 'Easy',
-            solved: statsModel.easySolved,
-            total: statsModel.easy,
+            solved: widget.statsModel.easySolved,
+            total: widget.statsModel.easy,
           ),
           const SizedBox(height: 5),
           _ItemStats(
             label: 'Medium',
-            solved: statsModel.mediumSolved,
-            total: statsModel.medium,
+            solved: widget.statsModel.mediumSolved,
+            total: widget.statsModel.medium,
           ),
           const SizedBox(height: 5),
           _ItemStats(
             label: 'Hard',
-            solved: statsModel.hardSolved,
-            total: statsModel.hard,
+            solved: widget.statsModel.hardSolved,
+            total: widget.statsModel.hard,
           ),
         ],
       ),
@@ -64,7 +69,8 @@ class _ItemStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final percent = (solved / total) * 100;
+    final newTotal = total == 0 ? 1 : total;
+    final percent = (solved / newTotal) * 100;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

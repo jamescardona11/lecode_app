@@ -6,9 +6,10 @@ import 'package:lepath_app/config/context_extension.dart';
 import 'package:lepath_app/config/di/di.dart';
 import 'package:lepath_app/core/core.dart';
 
-import 'activity_by_days_widget.dart';
-import 'total_stats_widget.dart';
+import 'widgets/activity_by_days_widget.dart';
+import 'widgets/total_stats_widget.dart';
 
+/// slivers
 class DashboardPage
     extends MvvMProviderWidget<DashboardViewModel, DashboardState> {
   /// default constructor
@@ -21,7 +22,7 @@ class DashboardPage
 
   // activity
   // percent completed
-  // Goal ?? Random Pick ?? Score indicator
+  // Goal ?? Random Pick ?? Score indicator ?? leetCode
   // random pick first card
   // random similar to my last solved
   @override
@@ -54,8 +55,10 @@ class DashboardPage
                         color: Colors.pink.shade200.withOpacity(0.4),
                         child: Column(
                           children: [
-                            ActivityByDays(
-                              statsModel: state.statsModel,
+                            Expanded(
+                              child: ActivityByDays(
+                                statsModel: state.statsModel,
+                              ),
                             ),
                             Text('Activiy'),
                             Text('of current week'),
@@ -94,7 +97,18 @@ class DashboardPage
               ),
               SizedBox(height: 20),
               Text(
-                'In progress',
+                'Random Pick',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              RoundContainer(
+                width: context.widthPx,
+                height: 70,
+                border: 10,
+                color: Colors.red,
+              ),
+              SizedBox(height: 30),
+              Text(
+                'Similar that your last solved exercise',
                 style: Theme.of(context).textTheme.headline6,
               ),
               Expanded(

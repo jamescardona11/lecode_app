@@ -15,6 +15,10 @@ class ActivityByDays extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final maxY = statsModel.daysStats.isEmpty
+        ? 0.0
+        : statsModel.daysStats.reduce(max) + 3.0;
+
     return AspectRatio(
       aspectRatio: 1.1,
       child: Card(
@@ -28,7 +32,7 @@ class ActivityByDays extends StatelessWidget {
             borderData: borderData,
             barGroups: barGroups,
             gridData: FlGridData(show: false),
-            maxY: statsModel.daysStats.reduce(max) + 3.0,
+            maxY: maxY,
           ),
         ),
       ),

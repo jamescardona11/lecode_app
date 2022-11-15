@@ -45,6 +45,7 @@ Future<_i1.GetIt> $initGetIt(
     instanceName: 'BaseURL',
   );
   gh.singleton<_i4.AppSharedPreferences>(externalModule.appSharedPreferences);
+  gh.singleton<_i5.DashboardRepository>(modelModule.dashboardRepository);
   gh.singleton<_i5.DsaRepository>(modelModule.dsaRepository);
   gh.singleton<_i4.FutureCommandUseCase<_i5.MarkAsCompleteData>>(
       useCasesModule.markAsComplete);
@@ -56,7 +57,11 @@ Future<_i1.GetIt> $initGetIt(
       useCasesModule.readAllDsaExercisesWithPagination);
   gh.singleton<_i4.StreamQueryUseCase<_i5.StatsModel, _i5.ReadStatsData>>(
       useCasesModule.readStatsUseCase);
+  gh.singleton<
+      _i4.StreamQueryUseCase<Iterable<_i5.DsaExerciseModel>,
+          _i5.ReadSimilarExercisesData>>(useCasesModule.readSimilarExercises);
   gh.singleton<_i5.AppRepository>(modelModule.appRepository);
+  gh.singleton<_i5.DashboardFacade>(useCasesModule.dashboardUseCasesFacade);
   gh.singleton<_i7.DashboardViewModel>(viewModelModule.dashboardViewModel);
   gh.singleton<_i5.DsaUseCasesFacade>(useCasesModule.dsaUseCasesFacade);
   gh.singleton<_i4.FutureCommandUseCase<_i5.SaveDsaProblemsData>>(
@@ -92,6 +97,9 @@ class _$ModelModule extends _i11.ModelModule {
   final _i1.GetIt _getIt;
 
   @override
+  _i5.DashboardRepository get dashboardRepository =>
+      _i5.DashboardRepository(_getIt<_i3.IPocketAdapter>());
+  @override
   _i5.DsaRepository get dsaRepository =>
       _i5.DsaRepository(_getIt<_i3.IPocketAdapter>());
   @override
@@ -116,6 +124,16 @@ class _$UseCasesModule extends _i12.UseCasesModule {
   @override
   _i5.ReadStatsUseCase get readStatsUseCase =>
       _i5.ReadStatsUseCase(_getIt<_i5.DsaRepository>());
+  @override
+  _i5.ReadSimilarExercisesUseCase get readSimilarExercises =>
+      _i5.ReadSimilarExercisesUseCase(_getIt<_i5.DashboardRepository>());
+  @override
+  _i5.DashboardFacade get dashboardUseCasesFacade => _i5.DashboardFacade(
+        _getIt<
+            _i4.StreamQueryUseCase<Iterable<_i5.DsaExerciseModel>,
+                _i5.ReadSimilarExercisesData>>(),
+        _getIt<_i4.StreamQueryUseCase<_i5.StatsModel, _i5.ReadStatsData>>(),
+      );
   @override
   _i5.DsaUseCasesFacade get dsaUseCasesFacade => _i5.DsaUseCasesFacade(
         _getIt<_i4.FutureCommandUseCase<_i5.MarkAsCompleteData>>(),
@@ -155,8 +173,8 @@ class _$ViewModelModule extends _i13.ViewModelModule {
   final _i1.GetIt _getIt;
 
   @override
-  _i7.DashboardViewModel get dashboardViewModel => _i7.DashboardViewModel(
-      _getIt<_i4.StreamQueryUseCase<_i5.StatsModel, _i5.ReadStatsData>>());
+  _i7.DashboardViewModel get dashboardViewModel =>
+      _i7.DashboardViewModel(_getIt<_i5.DashboardFacade>());
   @override
   _i8.DsaContentViewModel get dsaContentModel =>
       _i8.DsaContentViewModel(_getIt<_i5.DsaUseCasesFacade>());

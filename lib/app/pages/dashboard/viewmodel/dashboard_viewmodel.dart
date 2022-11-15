@@ -7,29 +7,36 @@ import 'package:rxdart/rxdart.dart';
 import 'dashboard_state.dart';
 
 class DashboardViewModel extends BaseViewModel<DashboardState> {
-  DashboardViewModel(this._readStatsUseCase) : super(const DashboardState()) {
+  DashboardViewModel(this._facadeUseCases) : super(const DashboardState()) {
     _listenStreams();
   }
 
-  final StreamQueryUseCase<StatsModel, ReadStatsData> _readStatsUseCase;
+  final DashboardFacade _facadeUseCases;
 
-  late StreamSubscription<StatsModel> _streamSubscription;
+  late StreamSubscription<StatsModel> _streamStatsSubscription;
+  late StreamSubscription<Iterable<DsaExerciseModel>>
+      _streamSimilarExercisesSubscription;
 
   @override
   void close() {
-    _streamSubscription.cancel();
+    _streamStatsSubscription.cancel();
+    _streamSimilarExercisesSubscription.cancel();
     super.close();
   }
 
   void _listenStreams() {
-    _streamSubscription = _readStatsUseCase
+    _streamStatsSubscription = _facadeUseCases.readStatsUseCase
         .call(ReadStatsData())
         .doOnData(_newStatsEmit)
+        .listen((_) {});
+
+    _streamSimilarExercisesSubscription = _facadeUseCases.readSimilarExercises
+        .call(ReadSimilarExercisesData())
+        .doOnData((event) {})
         .listen((_) {});
   }
 
   void _newStatsEmit(StatsModel stats) {
-    print(stats);
     emit(state.copyWith(statsModel: stats));
   }
 }

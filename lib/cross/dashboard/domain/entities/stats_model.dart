@@ -31,13 +31,13 @@ class StatsModel {
   final double averageAcceptanceRate;
   final double averageRate;
 
-  int get easy => difficulty['Easy']!;
-  int get medium => difficulty['Medium']!;
-  int get hard => difficulty['Hard']!;
+  int get easy => difficulty['Easy'] ?? 0;
+  int get medium => difficulty['Medium'] ?? 0;
+  int get hard => difficulty['Hard'] ?? 0;
 
-  int get easySolved => difficultySolved['Easy']!;
-  int get mediumSolved => difficultySolved['Medium']!;
-  int get hardSolved => difficultySolved['Hard']!;
+  int get easySolved => difficultySolved['Easy'] ?? 0;
+  int get mediumSolved => difficultySolved['Medium'] ?? 0;
+  int get hardSolved => difficultySolved['Hard'] ?? 0;
 
   @override
   bool operator ==(covariant StatsModel other) {
