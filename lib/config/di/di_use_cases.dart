@@ -42,7 +42,7 @@ abstract class UseCasesModule {
           ReadSimilarExercisesData>)
   ReadSimilarExercisesUseCase get readSimilarExercises;
 
-  @Singleton(as: StreamQueryUseCase<DsaExerciseModel, ReadRandomExercisesData>)
+  @Singleton(as: StreamQueryUseCase<DsaExerciseModel?, ReadRandomExercisesData>)
   ReadRandomExercisesUseCase get readRandomExercises;
 
   /// facade ↑

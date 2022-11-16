@@ -13,6 +13,6 @@ class DashboardFacade {
   final StreamQueryUseCase<Iterable<DsaExerciseModel>, ReadSimilarExercisesData>
       readSimilarExercises;
 
-  final StreamQueryUseCase<DsaExerciseModel, ReadRandomExercisesData>
+  final StreamQueryUseCase<DsaExerciseModel?, ReadRandomExercisesData>
       readRandomExercise;
 }

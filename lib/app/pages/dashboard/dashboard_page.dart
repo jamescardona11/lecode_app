@@ -106,7 +106,7 @@ class DashboardPage
                     const SizedBox(height: 20),
                     InkWell(
                       onTap: () {
-                        // log(state.randomExercises.toString());
+                        log(state.randomExercises.toString());
                       },
                       child: RoundContainer(
                         width: context.widthPx,

@@ -60,7 +60,7 @@ Future<_i1.GetIt> $initGetIt(
       _i4.StreamQueryUseCase<Iterable<_i5.DsaExerciseModel>,
           _i5.ReadSimilarExercisesData>>(useCasesModule.readSimilarExercises);
   gh.singleton<
-      _i4.StreamQueryUseCase<_i5.DsaExerciseModel,
+      _i4.StreamQueryUseCase<_i5.DsaExerciseModel?,
           _i5.ReadRandomExercisesData>>(useCasesModule.readRandomExercises);
   gh.singleton<_i5.AppRepository>(modelModule.appRepository);
   gh.singleton<_i5.DashboardFacade>(useCasesModule.dashboardUseCasesFacade);
@@ -136,7 +136,7 @@ class _$UseCasesModule extends _i12.UseCasesModule {
                 _i5.ReadSimilarExercisesData>>(),
         _getIt<_i4.StreamQueryUseCase<_i5.StatsModel, _i5.ReadStatsData>>(),
         _getIt<
-            _i4.StreamQueryUseCase<_i5.DsaExerciseModel,
+            _i4.StreamQueryUseCase<_i5.DsaExerciseModel?,
                 _i5.ReadRandomExercisesData>>(),
       );
   @override
