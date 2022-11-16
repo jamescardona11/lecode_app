@@ -32,11 +32,15 @@ class DashboardViewModel extends BaseViewModel<DashboardState> {
 
     _streamSimilarExercisesSubscription = _facadeUseCases.readSimilarExercises
         .call(ReadSimilarExercisesData())
-        .doOnData((items) {})
+        .doOnData(_newSimilarExercisesEmit)
         .listen((_) {});
   }
 
   void _newStatsEmit(StatsModel stats) {
     emit(state.copyWith(statsModel: stats));
+  }
+
+  void _newSimilarExercisesEmit(Iterable<DsaExerciseModel> items) {
+    emit(state.copyWith(similarExercises: items));
   }
 }

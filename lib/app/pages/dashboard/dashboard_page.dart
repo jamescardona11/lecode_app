@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lepath_app/app/pages/dashboard/viewmodel/dashboard_state.dart';
 import 'package:lepath_app/app/pages/dashboard/viewmodel/dashboard_viewmodel.dart';
 import 'package:lepath_app/app/widgets/round_container.dart';
+import 'package:lepath_app/app/widgets/widgets.dart';
 import 'package:lepath_app/config/context_extension.dart';
 import 'package:lepath_app/config/di/di.dart';
 import 'package:lepath_app/core/core.dart';
@@ -108,21 +109,21 @@ class DashboardPage
               ),
               SizedBox(height: 30),
               Text(
-                'Similar that your last solved exercise',
+                'Similar that your last solved exercise ${state.similarExercises.length}',
                 style: Theme.of(context).textTheme.headline6,
               ),
               Expanded(
                 child: ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: RoundContainer(
-                      width: context.widthPx,
-                      height: 70,
-                      border: 10,
-                      color: Colors.blue,
-                    ),
-                  ),
+                  itemCount: state.similarExercises.length,
+                  itemBuilder: (_, index) {
+                    final item = state.similarExercises.elementAt(index);
+
+                    return ExerciseItemWidget(
+                      exercise: item,
+                      isLast: index == state.similarExercises.length - 1,
+                      onTap: () {},
+                    );
+                  },
                 ),
               ),
             ],

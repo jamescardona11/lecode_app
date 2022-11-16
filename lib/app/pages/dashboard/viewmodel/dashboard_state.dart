@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:lepath_app/core/core.dart';
 import 'package:lepath_app/cross/cross.dart';
 
@@ -22,4 +23,15 @@ class DashboardState extends BaseState {
       similarExercises: similarExercises ?? this.similarExercises,
     );
   }
+
+  @override
+  bool operator ==(covariant DashboardState other) {
+    if (identical(this, other)) return true;
+
+    return other.statsModel == statsModel &&
+        other.similarExercises == similarExercises;
+  }
+
+  @override
+  int get hashCode => statsModel.hashCode ^ similarExercises.hashCode;
 }

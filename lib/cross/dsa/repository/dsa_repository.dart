@@ -4,7 +4,7 @@ import 'package:lepath_app/core/core.dart';
 import 'package:lepath_app/cross/cross.dart';
 
 import 'package:pocket/pocket.dart';
-// import 'package:rxdart/rxdart.dart';
+import 'package:rxdart/rxdart.dart';
 
 class DsaRepository with PocketMultiDataSourceMixin<IPocketAdapter> {
   DsaRepository(
@@ -16,16 +16,16 @@ class DsaRepository with PocketMultiDataSourceMixin<IPocketAdapter> {
   @override
   final IPocketAdapter adapterDb;
 
-  // final BehaviorSubject<Iterable<DsaExerciseModel>> _dsaExercisesListStream =
-  //     BehaviorSubject<Iterable<DsaExerciseModel>>.seeded([]);
-
-  late final Stream<Iterable<DsaExerciseModel>> _dsaExercisesListStream;
+  final BehaviorSubject<Iterable<DsaExerciseModel>> _dsaExercisesListStream =
+      BehaviorSubject<Iterable<DsaExerciseModel>>.seeded([]);
 
   void _listenElements() {
-    _dsaExercisesListStream = readWhere<DsaExerciseModel>(
+    readWhere<DsaExerciseModel>(
       tableDsaExercise,
       DsaExerciseDto.toEntityByJson,
-    ).asBroadcastStream();
+    ).listen((event) {
+      _dsaExercisesListStream.add(event);
+    });
   }
 
   Stream<Iterable<DsaExerciseModel>> get readAllDsaExercises =>
