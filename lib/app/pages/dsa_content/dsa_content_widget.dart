@@ -14,7 +14,7 @@ class ContentView
   });
 
   @override
-  DsaContentViewModel get viewModelBuilder => getIt<DsaContentViewModel>();
+  DsaContentViewModel get viewModel => getIt<DsaContentViewModel>();
 
   @override
   Widget buildWidget(BuildContext context, DsaContentState state) {

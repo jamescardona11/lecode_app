@@ -4,14 +4,15 @@ import 'package:lepath_app/cross/cross.dart';
 class ReadRandomExercisesData extends CommandData {}
 
 class ReadRandomExercisesUseCase
-    implements
-        FutureQueryUseCase<Iterable<DsaExerciseModel>,
-            ReadRandomExercisesData> {
-  const ReadRandomExercisesUseCase();
+    implements StreamQueryUseCase<DsaExerciseModel, ReadRandomExercisesData> {
+  const ReadRandomExercisesUseCase(this.repository);
+
+  final DsaRepository repository;
 
   @override
-  Future<Iterable<DsaExerciseModel>> call(ReadRandomExercisesData data) {
-    // TODO: implement call
-    throw UnimplementedError();
+  Stream<DsaExerciseModel> call(ReadRandomExercisesData data) {
+    return repository.readAllDsaExercises
+        .expand((element) => element)
+        .where((item) => item.solvedDate == null);
   }
 }

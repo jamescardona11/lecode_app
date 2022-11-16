@@ -6,10 +6,12 @@ class DashboardState extends BaseState {
   const DashboardState({
     this.statsModel = const StatsModel(),
     this.similarExercises = const [],
+    this.randomExercises,
   });
 
   final StatsModel statsModel;
   final Iterable<DsaExerciseModel> similarExercises;
+  final DsaExerciseModel? randomExercises;
 
   @override
   List<Object?> get props => [statsModel];
@@ -17,10 +19,12 @@ class DashboardState extends BaseState {
   DashboardState copyWith({
     StatsModel? statsModel,
     Iterable<DsaExerciseModel>? similarExercises,
+    DsaExerciseModel? randomExercises,
   }) {
     return DashboardState(
       statsModel: statsModel ?? this.statsModel,
       similarExercises: similarExercises ?? this.similarExercises,
+      randomExercises: randomExercises ?? this.randomExercises,
     );
   }
 
@@ -29,9 +33,13 @@ class DashboardState extends BaseState {
     if (identical(this, other)) return true;
 
     return other.statsModel == statsModel &&
-        other.similarExercises == similarExercises;
+        other.similarExercises == similarExercises &&
+        other.randomExercises == randomExercises;
   }
 
   @override
-  int get hashCode => statsModel.hashCode ^ similarExercises.hashCode;
+  int get hashCode =>
+      statsModel.hashCode ^
+      similarExercises.hashCode ^
+      randomExercises.hashCode;
 }

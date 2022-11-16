@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:lepath_app/app/pages/dashboard/viewmodel/dashboard_state.dart';
 import 'package:lepath_app/app/pages/dashboard/viewmodel/dashboard_viewmodel.dart';
@@ -19,7 +21,7 @@ class DashboardPage
   });
 
   @override
-  DashboardViewModel get viewModelBuilder => getIt<DashboardViewModel>();
+  DashboardViewModel get viewModel => getIt<DashboardViewModel>();
 
   // activity
   // percent completed
@@ -29,105 +31,120 @@ class DashboardPage
   @override
   Widget buildWidget(BuildContext context, DashboardState state) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(
-            top: 10,
-            left: 16,
-            right: 16,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Hello there <🖐>',
-                style: Theme.of(context).textTheme.headline5,
-              ),
-              SizedBox(height: 20),
-              Container(
-                width: context.widthPx,
-                height: context.heightPct(40),
-                child: LayoutBuilder(
-                  builder: (context, constraints) => Row(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      RoundContainer(
-                        width: constraints.maxWidth / 2,
-                        color: Colors.pink.shade200.withOpacity(0.4),
-                        child: Column(
+      body: Padding(
+        padding: const EdgeInsets.only(
+          top: 0,
+          left: 16,
+          right: 16,
+        ),
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 60),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Hello there <🖐>',
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
+                    const SizedBox(height: 20),
+                    SizedBox(
+                      width: context.widthPx,
+                      height: context.heightPct(40),
+                      child: LayoutBuilder(
+                        builder: (context, constraints) => Row(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            Expanded(
-                              child: ActivityByDays(
-                                statsModel: state.statsModel,
+                            RoundContainer(
+                              width: constraints.maxWidth / 2,
+                              color: Colors.pink.shade200.withOpacity(0.4),
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: ActivityByDays(
+                                      statsModel: state.statsModel,
+                                    ),
+                                  ),
+                                  Text('Activiy'),
+                                  Text('of current week'),
+                                  SizedBox(height: 10),
+                                  Text(
+                                      'Last 30 days: ${state.statsModel.last30Days}'),
+                                ],
                               ),
                             ),
-                            Text('Activiy'),
-                            Text('of current week'),
-                            SizedBox(height: 10),
-                            Text(
-                                'Last 30 days: ${state.statsModel.last30Days}'),
+                            const SizedBox(width: 20),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    flex: 5,
+                                    child: RoundContainer(
+                                      color:
+                                          Colors.teal.shade200.withOpacity(0.4),
+                                      child: TotalStatsWidget(
+                                        statsModel: state.statsModel,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 20),
+                                  Expanded(
+                                    flex: 3,
+                                    child: RoundContainer(
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),
-                      SizedBox(width: 20),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Expanded(
-                              flex: 5,
-                              child: RoundContainer(
-                                color: Colors.teal.shade200.withOpacity(0.4),
-                                child: TotalStatsWidget(
-                                  statsModel: state.statsModel,
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 20),
-                            Expanded(
-                              flex: 3,
-                              child: RoundContainer(
-                                color: Colors.red,
-                              ),
-                            ),
-                          ],
+                    ),
+                    const SizedBox(height: 20),
+                    InkWell(
+                      onTap: () {
+                        // log(state.randomExercises.toString());
+                      },
+                      child: RoundContainer(
+                        width: context.widthPx,
+                        height: 50,
+                        border: 10,
+                        color: Colors.yellow,
+                        child: Center(
+                          child: Text(
+                            'Random Pick',
+                            style: Theme.of(context).textTheme.headline6,
+                          ),
                         ),
-                      )
-                    ],
-                  ),
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    Text(
+                      'Similar that your last solved exercise ${state.similarExercises.length}',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: 20),
-              Text(
-                'Random Pick',
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              RoundContainer(
-                width: context.widthPx,
-                height: 70,
-                border: 10,
-                color: Colors.red,
-              ),
-              SizedBox(height: 30),
-              Text(
-                'Similar that your last solved exercise ${state.similarExercises.length}',
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: state.similarExercises.length,
-                  itemBuilder: (_, index) {
-                    final item = state.similarExercises.elementAt(index);
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                childCount: state.similarExercises.length,
+                (_, index) {
+                  final item = state.similarExercises.elementAt(index);
 
-                    return ExerciseItemWidget(
-                      exercise: item,
-                      isLast: index == state.similarExercises.length - 1,
-                      onTap: () {},
-                    );
-                  },
-                ),
+                  return ExerciseItemWidget(
+                    exercise: item,
+                    isLast: index == state.similarExercises.length - 1,
+                    onTap: () {},
+                  );
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

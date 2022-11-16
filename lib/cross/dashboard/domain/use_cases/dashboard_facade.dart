@@ -5,10 +5,14 @@ class DashboardFacade {
   DashboardFacade(
     this.readSimilarExercises,
     this.readStatsUseCase,
+    this.readRandomExercise,
   );
 
   final StreamQueryUseCase<StatsModel, ReadStatsData> readStatsUseCase;
 
   final StreamQueryUseCase<Iterable<DsaExerciseModel>, ReadSimilarExercisesData>
       readSimilarExercises;
+
+  final StreamQueryUseCase<DsaExerciseModel, ReadRandomExercisesData>
+      readRandomExercise;
 }

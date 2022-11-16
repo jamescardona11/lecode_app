@@ -14,7 +14,7 @@ abstract class MvvMProviderWidget<V extends BaseViewModel<VState>,
     super.key,
   });
 
-  V get viewModelBuilder;
+  V get viewModel;
 
   Widget buildWidget(BuildContext context, VState state);
 
@@ -22,7 +22,7 @@ abstract class MvvMProviderWidget<V extends BaseViewModel<VState>,
   @override
   Widget build(BuildContext context) {
     return DripProvider<V>(
-      create: (_) => viewModelBuilder,
+      create: (_) => viewModel,
       child: _MvvMBuilder<V, VState>(
         builder: (context, state) => buildWidget(context, state as VState),
       ),

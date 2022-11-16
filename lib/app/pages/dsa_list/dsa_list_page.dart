@@ -23,7 +23,7 @@ class DsaListPage extends MvvMProviderWidget<DsaListViewModel, DsaListState> {
   final String group;
 
   @override
-  DsaListViewModel get viewModelBuilder => getIt<DsaListViewModel>();
+  DsaListViewModel get viewModel => getIt<DsaListViewModel>();
 
   @override
   Widget buildWidget(BuildContext context, DsaListState state) {
@@ -56,7 +56,7 @@ class DsaListPage extends MvvMProviderWidget<DsaListViewModel, DsaListState> {
                     exercise: item,
                     isLast: index == state.items.length - 1,
                     onTap: () {
-                      viewModelBuilder.markProblemAsRead(item.id);
+                      viewModel.markProblemAsRead(item.id);
                     },
                   );
                 },

@@ -14,6 +14,7 @@ class DashboardViewModel extends BaseViewModel<DashboardState> {
   final DashboardFacade _facadeUseCases;
 
   late StreamSubscription<StatsModel> _streamStatsSubscription;
+  late StreamSubscription<DsaExerciseModel> _streamRandomSubscription;
   late StreamSubscription<Iterable<DsaExerciseModel>>
       _streamSimilarExercisesSubscription;
 
@@ -21,6 +22,7 @@ class DashboardViewModel extends BaseViewModel<DashboardState> {
   void close() {
     _streamStatsSubscription.cancel();
     _streamSimilarExercisesSubscription.cancel();
+    _streamRandomSubscription.cancel();
     super.close();
   }
 
@@ -34,6 +36,11 @@ class DashboardViewModel extends BaseViewModel<DashboardState> {
         .call(ReadSimilarExercisesData())
         .doOnData(_newSimilarExercisesEmit)
         .listen((_) {});
+
+    _streamRandomSubscription = _facadeUseCases.readRandomExercise
+        .call(ReadRandomExercisesData())
+        .doOnData(_newRandomExercisesEmit)
+        .listen((_) {});
   }
 
   void _newStatsEmit(StatsModel stats) {
@@ -42,5 +49,9 @@ class DashboardViewModel extends BaseViewModel<DashboardState> {
 
   void _newSimilarExercisesEmit(Iterable<DsaExerciseModel> items) {
     emit(state.copyWith(similarExercises: items));
+  }
+
+  void _newRandomExercisesEmit(DsaExerciseModel item) {
+    emit(state.copyWith(randomExercises: item));
   }
 }
