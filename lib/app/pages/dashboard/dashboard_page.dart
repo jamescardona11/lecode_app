@@ -8,7 +8,8 @@ import 'package:lepath_app/app/pages/dashboard/viewmodel/dashboard_viewmodel.dar
 import 'package:lepath_app/app/widgets/widgets.dart';
 import 'package:lepath_app/config/context_extension.dart';
 import 'package:lepath_app/config/di/di.dart';
-import 'package:lepath_app/config/styles/app_colors.dart';
+import 'package:lepath_app/config/styles/styles.dart';
+
 import 'package:lepath_app/core/core.dart';
 
 import 'widgets/activity_by_days_widget.dart';
@@ -43,9 +44,18 @@ class DashboardPage
           slivers: [
             const _GraphBoxes(),
             SliverToBoxAdapter(
-              child: Text(
-                'Similar to the last exercise solved',
-                style: Theme.of(context).textTheme.headline6,
+              child: Column(
+                children: [
+                  Text(
+                    'Similar to the last exercise solved',
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  if (state.similarExercises.isEmpty)
+                    Image.asset(
+                      AppAssets.waitingImg,
+                      width: 180,
+                    )
+                ],
               ),
             ),
             const SliverPadding(

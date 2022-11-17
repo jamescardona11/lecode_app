@@ -21,40 +21,47 @@ class ActivityContainer extends StatelessWidget {
     return RoundContainer(
       width: width,
       color: AppColors.primary,
-      child: Column(
-        children: [
-          _SolvedProblemsByDay(
-            statsModel: statsModel,
-          ),
-          Text(
-            'Activity',
-            style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.black,
+      child: !statsModel.isEmpty
+          ? Column(
+              children: [
+                _SolvedProblemsByDay(
+                  statsModel: statsModel,
                 ),
-          ),
-          Text(
-            'of current week',
-            style: Theme.of(context).textTheme.bodyText1,
-          ),
-          const SizedBox(height: 5),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Last 30 days: ',
-                  style: Theme.of(context).textTheme.bodyText1),
-              Text(
-                '${statsModel.last30Days}',
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                      color: AppColors.black,
-                      fontWeight: FontWeight.bold,
+                Text(
+                  'Activity',
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.black,
+                      ),
+                ),
+                Text(
+                  'of current week',
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+                const SizedBox(height: 5),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Last 30 days: ',
+                        style: Theme.of(context).textTheme.bodyText1),
+                    Text(
+                      '${statsModel.last30Days}',
+                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                            color: AppColors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
+                  ],
+                ),
+              ],
+            )
+          : Center(
+              child: Text(
+                'Waiting for activity...',
+                style: Theme.of(context).textTheme.bodyText2,
               ),
-            ],
-          ),
-        ],
-      ),
+            ),
     );
   }
 }
@@ -106,9 +113,10 @@ class _SolvedProblemsByDay extends StatelessWidget {
             BarChartRodData rod,
             int rodIndex,
           ) {
+            final value = rod.toY.round();
             return BarTooltipItem(
-              rod.toY.round().toString(),
-              TextStyle(
+              value == 0 ? '' : value.toString(),
+              const TextStyle(
                 color: AppColors.white,
                 fontWeight: FontWeight.bold,
               ),
@@ -118,7 +126,7 @@ class _SolvedProblemsByDay extends StatelessWidget {
       );
 
   Widget getTitles(double value, TitleMeta meta) {
-    final style = TextStyle(
+    const style = TextStyle(
       color: AppColors.secondary,
       fontWeight: FontWeight.bold,
       fontSize: 14,

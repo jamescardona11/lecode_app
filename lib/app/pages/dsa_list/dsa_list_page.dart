@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:lepath_app/app/pages/dsa_list/viewmodel/viewmodel.dart';
 import 'package:lepath_app/app/widgets/exercise_item_widget.dart';
-import 'package:lepath_app/config/context_extension.dart';
 import 'package:lepath_app/config/di/di.dart';
 import 'package:lepath_app/core/core.dart';
-import 'package:drip/drip.dart';
-import 'package:lepath_app/cross/cross.dart';
 
 class DsaListPage extends MvvMProviderWidget<DsaListViewModel, DsaListState> {
   /// default constructor

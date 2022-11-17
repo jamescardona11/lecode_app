@@ -39,6 +39,8 @@ class StatsModel {
   int get mediumSolved => difficultySolved['Medium'] ?? 0;
   int get hardSolved => difficultySolved['Hard'] ?? 0;
 
+  bool get isEmpty => solved == 0;
+
   @override
   bool operator ==(covariant StatsModel other) {
     if (identical(this, other)) return true;
