@@ -43,7 +43,7 @@ class _MvvMBuilder<V extends BaseViewModel<VState>, VState extends BaseState>
   @override
   Widget build(BuildContext context) {
     return DripBuilder<V, VState>(
-      streamListener: false,
+      streamListener: true,
       builder: builder,
     );
   }

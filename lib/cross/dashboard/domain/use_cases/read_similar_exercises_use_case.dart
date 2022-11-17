@@ -57,8 +57,7 @@ class ReadSimilarExercisesUseCase
       (element) =>
           element.difficulty == solved.difficulty ||
           (element.acceptanceRate - solved.acceptanceRate).abs() < 10 ||
-          element.topics.any((element) => solved.topics.contains(element)) ||
-          element.groups.any((element) => solved.groups.contains(element)),
+          element.topics.any((element) => solved.topics.contains(element)),
     );
   }
 }

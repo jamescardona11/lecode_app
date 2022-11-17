@@ -104,7 +104,7 @@ class _ItemStats extends StatelessWidget {
             Expanded(
               child: LinearPercentIndicator(
                 lineHeight: 3.0,
-                percent: percent + 0.2,
+                percent: percent,
                 barRadius: const Radius.circular(10),
                 backgroundColor: AppColors.grey2,
                 progressColor: color,
