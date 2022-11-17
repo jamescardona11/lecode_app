@@ -1,27 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:lepath_app/config/styles/app_colors.dart';
 
-import 'colors_theme_extension.dart';
-import 'sizes_theme_extension.dart';
 import 'text_theme.dart';
 
 class AppTheme {
   AppTheme._();
 
   static ThemeData lightTheme() {
-    final appColors = AppColors();
-
     return ThemeData.light().copyWith(
       brightness: Brightness.light,
       visualDensity: VisualDensity.adaptivePlatformDensity,
-      textTheme: AppTextTheme(appColors),
-      primaryColor: appColors.primary,
-      primaryColorLight: appColors.primary,
-      scaffoldBackgroundColor: appColors.backgroundScaffold,
-      // extensions: <ThemeExtension<dynamic>>[
-      //   appColors,
-      //   AppSizes(),
-      //   AppAssets(),
-      // ],
+      textTheme: AppTextTheme(),
+      primaryColor: AppColors.primary,
+      primaryColorLight: AppColors.primary,
+      scaffoldBackgroundColor: AppColors.backgroundScaffold,
       // elevatedButtonTheme:
     );
   }

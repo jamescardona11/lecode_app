@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:lepath_app/app/pages/dashboard/viewmodel/dashboard_state.dart';
 import 'package:lepath_app/app/pages/dashboard/viewmodel/dashboard_viewmodel.dart';
-import 'package:lepath_app/app/widgets/round_container.dart';
 import 'package:lepath_app/app/widgets/widgets.dart';
 import 'package:lepath_app/config/context_extension.dart';
 import 'package:lepath_app/config/di/di.dart';
@@ -57,23 +56,9 @@ class DashboardPage
                         builder: (context, constraints) => Row(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            RoundContainer(
+                            ActivityContainer(
                               width: constraints.maxWidth / 2,
-                              color: Colors.pink.shade200.withOpacity(0.4),
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: ActivityByDays(
-                                      statsModel: state.statsModel,
-                                    ),
-                                  ),
-                                  Text('Activiy'),
-                                  Text('of current week'),
-                                  SizedBox(height: 10),
-                                  Text(
-                                      'Last 30 days: ${state.statsModel.last30Days}'),
-                                ],
-                              ),
+                              statsModel: state.statsModel,
                             ),
                             const SizedBox(width: 20),
                             Expanded(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lepath_app/app/widgets/round_container.dart';
 import 'package:lepath_app/config/context_extension.dart';
@@ -28,68 +29,95 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: widget.onTap,
-      child: Padding(
-        padding: EdgeInsets.only(bottom: widget.isLast ? 40 : 8),
-        child: RoundContainer(
-          width: context.widthPx,
-          height: 100,
-          border: 10,
-          color: difficultyColor.withOpacity(0.5),
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Row(
-              // crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                RoundContainer(
-                  border: 10,
-                  height: 70,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+      child: Slidable(
+        // key: const ValueKey(0),
+        endActionPane: ActionPane(
+          motion: ScrollMotion(),
+          children: [
+            SlidableAction(
+              // An action can be bigger than the others.
+              // flex: 2,
+              onPressed: (c) {},
+              backgroundColor: Color(0xFF7BC043),
+              foregroundColor: Colors.white,
+              icon: Icons.archive,
+              label: 'Archive',
+            ),
+            SlidableAction(
+              onPressed: (c) {},
+              backgroundColor: Color(0xFF0392CF),
+              foregroundColor: Colors.white,
+              icon: Icons.save,
+              label: 'Save',
+            ),
+          ],
+        ),
+
+        // The child of the Slidable is what the user sees when the
+        // component is not dragged.
+        child: Padding(
+          padding: EdgeInsets.only(bottom: widget.isLast ? 40 : 8),
+          child: RoundContainer(
+            width: context.widthPx,
+            height: 100,
+            border: 10,
+            color: difficultyColor.withOpacity(0.5),
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Row(
+                // crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  RoundContainer(
+                    border: 10,
+                    height: 70,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FaIcon(
+                            iconByTopic,
+                            size: 16,
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            widget.exercise.myRate.toStringAsFixed(2),
+                            style: TextStyle(
+                              color: myRateIcon,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        FaIcon(
-                          iconByTopic,
-                          size: 16,
+                        Text(
+                          widget.exercise.name,
+                          overflow: TextOverflow.ellipsis,
                         ),
                         const SizedBox(height: 5),
                         Text(
-                          widget.exercise.myRate.toStringAsFixed(2),
+                          topicJoin,
                           style: TextStyle(
-                            color: myRateIcon,
+                            fontSize: 12,
                           ),
-                        ),
+                          // overflow: TextOverflow.ellipsis,
+                        )
                       ],
                     ),
                   ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.exercise.name,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        topicJoin,
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                        // overflow: TextOverflow.ellipsis,
-                      )
-                    ],
-                  ),
-                ),
-                _CompletedWidget(
-                  exercise: widget.exercise,
-                )
-              ],
+                  _CompletedWidget(
+                    exercise: widget.exercise,
+                  )
+                ],
+              ),
             ),
           ),
         ),
@@ -174,7 +202,7 @@ class _CompletedWidget extends StatelessWidget {
               ),
             ),
           )
-        : FaIcon(
+        : const FaIcon(
             FontAwesomeIcons.check,
             color: Colors.white,
           );

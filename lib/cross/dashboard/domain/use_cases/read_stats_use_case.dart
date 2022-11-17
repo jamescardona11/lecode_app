@@ -42,16 +42,16 @@ class ReadStatsUseCase
 
       // solved stats
       if (item.solvedDate != null) {
+        solved++;
+        averageAcceptanceRate += item.acceptanceRate;
+        averageRate += item.myRate;
+        if (_isSolvedInLast30Days(item.solvedDate!, now)) last30Days++;
         _statsForSolved(
           item,
-          solved,
-          averageAcceptanceRate,
-          averageRate,
           difficultySolved,
           groupsSolved,
           topicsSolved,
           daysBefore,
-          last30Days,
           now,
         );
       }
@@ -76,26 +76,17 @@ class ReadStatsUseCase
 
   void _statsForSolved(
     DsaExerciseModel item,
-    int solved,
-    double averageAcceptanceRate,
-    double averageRate,
     Map<String, int> difficultyCompleted,
     Map<String, int> groupsCompleted,
     Map<String, int> topicsCompleted,
     List<int> daysBefore,
-    int last30Days,
     DateTime now,
   ) {
-    solved++;
-    averageAcceptanceRate += item.acceptanceRate;
-    averageRate += item.myRate;
-
     _getDifficulty(difficultyCompleted, item);
     _getGroups(groupsCompleted, item);
     _getTopics(topicsCompleted, item);
 
     _updateDaysBefore(daysBefore, now, item.solvedDate!);
-    if (_isSolvedInLast30Days(item.solvedDate!, now)) last30Days++;
   }
 
   void _getDifficulty(Map<String, int> map, DsaExerciseModel item) {
@@ -164,8 +155,9 @@ class ReadStatsUseCase
   bool _isSolvedInLast30Days(
     DateTime solvedDate,
     DateTime now,
-  ) =>
-      solvedDate.isAfter(now.subtract(const Duration(days: 30)));
+  ) {
+    return solvedDate.isAfter(now.subtract(const Duration(days: 30)));
+  }
 
   bool _matchTime(
     DateTime solvedDate,

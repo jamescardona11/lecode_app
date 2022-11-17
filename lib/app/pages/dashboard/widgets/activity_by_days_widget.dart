@@ -2,11 +2,66 @@ import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:lepath_app/app/widgets/widgets.dart';
+import 'package:lepath_app/config/styles/app_colors.dart';
 import 'package:lepath_app/cross/cross.dart';
 
-class ActivityByDays extends StatelessWidget {
+class ActivityContainer extends StatelessWidget {
+  const ActivityContainer({
+    Key? key,
+    required this.width,
+    required this.statsModel,
+  }) : super(key: key);
+
+  final StatsModel statsModel;
+  final double width;
+
+  @override
+  Widget build(BuildContext context) {
+    print(statsModel);
+    return RoundContainer(
+      width: width,
+      color: AppColors.primary,
+      child: Column(
+        children: [
+          _SolvedProblemsByDay(
+            statsModel: statsModel,
+          ),
+          Text(
+            'Activity',
+            style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.black,
+                ),
+          ),
+          Text(
+            'of current week',
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Last 30 days: ',
+                  style: Theme.of(context).textTheme.bodyText1),
+              Text(
+                '${statsModel.last30Days}',
+                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      color: AppColors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SolvedProblemsByDay extends StatelessWidget {
   /// default constructor
-  const ActivityByDays({
+  const _SolvedProblemsByDay({
     Key? key,
     required this.statsModel,
   }) : super(key: key);
@@ -15,15 +70,11 @@ class ActivityByDays extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final maxY = statsModel.daysStats.isEmpty
-        ? 0.0
-        : statsModel.daysStats.reduce(max) + 3.0;
-
     return AspectRatio(
       aspectRatio: 1.1,
       child: Card(
         elevation: 0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
         color: Colors.transparent,
         child: BarChart(
           BarChartData(
@@ -39,12 +90,16 @@ class ActivityByDays extends StatelessWidget {
     );
   }
 
+  double get maxY => statsModel.daysStats.isEmpty
+      ? 0.0
+      : statsModel.daysStats.reduce(max) + 3.0;
+
   BarTouchData get barTouchData => BarTouchData(
         enabled: false,
         touchTooltipData: BarTouchTooltipData(
           tooltipBgColor: Colors.transparent,
           tooltipPadding: EdgeInsets.zero,
-          tooltipMargin: 8,
+          tooltipMargin: 2,
           getTooltipItem: (
             BarChartGroupData group,
             int groupIndex,
@@ -53,8 +108,8 @@ class ActivityByDays extends StatelessWidget {
           ) {
             return BarTooltipItem(
               rod.toY.round().toString(),
-              const TextStyle(
-                color: Colors.white,
+              TextStyle(
+                color: AppColors.white,
                 fontWeight: FontWeight.bold,
               ),
             );
@@ -63,8 +118,8 @@ class ActivityByDays extends StatelessWidget {
       );
 
   Widget getTitles(double value, TitleMeta meta) {
-    const style = TextStyle(
-      color: Color(0xff7589a2),
+    final style = TextStyle(
+      color: AppColors.secondary,
       fontWeight: FontWeight.bold,
       fontSize: 14,
     );
@@ -113,8 +168,7 @@ class ActivityByDays extends StatelessWidget {
         barRods: [
           BarChartRodData(
             toY: statsModel.daysStats[i] * 1.0,
-            color: Colors.red,
-            // gradient: _barsGradient,
+            color: AppColors.secondary,
           )
         ],
         showingTooltipIndicators: [0],

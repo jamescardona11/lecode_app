@@ -4,9 +4,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'theme/colors_theme_extension.dart';
-import 'theme/sizes_theme_extension.dart';
-
 /// extension from starter kit and argo-library
 /// {@template responsive_extension}
 ///

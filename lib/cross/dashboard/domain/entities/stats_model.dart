@@ -75,6 +75,6 @@ class StatsModel {
 
   @override
   String toString() {
-    return 'StatsModel(last30Days: $last30Days, daysStats: $daysStats, daysLabel: $daysLabel, difficulty: $difficulty, difficultySolved: $difficultySolved, groups: $groups, groupsSolved: $groupsSolved, topics: $topics, topicsSolved: $topicsSolved, total: $total, completed: $solved, averageAcceptanceRate: $averageAcceptanceRate, averageRate: $averageRate)';
+    return 'StatsModel(total: $total, solved: $solved, averageAcceptanceRate: $averageAcceptanceRate, averageRate: $averageRate, last30Days: $last30Days, daysStats: $daysStats, daysLabel: $daysLabel, difficulty: $difficulty, difficultySolved: $difficultySolved, groups: $groups, groupsSolved: $groupsSolved, topics: $topics, topicsSolved: $topicsSolved)';
   }
 }
