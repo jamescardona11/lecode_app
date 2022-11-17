@@ -21,14 +21,13 @@ class ReadAllDsaExercises
       BehaviorSubject<Iterable<DsaExerciseModel>>.seeded([]);
 
   void _listenElements() {
-    repository.readAllDsaExercisesStream.listen((event) {
-      _dsaExercisesListStream.add(event);
+    repository.readAllDsaExercisesStream.listen((items) {
+      _dsaExercisesListStream.add(items);
     });
   }
 
   // review this don't sent iterable
   @override
-  Stream<Iterable<DsaExerciseModel>> call(ReadAllDsaExercisesData data) {
-    return _dsaExercisesListStream.stream;
-  }
+  Stream<Iterable<DsaExerciseModel>> call(ReadAllDsaExercisesData data) =>
+      _dsaExercisesListStream;
 }

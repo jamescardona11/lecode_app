@@ -26,7 +26,7 @@ class AppColors {
   static const Color purple = Color(0xffA896C8);
 
   static final Color grey2 = grey.withOpacity(0.3);
-  static const Color backgroundScaffold = pureWhite;
+  static const Color backgroundScaffold = white;
   static const Color iconColors = grey;
   static const Color textColorPrimary = black;
   static const Color textColorSecondary = Colors.black;

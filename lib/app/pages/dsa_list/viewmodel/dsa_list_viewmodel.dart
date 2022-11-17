@@ -1,5 +1,6 @@
 import 'package:lepath_app/core/core.dart';
 import 'package:lepath_app/cross/cross.dart';
+import 'package:rxdart/rxdart.dart';
 
 import 'dsa_list_state.dart';
 
@@ -20,16 +21,18 @@ class DsaListViewModel extends BaseViewModel<DsaListState> {
   }
 
   Future<void> readDsaExercises() async {
-    final dsaExercises = await readAllDsaExercisesWithPagination
+    readAllDsaExercisesWithPagination
         .call(ReadAllDsaExercisesWithPaginationData(
             [], state.itemsPagination + 40))
-        .first;
-    // .toList();
+        .doOnData(_emitNewDsaItems)
+        .listen((_) {});
+  }
 
+  void _emitNewDsaItems(Iterable<DsaExerciseModel> items) {
     emit(
       state.copyWith(
-        itemsPagination: dsaExercises.length,
-        items: dsaExercises,
+        itemsPagination: items.length,
+        items: items,
       ),
     );
   }

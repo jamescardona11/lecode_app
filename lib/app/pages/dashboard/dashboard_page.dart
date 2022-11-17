@@ -34,6 +34,9 @@ class DashboardPage
   @override
   Widget buildWidget(BuildContext context, DashboardState state) {
     return Scaffold(
+      backgroundColor: state.similarExercises.isEmpty
+          ? AppColors.pureWhite
+          : AppColors.backgroundScaffold,
       body: Padding(
         padding: const EdgeInsets.only(
           top: 0,
