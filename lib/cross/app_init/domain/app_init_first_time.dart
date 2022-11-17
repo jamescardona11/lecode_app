@@ -28,16 +28,16 @@ class AppInitFirstTime implements FutureCommandUseCase<AppInitFirstTimeData> {
     final elementsResult = await _dsaFacade.fetchDsaProblems
         .call(FetchDsaProblemsData(shouldUpdate));
 
-    if (elementsResult.isRight) {
+    if (elementsResult.isRight && shouldUpdate) {
       await _dsaFacade.saveDsaProblems(
         SaveDsaProblemsData(
-          elementsResult.right.value.dsaProblemsDto,
+          elementsResult.right.value,
         ),
       );
 
       await _dsaFacade.saveDsaExercise(
         SaveDsaExerciseData(
-          elementsResult.right.value.dsaExerciseDto,
+          elementsResult.right.value,
         ),
       );
     }

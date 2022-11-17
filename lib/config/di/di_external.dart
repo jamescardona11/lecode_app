@@ -19,7 +19,7 @@ abstract class ExternalModule {
 
   @preResolve
   Future<IPocketAdapter> get dbApp async {
-    return await SembastPocket.initAdapter('lepath_app.db');
+    return await SembastPocket.initAdapter('lepath_app.db', 2);
   }
 
   @singleton

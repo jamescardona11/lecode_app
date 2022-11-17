@@ -24,9 +24,9 @@ DsaExerciseDto _$DsaExerciseDtoFromJson(Map<String, dynamic> json) =>
           .toList(),
       solved: json['solved'] as bool,
       mySolution: json['my_solution'] as String? ?? '',
-      completedDate: json['completedDate'] == null
+      solvedDate: json['solvedDate'] == null
           ? null
-          : DateTime.parse(json['completedDate'] as String),
+          : DateTime.parse(json['solvedDate'] as String),
     );
 
 Map<String, dynamic> _$DsaExerciseDtoToJson(DsaExerciseDto instance) =>
@@ -40,7 +40,7 @@ Map<String, dynamic> _$DsaExerciseDtoToJson(DsaExerciseDto instance) =>
       'notes': instance.notes,
       'explanation': instance.explanation,
       'solved': instance.solved,
-      'completedDate': instance.completedDate?.toIso8601String(),
+      'solvedDate': instance.solvedDate?.toIso8601String(),
       'acceptance_rate': instance.acceptanceRate,
       'my_rate': instance.myRate,
       'my_solution': instance.mySolution,

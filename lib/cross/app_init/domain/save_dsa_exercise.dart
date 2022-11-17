@@ -2,9 +2,9 @@ import 'package:lepath_app/cross/cross.dart';
 import 'package:lepath_app/core/core.dart';
 
 class SaveDsaExerciseData implements CommandData {
-  List<DsaExerciseDto> items;
+  DsaProblemsAggregateDto dsaProblemsAggregate;
 
-  SaveDsaExerciseData(this.items);
+  SaveDsaExerciseData(this.dsaProblemsAggregate);
 }
 
 class SaveDsaExercise implements FutureCommandUseCase<SaveDsaExerciseData> {
@@ -16,5 +16,5 @@ class SaveDsaExercise implements FutureCommandUseCase<SaveDsaExerciseData> {
 
   @override
   Future<void> call(SaveDsaExerciseData data) =>
-      _repository.saveDsaExercises(data.items);
+      _repository.saveDsaExercises(data.dsaProblemsAggregate);
 }

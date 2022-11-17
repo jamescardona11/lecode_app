@@ -43,7 +43,7 @@ class DsaRepository with PocketMultiDataSourceMixin<IPocketAdapter> {
     final dateFormat = DateTime(r.year, r.month, r.day);
 
     exercise = exercise.copyWith(
-        completedDate: exercise.completedDate == null ? dateFormat : null);
+        solvedDate: exercise.solvedDate == null ? dateFormat : null);
 
     print('randomDate() ${exercise.toJson()}');
 

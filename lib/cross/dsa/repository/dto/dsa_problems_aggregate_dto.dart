@@ -1,35 +1,39 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:pocket/pocket.dart';
 import 'dsa_exercise_dto.dart';
 import 'dsa_problems_dto.dart';
 
+part 'dsa_problems_aggregate_dto.g.dart';
+
+@JsonSerializable()
 class DsaProblemsAggregateDto extends IPocketModel {
   DsaProblemsAggregateDto({
     required this.dsaExerciseDto,
-    required this.dsaProblemsDto,
+    required this.groups,
   });
 
   factory DsaProblemsAggregateDto.def() => DsaProblemsAggregateDto(
         dsaExerciseDto: [],
-        dsaProblemsDto: DsaProblemsDto.def(),
+        groups: [],
       );
 
   @override
   String get id => 'dsaProblemsAggregate';
 
-  List<DsaExerciseDto> dsaExerciseDto;
+  @JsonKey(name: 'entries')
+  final List<DsaExerciseDto> dsaExerciseDto;
 
-  DsaProblemsDto dsaProblemsDto;
+  final List<DsaProblemsDto> groups;
 
   @override
-  Map<String, dynamic> toJson() => {
-        'entries': dsaExerciseDto,
-      }..addAll(dsaProblemsDto.toJson());
+  Map<String, dynamic> toJson() => _$DsaProblemsAggregateDtoToJson(this);
 
   factory DsaProblemsAggregateDto.fromJson(Map<String, dynamic> json) =>
-      DsaProblemsAggregateDto(
-        dsaExerciseDto: (json['entries'] as List<dynamic>)
-            .map((e) => DsaExerciseDto.fromJson(e as Map<String, dynamic>))
-            .toList(),
-        dsaProblemsDto: DsaProblemsDto.fromJson(json),
-      );
+      _$DsaProblemsAggregateDtoFromJson(json);
+  // DsaProblemsAggregateDto(
+  //   dsaExerciseDto: (json['entries'] as List<dynamic>)
+  //       .map((e) => DsaExerciseDto.fromJson(e as Map<String, dynamic>))
+  //       .toList(),
+  //   dsaProblemsDto: DsaProblemsDto.fromJson(json),
+  // );
 }

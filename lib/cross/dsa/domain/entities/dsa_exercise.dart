@@ -89,6 +89,6 @@ class DsaExerciseModel {
 
   @override
   String toString() {
-    return 'DsaExerciseModel(id: $id, name: $name, url: $url, difficulty: $difficulty, topics: $topics, groups: $groups, notes: $notes, explanation: $explanation, acceptanceRate: $acceptanceRate, myRate: $myRate, solved: $solved, mySolution: $mySolution, completedDate: $solvedDate)';
+    return 'DsaExerciseModel(id: $id, name: $name, url: $url, difficulty: $difficulty, topics: $topics, groups: $groups, notes: $notes, explanation: $explanation, acceptanceRate: $acceptanceRate, myRate: $myRate, solved: $solved, mySolution: $mySolution, solvedDate: $solvedDate)';
   }
 }

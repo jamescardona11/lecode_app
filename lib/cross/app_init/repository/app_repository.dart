@@ -53,16 +53,18 @@ class AppRepository
     );
   }
 
-  Future<void> saveDsaProblems(DsaProblemsDto problems) async {
-    await create(
-      problems,
+  Future<void> saveDsaProblems(
+      DsaProblemsAggregateDto problemsAggregate) async {
+    await createMany(
+      problemsAggregate.groups,
       tableDsaProblems,
     );
   }
 
-  Future<void> saveDsaExercises(List<DsaExerciseDto> items) async {
+  Future<void> saveDsaExercises(
+      DsaProblemsAggregateDto problemsAggregate) async {
     await createMany(
-      items,
+      problemsAggregate.dsaExerciseDto,
       tableDsaExercise,
     );
   }

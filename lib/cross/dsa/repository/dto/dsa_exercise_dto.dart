@@ -22,7 +22,7 @@ class DsaExerciseDto extends IPocketModel {
     required this.explanation,
     required this.solved,
     required this.mySolution,
-    this.completedDate,
+    this.solvedDate,
   });
 
   @override
@@ -36,7 +36,7 @@ class DsaExerciseDto extends IPocketModel {
   final List<String> explanation;
   final bool solved;
   // todo change this for solvedDate
-  final DateTime? completedDate;
+  final DateTime? solvedDate;
 
   @JsonKey(name: 'acceptance_rate')
   final double acceptanceRate;
@@ -63,7 +63,7 @@ class DsaExerciseDto extends IPocketModel {
         explanation: explanation,
         solved: solved,
         mySolution: mySolution,
-        solvedDate: completedDate,
+        solvedDate: solvedDate,
       );
 
   factory DsaExerciseDto.fromJson(Map<String, dynamic> json) =>
@@ -82,7 +82,7 @@ class DsaExerciseDto extends IPocketModel {
     String? notes,
     List<String>? explanation,
     bool? solved,
-    DateTime? completedDate,
+    DateTime? solvedDate,
     double? acceptanceRate,
     double? myRate,
     String? mySolution,
@@ -97,7 +97,7 @@ class DsaExerciseDto extends IPocketModel {
       notes: notes ?? this.notes,
       explanation: explanation ?? this.explanation,
       solved: solved ?? this.solved,
-      completedDate: completedDate,
+      solvedDate: solvedDate,
       acceptanceRate: acceptanceRate ?? this.acceptanceRate,
       myRate: myRate ?? this.myRate,
       mySolution: mySolution ?? this.mySolution,
@@ -106,6 +106,6 @@ class DsaExerciseDto extends IPocketModel {
 
   @override
   String toString() {
-    return 'DsaExerciseDto(id: $id, name: $name, url: $url, difficulty: $difficulty, topics: $topics, groups: $groups, notes: $notes, explanation: $explanation, solved: $solved, completedDate: $completedDate, acceptanceRate: $acceptanceRate, myRate: $myRate, mySolution: $mySolution)';
+    return 'DsaExerciseDto(id: $id, name: $name, url: $url, difficulty: $difficulty, topics: $topics, groups: $groups, notes: $notes, explanation: $explanation, solved: $solved, solvedDate: $solvedDate, acceptanceRate: $acceptanceRate, myRate: $myRate, mySolution: $mySolution)';
   }
 }

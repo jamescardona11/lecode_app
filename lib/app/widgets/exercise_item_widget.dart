@@ -259,7 +259,7 @@ class _CompletedWidgetState extends State<_CompletedWidget> {
                     child: const Center(
                       child: FaIcon(
                         FontAwesomeIcons.check,
-                        color: AppColors.grey,
+                        color: AppColors.green,
                         size: 15,
                       ),
                     ),
