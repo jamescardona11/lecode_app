@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme(),
-      home: DashboardPage(),
+      home: DsaListPage(),
     );
   }
 }

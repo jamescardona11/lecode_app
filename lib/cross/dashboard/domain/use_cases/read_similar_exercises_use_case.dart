@@ -1,7 +1,6 @@
 import 'package:lepath_app/core/core.dart';
 import 'package:lepath_app/cross/cross.dart';
 import 'package:lepath_app/utils/utils.dart';
-import 'package:rxdart/rxdart.dart';
 
 class ReadSimilarExercisesData extends CommandData {}
 
@@ -9,24 +8,18 @@ class ReadSimilarExercisesUseCase
     implements
         StreamQueryUseCase<Iterable<DsaExerciseModel>,
             ReadSimilarExercisesData> {
-  ReadSimilarExercisesUseCase(this.repository) {
-    _listenDsaExercises();
-  }
+  ReadSimilarExercisesUseCase(
+    this.dsaFacade,
+    this.repository,
+  );
 
   final DsaRepository repository;
-
-  final BehaviorSubject<Iterable<DsaExerciseModel>> readAllDsaExercisesStream =
-      BehaviorSubject<Iterable<DsaExerciseModel>>();
-
-  void _listenDsaExercises() {
-    repository.readAllDsaExercises.listen((items) {
-      readAllDsaExercisesStream.add(items);
-    });
-  }
+  final DsaUseCasesFacade dsaFacade;
 
   @override
   Stream<Iterable<DsaExerciseModel>> call(ReadSimilarExercisesData data) =>
-      repository.readAllDsaExercises
+      dsaFacade.readAllDsaExercises
+          .call(const ReadAllDsaExercisesData())
           .map((items) => items.splitMatch(
                 (element) => element.solvedDate != null,
               ))

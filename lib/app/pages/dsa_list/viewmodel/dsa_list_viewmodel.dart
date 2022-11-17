@@ -4,18 +4,23 @@ import 'package:lepath_app/cross/cross.dart';
 import 'dsa_list_state.dart';
 
 class DsaListViewModel extends BaseViewModel<DsaListState> {
-  final DsaUseCasesFacade useCases;
+  final DsaUseCasesFacade dsaUseCases;
+  final StreamQueryUseCase<Iterable<DsaExerciseModel>,
+      ReadAllDsaExercisesWithPaginationData> readAllDsaExercisesWithPagination;
 
-  DsaListViewModel(this.useCases) : super(const DsaListState()) {
+  DsaListViewModel(
+    this.dsaUseCases,
+    this.readAllDsaExercisesWithPagination,
+  ) : super(const DsaListState()) {
     readDsaExercises();
   }
 
   Future<void> markProblemAsRead(String id) async {
-    await useCases.markAsComplete.call(MarkAsCompleteData(id));
+    await dsaUseCases.markAsComplete.call(MarkAsCompleteData(id));
   }
 
   Future<void> readDsaExercises() async {
-    final dsaExercises = await useCases.readAllDsaExercisesWithPagination
+    final dsaExercises = await readAllDsaExercisesWithPagination
         .call(ReadAllDsaExercisesWithPaginationData(
             [], state.itemsPagination + 40))
         .first;

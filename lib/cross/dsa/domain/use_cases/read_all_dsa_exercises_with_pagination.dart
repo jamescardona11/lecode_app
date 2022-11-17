@@ -18,15 +18,21 @@ class ReadAllDsaExercisesWithPagination
     implements
         StreamQueryUseCase<Iterable<DsaExerciseModel>,
             ReadAllDsaExercisesWithPaginationData> {
-  final DsaRepository repository;
+  ReadAllDsaExercisesWithPagination(
+    this.dsaFacade,
+    this.repository,
+  );
 
-  ReadAllDsaExercisesWithPagination(this.repository);
+  final DsaUseCasesFacade dsaFacade;
+  final DsaRepository repository;
 
   // review this don't sent iterable
   @override
   Stream<Iterable<DsaExerciseModel>> call(
       ReadAllDsaExercisesWithPaginationData data) {
-    return repository.readAllDsaExercises.switchMap((items) {
+    return dsaFacade.readAllDsaExercises
+        .call(const ReadAllDsaExercisesData())
+        .switchMap((items) {
       if (data.topics.isEmpty) {
         return Stream.value(items.take(data.takeX));
       }

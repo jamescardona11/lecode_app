@@ -18,7 +18,7 @@ abstract class UseCasesModule {
           FetchDsaProblemsData>)
   FetchDsaProblems get fetchDsaProblems;
 
-  /// facade ↑
+  /// int facade ↑
   @singleton
   InitUseCasesFacade get initUseCasesFacade;
 
@@ -27,10 +27,15 @@ abstract class UseCasesModule {
 
   @Singleton(
       as: StreamQueryUseCase<Iterable<DsaExerciseModel>,
+          ReadAllDsaExercisesData>)
+  ReadAllDsaExercises get readAllDsaExercises;
+
+  @Singleton(
+      as: StreamQueryUseCase<Iterable<DsaExerciseModel>,
           ReadAllDsaExercisesWithPaginationData>)
   ReadAllDsaExercisesWithPagination get readAllDsaExercisesWithPagination;
 
-  /// facade ↑
+  /// dsa facade ↑
   @singleton
   DsaUseCasesFacade get dsaUseCasesFacade;
 
@@ -45,7 +50,7 @@ abstract class UseCasesModule {
   @Singleton(as: StreamQueryUseCase<DsaExerciseModel?, ReadRandomExercisesData>)
   ReadRandomExercisesUseCase get readRandomExercises;
 
-  /// facade ↑
+  /// facade dashboard ↑
   @singleton
   DashboardFacade get dashboardUseCasesFacade;
 }
