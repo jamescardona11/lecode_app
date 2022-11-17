@@ -66,12 +66,8 @@ class DashboardPage
                                 children: [
                                   Expanded(
                                     flex: 5,
-                                    child: RoundContainer(
-                                      color:
-                                          Colors.teal.shade200.withOpacity(0.4),
-                                      child: TotalStatsWidget(
-                                        statsModel: state.statsModel,
-                                      ),
+                                    child: TotalStatsWidget(
+                                      statsModel: state.statsModel,
                                     ),
                                   ),
                                   const SizedBox(height: 20),

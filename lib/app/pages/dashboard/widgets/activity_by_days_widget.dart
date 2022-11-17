@@ -18,7 +18,6 @@ class ActivityContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(statsModel);
     return RoundContainer(
       width: width,
       color: AppColors.primary,
@@ -39,6 +38,7 @@ class ActivityContainer extends StatelessWidget {
             'of current week',
             style: Theme.of(context).textTheme.bodyText1,
           ),
+          const SizedBox(height: 5),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
