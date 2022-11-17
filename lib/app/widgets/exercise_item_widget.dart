@@ -13,10 +13,13 @@ class ExerciseItemWidget extends StatefulWidget {
     required this.exercise,
     this.isLast = false,
     this.onTap,
+    this.onTapCheckbox,
   }) : super(key: key);
 
   final DsaExerciseModel exercise;
   final VoidCallback? onTap;
+  final VoidCallback? onTapCheckbox;
+
   final bool isLast;
 
   @override
@@ -133,8 +136,9 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
                         ),
                       ),
                     ),
-                    _CompletedWidget(
+                    _CheckboxWidget(
                       exercise: widget.exercise,
+                      onTap: widget.onTapCheckbox,
                     )
                   ],
                 ),
@@ -210,24 +214,26 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
       FontAwesomeIcons.feather;
 }
 
-class _CompletedWidget extends StatefulWidget {
-  const _CompletedWidget({
+class _CheckboxWidget extends StatefulWidget {
+  const _CheckboxWidget({
     Key? key,
     required this.exercise,
+    this.onTap,
   }) : super(key: key);
 
   final DsaExerciseModel exercise;
+  final VoidCallback? onTap;
 
   @override
-  State<_CompletedWidget> createState() => _CompletedWidgetState();
+  State<_CheckboxWidget> createState() => _CheckboxWidgetState();
 }
 
-class _CompletedWidgetState extends State<_CompletedWidget> {
-  bool _isSelected = false;
+class _CheckboxWidgetState extends State<_CheckboxWidget> {
+  bool _isSolved = false;
 
   @override
   void initState() {
-    // _isSelected = widget.isChecked ?? false;
+    _isSolved = widget.exercise.solvedDate != null;
     super.initState();
   }
 
@@ -235,48 +241,42 @@ class _CompletedWidgetState extends State<_CompletedWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: changeSelectedState,
-      child: widget.exercise.solvedDate == null
-          ? SizedBox(
-              height: 70,
-              width: 50,
-              child: Center(
-                child: AnimatedContainer(
-                  width: 30,
-                  height: 30,
-                  margin: const EdgeInsets.all(4),
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.fastLinearToSlowEaseIn,
-                  decoration: BoxDecoration(
-                    color: AppColors.pureWhite,
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: AppColors.grey2,
-                      width: 1,
-                    ),
-                  ),
-                  child: Visibility(
-                    visible: _isSelected,
-                    child: const Center(
-                      child: FaIcon(
-                        FontAwesomeIcons.check,
-                        color: AppColors.green,
-                        size: 15,
-                      ),
-                    ),
-                  ),
+      child: SizedBox(
+        height: 70,
+        width: 50,
+        child: Center(
+          child: Container(
+            width: 30,
+            height: 30,
+            margin: const EdgeInsets.all(4),
+            decoration: BoxDecoration(
+              color: AppColors.pureWhite,
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: AppColors.grey2,
+                width: 1,
+              ),
+            ),
+            child: Visibility(
+              visible: _isSolved,
+              child: const Center(
+                child: FaIcon(
+                  FontAwesomeIcons.check,
+                  color: AppColors.green,
+                  size: 15,
                 ),
               ),
-            )
-          : const FaIcon(
-              FontAwesomeIcons.check,
-              color: Colors.white,
             ),
+          ),
+        ),
+      ),
     );
   }
 
   void changeSelectedState() {
     setState(() {
-      _isSelected = !_isSelected;
+      _isSolved = !_isSolved;
+      widget.onTap?.call();
     });
   }
 }

@@ -9,6 +9,6 @@ class DsaContentViewModel extends BaseViewModel<DsaContentState> {
   final DsaUseCasesFacade useCases;
 
   Future<void> markProblemAsRead(String id) async {
-    await useCases.markAsComplete.call(MarkAsCompleteData(id));
+    await useCases.markAsSolved.call(MarkAsSolvedData(id));
   }
 }

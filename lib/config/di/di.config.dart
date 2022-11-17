@@ -46,8 +46,8 @@ Future<_i1.GetIt> $initGetIt(
   );
   gh.singleton<_i4.AppSharedPreferences>(externalModule.appSharedPreferences);
   gh.singleton<_i5.DsaRepository>(modelModule.dsaRepository);
-  gh.singleton<_i4.FutureCommandUseCase<_i5.MarkAsCompleteData>>(
-      useCasesModule.markAsComplete);
+  gh.singleton<_i4.FutureCommandUseCase<_i5.MarkAsSolvedData>>(
+      useCasesModule.markAsSolved);
   gh.singleton<_i6.Projectile>(
       externalModule.projectile(get<String>(instanceName: 'BaseURL')));
   gh.singleton<
@@ -118,14 +118,14 @@ class _$UseCasesModule extends _i12.UseCasesModule {
   final _i1.GetIt _getIt;
 
   @override
-  _i5.MarkAsComplete get markAsComplete =>
-      _i5.MarkAsComplete(_getIt<_i5.DsaRepository>());
+  _i5.MarkAsSolved get markAsSolved =>
+      _i5.MarkAsSolved(_getIt<_i5.DsaRepository>());
   @override
   _i5.ReadAllDsaExercises get readAllDsaExercises =>
       _i5.ReadAllDsaExercises(_getIt<_i5.DsaRepository>());
   @override
   _i5.DsaUseCasesFacade get dsaUseCasesFacade => _i5.DsaUseCasesFacade(
-        _getIt<_i4.FutureCommandUseCase<_i5.MarkAsCompleteData>>(),
+        _getIt<_i4.FutureCommandUseCase<_i5.MarkAsSolvedData>>(),
         _getIt<
             _i4.StreamQueryUseCase<Iterable<_i5.DsaExerciseModel>,
                 _i5.ReadAllDsaExercisesData>>(),

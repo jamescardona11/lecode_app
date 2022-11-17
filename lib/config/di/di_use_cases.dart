@@ -22,8 +22,8 @@ abstract class UseCasesModule {
   @singleton
   InitUseCasesFacade get initUseCasesFacade;
 
-  @Singleton(as: FutureCommandUseCase<MarkAsCompleteData>)
-  MarkAsComplete get markAsComplete;
+  @Singleton(as: FutureCommandUseCase<MarkAsSolvedData>)
+  MarkAsSolved get markAsSolved;
 
   @Singleton(
       as: StreamQueryUseCase<Iterable<DsaExerciseModel>,

@@ -30,7 +30,9 @@ class DashboardViewModel extends BaseViewModel<DashboardState> {
     _streamStatsSubscription = _facadeUseCases.readStatsUseCase
         .call(ReadStatsData())
         .doOnData(_newStatsEmit)
-        .listen((_) {});
+        .listen((_) {
+      print('Stats');
+    });
 
     _streamSimilarExercisesSubscription = _facadeUseCases.readSimilarExercises
         .call(ReadSimilarExercisesData())

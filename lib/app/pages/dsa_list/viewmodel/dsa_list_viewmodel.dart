@@ -17,7 +17,7 @@ class DsaListViewModel extends BaseViewModel<DsaListState> {
   }
 
   Future<void> markProblemAsRead(String id) async {
-    await dsaUseCases.markAsComplete.call(MarkAsCompleteData(id));
+    await dsaUseCases.markAsSolved.call(MarkAsSolvedData(id));
   }
 
   Future<void> readDsaExercises() async {

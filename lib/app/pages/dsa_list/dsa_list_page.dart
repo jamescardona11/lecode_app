@@ -51,7 +51,8 @@ class DsaListPage extends MvvMProviderWidget<DsaListViewModel, DsaListState> {
                   return ExerciseItemWidget(
                     exercise: item,
                     isLast: index == state.items.length - 1,
-                    onTap: () {
+                    onTap: () {},
+                    onTapCheckbox: () {
                       viewModel.markProblemAsRead(item.id);
                     },
                   );
