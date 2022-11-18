@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lepath_app/app/widgets/round_container.dart';
-import 'package:lepath_app/config/context_extension.dart';
-import 'package:lepath_app/config/styles/app_colors.dart';
+import 'package:lepath_app/config/theme/styles/app_colors.dart';
 import 'package:lepath_app/cross/cross.dart';
 
 class ExerciseItemWidget extends StatefulWidget {
@@ -33,115 +32,107 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
       onTap: widget.onTap,
       child: Padding(
         padding: EdgeInsets.only(bottom: widget.isLast ? 40 : 12),
-        child: SizedBox(
+        child: RoundContainer(
           height: 90,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: AppColors.pureWhite,
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 4,
-                  spreadRadius: -2,
-                  offset: Offset(0, 1),
-                )
+          color: AppColors.pureWhite,
+          border: 15,
+          showDefaultShadow: true,
+          child: Slidable(
+            endActionPane: ActionPane(
+              motion: const ScrollMotion(),
+              children: [
+                SlidableAction(
+                  onPressed: (c) {},
+                  backgroundColor: Color(0xFF7BC043),
+                  foregroundColor: Colors.white,
+                  icon: Icons.archive,
+                  label: 'Archive',
+                  // borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15),
+                    bottomLeft: Radius.circular(15),
+                  ),
+                ),
+                SlidableAction(
+                  onPressed: (c) {},
+                  backgroundColor: Color(0xFF0392CF),
+                  foregroundColor: Colors.white,
+                  icon: FontAwesomeIcons.splotch,
+                  label: 'Favorite',
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(15),
+                    bottomRight: Radius.circular(15),
+                  ),
+                ),
               ],
             ),
-            child: Slidable(
-              endActionPane: ActionPane(
-                motion: const ScrollMotion(),
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Row(
+                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SlidableAction(
-                    onPressed: (c) {},
-                    backgroundColor: Color(0xFF7BC043),
-                    foregroundColor: Colors.white,
-                    icon: Icons.archive,
-                    label: 'Archive',
-                    // borderRadius: BorderRadius.circular(15),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      bottomLeft: Radius.circular(15),
-                    ),
-                  ),
-                  SlidableAction(
-                    onPressed: (c) {},
-                    backgroundColor: Color(0xFF0392CF),
-                    foregroundColor: Colors.white,
-                    icon: FontAwesomeIcons.splotch,
-                    label: 'Favorite',
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(15),
-                      bottomRight: Radius.circular(15),
-                    ),
-                  ),
-                ],
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: Row(
-                  // crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      children: [
-                        RoundContainer(
-                          width: 45,
-                          height: 45,
-                          border: 10,
-                          color: difficultyColor,
-                          child: Center(
-                            child: FaIcon(
-                              iconByTopic,
-                              size: 16,
-                              color: Colors.white,
-                            ),
+                  Column(
+                    children: [
+                      RoundContainer(
+                        width: 45,
+                        height: 45,
+                        border: 10,
+                        color: difficultyColor,
+                        child: Center(
+                          child: FaIcon(
+                            iconByTopic,
+                            size: 16,
+                            color: Colors.white,
                           ),
                         ),
-                        const SizedBox(height: 5),
-                        Text(
-                          widget.exercise.myRate.toStringAsFixed(2),
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                  // color: difficultyColor,
-                                  ),
-                        ),
-                      ],
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              widget.exercise.name,
-                              overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        widget.exercise.myRate.toStringAsFixed(2),
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                            // color: difficultyColor,
                             ),
-                            const SizedBox(height: 2),
-                            Text(
-                              topicJoin,
-                              style: TextStyle(
-                                fontSize: 12,
-                              ),
-                              // overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.exercise.name,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            topicJoin,
+                            style: TextStyle(
+                              fontSize: 12,
                             ),
-                            // Text(
-                            //   groupJoin,
-                            //   style: TextStyle(
-                            //     fontSize: 12,
-                            //   ),
-                            //   // overflow: TextOverflow.ellipsis,
-                            // ),
-                          ],
-                        ),
+                            // overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 5),
+                          Row(
+                              children: iconByGroup
+                                  .map((value) => Padding(
+                                        padding: const EdgeInsets.only(left: 4),
+                                        child: FaIcon(
+                                          value,
+                                          size: 12,
+                                        ),
+                                      ))
+                                  .toList())
+                        ],
                       ),
                     ),
-                    _CheckboxWidget(
-                      exercise: widget.exercise,
-                      onTap: widget.onTapCheckbox,
-                    )
-                  ],
-                ),
+                  ),
+                  _CheckboxWidget(
+                    exercise: widget.exercise,
+                    onTap: widget.onTapCheckbox,
+                  )
+                ],
               ),
             ),
           ),
@@ -177,8 +168,8 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
   IconData get iconByTopic =>
       widget.exercise.topics.map((e) => _iconsForTopics(e)).first;
 
-  IconData get iconByGroup =>
-      widget.exercise.groups.map((e) => _iconsForGroups(e.value)).first;
+  List<IconData> get iconByGroup =>
+      widget.exercise.groups.map((e) => _iconsForGroups(e.value)).toList();
 
   IconData _iconsForTopics(String value) =>
       {
@@ -193,7 +184,7 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
         'BFS': FontAwesomeIcons.connectdevelop,
         'DFS': FontAwesomeIcons.connectdevelop,
         'Hash Table': FontAwesomeIcons.tableList,
-        'Dynamic Programming': FontAwesomeIcons.chartSimple,
+        'DP': FontAwesomeIcons.chartSimple,
         'Priority Queue': FontAwesomeIcons.rankingStar,
         'Recursion': FontAwesomeIcons.repeat,
         'Math': FontAwesomeIcons.plusMinus,

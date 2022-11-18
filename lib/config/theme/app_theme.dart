@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lepath_app/config/styles/app_colors.dart';
+import 'package:lepath_app/config/theme/styles/app_colors.dart';
 
 import 'text_theme.dart';
 

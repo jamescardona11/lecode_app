@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lepath_app/config/styles/app_colors.dart';
+import 'package:lepath_app/config/theme/styles/app_colors.dart';
 
 /* Tested Fonts before
     - notoSans
@@ -11,6 +11,12 @@ import 'package:lepath_app/config/styles/app_colors.dart';
 class AppTextTheme extends TextTheme {
   AppTextTheme()
       : super(
+          headline4: GoogleFonts.notoSerif(
+            fontSize: 36,
+            fontWeight: FontWeight.bold,
+            // letterSpacing: 1.5,
+            color: AppColors.textColorPrimary,
+          ),
           headline5: GoogleFonts.pangolin(
             fontSize: 26,
             fontWeight: FontWeight.w600,

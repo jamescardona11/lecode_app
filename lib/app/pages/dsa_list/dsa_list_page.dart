@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lepath_app/app/pages/dsa_list/viewmodel/viewmodel.dart';
 import 'package:lepath_app/app/widgets/exercise_item_widget.dart';
 import 'package:lepath_app/config/di/di.dart';
+import 'package:lepath_app/config/theme/styles/styles.dart';
 import 'package:lepath_app/core/core.dart';
 
 class DsaListPage extends MvvMProviderWidget<DsaListViewModel, DsaListState> {
@@ -39,9 +40,9 @@ class DsaListPage extends MvvMProviderWidget<DsaListViewModel, DsaListState> {
           ),
           SliverPadding(
             padding: const EdgeInsets.only(
-              top: 16,
-              left: 16,
-              right: 16,
+              top: AppSizes.defPadding,
+              left: AppSizes.defPadding,
+              right: AppSizes.defPadding,
             ),
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lepath_app/app/widgets/widgets.dart';
-import 'package:lepath_app/config/styles/app_colors.dart';
+import 'package:lepath_app/config/theme/styles/app_colors.dart';
 import 'package:lepath_app/utils/app_formatter.dart';
 import 'package:lepath_app/cross/cross.dart';
 import 'package:percent_indicator/percent_indicator.dart';

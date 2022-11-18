@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:lepath_app/app/widgets/widgets.dart';
-import 'package:lepath_app/config/styles/app_colors.dart';
+import 'package:lepath_app/config/theme/styles/app_colors.dart';
 import 'package:lepath_app/cross/cross.dart';
 
 class ActivityContainer extends StatelessWidget {

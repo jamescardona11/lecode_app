@@ -8,8 +8,9 @@ class RoundContainer extends StatelessWidget {
     this.height,
     this.border = 16,
     this.color = Colors.transparent,
-    this.borderColor,
+    this.showDefaultShadow = false,
     this.child,
+    this.onTap,
   }) : super(key: key);
 
   final double? width;
@@ -17,25 +18,37 @@ class RoundContainer extends StatelessWidget {
   final double border;
 
   final Color color;
-  final Color? borderColor;
+
+  final bool showDefaultShadow;
 
   final Widget? child;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(border),
-        color: color,
-        border: borderColor != null
-            ? Border.all(
-                color: borderColor!,
-              )
-            : null,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(border),
+          color: color,
+          boxShadow: shadow,
+        ),
+        child: child,
       ),
-      child: child,
     );
   }
+
+  List<BoxShadow>? get shadow => showDefaultShadow
+      ? const [
+          BoxShadow(
+            color: Colors.black38,
+            blurRadius: 3,
+            spreadRadius: -2,
+            offset: Offset(1, 1),
+          )
+        ]
+      : null;
 }

@@ -8,7 +8,7 @@ import 'package:lepath_app/app/pages/dashboard/viewmodel/dashboard_viewmodel.dar
 import 'package:lepath_app/app/widgets/widgets.dart';
 import 'package:lepath_app/config/context_extension.dart';
 import 'package:lepath_app/config/di/di.dart';
-import 'package:lepath_app/config/styles/styles.dart';
+import 'package:lepath_app/config/theme/styles/styles.dart';
 
 import 'package:lepath_app/core/core.dart';
 
@@ -40,8 +40,8 @@ class DashboardPage
       body: Padding(
         padding: const EdgeInsets.only(
           top: 0,
-          left: 16,
-          right: 16,
+          left: AppSizes.defPadding,
+          right: AppSizes.defPadding,
         ),
         child: CustomScrollView(
           slivers: [
@@ -141,33 +141,31 @@ class _GraphBoxes extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              InkWell(
+              RoundContainer(
+                width: context.widthPx,
+                height: 50,
+                border: 10,
+                color: AppColors.blueDark,
                 onTap: () {
                   log(state.randomExercises.toString());
                 },
-                child: RoundContainer(
-                  width: context.widthPx,
-                  height: 50,
-                  border: 10,
-                  color: AppColors.blueDark,
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Seek a random exercise',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline6!
-                              .copyWith(color: AppColors.white),
-                        ),
-                        const SizedBox(width: 5),
-                        const FaIcon(
-                          FontAwesomeIcons.hurricane,
-                          color: AppColors.white,
-                        )
-                      ],
-                    ),
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Seek a random exercise',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6!
+                            .copyWith(color: AppColors.white),
+                      ),
+                      const SizedBox(width: 5),
+                      const FaIcon(
+                        FontAwesomeIcons.hurricane,
+                        color: AppColors.white,
+                      )
+                    ],
                   ),
                 ),
               ),
