@@ -9,6 +9,6 @@ abstract class ModelModule {
   @singleton
   DsaRepository get dsaRepository;
 
-  // @singleton
-  // DashboardRepository get dashboardRepository;
+  @singleton
+  DsaContentRepository get dsaContentRepository;
 }

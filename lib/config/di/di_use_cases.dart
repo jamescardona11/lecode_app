@@ -4,6 +4,10 @@ import 'package:lepath_app/core/core.dart';
 
 @module
 abstract class UseCasesModule {
+  /// int facade ↓
+  @singleton
+  InitUseCasesFacade get initUseCasesFacade;
+
   @Singleton(as: FutureCommandUseCase<AppInitFirstTimeData>)
   AppInitFirstTime get appInitFirstTime;
 
@@ -13,31 +17,25 @@ abstract class UseCasesModule {
   @Singleton(as: FutureCommandUseCase<SaveDsaExerciseData>)
   SaveDsaExercise get saveDsaExercise;
 
+  /// dsa facade ↓
+  @singleton
+  DsaUseCasesFacade get dsaUseCasesFacade;
   @Singleton(
       as: FutureQueryUseCase<RemoteAppResponse<DsaExerciseDto>,
           FetchDsaProblemsData>)
   FetchDsaProblems get fetchDsaProblems;
-
-  /// int facade ↑
-  @singleton
-  InitUseCasesFacade get initUseCasesFacade;
 
   @Singleton(as: FutureCommandUseCase<MarkAsSolvedData>)
   MarkAsSolved get markAsSolved;
 
   @Singleton(
       as: StreamQueryUseCase<Iterable<DsaExerciseModel>,
-          ReadAllDsaExercisesData>)
-  ReadAllDsaExercises get readAllDsaExercises;
-
-  @Singleton(
-      as: StreamQueryUseCase<Iterable<DsaExerciseModel>,
           ReadAllDsaExercisesWithPaginationData>)
   ReadAllDsaExercisesWithPagination get readAllDsaExercisesWithPagination;
 
-  /// dsa facade ↑
+  /// facade dashboard ↓
   @singleton
-  DsaUseCasesFacade get dsaUseCasesFacade;
+  DashboardFacade get dashboardUseCasesFacade;
 
   @Singleton(as: StreamQueryUseCase<StatsModel, ReadStatsData>)
   ReadStatsUseCase get readStatsUseCase;
@@ -50,7 +48,17 @@ abstract class UseCasesModule {
   @Singleton(as: StreamQueryUseCase<DsaExerciseModel?, ReadRandomExercisesData>)
   ReadRandomExercisesUseCase get readRandomExercises;
 
-  /// facade dashboard ↑
+  /// facade cross DSA ↓
+
   @singleton
-  DashboardFacade get dashboardUseCasesFacade;
+  CrossDsaFacade get crossDsaFacade;
+
+  @Singleton(
+      as: StreamQueryUseCase<Iterable<DsaExerciseModel>,
+          ReadAllDsaExercisesData>)
+  ReadAllDsaExercises get readAllDsaExercises;
+
+  @Singleton(
+      as: StreamQueryUseCase<Iterable<DsaGroupsModel>, ReadAllGroupsData>)
+  ReadAllGroups get readAllGroups;
 }

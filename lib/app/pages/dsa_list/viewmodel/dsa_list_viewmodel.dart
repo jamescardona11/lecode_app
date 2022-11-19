@@ -6,12 +6,9 @@ import 'dsa_list_state.dart';
 
 class DsaListViewModel extends BaseViewModel<DsaListState> {
   final DsaUseCasesFacade dsaUseCases;
-  final StreamQueryUseCase<Iterable<DsaExerciseModel>,
-      ReadAllDsaExercisesWithPaginationData> readAllDsaExercisesWithPagination;
 
   DsaListViewModel(
     this.dsaUseCases,
-    this.readAllDsaExercisesWithPagination,
   ) : super(const DsaListState()) {
     readDsaExercises();
   }
@@ -21,7 +18,7 @@ class DsaListViewModel extends BaseViewModel<DsaListState> {
   }
 
   Future<void> readDsaExercises() async {
-    readAllDsaExercisesWithPagination
+    dsaUseCases.readAllDsaExercisesWithPagination
         .call(ReadAllDsaExercisesWithPaginationData(
             [], state.itemsPagination + 40))
         .doOnData(_emitNewDsaItems)

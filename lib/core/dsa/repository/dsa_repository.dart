@@ -19,12 +19,6 @@ class DsaRepository with PocketMultiDataSourceMixin<IPocketAdapter> {
         DsaExerciseDto.toEntityByJson,
       );
 
-  Stream<Iterable<DsaGroupsModel>> get readAllGroupsModelStream =>
-      readWhere<DsaGroupsModel>(
-        tableDsaProblems,
-        DsaGroupsDto.toEntityByJson,
-      );
-
   Future<void> markAsComplete(String id) async {
     final dto = await adapterDb.read(table: tableDsaExercise, id: id).first;
     if (dto == null) return;

@@ -19,18 +19,18 @@ class ReadAllDsaExercisesWithPagination
         StreamQueryUseCase<Iterable<DsaExerciseModel>,
             ReadAllDsaExercisesWithPaginationData> {
   ReadAllDsaExercisesWithPagination(
-    this.dsaFacade,
+    this.crossDsaFacade,
     this.repository,
   );
 
-  final DsaUseCasesFacade dsaFacade;
+  final CrossDsaFacade crossDsaFacade;
   final DsaRepository repository;
 
   // review this don't sent iterable
   @override
   Stream<Iterable<DsaExerciseModel>> call(
       ReadAllDsaExercisesWithPaginationData data) {
-    return dsaFacade.readAllDsaExercises
+    return crossDsaFacade.readAllDsaExercises
         .call(const ReadAllDsaExercisesData())
         .switchMap((items) => data.topics.isEmpty
             ? _allElementsStream(items, data)

@@ -23,9 +23,9 @@ class ReadAllExercisesGroups
   void _listenElements() {
     // CombineLatestStream.combine2(streamOne, streamTwo, (a, b) => null)
 
-    repository.readAllGroupsModelStream.listen((items) {
-      _dsaExercisesListStream.add(items);
-    });
+    // repository.readAllGroupsModelStream.listen((items) {
+    //   _dsaExercisesListStream.add(items);
+    // });
   }
 
   // review this don't sent iterable

@@ -9,16 +9,16 @@ class ReadSimilarExercisesUseCase
         StreamQueryUseCase<Iterable<DsaExerciseModel>,
             ReadSimilarExercisesData> {
   ReadSimilarExercisesUseCase(
-    this.dsaFacade,
+    this.crossDsaFacade,
     this.repository,
   );
 
   final DsaRepository repository;
-  final DsaUseCasesFacade dsaFacade;
+  final CrossDsaFacade crossDsaFacade;
 
   @override
   Stream<Iterable<DsaExerciseModel>> call(ReadSimilarExercisesData data) =>
-      dsaFacade.readAllDsaExercises
+      crossDsaFacade.readAllDsaExercises
           .call(const ReadAllDsaExercisesData())
           .map((items) => items.splitMatch(
                 (element) => element.solvedDate != null,

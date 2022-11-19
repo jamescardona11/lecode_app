@@ -10,18 +10,20 @@ class ReadAllGroupsData implements CommandData {
 
 class ReadAllGroups
     implements StreamQueryUseCase<Iterable<DsaGroupsModel>, ReadAllGroupsData> {
-  ReadAllGroups(this.repository) {
+  ReadAllGroups(this.dsaRepository, this.dsaContentRepository) {
     _listenElements();
   }
 
-  final DsaRepository repository;
+  final DsaRepository dsaRepository;
+  final DsaContentRepository dsaContentRepository;
+
   final BehaviorSubject<Iterable<DsaGroupsModel>> _dsaExercisesListStream =
       BehaviorSubject<Iterable<DsaGroupsModel>>.seeded([]);
 
   void _listenElements() {
-    repository.readAllGroupsModelStream.listen((items) {
-      _dsaExercisesListStream.add(items);
-    });
+    // dsaC.readAllGroupsModelStream.listen((items) {
+    //   _dsaExercisesListStream.add(items);
+    // });
   }
 
   // review this don't sent iterable
