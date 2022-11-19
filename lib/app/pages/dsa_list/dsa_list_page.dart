@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lepath_app/app/pages/dsa_list/viewmodel/viewmodel.dart';
+import 'package:lepath_app/app/pages/dsa_list/widgets/search_bar.dart';
 import 'package:lepath_app/app/widgets/exercise_item_widget.dart';
+import 'package:lepath_app/base/base.dart';
 import 'package:lepath_app/config/di/di.dart';
 import 'package:lepath_app/config/theme/styles/styles.dart';
-import 'package:lepath_app/base/base.dart';
 
 class DsaListPage extends MvvMProviderWidget<DsaListViewModel, DsaListState> {
   /// default constructor
@@ -27,9 +28,28 @@ class DsaListPage extends MvvMProviderWidget<DsaListViewModel, DsaListState> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar(
-            title: AppBarRow(),
-            backgroundColor: Colors.red,
+          SliverAppBar(
+            title: Column(
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    FaIcon(FontAwesomeIcons.code),
+                    const SizedBox(width: 5),
+                    Text(
+                      'All problems',
+                      style: TextStyle(fontSize: 20.0),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 15),
+                Text(
+                  'Let\'s start solving problems',
+                  style: TextStyle(fontSize: 14.0),
+                ),
+              ],
+            ),
+            backgroundColor: AppColors.blueBlack,
             pinned: false,
             floating: true,
             snap: true,
@@ -76,33 +96,22 @@ class FlexibleBar extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          Text(
-            'Total Balance',
-            style: TextStyle(fontSize: 15.0),
-          ),
-          Text(
-            "\$3,048",
-            style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
-          ),
-          Icon(Icons.more_horiz),
+        children: [
+          SearchBar(),
+          const SizedBox(height: 10),
           Padding(
             padding:
                 const EdgeInsets.only(left: 40.0, right: 40.0, bottom: 5.0),
             child: Row(
               children: [
                 Text(
-                  "\$3,048",
+                  '10/300',
                   style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                 ),
+                const SizedBox(width: 5),
                 Text(
-                  "USD",
-                  style: TextStyle(),
-                ),
-                Spacer(),
-                Text(
-                  "AUS \$3,800",
-                  style: TextStyle(),
+                  '10%',
+                  // style: TextStyle(),
                 ),
               ],
             ),
@@ -111,7 +120,7 @@ class FlexibleBar extends StatelessWidget {
             padding:
                 const EdgeInsets.only(left: 40.0, right: 40.0, bottom: 10.0),
             child: LinearProgressIndicator(
-              minHeight: 5,
+              minHeight: 3,
               backgroundColor: Colors.grey,
               valueColor: AlwaysStoppedAnimation<Color>(
                 Colors.black45,
@@ -121,25 +130,6 @@ class FlexibleBar extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class AppBarRow extends StatelessWidget {
-  const AppBarRow({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const <Widget>[
-        Icon(Icons.circle_outlined),
-        Text(
-          'My Spending',
-          style: TextStyle(fontSize: 20.0),
-        ),
-        Icon(Icons.calendar_today),
-      ],
     );
   }
 }

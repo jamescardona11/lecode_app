@@ -109,7 +109,7 @@ class _ItemContentWidgetState extends State<_ItemContentWidget> {
           Text(
             '${widget.groupsExercisesModel.solved}/${widget.groupsExercisesModel.total}',
             style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                  color: AppColors.white,
+                  color: AppColors.pureWhite,
                 ),
           ),
         ],
