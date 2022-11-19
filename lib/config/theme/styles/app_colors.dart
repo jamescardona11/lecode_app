@@ -5,14 +5,14 @@ class AppColors {
 
   //app
   // static const Color primary = Color(0xFFFACCCC);
-  static const Color secondary = Color(0xFFFD9DA0); // ok
+  static const Color secondary = Color(0xFFFD9DA0);
 
   // static const Color primary = Color(0xff4FFFBB);
   static const Color primary = Color.fromRGBO(247, 206, 205, 0.8); // 0xFFFDAAA9
   static const Color blueBlack = Color(0xFF19224c);
-  static const Color black = Color(0xFF2F2F35); // ok
-  static const Color white = Color(0xfff7f4f4); // ok
-  static const Color pureWhite = Colors.white; // ok
+  static const Color black = Color(0xFF2F2F35);
+  static const Color white = Color(0xfff7f4f4);
+  static const Color pureWhite = Colors.white;
   // static const Color cream = Color(0xFFECE1DE);
   static const Color grey = Colors.grey;
   static const Color lightGrey = Color(0xFFF2F2F7);

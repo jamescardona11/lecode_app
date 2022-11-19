@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:lepath_app/app/pages/dashboard/dashboard_page.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'app/pages/dsa_content/dsa_content_layout.dart';
-import 'app/pages/dsa_list/dsa_list_page.dart';
-
+import 'app/widgets/widgets.dart';
+import 'base/base.dart';
 import 'config/di/di.dart';
 import 'config/theme/app_theme.dart';
-import 'base/base.dart';
 import 'core/core.dart';
 
 Future<void> main() async {
@@ -34,7 +32,46 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme(),
-      home: DsaListPage(),
+      home: NAMEPage(),
+    );
+  }
+}
+
+class NAMEPage extends StatelessWidget {
+  /// default constructor
+  const NAMEPage({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('AppBar Text'),
+      ),
+      body: Center(
+        child: Text('New Page'),
+      ),
+      bottomNavigationBar: FloatingBottomBar(
+        items: [
+          BottomElevenItem(
+            label: 'Dashboard',
+            icon: FontAwesomeIcons.house,
+          ),
+          BottomElevenItem(
+            label: 'Groups',
+            icon: FontAwesomeIcons.barsProgress,
+          ),
+          BottomElevenItem(
+            label: 'Problems',
+            icon: FontAwesomeIcons.arrowUpRightDots,
+          ),
+          BottomElevenItem(
+            label: 'Solved',
+            icon: FontAwesomeIcons.flagCheckered,
+          ),
+        ],
+      ),
     );
   }
 }
