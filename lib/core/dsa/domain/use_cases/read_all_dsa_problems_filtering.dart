@@ -32,7 +32,7 @@ class ReadAllDsaProblemsFiltering
   Stream<Iterable<DsaProblemModel>> call(ReadAllDsaProblemsFilteringData data) {
     return crossDsaFacade.readAllDsaProblems
         .call(const ReadAllDsaProblemsData())
-        .switchMap((items) => data.filteringData.isTopicsEmpty
+        .switchMap((items) => data.filteringData.isEmpty
             ? _allElementsStream(items, data)
             : _filteringStream(items, data));
   }
@@ -46,12 +46,20 @@ class ReadAllDsaProblemsFiltering
   Stream<Iterable<DsaProblemModel>> _filteringStream(
     Iterable<DsaProblemModel> items,
     ReadAllDsaProblemsFilteringData data,
-  ) =>
-      Stream.value(items
-          .where(
-            (item) => data.filteringData.topics.any(
-              (element) => item.topics.contains(element),
-            ),
-          )
-          .take(data.takeX));
+  ) {
+    return Stream.value(items.where(
+      (item) {
+        bool matchTopics = data.filteringData.topics.any(
+          (topic) => item.topics.contains(topic),
+        );
+
+        bool matchDifficulty = data.filteringData.byAnyDifficulty
+            ? true
+            : data.filteringData.difficulty
+                .any((difficulty) => item.difficulty == difficulty);
+
+        return matchTopics || matchDifficulty;
+      },
+    ).take(data.takeX));
+  }
 }

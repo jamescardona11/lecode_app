@@ -15,6 +15,8 @@ class FilteringData {
   bool get isDifficultyEmpty => difficulty.isEmpty;
   bool get byAnyDifficulty => isDifficultyEmpty || difficulty.length == 3;
 
+  bool get isEmpty => isTopicsEmpty && isDifficultyEmpty && groupBy.isEmpty;
+
   @override
   bool operator ==(covariant FilteringData other) {
     if (identical(this, other)) return true;
