@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lepath_app/app/widgets/widgets.dart';
 import 'package:lepath_app/config/theme/styles/app_colors.dart';
-import 'package:lepath_app/utils/app_formatter.dart';
 import 'package:lepath_app/core/core.dart';
-import 'package:percent_indicator/percent_indicator.dart';
+import 'package:lepath_app/utils/app_formatter.dart';
 
 class TotalStatsWidget extends StatefulWidget {
   /// default constructor
@@ -102,12 +101,13 @@ class _ItemStats extends StatelessWidget {
                   Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 10),
             ),
             Expanded(
-              child: LinearPercentIndicator(
-                lineHeight: 3.0,
-                percent: percent,
-                barRadius: const Radius.circular(10),
+              child: LinearProgressIndicator(
+                minHeight: 3,
                 backgroundColor: AppColors.grey2,
-                progressColor: color,
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  color,
+                ),
+                value: percent,
               ),
             ),
           ],

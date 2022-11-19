@@ -3,7 +3,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lepath_app/config/theme/styles/styles.dart';
 
 class SearchBar extends StatelessWidget {
-  const SearchBar({Key? key}) : super(key: key);
+  const SearchBar({
+    Key? key,
+    required this.onTapOrderIcon,
+  }) : super(key: key);
+
+  final VoidCallback onTapOrderIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +33,7 @@ class SearchBar extends StatelessWidget {
                 color: AppColors.grey3,
               ),
               suffixIcon: InkWell(
+                onTap: onTapOrderIcon,
                 child: Icon(
                   FontAwesomeIcons.sliders,
                   color: AppColors.grey3,

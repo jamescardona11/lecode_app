@@ -24,6 +24,10 @@ class DsaListViewModel extends BaseViewModel<DsaListState> {
     super.close();
   }
 
+  void changeMainView() {
+    emit(state.copyWith(showFilterList: !state.showFilterList));
+  }
+
   Future<void> markProblemAsRead(String id) async {
     await dsaUseCases.markAsSolved.call(MarkAsSolvedData(id));
   }
