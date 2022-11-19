@@ -60,7 +60,7 @@ Future<_i1.GetIt> $initGetIt(
   gh.singleton<_i5.AppRepository>(modelModule.appRepository);
   gh.singleton<_i5.CrossDsaFacade>(useCasesModule.crossDsaFacade);
   gh.singleton<_i4.FutureCommandUseCase<_i5.SaveDsaGroupsProblemsData>>(
-      useCasesModule.saveDsaProblems);
+      useCasesModule.saveDsaGroupsProblems);
   gh.singleton<_i4.FutureCommandUseCase<_i5.SaveDsaProblemData>>(
       useCasesModule.saveDsaProblem);
   gh.singleton<
@@ -71,8 +71,8 @@ Future<_i1.GetIt> $initGetIt(
   gh.singleton<_i5.InitUseCasesFacade>(useCasesModule.initUseCasesFacade);
   gh.singleton<
           _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
-              _i5.ReadAllDsaProblemsWithPaginationData>>(
-      useCasesModule.readAllDsaProblemsWithPagination);
+              _i5.ReadAllDsaProblemsFilteringData>>(
+      useCasesModule.readAllDsaProblemsFiltering);
   gh.singleton<_i4.StreamQueryUseCase<_i5.StatsModel, _i5.ReadStatsData>>(
       useCasesModule.readStatsUseCase);
   gh.singleton<
@@ -143,7 +143,7 @@ class _$UseCasesModule extends _i12.UseCasesModule {
       _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
           _i5.ReadAllDsaProblemsData>>());
   @override
-  _i5.SaveDsaGroupsProblems get saveDsaProblems =>
+  _i5.SaveDsaGroupsProblems get saveDsaGroupsProblems =>
       _i5.SaveDsaGroupsProblems(_getIt<_i5.AppRepository>());
   @override
   _i5.SaveDsaProblem get saveDsaProblem =>
@@ -162,8 +162,8 @@ class _$UseCasesModule extends _i12.UseCasesModule {
         _getIt<_i4.FutureCommandUseCase<_i5.SaveDsaProblemData>>(),
       );
   @override
-  _i5.ReadAllDsaProblemsWithPagination get readAllDsaProblemsWithPagination =>
-      _i5.ReadAllDsaProblemsWithPagination(
+  _i5.ReadAllDsaProblemsFiltering get readAllDsaProblemsFiltering =>
+      _i5.ReadAllDsaProblemsFiltering(
         _getIt<_i5.CrossDsaFacade>(),
         _getIt<_i5.DsaRepository>(),
       );
@@ -207,7 +207,7 @@ class _$UseCasesModule extends _i12.UseCasesModule {
         _getIt<_i4.FutureCommandUseCase<_i5.MarkAsSolvedData>>(),
         _getIt<
             _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
-                _i5.ReadAllDsaProblemsWithPaginationData>>(),
+                _i5.ReadAllDsaProblemsFilteringData>>(),
       );
   @override
   _i5.AppInitFirstTime get appInitFirstTime => _i5.AppInitFirstTime(

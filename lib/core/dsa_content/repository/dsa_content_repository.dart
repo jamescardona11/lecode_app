@@ -1,6 +1,5 @@
 import 'package:lepath_app/base/base.dart';
 import 'package:lepath_app/core/core.dart';
-
 import 'package:pocket/pocket.dart';
 
 class DsaContentRepository with PocketMultiDataSourceMixin<IPocketAdapter> {
@@ -12,7 +11,7 @@ class DsaContentRepository with PocketMultiDataSourceMixin<IPocketAdapter> {
 
   Stream<Iterable<DsaGroupsModel>> get readAllGroupsModelStream =>
       readWhere<DsaGroupsModel>(
-        tableDsaProblems,
+        tableDsaGroupProblems,
         DsaGroupsDto.toEntityByJson,
       );
 }

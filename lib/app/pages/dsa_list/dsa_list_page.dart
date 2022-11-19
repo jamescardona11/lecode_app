@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lepath_app/app/pages/dsa_list/viewmodel/viewmodel.dart';
 import 'package:lepath_app/app/pages/dsa_list/widgets/search_bar.dart';
+import 'package:lepath_app/app/widgets/eleventh_button_widget.dart';
 import 'package:lepath_app/app/widgets/problem_item_widget.dart';
 import 'package:lepath_app/base/base.dart';
 import 'package:lepath_app/config/context_extension.dart';
@@ -182,11 +183,11 @@ class _FloatingModalState extends State<FloatingModal> {
           color: widget.backgroundColor,
           clipBehavior: Clip.antiAlias,
           borderRadius: BorderRadius.circular(12),
-          child: Container(
+          child: SizedBox(
             height: context.heightPct(70),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: ListView(
+              child: Column(
                 children: [
                   Text('Difficulty:'),
                   ChipsChoice<String>.multiple(
@@ -238,10 +239,28 @@ class _FloatingModalState extends State<FloatingModal> {
                     ),
                     wrapped: true,
                   ),
-                  // Spacer(),
-                  Row(
-                    children: [],
-                  )
+                  Spacer(),
+                  SizedBox(
+                    width: context.widthPct(80),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: EleventhButton(
+                            label: 'Cancel',
+                            onPressed: () {},
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: EleventhButton(
+                            label: 'Filter',
+                            onPressed: () {},
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 10),
                 ],
               ),
             ),

@@ -6,7 +6,7 @@ part of 'dsa_content_problems_aggregate_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DsaContentProblemsAggregateDto _$DsaProblemsAggregateDtoFromJson(
+DsaContentProblemsAggregateDto _$DsaContentProblemsAggregateDtoFromJson(
         Map<String, dynamic> json) =>
     DsaContentProblemsAggregateDto(
       dsaProblemDto: (json['entries'] as List<dynamic>)
@@ -17,7 +17,7 @@ DsaContentProblemsAggregateDto _$DsaProblemsAggregateDtoFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$DsaProblemsAggregateDtoToJson(
+Map<String, dynamic> _$DsaContentProblemsAggregateDtoToJson(
         DsaContentProblemsAggregateDto instance) =>
     <String, dynamic>{
       'entries': instance.dsaProblemDto,

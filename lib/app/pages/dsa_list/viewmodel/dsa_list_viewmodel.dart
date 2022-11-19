@@ -34,8 +34,8 @@ class DsaListViewModel extends BaseViewModel<DsaListState> {
 
   Future<void> _listenStreams() async {
     _streamProblemsSubscription = dsaUseCases.readAllDsaProblemsWithPagination
-        .call(ReadAllDsaProblemsWithPaginationData(
-            [], state.itemsPagination + 40))
+        .call(
+            ReadAllDsaProblemsFilteringData(takeX: state.itemsPagination + 40))
         .doOnData(_emitNewDsaItems)
         .listen((_) {});
   }

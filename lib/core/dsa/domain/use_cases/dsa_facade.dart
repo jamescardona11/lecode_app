@@ -11,5 +11,5 @@ class DsaUseCasesFacade {
   final FutureCommandUseCase<MarkAsSolvedData> markAsSolved;
 
   final StreamQueryUseCase<Iterable<DsaProblemModel>,
-      ReadAllDsaProblemsWithPaginationData> readAllDsaProblemsWithPagination;
+      ReadAllDsaProblemsFilteringData> readAllDsaProblemsWithPagination;
 }

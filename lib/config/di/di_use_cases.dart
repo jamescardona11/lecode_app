@@ -39,8 +39,8 @@ abstract class UseCasesModule {
 
   @Singleton(
       as: StreamQueryUseCase<Iterable<DsaProblemModel>,
-          ReadAllDsaProblemsWithPaginationData>)
-  ReadAllDsaProblemsWithPagination get readAllDsaProblemsWithPagination;
+          ReadAllDsaProblemsFilteringData>)
+  ReadAllDsaProblemsFiltering get readAllDsaProblemsFiltering;
 
   /// facade dashboard ↓
   @singleton

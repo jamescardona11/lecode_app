@@ -4,7 +4,7 @@ import 'package:pocket/pocket.dart';
 import 'dsa_groups_dto.dart';
 import 'dsa_problem_dto.dart';
 
-part 'dsa_problems_aggregate_dto.g.dart';
+part 'dsa_content_problems_aggregate_dto.g.dart';
 
 @JsonSerializable()
 class DsaContentProblemsAggregateDto extends IPocketModel {
@@ -28,14 +28,8 @@ class DsaContentProblemsAggregateDto extends IPocketModel {
   final List<DsaGroupsDto> groups;
 
   @override
-  Map<String, dynamic> toJson() => _$DsaProblemsAggregateDtoToJson(this);
+  Map<String, dynamic> toJson() => _$DsaContentProblemsAggregateDtoToJson(this);
 
   factory DsaContentProblemsAggregateDto.fromJson(Map<String, dynamic> json) =>
-      _$DsaProblemsAggregateDtoFromJson(json);
-  // DsaProblemsAggregateDto(
-  //   dsaProblemDto: (json['entries'] as List<dynamic>)
-  //       .map((e) => DsaProblemDto.fromJson(e as Map<String, dynamic>))
-  //       .toList(),
-  //   dsaProblemsDto: DsaProblemsDto.fromJson(json),
-  // );
+      _$DsaContentProblemsAggregateDtoFromJson(json);
 }

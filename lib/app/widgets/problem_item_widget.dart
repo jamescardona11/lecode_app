@@ -4,6 +4,7 @@ import 'package:lepath_app/app/widgets/round_container.dart';
 import 'package:lepath_app/config/theme/styles/app_colors.dart';
 import 'package:lepath_app/core/core.dart';
 import 'package:lepath_app/utils/utils.dart';
+import 'package:msh_checkbox/msh_checkbox.dart';
 
 class ProblemItemWidget extends StatefulWidget {
   /// default constructor
@@ -195,35 +196,24 @@ class _CheckboxWidgetState extends State<_CheckboxWidget> {
     super.initState();
   }
 
+  // todo: absorbPointer solo para mobile.
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: changeSelectedState,
-      child: SizedBox(
-        height: 70,
-        width: 50,
-        child: Center(
-          child: Container(
-            width: 30,
-            height: 30,
-            margin: const EdgeInsets.all(4),
-            decoration: BoxDecoration(
-              color: AppColors.pureWhite,
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: AppColors.grey2,
-                width: 1,
+      child: AbsorbPointer(
+        child: SizedBox(
+          height: 70,
+          width: 50,
+          child: Center(
+            child: MSHCheckbox(
+              size: 25,
+              value: _isSolved,
+              colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
+                checkedColor: AppColors.green,
               ),
-            ),
-            child: Visibility(
-              visible: _isSolved,
-              child: const Center(
-                child: FaIcon(
-                  FontAwesomeIcons.check,
-                  color: AppColors.green,
-                  size: 15,
-                ),
-              ),
+              style: MSHCheckboxStyle.stroke,
+              onChanged: (selected) {},
             ),
           ),
         ),

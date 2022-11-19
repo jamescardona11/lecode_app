@@ -57,7 +57,7 @@ class AppRepository
       DsaContentProblemsAggregateDto problemsAggregate) async {
     await createMany(
       problemsAggregate.groups,
-      tableDsaProblems,
+      tableDsaGroupProblems,
     );
   }
 
