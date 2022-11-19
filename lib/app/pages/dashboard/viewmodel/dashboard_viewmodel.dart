@@ -14,14 +14,14 @@ class DashboardViewModel extends BaseViewModel<DashboardState> {
   final DashboardFacade _facadeUseCases;
 
   late StreamSubscription<StatsModel> _streamStatsSubscription;
-  late StreamSubscription<DsaExerciseModel?> _streamRandomSubscription;
-  late StreamSubscription<Iterable<DsaExerciseModel>>
-      _streamSimilarExercisesSubscription;
+  late StreamSubscription<DsaProblemModel?> _streamRandomSubscription;
+  late StreamSubscription<Iterable<DsaProblemModel>>
+      _streamSimilarProblemsSubscription;
 
   @override
   void close() {
     _streamStatsSubscription.cancel();
-    _streamSimilarExercisesSubscription.cancel();
+    _streamSimilarProblemsSubscription.cancel();
     _streamRandomSubscription.cancel();
     super.close();
   }
@@ -32,14 +32,14 @@ class DashboardViewModel extends BaseViewModel<DashboardState> {
         .doOnData(_newStatsEmit)
         .listen((_) {});
 
-    _streamSimilarExercisesSubscription = _facadeUseCases.readSimilarExercises
-        .call(ReadSimilarExercisesData())
-        .doOnData(_newSimilarExercisesEmit)
+    _streamSimilarProblemsSubscription = _facadeUseCases.readSimilarProblems
+        .call(ReadSimilarProblemsData())
+        .doOnData(_newSimilarProblemsEmit)
         .listen((_) {});
 
-    _streamRandomSubscription = _facadeUseCases.readRandomExercise
-        .call(ReadRandomExercisesData())
-        .doOnData(_newRandomExercisesEmit)
+    _streamRandomSubscription = _facadeUseCases.readRandomProblem
+        .call(ReadRandomProblemsData())
+        .doOnData(_newRandomProblemsEmit)
         .listen((_) {});
   }
 
@@ -47,11 +47,11 @@ class DashboardViewModel extends BaseViewModel<DashboardState> {
     emit(state.copyWith(statsModel: stats));
   }
 
-  void _newSimilarExercisesEmit(Iterable<DsaExerciseModel> items) {
-    emit(state.copyWith(similarExercises: items));
+  void _newSimilarProblemsEmit(Iterable<DsaProblemModel> items) {
+    emit(state.copyWith(similarProblems: items));
   }
 
-  void _newRandomExercisesEmit(DsaExerciseModel? item) {
-    emit(state.copyWith(randomExercises: item));
+  void _newRandomProblemsEmit(DsaProblemModel? item) {
+    emit(state.copyWith(randomProblems: item));
   }
 }

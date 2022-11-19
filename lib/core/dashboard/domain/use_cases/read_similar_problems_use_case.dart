@@ -2,13 +2,12 @@ import 'package:lepath_app/base/base.dart';
 import 'package:lepath_app/core/core.dart';
 import 'package:lepath_app/utils/utils.dart';
 
-class ReadSimilarExercisesData extends CommandData {}
+class ReadSimilarProblemsData extends CommandData {}
 
-class ReadSimilarExercisesUseCase
+class ReadSimilarProblemsUseCase
     implements
-        StreamQueryUseCase<Iterable<DsaExerciseModel>,
-            ReadSimilarExercisesData> {
-  ReadSimilarExercisesUseCase(
+        StreamQueryUseCase<Iterable<DsaProblemModel>, ReadSimilarProblemsData> {
+  ReadSimilarProblemsUseCase(
     this.crossDsaFacade,
     this.repository,
   );
@@ -17,21 +16,21 @@ class ReadSimilarExercisesUseCase
   final CrossDsaFacade crossDsaFacade;
 
   @override
-  Stream<Iterable<DsaExerciseModel>> call(ReadSimilarExercisesData data) =>
-      crossDsaFacade.readAllDsaExercises
-          .call(const ReadAllDsaExercisesData())
+  Stream<Iterable<DsaProblemModel>> call(ReadSimilarProblemsData data) =>
+      crossDsaFacade.readAllDsaProblems
+          .call(const ReadAllDsaProblemsData())
           .map((items) => items.splitMatch(
                 (element) => element.isSolved,
               ))
           .map(
         (listMatch) {
           if (listMatch.matched.isEmpty || listMatch.unmatched.isEmpty) {
-            return <DsaExerciseModel>[];
+            return <DsaProblemModel>[];
           }
           listMatch.matched
               .sort((a, b) => b.solvedDate!.compareTo(a.solvedDate!));
 
-          Iterable<DsaExerciseModel> newList = [];
+          Iterable<DsaProblemModel> newList = [];
 
           for (var element in listMatch.matched) {
             newList = _getSimilar(element, listMatch.unmatched);
@@ -42,9 +41,9 @@ class ReadSimilarExercisesUseCase
         },
       );
 
-  Iterable<DsaExerciseModel> _getSimilar(
-    DsaExerciseModel solved,
-    Iterable<DsaExerciseModel> list,
+  Iterable<DsaProblemModel> _getSimilar(
+    DsaProblemModel solved,
+    Iterable<DsaProblemModel> list,
   ) {
     return list.where(
       (element) =>

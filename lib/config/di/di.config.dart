@@ -52,39 +52,39 @@ Future<_i1.GetIt> $initGetIt(
   gh.singleton<_i6.Projectile>(
       externalModule.projectile(get<String>(instanceName: 'BaseURL')));
   gh.singleton<
-      _i4.StreamQueryUseCase<Iterable<_i5.DsaExerciseModel>,
-          _i5.ReadAllDsaExercisesData>>(useCasesModule.readAllDsaExercises);
+      _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
+          _i5.ReadAllDsaProblemsData>>(useCasesModule.readAllDsaProblems);
   gh.singleton<
       _i4.StreamQueryUseCase<Iterable<_i5.DsaGroupsModel>,
           _i5.ReadAllGroupsData>>(useCasesModule.readAllGroups);
   gh.singleton<_i5.AppRepository>(modelModule.appRepository);
   gh.singleton<_i5.CrossDsaFacade>(useCasesModule.crossDsaFacade);
-  gh.singleton<_i4.FutureCommandUseCase<_i5.SaveDsaProblemsData>>(
+  gh.singleton<_i4.FutureCommandUseCase<_i5.SaveDsaGroupsProblemsData>>(
       useCasesModule.saveDsaProblems);
-  gh.singleton<_i4.FutureCommandUseCase<_i5.SaveDsaExerciseData>>(
-      useCasesModule.saveDsaExercise);
+  gh.singleton<_i4.FutureCommandUseCase<_i5.SaveDsaProblemData>>(
+      useCasesModule.saveDsaProblem);
   gh.singleton<
       _i4.FutureQueryUseCase<
           _i4.AppEither<_i4.RemoteError,
-              _i4.RemoteSuccess<_i5.DsaProblemsAggregateDto>>,
+              _i4.RemoteSuccess<_i5.DsaContentProblemsAggregateDto>>,
           _i5.FetchDsaProblemsData>>(useCasesModule.fetchDsaProblems);
   gh.singleton<_i5.InitUseCasesFacade>(useCasesModule.initUseCasesFacade);
   gh.singleton<
-          _i4.StreamQueryUseCase<Iterable<_i5.DsaExerciseModel>,
-              _i5.ReadAllDsaExercisesWithPaginationData>>(
-      useCasesModule.readAllDsaExercisesWithPagination);
+          _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
+              _i5.ReadAllDsaProblemsWithPaginationData>>(
+      useCasesModule.readAllDsaProblemsWithPagination);
   gh.singleton<_i4.StreamQueryUseCase<_i5.StatsModel, _i5.ReadStatsData>>(
       useCasesModule.readStatsUseCase);
   gh.singleton<
-      _i4.StreamQueryUseCase<Iterable<_i5.DsaExerciseModel>,
-          _i5.ReadSimilarExercisesData>>(useCasesModule.readSimilarExercises);
+      _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
+          _i5.ReadSimilarProblemsData>>(useCasesModule.readSimilarProblems);
   gh.singleton<
-      _i4.StreamQueryUseCase<_i5.DsaExerciseModel?,
-          _i5.ReadRandomExercisesData>>(useCasesModule.readRandomExercises);
+      _i4.StreamQueryUseCase<_i5.DsaProblemModel?,
+          _i5.ReadRandomProblemsData>>(useCasesModule.readRandomProblems);
   gh.singleton<
-          _i4.StreamQueryUseCase<Iterable<_i5.DsaGroupsExercisesModel>,
-              _i5.ReadAllGroupsExercisesData>>(
-      useCasesModule.readDsaAllGroupsExercises);
+          _i4.StreamQueryUseCase<Iterable<_i5.DsaGroupsProblemsModel>,
+              _i5.ReadAllGroupsProblemsData>>(
+      useCasesModule.readDsaAllGroupsProblems);
   gh.singleton<_i5.DashboardFacade>(useCasesModule.dashboardUseCasesFacade);
   gh.singleton<_i7.DashboardViewModel>(viewModelModule.dashboardViewModel);
   gh.singleton<_i8.DsaContentViewModel>(viewModelModule.dsaContentModel);
@@ -133,21 +133,21 @@ class _$UseCasesModule extends _i12.UseCasesModule {
   _i5.MarkAsSolved get markAsSolved =>
       _i5.MarkAsSolved(_getIt<_i5.DsaRepository>());
   @override
-  _i5.ReadAllDsaExercises get readAllDsaExercises =>
-      _i5.ReadAllDsaExercises(_getIt<_i5.DsaRepository>());
+  _i5.ReadAllDsaProblems get readAllDsaProblems =>
+      _i5.ReadAllDsaProblems(_getIt<_i5.DsaRepository>());
   @override
   _i5.ReadAllGroups get readAllGroups =>
       _i5.ReadAllGroups(_getIt<_i5.DsaContentRepository>());
   @override
   _i5.CrossDsaFacade get crossDsaFacade => _i5.CrossDsaFacade(_getIt<
-      _i4.StreamQueryUseCase<Iterable<_i5.DsaExerciseModel>,
-          _i5.ReadAllDsaExercisesData>>());
+      _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
+          _i5.ReadAllDsaProblemsData>>());
   @override
-  _i5.SaveDsaProblems get saveDsaProblems =>
-      _i5.SaveDsaProblems(_getIt<_i5.AppRepository>());
+  _i5.SaveDsaGroupsProblems get saveDsaProblems =>
+      _i5.SaveDsaGroupsProblems(_getIt<_i5.AppRepository>());
   @override
-  _i5.SaveDsaExercise get saveDsaExercise =>
-      _i5.SaveDsaExercise(_getIt<_i5.AppRepository>());
+  _i5.SaveDsaProblem get saveDsaProblem =>
+      _i5.SaveDsaProblem(_getIt<_i5.AppRepository>());
   @override
   _i5.FetchDsaProblems get fetchDsaProblems =>
       _i5.FetchDsaProblems(_getIt<_i5.AppRepository>());
@@ -156,14 +156,14 @@ class _$UseCasesModule extends _i12.UseCasesModule {
         _getIt<
             _i4.FutureQueryUseCase<
                 _i4.AppEither<_i4.RemoteError,
-                    _i4.RemoteSuccess<_i5.DsaProblemsAggregateDto>>,
+                    _i4.RemoteSuccess<_i5.DsaContentProblemsAggregateDto>>,
                 _i5.FetchDsaProblemsData>>(),
-        _getIt<_i4.FutureCommandUseCase<_i5.SaveDsaProblemsData>>(),
-        _getIt<_i4.FutureCommandUseCase<_i5.SaveDsaExerciseData>>(),
+        _getIt<_i4.FutureCommandUseCase<_i5.SaveDsaGroupsProblemsData>>(),
+        _getIt<_i4.FutureCommandUseCase<_i5.SaveDsaProblemData>>(),
       );
   @override
-  _i5.ReadAllDsaExercisesWithPagination get readAllDsaExercisesWithPagination =>
-      _i5.ReadAllDsaExercisesWithPagination(
+  _i5.ReadAllDsaProblemsWithPagination get readAllDsaProblemsWithPagination =>
+      _i5.ReadAllDsaProblemsWithPagination(
         _getIt<_i5.CrossDsaFacade>(),
         _getIt<_i5.DsaRepository>(),
       );
@@ -173,20 +173,20 @@ class _$UseCasesModule extends _i12.UseCasesModule {
         _getIt<_i5.DsaRepository>(),
       );
   @override
-  _i5.ReadSimilarExercisesUseCase get readSimilarExercises =>
-      _i5.ReadSimilarExercisesUseCase(
+  _i5.ReadSimilarProblemsUseCase get readSimilarProblems =>
+      _i5.ReadSimilarProblemsUseCase(
         _getIt<_i5.CrossDsaFacade>(),
         _getIt<_i5.DsaRepository>(),
       );
   @override
-  _i5.ReadRandomExercisesUseCase get readRandomExercises =>
-      _i5.ReadRandomExercisesUseCase(
+  _i5.ReadRandomProblemsUseCase get readRandomProblems =>
+      _i5.ReadRandomProblemsUseCase(
         _getIt<_i5.CrossDsaFacade>(),
         _getIt<_i5.DsaRepository>(),
       );
   @override
-  _i5.ReadAllGroupsExercises get readDsaAllGroupsExercises =>
-      _i5.ReadAllGroupsExercises(
+  _i5.ReadAllGroupsProblems get readDsaAllGroupsProblems =>
+      _i5.ReadAllGroupsProblems(
         _getIt<_i5.CrossDsaFacade>(),
         _getIt<
             _i4.StreamQueryUseCase<Iterable<_i5.DsaGroupsModel>,
@@ -195,19 +195,19 @@ class _$UseCasesModule extends _i12.UseCasesModule {
   @override
   _i5.DashboardFacade get dashboardUseCasesFacade => _i5.DashboardFacade(
         _getIt<
-            _i4.StreamQueryUseCase<Iterable<_i5.DsaExerciseModel>,
-                _i5.ReadSimilarExercisesData>>(),
+            _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
+                _i5.ReadSimilarProblemsData>>(),
         _getIt<_i4.StreamQueryUseCase<_i5.StatsModel, _i5.ReadStatsData>>(),
         _getIt<
-            _i4.StreamQueryUseCase<_i5.DsaExerciseModel?,
-                _i5.ReadRandomExercisesData>>(),
+            _i4.StreamQueryUseCase<_i5.DsaProblemModel?,
+                _i5.ReadRandomProblemsData>>(),
       );
   @override
   _i5.DsaUseCasesFacade get dsaUseCasesFacade => _i5.DsaUseCasesFacade(
         _getIt<_i4.FutureCommandUseCase<_i5.MarkAsSolvedData>>(),
         _getIt<
-            _i4.StreamQueryUseCase<Iterable<_i5.DsaExerciseModel>,
-                _i5.ReadAllDsaExercisesWithPaginationData>>(),
+            _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
+                _i5.ReadAllDsaProblemsWithPaginationData>>(),
       );
   @override
   _i5.AppInitFirstTime get appInitFirstTime => _i5.AppInitFirstTime(
@@ -226,8 +226,8 @@ class _$ViewModelModule extends _i13.ViewModelModule {
       _i7.DashboardViewModel(_getIt<_i5.DashboardFacade>());
   @override
   _i8.DsaContentViewModel get dsaContentModel => _i8.DsaContentViewModel(_getIt<
-      _i4.StreamQueryUseCase<Iterable<_i5.DsaGroupsExercisesModel>,
-          _i5.ReadAllGroupsExercisesData>>());
+      _i4.StreamQueryUseCase<Iterable<_i5.DsaGroupsProblemsModel>,
+          _i5.ReadAllGroupsProblemsData>>());
   @override
   _i9.DsaListViewModel get dsaListViewModel =>
       _i9.DsaListViewModel(_getIt<_i5.DsaUseCasesFacade>());

@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:lepath_app/base/base.dart';
 import 'package:lepath_app/core/core.dart';
-
 import 'package:pocket/pocket.dart';
 
 class DsaRepository with PocketMultiDataSourceMixin<IPocketAdapter> {
@@ -13,30 +12,30 @@ class DsaRepository with PocketMultiDataSourceMixin<IPocketAdapter> {
   @override
   final IPocketAdapter adapterDb;
 
-  Stream<Iterable<DsaExerciseModel>> get readAllDsaExercisesStream =>
-      readWhere<DsaExerciseModel>(
-        tableDsaExercise,
-        DsaExerciseDto.toEntityByJson,
+  Stream<Iterable<DsaProblemModel>> get readAllDsaProblemsStream =>
+      readWhere<DsaProblemModel>(
+        tableDsaProblem,
+        DsaProblemDto.toEntityByJson,
       );
 
   Future<void> markAsComplete(String id) async {
-    final dto = await adapterDb.read(table: tableDsaExercise, id: id).first;
+    final dto = await adapterDb.read(table: tableDsaProblem, id: id).first;
     if (dto == null) return;
 
-    DsaExerciseDto exercise = DsaExerciseDto.fromJson(dto.data);
+    DsaProblemDto problem = DsaProblemDto.fromJson(dto.data);
     final r = randomDate();
     print('randomDate() $r');
-    print('randomDate() ${exercise}');
+    print('randomDate() ${problem}');
 
     final dateFormat = DateTime(r.year, r.month, r.day);
 
-    exercise = exercise.copyWith(
-        solvedDate: exercise.solvedDate == null ? dateFormat : null);
+    problem = problem.copyWith(
+        solvedDate: problem.solvedDate == null ? dateFormat : null);
 
-    print('randomDate() ${exercise.toJson()}');
+    print('randomDate() ${problem.toJson()}');
 
     await adapterDb.update(
-        table: tableDsaExercise, item: AdapterDto(id, exercise.toJson()));
+        table: tableDsaProblem, item: AdapterDto(id, problem.toJson()));
   }
 
   DateTime randomDate() {

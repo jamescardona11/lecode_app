@@ -1,20 +1,20 @@
-import 'package:lepath_app/core/core.dart';
 import 'package:lepath_app/base/base.dart';
+import 'package:lepath_app/core/core.dart';
 
-class SaveDsaProblemsData implements CommandData {
-  DsaProblemsAggregateDto dsaProblemsAggregate;
+class SaveDsaProblemData implements CommandData {
+  DsaContentProblemsAggregateDto dsaProblemsAggregate;
 
-  SaveDsaProblemsData(this.dsaProblemsAggregate);
+  SaveDsaProblemData(this.dsaProblemsAggregate);
 }
 
-class SaveDsaProblems implements FutureCommandUseCase<SaveDsaProblemsData> {
+class SaveDsaProblem implements FutureCommandUseCase<SaveDsaProblemData> {
   final AppRepository _repository;
 
-  SaveDsaProblems(
+  SaveDsaProblem(
     this._repository,
   );
 
   @override
-  Future<void> call(SaveDsaProblemsData data) =>
+  Future<void> call(SaveDsaProblemData data) =>
       _repository.saveDsaProblems(data.dsaProblemsAggregate);
 }

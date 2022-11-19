@@ -3,9 +3,9 @@ import 'package:lepath_app/core/core.dart';
 
 class CrossDsaFacade {
   CrossDsaFacade(
-    this.readAllDsaExercises,
+    this.readAllDsaProblems,
   );
 
-  final StreamQueryUseCase<Iterable<DsaExerciseModel>, ReadAllDsaExercisesData>
-      readAllDsaExercises;
+  final StreamQueryUseCase<Iterable<DsaProblemModel>, ReadAllDsaProblemsData>
+      readAllDsaProblems;
 }

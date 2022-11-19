@@ -11,26 +11,26 @@ class DsaContentViewModel extends BaseViewModel<DsaContentState> {
     _listenStreams();
   }
 
-  final StreamQueryUseCase<Iterable<DsaGroupsExercisesModel>,
-      ReadAllGroupsExercisesData> _readAllGroups;
+  final StreamQueryUseCase<Iterable<DsaGroupsProblemsModel>,
+      ReadAllGroupsProblemsData> _readAllGroups;
 
-  late StreamSubscription<Iterable<DsaGroupsExercisesModel>>
-      _streamGroupsExercisesSubscription;
+  late StreamSubscription<Iterable<DsaGroupsProblemsModel>>
+      _streamGroupsProblemsSubscription;
 
   @override
   void close() {
-    _streamGroupsExercisesSubscription.cancel();
+    _streamGroupsProblemsSubscription.cancel();
     super.close();
   }
 
   Future<void> _listenStreams() async {
-    _streamGroupsExercisesSubscription = _readAllGroups
-        .call(const ReadAllGroupsExercisesData())
+    _streamGroupsProblemsSubscription = _readAllGroups
+        .call(const ReadAllGroupsProblemsData())
         .doOnData(_emitNewGroupsData)
         .listen((_) {});
   }
 
-  void _emitNewGroupsData(Iterable<DsaGroupsExercisesModel> items) {
+  void _emitNewGroupsData(Iterable<DsaGroupsProblemsModel> items) {
     emit(state.copyWith(groups: items.toList()));
   }
 }

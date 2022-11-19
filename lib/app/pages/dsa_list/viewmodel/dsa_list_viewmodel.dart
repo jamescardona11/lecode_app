@@ -15,12 +15,12 @@ class DsaListViewModel extends BaseViewModel<DsaListState> {
     _listenStreams();
   }
 
-  late StreamSubscription<Iterable<DsaExerciseModel>>
-      _streamExercisesSubscription;
+  late StreamSubscription<Iterable<DsaProblemModel>>
+      _streamProblemsSubscription;
 
   @override
   void close() {
-    _streamExercisesSubscription.cancel();
+    _streamProblemsSubscription.cancel();
     super.close();
   }
 
@@ -33,14 +33,14 @@ class DsaListViewModel extends BaseViewModel<DsaListState> {
   }
 
   Future<void> _listenStreams() async {
-    _streamExercisesSubscription = dsaUseCases.readAllDsaExercisesWithPagination
-        .call(ReadAllDsaExercisesWithPaginationData(
+    _streamProblemsSubscription = dsaUseCases.readAllDsaProblemsWithPagination
+        .call(ReadAllDsaProblemsWithPaginationData(
             [], state.itemsPagination + 40))
         .doOnData(_emitNewDsaItems)
         .listen((_) {});
   }
 
-  void _emitNewDsaItems(Iterable<DsaExerciseModel> items) {
+  void _emitNewDsaItems(Iterable<DsaProblemModel> items) {
     emit(
       state.copyWith(
         itemsPagination: items.length,

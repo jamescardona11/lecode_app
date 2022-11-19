@@ -6,11 +6,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lepath_app/app/pages/dashboard/viewmodel/dashboard_state.dart';
 import 'package:lepath_app/app/pages/dashboard/viewmodel/dashboard_viewmodel.dart';
 import 'package:lepath_app/app/widgets/widgets.dart';
+import 'package:lepath_app/base/base.dart';
 import 'package:lepath_app/config/context_extension.dart';
 import 'package:lepath_app/config/di/di.dart';
 import 'package:lepath_app/config/theme/styles/styles.dart';
-
-import 'package:lepath_app/base/base.dart';
 
 import 'widgets/activity_by_days_widget.dart';
 import 'widgets/total_stats_widget.dart';
@@ -34,7 +33,7 @@ class DashboardPage
   @override
   Widget buildWidget(BuildContext context, DashboardState state) {
     return Scaffold(
-      backgroundColor: state.similarExercises.isEmpty
+      backgroundColor: state.similarProblems.isEmpty
           ? AppColors.pureWhite
           : AppColors.backgroundScaffold,
       body: Padding(
@@ -50,10 +49,10 @@ class DashboardPage
               child: Column(
                 children: [
                   Text(
-                    'Similar to the last exercise solved',
+                    'Similar to the last problem solved',
                     style: Theme.of(context).textTheme.headline6,
                   ),
-                  if (state.similarExercises.isEmpty)
+                  if (state.similarProblems.isEmpty)
                     Image.asset(
                       AppAssets.waitingImg,
                       width: 180,
@@ -66,14 +65,14 @@ class DashboardPage
             ),
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                childCount: state.similarExercises.length,
+                childCount: state.similarProblems.length,
                 (_, index) {
-                  final item = state.similarExercises.elementAt(index);
+                  final item = state.similarProblems.elementAt(index);
 
-                  return ExerciseItemWidget(
+                  return ProblemItemWidget(
                     key: ValueKey(index),
-                    exercise: item,
-                    isLast: index == state.similarExercises.length - 1,
+                    problem: item,
+                    isLast: index == state.similarProblems.length - 1,
                     onTap: () {},
                   );
                 },
@@ -147,14 +146,14 @@ class _GraphBoxes extends StatelessWidget {
                 border: 10,
                 color: AppColors.blueDark,
                 onTap: () {
-                  log(state.randomExercises.toString());
+                  log(state.randomProblems.toString());
                 },
                 child: Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Seek a random exercise',
+                        'Seek a random problem',
                         style: Theme.of(context)
                             .textTheme
                             .headline6!

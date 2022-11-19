@@ -42,30 +42,30 @@ class AppRepository
     );
   }
 
-  Future<RemoteAppResponse<DsaProblemsAggregateDto>>
-      fetchDSAExercisesInformation() {
-    return getSingle<DsaProblemsAggregateDto>(
+  Future<RemoteAppResponse<DsaContentProblemsAggregateDto>>
+      fetchDSAProblemsInformation() {
+    return getSingle<DsaContentProblemsAggregateDto>(
       RemotePackage.get(
         'exec',
         queries: {'action': 'getLeetCode'},
       ),
-      DsaProblemsAggregateDto.fromJson,
+      DsaContentProblemsAggregateDto.fromJson,
     );
   }
 
-  Future<void> saveDsaProblems(
-      DsaProblemsAggregateDto problemsAggregate) async {
+  Future<void> saveDsaGroupsProblems(
+      DsaContentProblemsAggregateDto problemsAggregate) async {
     await createMany(
       problemsAggregate.groups,
       tableDsaProblems,
     );
   }
 
-  Future<void> saveDsaExercises(
-      DsaProblemsAggregateDto problemsAggregate) async {
+  Future<void> saveDsaProblems(
+      DsaContentProblemsAggregateDto problemsAggregate) async {
     await createMany(
-      problemsAggregate.dsaExerciseDto,
-      tableDsaExercise,
+      problemsAggregate.dsaProblemDto,
+      tableDsaProblem,
     );
   }
 

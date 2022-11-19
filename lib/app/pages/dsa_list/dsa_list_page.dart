@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lepath_app/app/pages/dsa_list/viewmodel/viewmodel.dart';
 import 'package:lepath_app/app/pages/dsa_list/widgets/search_bar.dart';
-import 'package:lepath_app/app/widgets/exercise_item_widget.dart';
+import 'package:lepath_app/app/widgets/problem_item_widget.dart';
 import 'package:lepath_app/base/base.dart';
 import 'package:lepath_app/config/context_extension.dart';
 import 'package:lepath_app/config/di/di.dart';
@@ -72,8 +72,8 @@ class DsaListPage extends MvvMProviderWidget<DsaListViewModel, DsaListState> {
                 childCount: state.items.length,
                 (_, index) {
                   final item = state.items.elementAt(index);
-                  return ExerciseItemWidget(
-                    exercise: item,
+                  return ProblemItemWidget(
+                    problem: item,
                     isLast: index == state.items.length - 1,
                     onTap: () {},
                     onTapCheckbox: () {
@@ -175,8 +175,9 @@ class _FloatingModalState extends State<FloatingModal> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      bottom: true,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Material(
           color: widget.backgroundColor,
           clipBehavior: Clip.antiAlias,

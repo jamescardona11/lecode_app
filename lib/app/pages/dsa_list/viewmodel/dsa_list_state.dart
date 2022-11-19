@@ -10,7 +10,7 @@ class DsaListState extends BaseState {
   });
 
   final int itemsPagination;
-  final Iterable<DsaExerciseModel> items;
+  final Iterable<DsaProblemModel> items;
   final bool showFilterList;
 
   @override
@@ -22,7 +22,7 @@ class DsaListState extends BaseState {
 
   DsaListState copyWith({
     int? itemsPagination,
-    Iterable<DsaExerciseModel>? items,
+    Iterable<DsaProblemModel>? items,
     bool? showFilterList,
   }) {
     return DsaListState(

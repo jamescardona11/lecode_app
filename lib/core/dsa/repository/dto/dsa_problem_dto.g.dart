@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dsa_exercise_dto.dart';
+part of 'dsa_problem_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-DsaExerciseDto _$DsaExerciseDtoFromJson(Map<String, dynamic> json) =>
-    DsaExerciseDto(
+DsaProblemDto _$DsaProblemDtoFromJson(Map<String, dynamic> json) =>
+    DsaProblemDto(
       id: json['id'] as String,
       name: json['name'] as String,
       url: json['url'] as String,
@@ -29,7 +29,7 @@ DsaExerciseDto _$DsaExerciseDtoFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['solvedDate'] as String),
     );
 
-Map<String, dynamic> _$DsaExerciseDtoToJson(DsaExerciseDto instance) =>
+Map<String, dynamic> _$DsaProblemDtoToJson(DsaProblemDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

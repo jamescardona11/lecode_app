@@ -2,8 +2,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:lepath_app/core/core.dart';
 
-class DsaExerciseModel {
-  DsaExerciseModel({
+class DsaProblemModel {
+  DsaProblemModel({
     required this.id,
     required this.name,
     required this.url,
@@ -54,7 +54,7 @@ class DsaExerciseModel {
       !isAlgo;
 
   @override
-  bool operator ==(covariant DsaExerciseModel other) {
+  bool operator ==(covariant DsaProblemModel other) {
     if (identical(this, other)) return true;
 
     return other.id == id &&
@@ -91,6 +91,6 @@ class DsaExerciseModel {
 
   @override
   String toString() {
-    return 'DsaExerciseModel(id: $id, name: $name, url: $url, difficulty: $difficulty, topics: $topics, groups: $groups, notes: $notes, explanation: $explanation, acceptanceRate: $acceptanceRate, myRate: $myRate, solved: $solved, mySolution: $mySolution, solvedDate: $solvedDate)';
+    return 'DsaProblemModel(id: $id, name: $name, url: $url, difficulty: $difficulty, topics: $topics, groups: $groups, notes: $notes, explanation: $explanation, acceptanceRate: $acceptanceRate, myRate: $myRate, solved: $solved, mySolution: $mySolution, solvedDate: $solvedDate)';
   }
 }

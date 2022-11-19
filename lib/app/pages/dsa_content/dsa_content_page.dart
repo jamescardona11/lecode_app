@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lepath_app/app/widgets/widgets.dart';
+import 'package:lepath_app/base/base_app/base.dart';
 import 'package:lepath_app/config/di/di.dart';
 import 'package:lepath_app/config/theme/styles/styles.dart';
-import 'package:lepath_app/base/base_app/base.dart';
 import 'package:lepath_app/core/core.dart';
 import 'package:lepath_app/utils/utils.dart';
 
@@ -41,7 +40,7 @@ class DsaContentPage
               ),
               itemCount: state.groups.length,
               itemBuilder: (_, index) => _ItemContentWidget(
-                groupsExercisesModel: state.groups[index],
+                groupsProblemsModel: state.groups[index],
               ),
             ),
           ),
@@ -55,10 +54,10 @@ class _ItemContentWidget extends StatefulWidget {
   /// default constructor
   const _ItemContentWidget({
     super.key,
-    required this.groupsExercisesModel,
+    required this.groupsProblemsModel,
   });
 
-  final DsaGroupsExercisesModel groupsExercisesModel;
+  final DsaGroupsProblemsModel groupsProblemsModel;
 
   @override
   State<_ItemContentWidget> createState() => _ItemContentWidgetState();
@@ -71,7 +70,7 @@ class _ItemContentWidgetState extends State<_ItemContentWidget> {
   @override
   void initState() {
     super.initState();
-    color = colorsForGroups(widget.groupsExercisesModel.id);
+    color = colorsForGroups(widget.groupsProblemsModel.id);
   }
 
   @override
@@ -92,7 +91,7 @@ class _ItemContentWidgetState extends State<_ItemContentWidget> {
               padding: const EdgeInsets.all(14.0),
               child: Center(
                 child: FaIcon(
-                  iconsForGroups(widget.groupsExercisesModel.id),
+                  iconsForGroups(widget.groupsProblemsModel.id),
                   color: color,
                 ),
               ),
@@ -100,14 +99,14 @@ class _ItemContentWidgetState extends State<_ItemContentWidget> {
           ),
           const SizedBox(height: 10),
           Text(
-            widget.groupsExercisesModel.id,
+            widget.groupsProblemsModel.id,
             style: Theme.of(context).textTheme.headline6!.copyWith(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
           ),
           Text(
-            '${widget.groupsExercisesModel.solved}/${widget.groupsExercisesModel.total}',
+            '${widget.groupsProblemsModel.solved}/${widget.groupsProblemsModel.total}',
             style: Theme.of(context).textTheme.bodyText2!.copyWith(
                   color: AppColors.pureWhite,
                 ),

@@ -7,9 +7,8 @@ abstract class UseCasesModule {
   /// facade cross DSA ↓
 
   @Singleton(
-      as: StreamQueryUseCase<Iterable<DsaExerciseModel>,
-          ReadAllDsaExercisesData>)
-  ReadAllDsaExercises get readAllDsaExercises;
+      as: StreamQueryUseCase<Iterable<DsaProblemModel>, ReadAllDsaProblemsData>)
+  ReadAllDsaProblems get readAllDsaProblems;
 
   @singleton
   CrossDsaFacade get crossDsaFacade;
@@ -21,17 +20,17 @@ abstract class UseCasesModule {
   @Singleton(as: FutureCommandUseCase<AppInitFirstTimeData>)
   AppInitFirstTime get appInitFirstTime;
 
-  @Singleton(as: FutureCommandUseCase<SaveDsaProblemsData>)
-  SaveDsaProblems get saveDsaProblems;
+  @Singleton(as: FutureCommandUseCase<SaveDsaGroupsProblemsData>)
+  SaveDsaGroupsProblems get saveDsaGroupsProblems;
 
-  @Singleton(as: FutureCommandUseCase<SaveDsaExerciseData>)
-  SaveDsaExercise get saveDsaExercise;
+  @Singleton(as: FutureCommandUseCase<SaveDsaProblemData>)
+  SaveDsaProblem get saveDsaProblem;
 
   /// dsa facade ↓
   @singleton
   DsaUseCasesFacade get dsaUseCasesFacade;
   @Singleton(
-      as: FutureQueryUseCase<RemoteAppResponse<DsaExerciseDto>,
+      as: FutureQueryUseCase<RemoteAppResponse<DsaProblemDto>,
           FetchDsaProblemsData>)
   FetchDsaProblems get fetchDsaProblems;
 
@@ -39,9 +38,9 @@ abstract class UseCasesModule {
   MarkAsSolved get markAsSolved;
 
   @Singleton(
-      as: StreamQueryUseCase<Iterable<DsaExerciseModel>,
-          ReadAllDsaExercisesWithPaginationData>)
-  ReadAllDsaExercisesWithPagination get readAllDsaExercisesWithPagination;
+      as: StreamQueryUseCase<Iterable<DsaProblemModel>,
+          ReadAllDsaProblemsWithPaginationData>)
+  ReadAllDsaProblemsWithPagination get readAllDsaProblemsWithPagination;
 
   /// facade dashboard ↓
   @singleton
@@ -51,12 +50,12 @@ abstract class UseCasesModule {
   ReadStatsUseCase get readStatsUseCase;
 
   @Singleton(
-      as: StreamQueryUseCase<Iterable<DsaExerciseModel>,
-          ReadSimilarExercisesData>)
-  ReadSimilarExercisesUseCase get readSimilarExercises;
+      as: StreamQueryUseCase<Iterable<DsaProblemModel>,
+          ReadSimilarProblemsData>)
+  ReadSimilarProblemsUseCase get readSimilarProblems;
 
-  @Singleton(as: StreamQueryUseCase<DsaExerciseModel?, ReadRandomExercisesData>)
-  ReadRandomExercisesUseCase get readRandomExercises;
+  @Singleton(as: StreamQueryUseCase<DsaProblemModel?, ReadRandomProblemsData>)
+  ReadRandomProblemsUseCase get readRandomProblems;
 
   /// dsa content ↓
   @Singleton(
@@ -64,7 +63,7 @@ abstract class UseCasesModule {
   ReadAllGroups get readAllGroups;
 
   @Singleton(
-      as: StreamQueryUseCase<Iterable<DsaGroupsExercisesModel>,
-          ReadAllGroupsExercisesData>)
-  ReadAllGroupsExercises get readDsaAllGroupsExercises;
+      as: StreamQueryUseCase<Iterable<DsaGroupsProblemsModel>,
+          ReadAllGroupsProblemsData>)
+  ReadAllGroupsProblems get readDsaAllGroupsProblems;
 }

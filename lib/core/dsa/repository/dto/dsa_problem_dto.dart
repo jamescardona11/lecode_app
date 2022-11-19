@@ -3,11 +3,11 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:lepath_app/core/core.dart';
 import 'package:pocket/pocket.dart';
 
-part 'dsa_exercise_dto.g.dart';
+part 'dsa_problem_dto.g.dart';
 
 @JsonSerializable()
-class DsaExerciseDto extends IPocketModel {
-  DsaExerciseDto({
+class DsaProblemDto extends IPocketModel {
+  DsaProblemDto({
     required this.id,
     required this.name,
     required this.url,
@@ -46,9 +46,9 @@ class DsaExerciseDto extends IPocketModel {
   final String mySolution;
 
   @override
-  Map<String, dynamic> toJson() => _$DsaExerciseDtoToJson(this);
+  Map<String, dynamic> toJson() => _$DsaProblemDtoToJson(this);
 
-  DsaExerciseModel toEntity() => DsaExerciseModel(
+  DsaProblemModel toEntity() => DsaProblemModel(
         id: id,
         name: name,
         url: url,
@@ -64,13 +64,13 @@ class DsaExerciseDto extends IPocketModel {
         solvedDate: solvedDate,
       );
 
-  factory DsaExerciseDto.fromJson(Map<String, dynamic> json) =>
-      _$DsaExerciseDtoFromJson(json);
+  factory DsaProblemDto.fromJson(Map<String, dynamic> json) =>
+      _$DsaProblemDtoFromJson(json);
 
-  static DsaExerciseModel toEntityByJson(Map<String, dynamic> json) =>
-      DsaExerciseDto.fromJson(json).toEntity();
+  static DsaProblemModel toEntityByJson(Map<String, dynamic> json) =>
+      DsaProblemDto.fromJson(json).toEntity();
 
-  DsaExerciseDto copyWith({
+  DsaProblemDto copyWith({
     String? id,
     String? name,
     String? url,
@@ -85,7 +85,7 @@ class DsaExerciseDto extends IPocketModel {
     double? myRate,
     String? mySolution,
   }) {
-    return DsaExerciseDto(
+    return DsaProblemDto(
       id: id ?? this.id,
       name: name ?? this.name,
       url: url ?? this.url,
@@ -104,6 +104,6 @@ class DsaExerciseDto extends IPocketModel {
 
   @override
   String toString() {
-    return 'DsaExerciseDto(id: $id, name: $name, url: $url, difficulty: $difficulty, topics: $topics, groups: $groups, notes: $notes, explanation: $explanation, solved: $solved, solvedDate: $solvedDate, acceptanceRate: $acceptanceRate, myRate: $myRate, mySolution: $mySolution)';
+    return 'DsaProblemDto(id: $id, name: $name, url: $url, difficulty: $difficulty, topics: $topics, groups: $groups, notes: $notes, explanation: $explanation, solved: $solved, solvedDate: $solvedDate, acceptanceRate: $acceptanceRate, myRate: $myRate, mySolution: $mySolution)';
   }
 }

@@ -3,16 +3,16 @@ import 'package:lepath_app/core/core.dart';
 
 class DashboardFacade {
   DashboardFacade(
-    this.readSimilarExercises,
+    this.readSimilarProblems,
     this.readStatsUseCase,
-    this.readRandomExercise,
+    this.readRandomProblem,
   );
 
   final StreamQueryUseCase<StatsModel, ReadStatsData> readStatsUseCase;
 
-  final StreamQueryUseCase<Iterable<DsaExerciseModel>, ReadSimilarExercisesData>
-      readSimilarExercises;
+  final StreamQueryUseCase<Iterable<DsaProblemModel>, ReadSimilarProblemsData>
+      readSimilarProblems;
 
-  final StreamQueryUseCase<DsaExerciseModel?, ReadRandomExercisesData>
-      readRandomExercise;
+  final StreamQueryUseCase<DsaProblemModel?, ReadRandomProblemsData>
+      readRandomProblem;
 }

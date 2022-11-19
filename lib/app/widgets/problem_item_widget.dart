@@ -1,32 +1,31 @@
 import 'package:flutter/material.dart';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lepath_app/app/widgets/round_container.dart';
 import 'package:lepath_app/config/theme/styles/app_colors.dart';
 import 'package:lepath_app/core/core.dart';
-import 'package:lepath_app/utils/groups_exercises_utils.dart';
+import 'package:lepath_app/utils/utils.dart';
 
-class ExerciseItemWidget extends StatefulWidget {
+class ProblemItemWidget extends StatefulWidget {
   /// default constructor
-  const ExerciseItemWidget({
+  const ProblemItemWidget({
     Key? key,
-    required this.exercise,
+    required this.problem,
     this.isLast = false,
     this.onTap,
     this.onTapCheckbox,
   }) : super(key: key);
 
-  final DsaExerciseModel exercise;
+  final DsaProblemModel problem;
   final VoidCallback? onTap;
   final VoidCallback? onTapCheckbox;
 
   final bool isLast;
 
   @override
-  State<ExerciseItemWidget> createState() => _ExerciseItemWidgetState();
+  State<ProblemItemWidget> createState() => _ProblemItemWidgetState();
 }
 
-class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
+class _ProblemItemWidgetState extends State<ProblemItemWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -60,7 +59,7 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      widget.exercise.myRate.toStringAsFixed(2),
+                      widget.problem.myRate.toStringAsFixed(2),
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
                           // color: difficultyColor,
                           ),
@@ -74,7 +73,7 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.exercise.name,
+                          widget.problem.name,
                           overflow: TextOverflow.ellipsis,
                         ),
                         const SizedBox(height: 2),
@@ -89,9 +88,9 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
                         Expanded(
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: widget.exercise.groups.length,
+                            itemCount: widget.problem.groups.length,
                             itemBuilder: (_, index) {
-                              final group = widget.exercise.groups[index];
+                              final group = widget.problem.groups[index];
 
                               return Padding(
                                 padding: const EdgeInsets.only(left: 4),
@@ -109,7 +108,7 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
                   ),
                 ),
                 _CheckboxWidget(
-                  exercise: widget.exercise,
+                  problem: widget.problem,
                   onTap: widget.onTapCheckbox,
                 )
               ],
@@ -121,7 +120,7 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
   }
 
   Color get difficultyColor {
-    final difficulty = widget.exercise.difficulty.toLowerCase();
+    final difficulty = widget.problem.difficulty.toLowerCase();
 
     if (difficulty == 'easy') return Colors.blue;
     if (difficulty == 'medium') return Colors.orange;
@@ -130,10 +129,10 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
   }
 
   Color get myRateIcon {
-    if (widget.exercise.myRate > 100) {
+    if (widget.problem.myRate > 100) {
       // return FontAwesomeIcons.dumbbell;
       return Colors.blue;
-    } else if (widget.exercise.myRate > 60) {
+    } else if (widget.problem.myRate > 60) {
       // return FontAwesomeIcons.vial;
       return Colors.orange;
     }
@@ -142,13 +141,13 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
   }
 
   String get topicJoin =>
-      widget.exercise.topics.take(3).map((e) => '#${e.trim()}').join(',');
+      widget.problem.topics.take(3).map((e) => '#${e.trim()}').join(',');
 
   IconData get iconByTopic =>
-      widget.exercise.topics.map((e) => _iconsForTopics(e)).first;
+      widget.problem.topics.map((e) => _iconsForTopics(e)).first;
 
   List<IconData> get iconByGroup =>
-      widget.exercise.groups.map((e) => iconsForGroups(e.value)).toList();
+      widget.problem.groups.map((e) => iconsForGroups(e.value)).toList();
 
   IconData _iconsForTopics(String value) =>
       {
@@ -176,11 +175,11 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
 class _CheckboxWidget extends StatefulWidget {
   const _CheckboxWidget({
     Key? key,
-    required this.exercise,
+    required this.problem,
     this.onTap,
   }) : super(key: key);
 
-  final DsaExerciseModel exercise;
+  final DsaProblemModel problem;
   final VoidCallback? onTap;
 
   @override
@@ -192,7 +191,7 @@ class _CheckboxWidgetState extends State<_CheckboxWidget> {
 
   @override
   void initState() {
-    _isSolved = widget.exercise.isSolved;
+    _isSolved = widget.problem.isSolved;
     super.initState();
   }
 

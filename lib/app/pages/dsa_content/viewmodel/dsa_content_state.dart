@@ -7,7 +7,7 @@ class DsaContentState extends BaseState {
     this.groups = const [],
   });
 
-  final List<DsaGroupsExercisesModel> groups;
+  final List<DsaGroupsProblemsModel> groups;
 
   @override
   List<Object?> get props => [
@@ -15,7 +15,7 @@ class DsaContentState extends BaseState {
       ];
 
   DsaContentState copyWith({
-    List<DsaGroupsExercisesModel>? groups,
+    List<DsaGroupsProblemsModel>? groups,
   }) {
     return DsaContentState(
       groups: groups ?? this.groups,

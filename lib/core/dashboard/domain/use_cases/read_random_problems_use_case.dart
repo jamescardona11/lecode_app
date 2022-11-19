@@ -3,11 +3,11 @@ import 'dart:math';
 import 'package:lepath_app/base/base.dart';
 import 'package:lepath_app/core/core.dart';
 
-class ReadRandomExercisesData extends CommandData {}
+class ReadRandomProblemsData extends CommandData {}
 
-class ReadRandomExercisesUseCase
-    implements StreamQueryUseCase<DsaExerciseModel?, ReadRandomExercisesData> {
-  const ReadRandomExercisesUseCase(
+class ReadRandomProblemsUseCase
+    implements StreamQueryUseCase<DsaProblemModel?, ReadRandomProblemsData> {
+  const ReadRandomProblemsUseCase(
     this.crossDsaFacade,
     this.repository,
   );
@@ -16,9 +16,9 @@ class ReadRandomExercisesUseCase
   final CrossDsaFacade crossDsaFacade;
 
   @override
-  Stream<DsaExerciseModel?> call(ReadRandomExercisesData data) {
-    return crossDsaFacade.readAllDsaExercises
-        .call(const ReadAllDsaExercisesData())
+  Stream<DsaProblemModel?> call(ReadRandomProblemsData data) {
+    return crossDsaFacade.readAllDsaProblems
+        .call(const ReadAllDsaProblemsData())
         .map((all) {
       final noSolved = all.where((element) => element.solvedDate == null);
       if (noSolved.isEmpty) return null;

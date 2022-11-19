@@ -16,11 +16,11 @@ class ReadStatsUseCase
 
   @override
   Stream<StatsModel> call(ReadStatsData data) =>
-      crossDsaFacade.readAllDsaExercises
-          .call(const ReadAllDsaExercisesData())
+      crossDsaFacade.readAllDsaProblems
+          .call(const ReadAllDsaProblemsData())
           .map((items) => getStatsModel(items));
 
-  StatsModel getStatsModel(Iterable<DsaExerciseModel> items) {
+  StatsModel getStatsModel(Iterable<DsaProblemModel> items) {
     final now = _nowDate();
     int solved = 0;
     double averageAcceptanceRate = 0;
@@ -81,7 +81,7 @@ class ReadStatsUseCase
   }
 
   void _statsForSolved(
-    DsaExerciseModel item,
+    DsaProblemModel item,
     Map<String, int> difficultyCompleted,
     Map<String, int> groupsCompleted,
     Map<String, int> topicsCompleted,
@@ -95,13 +95,13 @@ class ReadStatsUseCase
     _updateDaysBefore(daysBefore, now, item.solvedDate!);
   }
 
-  void _getDifficulty(Map<String, int> map, DsaExerciseModel item) {
+  void _getDifficulty(Map<String, int> map, DsaProblemModel item) {
     if (item.isEasy) _countMap('Easy', map);
     if (item.isMedium) _countMap('Medium', map);
     if (item.isHard) _countMap('Hard', map);
   }
 
-  void _getGroups(Map<String, int> map, DsaExerciseModel item) {
+  void _getGroups(Map<String, int> map, DsaProblemModel item) {
     if (item.isBlind75) _countMap('Blind75', map);
     if (item.isGrind75) _countMap('Grind75', map);
     if (item.isLeetCode60) _countMap('LeetCode60', map);
@@ -111,7 +111,7 @@ class ReadStatsUseCase
     if (item.isOther) _countMap('Other', map);
   }
 
-  void _getTopics(Map<String, int> map, DsaExerciseModel item) {
+  void _getTopics(Map<String, int> map, DsaProblemModel item) {
     for (var element in item.topics) {
       map[element] = (map[element] ?? 0) + 1;
     }

@@ -4,8 +4,8 @@ import 'package:lepath_app/base/base.dart';
 import 'package:lepath_app/core/core.dart';
 import 'package:rxdart/rxdart.dart';
 
-class ReadAllDsaExercisesWithPaginationData implements CommandData {
-  const ReadAllDsaExercisesWithPaginationData([
+class ReadAllDsaProblemsWithPaginationData implements CommandData {
+  const ReadAllDsaProblemsWithPaginationData([
     this.topics = const [],
     this.takeX = 20,
   ]);
@@ -14,11 +14,11 @@ class ReadAllDsaExercisesWithPaginationData implements CommandData {
   final int takeX;
 }
 
-class ReadAllDsaExercisesWithPagination
+class ReadAllDsaProblemsWithPagination
     implements
-        StreamQueryUseCase<Iterable<DsaExerciseModel>,
-            ReadAllDsaExercisesWithPaginationData> {
-  ReadAllDsaExercisesWithPagination(
+        StreamQueryUseCase<Iterable<DsaProblemModel>,
+            ReadAllDsaProblemsWithPaginationData> {
+  ReadAllDsaProblemsWithPagination(
     this.crossDsaFacade,
     this.repository,
   );
@@ -28,24 +28,24 @@ class ReadAllDsaExercisesWithPagination
 
   // review this don't sent iterable
   @override
-  Stream<Iterable<DsaExerciseModel>> call(
-      ReadAllDsaExercisesWithPaginationData data) {
-    return crossDsaFacade.readAllDsaExercises
-        .call(const ReadAllDsaExercisesData())
+  Stream<Iterable<DsaProblemModel>> call(
+      ReadAllDsaProblemsWithPaginationData data) {
+    return crossDsaFacade.readAllDsaProblems
+        .call(const ReadAllDsaProblemsData())
         .switchMap((items) => data.topics.isEmpty
             ? _allElementsStream(items, data)
             : _filteringStream(items, data));
   }
 
-  Stream<Iterable<DsaExerciseModel>> _allElementsStream(
-    Iterable<DsaExerciseModel> items,
-    ReadAllDsaExercisesWithPaginationData data,
+  Stream<Iterable<DsaProblemModel>> _allElementsStream(
+    Iterable<DsaProblemModel> items,
+    ReadAllDsaProblemsWithPaginationData data,
   ) =>
       Stream.value(items.take(data.takeX));
 
-  Stream<Iterable<DsaExerciseModel>> _filteringStream(
-    Iterable<DsaExerciseModel> items,
-    ReadAllDsaExercisesWithPaginationData data,
+  Stream<Iterable<DsaProblemModel>> _filteringStream(
+    Iterable<DsaProblemModel> items,
+    ReadAllDsaProblemsWithPaginationData data,
   ) =>
       Stream.value(items
           .where(

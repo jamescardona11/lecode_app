@@ -5,26 +5,26 @@ import 'package:lepath_app/core/core.dart';
 class DashboardState extends BaseState {
   const DashboardState({
     this.statsModel = const StatsModel(),
-    this.similarExercises = const [],
-    this.randomExercises,
+    this.similarProblems = const [],
+    this.randomProblems,
   });
 
   final StatsModel statsModel;
-  final Iterable<DsaExerciseModel> similarExercises;
-  final DsaExerciseModel? randomExercises;
+  final Iterable<DsaProblemModel> similarProblems;
+  final DsaProblemModel? randomProblems;
 
   @override
   List<Object?> get props => [statsModel];
 
   DashboardState copyWith({
     StatsModel? statsModel,
-    Iterable<DsaExerciseModel>? similarExercises,
-    DsaExerciseModel? randomExercises,
+    Iterable<DsaProblemModel>? similarProblems,
+    DsaProblemModel? randomProblems,
   }) {
     return DashboardState(
       statsModel: statsModel ?? this.statsModel,
-      similarExercises: similarExercises ?? this.similarExercises,
-      randomExercises: randomExercises ?? this.randomExercises,
+      similarProblems: similarProblems ?? this.similarProblems,
+      randomProblems: randomProblems ?? this.randomProblems,
     );
   }
 
@@ -33,13 +33,11 @@ class DashboardState extends BaseState {
     if (identical(this, other)) return true;
 
     return other.statsModel == statsModel &&
-        other.similarExercises == similarExercises &&
-        other.randomExercises == randomExercises;
+        other.similarProblems == similarProblems &&
+        other.randomProblems == randomProblems;
   }
 
   @override
   int get hashCode =>
-      statsModel.hashCode ^
-      similarExercises.hashCode ^
-      randomExercises.hashCode;
+      statsModel.hashCode ^ similarProblems.hashCode ^ randomProblems.hashCode;
 }

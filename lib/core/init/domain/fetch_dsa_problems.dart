@@ -9,7 +9,7 @@ class FetchDsaProblemsData implements CommandData {
 
 class FetchDsaProblems
     implements
-        FutureQueryUseCase<RemoteAppResponse<DsaProblemsAggregateDto>,
+        FutureQueryUseCase<RemoteAppResponse<DsaContentProblemsAggregateDto>,
             FetchDsaProblemsData> {
   final AppRepository _repository;
 
@@ -18,12 +18,12 @@ class FetchDsaProblems
   );
 
   @override
-  Future<RemoteAppResponse<DsaProblemsAggregateDto>> call(
+  Future<RemoteAppResponse<DsaContentProblemsAggregateDto>> call(
       FetchDsaProblemsData data) async {
     if (!data.shouldFetch) {
-      return AppRight(RemoteSuccess(DsaProblemsAggregateDto.def()));
+      return AppRight(RemoteSuccess(DsaContentProblemsAggregateDto.def()));
     }
 
-    return await _repository.fetchDSAExercisesInformation();
+    return await _repository.fetchDSAProblemsInformation();
   }
 }
