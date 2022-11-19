@@ -3,7 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lepath_app/app/widgets/round_container.dart';
 import 'package:lepath_app/config/theme/styles/app_colors.dart';
-import 'package:lepath_app/cross/cross.dart';
+import 'package:lepath_app/core/core.dart';
 
 class ExerciseItemWidget extends StatefulWidget {
   /// default constructor

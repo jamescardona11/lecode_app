@@ -4,7 +4,7 @@ import 'package:lepath_app/app/pages/dsa_list/viewmodel/viewmodel.dart';
 import 'package:lepath_app/app/widgets/exercise_item_widget.dart';
 import 'package:lepath_app/config/di/di.dart';
 import 'package:lepath_app/config/theme/styles/styles.dart';
-import 'package:lepath_app/core/core.dart';
+import 'package:lepath_app/base/base.dart';
 
 class DsaListPage extends MvvMProviderWidget<DsaListViewModel, DsaListState> {
   /// default constructor

@@ -7,8 +7,8 @@ import 'app/pages/dsa_list/dsa_list_page.dart';
 
 import 'config/di/di.dart';
 import 'config/theme/app_theme.dart';
+import 'base/base.dart';
 import 'core/core.dart';
-import 'cross/cross.dart';
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

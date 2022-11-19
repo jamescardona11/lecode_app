@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
+import 'package:lepath_app/base/base.dart';
 import 'package:lepath_app/core/core.dart';
-import 'package:lepath_app/cross/cross.dart';
 
 @module
 abstract class UseCasesModule {

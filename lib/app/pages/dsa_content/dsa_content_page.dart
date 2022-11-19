@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lepath_app/app/widgets/widgets.dart';
 import 'package:lepath_app/config/di/di.dart';
 import 'package:lepath_app/config/theme/styles/styles.dart';
-import 'package:lepath_app/core/base/base.dart';
+import 'package:lepath_app/base/base_app/base.dart';
 
 import 'viewmodel/viewmodel.dart';
 

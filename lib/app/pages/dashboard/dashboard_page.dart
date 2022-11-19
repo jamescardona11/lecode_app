@@ -10,7 +10,7 @@ import 'package:lepath_app/config/context_extension.dart';
 import 'package:lepath_app/config/di/di.dart';
 import 'package:lepath_app/config/theme/styles/styles.dart';
 
-import 'package:lepath_app/core/core.dart';
+import 'package:lepath_app/base/base.dart';
 
 import 'widgets/activity_by_days_widget.dart';
 import 'widgets/total_stats_widget.dart';
