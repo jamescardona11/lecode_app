@@ -13,14 +13,14 @@ class ReadAllDsaExercises
         StreamQueryUseCase<Iterable<DsaExerciseModel>,
             ReadAllDsaExercisesData> {
   ReadAllDsaExercises(this.repository) {
-    _listenElements();
+    _listenStreams();
   }
 
   final DsaRepository repository;
   final BehaviorSubject<Iterable<DsaExerciseModel>> _dsaExercisesListStream =
       BehaviorSubject<Iterable<DsaExerciseModel>>.seeded([]);
 
-  void _listenElements() {
+  void _listenStreams() {
     repository.readAllDsaExercisesStream.listen((items) {
       _dsaExercisesListStream.add(items);
     });
