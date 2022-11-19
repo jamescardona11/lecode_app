@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:drip/drip.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lepath_app/app/widgets/widgets.dart';
 import 'package:lepath_app/config/di/di.dart';
 import 'package:lepath_app/config/theme/styles/styles.dart';
 import 'package:lepath_app/base/base_app/base.dart';
 import 'package:lepath_app/core/core.dart';
-import 'package:lepath_app/utils/groups_exercises_utils.dart';
+import 'package:lepath_app/utils/utils.dart';
 
 import 'viewmodel/viewmodel.dart';
 
@@ -67,29 +66,39 @@ class _ItemContentWidget extends StatefulWidget {
 
 class _ItemContentWidgetState extends State<_ItemContentWidget> {
   bool enable = false;
+  late Color color;
+
+  @override
+  void initState() {
+    super.initState();
+    color = colorsForGroups(widget.groupsExercisesModel.id);
+  }
 
   @override
   Widget build(BuildContext context) {
     return RoundContainer(
-      // height: 100,
-      color: AppColors.pureWhite,
+      color: color,
       showDefaultShadow: true,
       onTap: () {},
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           DecoratedBox(
-            decoration: BoxDecoration(
-              color: colorsForGroups(widget.groupsExercisesModel.id),
+            decoration: const BoxDecoration(
+              color: AppColors.white,
               shape: BoxShape.circle,
             ),
             child: Padding(
               padding: const EdgeInsets.all(14.0),
               child: Center(
-                child: FaIcon(iconsForGroups(widget.groupsExercisesModel.id)),
+                child: FaIcon(
+                  iconsForGroups(widget.groupsExercisesModel.id),
+                  color: color,
+                ),
               ),
             ),
           ),
+          const SizedBox(height: 10),
           Text(
             widget.groupsExercisesModel.id,
             style: Theme.of(context).textTheme.headline6!.copyWith(
@@ -100,7 +109,7 @@ class _ItemContentWidgetState extends State<_ItemContentWidget> {
           Text(
             '${widget.groupsExercisesModel.solved}/${widget.groupsExercisesModel.total}',
             style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                  color: Colors.grey,
+                  color: AppColors.white,
                 ),
           ),
         ],

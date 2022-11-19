@@ -30,5 +30,7 @@ class DsaContentViewModel extends BaseViewModel<DsaContentState> {
         .listen((_) {});
   }
 
-  void _emitNewGroupsData(Iterable<DsaGroupsExercisesModel> items) {}
+  void _emitNewGroupsData(Iterable<DsaGroupsExercisesModel> items) {
+    emit(state.copyWith(groups: items.toList()));
+  }
 }
