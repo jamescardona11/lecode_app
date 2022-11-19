@@ -6,8 +6,7 @@ part of 'dsa_groups_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DsaGroupsDto _$DsaProblemsDtoFromJson(Map<String, dynamic> json) =>
-    DsaGroupsDto(
+DsaGroupsDto _$DsaGroupsDtoFromJson(Map<String, dynamic> json) => DsaGroupsDto(
       id: json['id'] as String,
       description: json['description'] as String,
       entries:
@@ -15,7 +14,7 @@ DsaGroupsDto _$DsaProblemsDtoFromJson(Map<String, dynamic> json) =>
               [],
     );
 
-Map<String, dynamic> _$DsaProblemsDtoToJson(DsaGroupsDto instance) =>
+Map<String, dynamic> _$DsaGroupsDtoToJson(DsaGroupsDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'description': instance.description,

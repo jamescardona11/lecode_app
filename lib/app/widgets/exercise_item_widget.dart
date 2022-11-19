@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lepath_app/app/widgets/round_container.dart';
 import 'package:lepath_app/config/theme/styles/app_colors.dart';
 import 'package:lepath_app/core/core.dart';
+import 'package:lepath_app/utils/groups_exercises_utils.dart';
 
 class ExerciseItemWidget extends StatefulWidget {
   /// default constructor
@@ -169,7 +170,7 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
       widget.exercise.topics.map((e) => _iconsForTopics(e)).first;
 
   List<IconData> get iconByGroup =>
-      widget.exercise.groups.map((e) => _iconsForGroups(e.value)).toList();
+      widget.exercise.groups.map((e) => iconsForGroups(e.value)).toList();
 
   IconData _iconsForTopics(String value) =>
       {
@@ -192,17 +193,6 @@ class _ExerciseItemWidgetState extends State<ExerciseItemWidget> {
         'Sort': FontAwesomeIcons.arrowUpRightDots,
       }[value] ??
       FontAwesomeIcons.question;
-
-  static IconData _iconsForGroups(String value) =>
-      {
-        'Blind75': FontAwesomeIcons.chessKnight,
-        'Grind75': FontAwesomeIcons.chessRook,
-        'Top Liked': FontAwesomeIcons.heart,
-        'LeetCode60': FontAwesomeIcons.droplet,
-        'Top Interview': FontAwesomeIcons.brain,
-        'Curated Algo': FontAwesomeIcons.cookieBite,
-      }[value] ??
-      FontAwesomeIcons.feather;
 }
 
 class _CheckboxWidget extends StatefulWidget {
@@ -224,7 +214,7 @@ class _CheckboxWidgetState extends State<_CheckboxWidget> {
 
   @override
   void initState() {
-    _isSolved = widget.exercise.solvedDate != null;
+    _isSolved = widget.exercise.isSolved;
     super.initState();
   }
 

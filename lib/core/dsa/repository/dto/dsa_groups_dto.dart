@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:lepath_app/core/core.dart';
 import 'package:pocket/pocket.dart';
 
-part 'dsa_problems_dto.g.dart';
+part 'dsa_groups_dto.g.dart';
 
 @JsonSerializable()
 class DsaGroupsDto extends IPocketModel {
@@ -21,7 +21,7 @@ class DsaGroupsDto extends IPocketModel {
   final List<int> entries;
 
   @override
-  Map<String, dynamic> toJson() => _$DsaProblemsDtoToJson(this);
+  Map<String, dynamic> toJson() => _$DsaGroupsDtoToJson(this);
 
   DsaGroupsModel toEntity() => DsaGroupsModel(
         id: id,
@@ -33,5 +33,5 @@ class DsaGroupsDto extends IPocketModel {
       DsaGroupsDto.fromJson(json).toEntity();
 
   factory DsaGroupsDto.fromJson(Map<String, dynamic> json) =>
-      _$DsaProblemsDtoFromJson(json);
+      _$DsaGroupsDtoFromJson(json);
 }

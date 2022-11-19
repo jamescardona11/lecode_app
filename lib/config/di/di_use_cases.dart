@@ -4,6 +4,16 @@ import 'package:lepath_app/core/core.dart';
 
 @module
 abstract class UseCasesModule {
+  /// facade cross DSA ↓
+
+  @Singleton(
+      as: StreamQueryUseCase<Iterable<DsaExerciseModel>,
+          ReadAllDsaExercisesData>)
+  ReadAllDsaExercises get readAllDsaExercises;
+
+  @singleton
+  CrossDsaFacade get crossDsaFacade;
+
   /// int facade ↓
   @singleton
   InitUseCasesFacade get initUseCasesFacade;
@@ -48,17 +58,13 @@ abstract class UseCasesModule {
   @Singleton(as: StreamQueryUseCase<DsaExerciseModel?, ReadRandomExercisesData>)
   ReadRandomExercisesUseCase get readRandomExercises;
 
-  /// facade cross DSA ↓
-
-  @singleton
-  CrossDsaFacade get crossDsaFacade;
-
-  @Singleton(
-      as: StreamQueryUseCase<Iterable<DsaExerciseModel>,
-          ReadAllDsaExercisesData>)
-  ReadAllDsaExercises get readAllDsaExercises;
-
+  /// dsa content ↓
   @Singleton(
       as: StreamQueryUseCase<Iterable<DsaGroupsModel>, ReadAllGroupsData>)
   ReadAllGroups get readAllGroups;
+
+  @Singleton(
+      as: StreamQueryUseCase<Iterable<DsaGroupsExercisesModel>,
+          ReadAllGroupsExercisesData>)
+  ReadAllGroupsExercises get readDsaAllGroupsExercises;
 }

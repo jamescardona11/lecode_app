@@ -81,12 +81,16 @@ Future<_i1.GetIt> $initGetIt(
   gh.singleton<
       _i4.StreamQueryUseCase<_i5.DsaExerciseModel?,
           _i5.ReadRandomExercisesData>>(useCasesModule.readRandomExercises);
+  gh.singleton<
+          _i4.StreamQueryUseCase<Iterable<_i5.DsaGroupsExercisesModel>,
+              _i5.ReadAllGroupsExercisesData>>(
+      useCasesModule.readDsaAllGroupsExercises);
   gh.singleton<_i5.DashboardFacade>(useCasesModule.dashboardUseCasesFacade);
   gh.singleton<_i7.DashboardViewModel>(viewModelModule.dashboardViewModel);
+  gh.singleton<_i8.DsaContentViewModel>(viewModelModule.dsaContentModel);
   gh.singleton<_i5.DsaUseCasesFacade>(useCasesModule.dsaUseCasesFacade);
   gh.singleton<_i4.FutureCommandUseCase<_i5.AppInitFirstTimeData>>(
       useCasesModule.appInitFirstTime);
-  gh.singleton<_i8.DsaContentViewModel>(viewModelModule.dsaContentModel);
   gh.singleton<_i9.DsaListViewModel>(viewModelModule.dsaListViewModel);
   return get;
 }
@@ -132,19 +136,12 @@ class _$UseCasesModule extends _i12.UseCasesModule {
   _i5.ReadAllDsaExercises get readAllDsaExercises =>
       _i5.ReadAllDsaExercises(_getIt<_i5.DsaRepository>());
   @override
-  _i5.ReadAllGroups get readAllGroups => _i5.ReadAllGroups(
-        _getIt<_i5.DsaRepository>(),
-        _getIt<_i5.DsaContentRepository>(),
-      );
+  _i5.ReadAllGroups get readAllGroups =>
+      _i5.ReadAllGroups(_getIt<_i5.DsaContentRepository>());
   @override
-  _i5.CrossDsaFacade get crossDsaFacade => _i5.CrossDsaFacade(
-        _getIt<
-            _i4.StreamQueryUseCase<Iterable<_i5.DsaExerciseModel>,
-                _i5.ReadAllDsaExercisesData>>(),
-        _getIt<
-            _i4.StreamQueryUseCase<Iterable<_i5.DsaGroupsModel>,
-                _i5.ReadAllGroupsData>>(),
-      );
+  _i5.CrossDsaFacade get crossDsaFacade => _i5.CrossDsaFacade(_getIt<
+      _i4.StreamQueryUseCase<Iterable<_i5.DsaExerciseModel>,
+          _i5.ReadAllDsaExercisesData>>());
   @override
   _i5.SaveDsaProblems get saveDsaProblems =>
       _i5.SaveDsaProblems(_getIt<_i5.AppRepository>());
@@ -188,6 +185,14 @@ class _$UseCasesModule extends _i12.UseCasesModule {
         _getIt<_i5.DsaRepository>(),
       );
   @override
+  _i5.ReadAllGroupsExercises get readDsaAllGroupsExercises =>
+      _i5.ReadAllGroupsExercises(
+        _getIt<_i5.CrossDsaFacade>(),
+        _getIt<
+            _i4.StreamQueryUseCase<Iterable<_i5.DsaGroupsModel>,
+                _i5.ReadAllGroupsData>>(),
+      );
+  @override
   _i5.DashboardFacade get dashboardUseCasesFacade => _i5.DashboardFacade(
         _getIt<
             _i4.StreamQueryUseCase<Iterable<_i5.DsaExerciseModel>,
@@ -220,8 +225,9 @@ class _$ViewModelModule extends _i13.ViewModelModule {
   _i7.DashboardViewModel get dashboardViewModel =>
       _i7.DashboardViewModel(_getIt<_i5.DashboardFacade>());
   @override
-  _i8.DsaContentViewModel get dsaContentModel =>
-      _i8.DsaContentViewModel(_getIt<_i5.DsaUseCasesFacade>());
+  _i8.DsaContentViewModel get dsaContentModel => _i8.DsaContentViewModel(_getIt<
+      _i4.StreamQueryUseCase<Iterable<_i5.DsaGroupsExercisesModel>,
+          _i5.ReadAllGroupsExercisesData>>());
   @override
   _i9.DsaListViewModel get dsaListViewModel =>
       _i9.DsaListViewModel(_getIt<_i5.DsaUseCasesFacade>());

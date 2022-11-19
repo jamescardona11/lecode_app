@@ -47,7 +47,7 @@ class ReadStatsUseCase
       _getTopics(topics, item);
 
       // solved stats
-      if (item.solvedDate != null) {
+      if (item.isSolved) {
         solved++;
         averageAcceptanceRate += item.acceptanceRate;
         averageRate += item.myRate;

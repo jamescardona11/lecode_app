@@ -21,7 +21,7 @@ class ReadSimilarExercisesUseCase
       crossDsaFacade.readAllDsaExercises
           .call(const ReadAllDsaExercisesData())
           .map((items) => items.splitMatch(
-                (element) => element.solvedDate != null,
+                (element) => element.isSolved,
               ))
           .map(
         (listMatch) {

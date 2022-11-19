@@ -6,6 +6,8 @@ import 'package:lepath_app/app/widgets/widgets.dart';
 import 'package:lepath_app/config/di/di.dart';
 import 'package:lepath_app/config/theme/styles/styles.dart';
 import 'package:lepath_app/base/base_app/base.dart';
+import 'package:lepath_app/core/core.dart';
+import 'package:lepath_app/utils/groups_exercises_utils.dart';
 
 import 'viewmodel/viewmodel.dart';
 
@@ -38,8 +40,10 @@ class DsaContentPage
                 crossAxisSpacing: 15,
                 mainAxisSpacing: 15,
               ),
-              itemCount: 6,
-              itemBuilder: (_, index) => _ItemContentWidget(),
+              itemCount: state.groups.length,
+              itemBuilder: (_, index) => _ItemContentWidget(
+                groupsExercisesModel: state.groups[index],
+              ),
             ),
           ),
         ],
@@ -52,7 +56,10 @@ class _ItemContentWidget extends StatefulWidget {
   /// default constructor
   const _ItemContentWidget({
     super.key,
+    required this.groupsExercisesModel,
   });
+
+  final DsaGroupsExercisesModel groupsExercisesModel;
 
   @override
   State<_ItemContentWidget> createState() => _ItemContentWidgetState();
@@ -73,27 +80,25 @@ class _ItemContentWidgetState extends State<_ItemContentWidget> {
         children: [
           DecoratedBox(
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: colorsForGroups(widget.groupsExercisesModel.id),
               shape: BoxShape.circle,
             ),
             child: Padding(
               padding: const EdgeInsets.all(14.0),
               child: Center(
-                child: FaIcon(
-                  FontAwesomeIcons.fonticons,
-                ),
+                child: FaIcon(iconsForGroups(widget.groupsExercisesModel.id)),
               ),
             ),
           ),
           Text(
-            'Title of path',
+            widget.groupsExercisesModel.id,
             style: Theme.of(context).textTheme.headline6!.copyWith(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
           ),
           Text(
-            '1/200',
+            '${widget.groupsExercisesModel.solved}/${widget.groupsExercisesModel.total}',
             style: Theme.of(context).textTheme.bodyText2!.copyWith(
                   color: Colors.grey,
                 ),

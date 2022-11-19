@@ -33,6 +33,8 @@ class DsaExerciseModel {
   final String mySolution;
   final DateTime? solvedDate;
 
+  bool get isSolved => solvedDate != null;
+
   bool get isEasy => difficulty == 'Easy';
   bool get isMedium => difficulty == 'Medium';
   bool get isHard => difficulty == 'Hard';

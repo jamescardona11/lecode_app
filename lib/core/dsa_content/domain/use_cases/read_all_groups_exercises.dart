@@ -12,7 +12,10 @@ class ReadAllGroupsExercises
     implements
         StreamQueryUseCase<Iterable<DsaGroupsExercisesModel>,
             ReadAllGroupsExercisesData> {
-  ReadAllGroupsExercises(this.crossDsaFacade, this.readAllGroups) {
+  ReadAllGroupsExercises(
+    this.crossDsaFacade,
+    this.readAllGroups,
+  ) {
     _listenStreams();
   }
 
@@ -23,6 +26,11 @@ class ReadAllGroupsExercises
   final BehaviorSubject<Iterable<DsaGroupsExercisesModel>>
       _dsaGroupsExercisesListStream =
       BehaviorSubject<Iterable<DsaGroupsExercisesModel>>.seeded([]);
+
+  @override
+  Stream<Iterable<DsaGroupsExercisesModel>> call(
+          ReadAllGroupsExercisesData data) =>
+      _dsaGroupsExercisesListStream;
 
   void _listenStreams() {
     final allDsaStream = crossDsaFacade.readAllDsaExercises
@@ -60,9 +68,4 @@ class ReadAllGroupsExercises
       _dsaGroupsExercisesListStream.add(value);
     });
   }
-
-  @override
-  Stream<Iterable<DsaGroupsExercisesModel>> call(
-          ReadAllGroupsExercisesData data) =>
-      _dsaGroupsExercisesListStream;
 }
