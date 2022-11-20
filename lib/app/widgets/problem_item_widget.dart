@@ -6,6 +6,8 @@ import 'package:lepath_app/core/core.dart';
 import 'package:lepath_app/utils/utils.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 
+import 'web_view_problem.dart';
+
 class ProblemItemWidget extends StatefulWidget {
   /// default constructor
   const ProblemItemWidget({
@@ -30,7 +32,17 @@ class _ProblemItemWidgetState extends State<ProblemItemWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onTap,
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => WebViewExample(
+              url: widget.problem.url,
+            ),
+          ),
+        );
+        // print(widget.problem.toString());
+      },
       child: Padding(
         padding: EdgeInsets.only(bottom: widget.isLast ? 40 : 12),
         child: RoundContainer(
@@ -80,7 +92,7 @@ class _ProblemItemWidgetState extends State<ProblemItemWidget> {
                         const SizedBox(height: 2),
                         Text(
                           topicJoin,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                           // overflow: TextOverflow.ellipsis,

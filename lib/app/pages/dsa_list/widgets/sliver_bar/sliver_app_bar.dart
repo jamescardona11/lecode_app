@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lepath_app/app/pages/dsa_list/widgets/flexible_bar.dart';
 import 'package:lepath_app/config/theme/styles/styles.dart';
+
+import 'flexible_bar.dart';
 
 class SliverBar extends StatelessWidget {
   /// default constructor
@@ -9,10 +10,12 @@ class SliverBar extends StatelessWidget {
     Key? key,
     required this.title,
     required this.description,
+    this.showProgress = true,
   }) : super(key: key);
 
   final String title;
   final String description;
+  final bool showProgress;
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +43,11 @@ class SliverBar extends StatelessWidget {
       pinned: false,
       floating: true,
       snap: true,
-      expandedHeight: 250.0,
+      expandedHeight: showProgress ? 210.0 : 150,
       flexibleSpace: FlexibleSpaceBar(
         background: FlexibleBar(
           description: description,
+          showProgress: showProgress,
         ),
       ),
     );

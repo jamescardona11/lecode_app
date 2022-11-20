@@ -3,29 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:lepath_app/app/widgets/eleventh_button_widget.dart';
 import 'package:lepath_app/config/context_extension.dart';
 import 'package:lepath_app/config/theme/styles/styles.dart';
+import 'package:lepath_app/core/core.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 Future<T> showFloatingModalBottomSheet<T>({
   required BuildContext context,
-  // required WidgetBuilder builder,
-  Color? backgroundColor,
+  ValueChanged<FilteringData>? onFilterTap,
 }) async {
   final result = await showCustomModalBottomSheet(
-      context: context,
-      builder: (context) => SizedBox(),
-      containerWidget: (_, animation, child) => FloatingModal(),
-      expand: false);
+    context: context,
+    builder: (_) => const SizedBox(),
+    containerWidget: (_, animation, child) => FloatingModal(
+      onFilterTap: onFilterTap,
+    ),
+    expand: false,
+  );
 
   return result;
 }
 
 class FloatingModal extends StatefulWidget {
-  final Color? backgroundColor;
-
   const FloatingModal({
     Key? key,
-    this.backgroundColor,
+    this.onFilterTap,
   }) : super(key: key);
+
+  final ValueChanged<FilteringData>? onFilterTap;
 
   @override
   State<FloatingModal> createState() => _FloatingModalState();
@@ -40,7 +43,7 @@ class _FloatingModalState extends State<FloatingModal> {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Material(
-          color: widget.backgroundColor,
+          color: AppColors.pureWhite,
           clipBehavior: Clip.antiAlias,
           borderRadius: BorderRadius.circular(12),
           child: SizedBox(
@@ -54,10 +57,10 @@ class _FloatingModalState extends State<FloatingModal> {
                     style: defHeadline,
                   ),
                   ChipsChoice<String>.multiple(
-                    value: tags,
-                    onChanged: (val) => setState(() => tags = val),
+                    value: difficultyTags,
+                    onChanged: (val) => setState(() => difficultyTags = val),
                     choiceItems: C2Choice.listFrom<String, String>(
-                      source: options,
+                      source: difficultyOptions,
                       value: (i, v) => v,
                       label: (i, v) => v,
                     ),
@@ -74,10 +77,10 @@ class _FloatingModalState extends State<FloatingModal> {
                   ),
                   const SizedBox(height: 5),
                   ChipsChoice<String>.multiple(
-                    value: tags2,
-                    onChanged: (val) => setState(() => tags2 = val),
+                    value: topicsTags,
+                    onChanged: (val) => setState(() => topicsTags = val),
                     choiceItems: C2Choice.listFrom<String, String>(
-                      source: options2,
+                      source: topicOptions,
                       value: (i, v) => v,
                       label: (i, v) => v,
                     ),
@@ -100,10 +103,10 @@ class _FloatingModalState extends State<FloatingModal> {
                   ),
                   const SizedBox(height: 5),
                   ChipsChoice<String>.single(
-                    value: tag3,
-                    onChanged: (val) => setState(() => tag3 = val),
+                    value: groupByTag,
+                    onChanged: (val) => setState(() => groupByTag = val),
                     choiceItems: C2Choice.listFrom<String, String>(
-                      source: options3,
+                      source: groupsOptions,
                       value: (i, v) => v,
                       label: (i, v) => v,
                     ),
@@ -125,7 +128,9 @@ class _FloatingModalState extends State<FloatingModal> {
                         Expanded(
                           child: EleventhButton(
                             label: 'Cancel',
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
                           ),
                         ),
                         const SizedBox(width: 10),
@@ -134,7 +139,15 @@ class _FloatingModalState extends State<FloatingModal> {
                             label: 'Filter',
                             primaryColor: AppColors.blueBlack,
                             accentColor: AppColors.white,
-                            onPressed: () {},
+                            onPressed: () {
+                              widget.onFilterTap?.call(FilteringData(
+                                difficulty: difficultyTags,
+                                groupBy: groupByTag,
+                                topics: topicsTags,
+                              ));
+
+                              Navigator.pop(context);
+                            },
                           ),
                         )
                       ],
@@ -150,6 +163,40 @@ class _FloatingModalState extends State<FloatingModal> {
     );
   }
 
+  List<String> difficultyTags = [];
+  List<String> difficultyOptions = [
+    'Easy',
+    'Medium',
+    'Hard',
+  ];
+
+  String groupByTag = '';
+  List<String> groupsOptions = [
+    'Difficulty',
+    'Topic',
+  ];
+
+  List<String> topicsTags = [];
+  List<String> topicOptions = [
+    'Array',
+    'Stack',
+    'Linked List',
+    'String',
+    'Binary Tree',
+    'Tree',
+    'Binary Search',
+    'Graph',
+    'BFS',
+    'DFS',
+    'Hash Table',
+    'DP',
+    'Priority Queue',
+    'Recursion',
+    'Math',
+    'Trie',
+    'Sort',
+  ];
+
   TextStyle get chipsStyle => const TextStyle(
         fontSize: 13,
       );
@@ -159,37 +206,3 @@ class _FloatingModalState extends State<FloatingModal> {
         fontWeight: FontWeight.bold,
       );
 }
-
-List<String> tags = [];
-List<String> options = [
-  'Easy',
-  'Medium',
-  'Hard',
-];
-
-String tag3 = '1';
-List<String> options3 = [
-  'Difficulty',
-  'Topic',
-];
-
-List<String> tags2 = [];
-List<String> options2 = [
-  'Array',
-  'Stack',
-  'Linked List',
-  'String',
-  'Binary Tree',
-  'Tree',
-  'Binary Search',
-  'Graph',
-  'BFS',
-  'DFS',
-  'Hash Table',
-  'DP',
-  'Priority Queue',
-  'Recursion',
-  'Math',
-  'Trie',
-  'Sort',
-];

@@ -23,6 +23,7 @@ dependencies:
   chips_choice: ^3.0.0
   msh_checkbox: ^1.2.1
   grouped_list: ^5.1.2
+  easy_web_view: ^1.6.0
   
   
   # DI

@@ -9,10 +9,10 @@ class AppRight<L, R> extends AppEither<L, R> {
   AppRight(this.value);
 
   @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
 
-    return o is AppRight<L, R> && o.value == value;
+    return other is AppRight<L, R> && other.value == value;
   }
 
   @override

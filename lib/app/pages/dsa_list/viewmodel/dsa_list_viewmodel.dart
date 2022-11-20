@@ -7,14 +7,11 @@ import 'package:rxdart/rxdart.dart';
 import 'dsa_list_state.dart';
 
 class DsaListViewModel extends BaseViewModel<DsaListState> {
-  final DsaUseCasesFacade dsaUseCases;
-
-  DsaListViewModel(
-    this.dsaUseCases,
-  ) : super(const DsaListState()) {
+  DsaListViewModel(this.dsaUseCases) : super(const DsaListState()) {
     _listenStreams();
   }
 
+  final DsaUseCasesFacade dsaUseCases;
   late StreamSubscription<Iterable<DsaProblemModel>>
       _streamProblemsSubscription;
 
@@ -24,20 +21,30 @@ class DsaListViewModel extends BaseViewModel<DsaListState> {
     super.close();
   }
 
-  void changeMainView() {
-    emit(state.copyWith(showFilterList: !state.showFilterList));
+  Future<void> filteringData(FilteringData filteringData) async {
+    final items = await dsaUseCases.readAllDsaProblemsWithPagination
+        .call(ReadAllDsaProblemsFilteringData(
+          takeX: state.itemsPagination,
+          filteringData: filteringData,
+        ))
+        .first;
+
+    _emitNewDsaItems(items);
   }
 
   Future<void> markProblemAsRead(String id) async {
     await dsaUseCases.markAsSolved.call(MarkAsSolvedData(id));
   }
 
-  Future<void> _listenStreams() async {
+  void _listenStreams() async {
     _streamProblemsSubscription = dsaUseCases.readAllDsaProblemsWithPagination
-        .call(
-            ReadAllDsaProblemsFilteringData(takeX: state.itemsPagination + 40))
+        .call(const ReadAllDsaProblemsFilteringData(takeX: 30))
         .doOnData(_emitNewDsaItems)
-        .listen((_) {});
+        .listen((items) {
+      if (items.isNotEmpty) {
+        _streamProblemsSubscription.cancel();
+      }
+    });
   }
 
   void _emitNewDsaItems(Iterable<DsaProblemModel> items) {

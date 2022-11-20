@@ -8,18 +8,17 @@ class ReadRandomProblemsData extends CommandData {}
 class ReadRandomProblemsUseCase
     implements StreamQueryUseCase<DsaProblemModel?, ReadRandomProblemsData> {
   const ReadRandomProblemsUseCase(
-    this.crossDsaFacade,
+    this.readAllDsaProblems,
     this.repository,
   );
 
   final DsaRepository repository;
-  final CrossDsaFacade crossDsaFacade;
+  final StreamQueryUseCase<Iterable<DsaProblemModel>, ReadAllDsaProblemsData>
+      readAllDsaProblems;
 
   @override
   Stream<DsaProblemModel?> call(ReadRandomProblemsData data) {
-    return crossDsaFacade.readAllDsaProblems
-        .call(const ReadAllDsaProblemsData())
-        .map((all) {
+    return readAllDsaProblems.call(const ReadAllDsaProblemsData()).map((all) {
       final noSolved = all.where((element) => element.solvedDate == null);
       if (noSolved.isEmpty) return null;
 

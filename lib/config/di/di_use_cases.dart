@@ -10,8 +10,8 @@ abstract class UseCasesModule {
       as: StreamQueryUseCase<Iterable<DsaProblemModel>, ReadAllDsaProblemsData>)
   ReadAllDsaProblems get readAllDsaProblems;
 
-  @singleton
-  CrossDsaFacade get crossDsaFacade;
+  // @singleton
+  // CrossDsaFacade get crossDsaFacade;
 
   /// int facade ↓
   @singleton

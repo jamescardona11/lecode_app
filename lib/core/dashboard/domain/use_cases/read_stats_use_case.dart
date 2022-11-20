@@ -7,18 +7,18 @@ class ReadStatsData implements CommandData {}
 class ReadStatsUseCase
     implements StreamQueryUseCase<StatsModel, ReadStatsData> {
   ReadStatsUseCase(
-    this.crossDsaFacade,
+    this.readAllDsaProblems,
     this.repository,
   );
 
   final DsaRepository repository;
-  final CrossDsaFacade crossDsaFacade;
+  final StreamQueryUseCase<Iterable<DsaProblemModel>, ReadAllDsaProblemsData>
+      readAllDsaProblems;
 
   @override
-  Stream<StatsModel> call(ReadStatsData data) =>
-      crossDsaFacade.readAllDsaProblems
-          .call(const ReadAllDsaProblemsData())
-          .map((items) => getStatsModel(items));
+  Stream<StatsModel> call(ReadStatsData data) => readAllDsaProblems
+      .call(const ReadAllDsaProblemsData())
+      .map((items) => getStatsModel(items));
 
   StatsModel getStatsModel(Iterable<DsaProblemModel> items) {
     final now = _nowDate();

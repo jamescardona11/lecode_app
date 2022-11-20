@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lepath_app/app/pages/dsa_list/dsa_all_problems_page.dart';
+import 'package:lepath_app/app/pages/dsa_list/dsa_solved_problems_page.dart';
 import 'package:lepath_app/app/widgets/widgets.dart';
 
 import 'dashboard/dashboard_page.dart';
-import 'dsa_list/dsa_list_page.dart';
 import 'dsa_routes/dsa_routes_page.dart';
 
 class HomeLayout extends StatefulWidget {
@@ -29,8 +30,8 @@ class _HomeLayoutState extends State<HomeLayout> {
         children: const [
           DashboardPage(),
           DsaRoutesPage(),
-          DsaListPage(),
-          DsaListPage(),
+          DsaAllProblemsPage(),
+          DsaSolvedProblemsPage(),
         ],
       ),
       bottomNavigationBar: FloatingBottomBar(

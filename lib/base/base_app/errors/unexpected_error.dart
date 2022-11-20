@@ -7,6 +7,6 @@ class UnexpectedValueError extends AppError {
   String toString() {
     const explanation =
         'Encountered a Unexpected at an unrecoverable point. Terminating.';
-    return Error.safeToString('$explanation');
+    return Error.safeToString(explanation);
   }
 }

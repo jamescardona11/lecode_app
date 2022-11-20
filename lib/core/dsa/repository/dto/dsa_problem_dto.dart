@@ -54,7 +54,7 @@ class DsaProblemDto extends IPocketModel {
         url: url,
         difficulty: difficulty,
         topics: topics,
-        routes: routes.map((e) => GroupType.fromString(e)).toList(),
+        routes: routes.map((e) => GroupType.fromString(e.trim())).toList(),
         acceptanceRate: acceptanceRate,
         myRate: myRate,
         notes: notes,

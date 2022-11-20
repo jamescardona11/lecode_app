@@ -62,7 +62,6 @@ class DsaRoutesPage
 class _ItemRoutesWidget extends StatefulWidget {
   /// default constructor
   const _ItemRoutesWidget({
-    super.key,
     required this.routeProblemsModel,
   });
 

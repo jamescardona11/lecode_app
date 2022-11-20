@@ -8,16 +8,17 @@ class ReadSimilarProblemsUseCase
     implements
         StreamQueryUseCase<Iterable<DsaProblemModel>, ReadSimilarProblemsData> {
   ReadSimilarProblemsUseCase(
-    this.crossDsaFacade,
+    this.readAllDsaProblems,
     this.repository,
   );
 
   final DsaRepository repository;
-  final CrossDsaFacade crossDsaFacade;
+  final StreamQueryUseCase<Iterable<DsaProblemModel>, ReadAllDsaProblemsData>
+      readAllDsaProblems;
 
   @override
   Stream<Iterable<DsaProblemModel>> call(ReadSimilarProblemsData data) =>
-      crossDsaFacade.readAllDsaProblems
+      readAllDsaProblems
           .call(const ReadAllDsaProblemsData())
           .map((items) => items.splitMatch(
                 (element) => element.isSolved,

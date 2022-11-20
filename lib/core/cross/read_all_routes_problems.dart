@@ -13,13 +13,14 @@ class ReadAllRoutesProblems
         StreamQueryUseCase<Iterable<DsaRouteProblemsModel>,
             ReadAllRoutesProblemsData> {
   ReadAllRoutesProblems(
-    this.crossDsaFacade,
+    this.readAllDsaProblems,
     this.readAllRoutes,
   ) {
     _listenStreams();
   }
 
-  final CrossDsaFacade crossDsaFacade;
+  final StreamQueryUseCase<Iterable<DsaProblemModel>, ReadAllDsaProblemsData>
+      readAllDsaProblems;
   final StreamQueryUseCase<Iterable<DsaRouteModel>, ReadAllRoutesData>
       readAllRoutes;
 
@@ -34,7 +35,7 @@ class ReadAllRoutesProblems
 
   void _listenStreams() {
     final allDsaStream =
-        crossDsaFacade.readAllDsaProblems.call(const ReadAllDsaProblemsData());
+        readAllDsaProblems.call(const ReadAllDsaProblemsData());
 
     final routesStream = readAllRoutes.call(const ReadAllRoutesData());
 

@@ -54,11 +54,25 @@ Future<_i1.GetIt> $initGetIt(
   gh.singleton<
       _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
           _i5.ReadAllDsaProblemsData>>(useCasesModule.readAllDsaProblems);
+  gh.singleton<_i4.StreamQueryUseCase<_i5.StatsModel, _i5.ReadStatsData>>(
+      useCasesModule.readStatsUseCase);
+  gh.singleton<
+      _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
+          _i5.ReadSimilarProblemsData>>(useCasesModule.readSimilarProblems);
+  gh.singleton<
+      _i4.StreamQueryUseCase<_i5.DsaProblemModel?,
+          _i5.ReadRandomProblemsData>>(useCasesModule.readRandomProblems);
   gh.singleton<
       _i4.StreamQueryUseCase<Iterable<_i5.DsaRouteModel>,
           _i5.ReadAllRoutesData>>(useCasesModule.readAllRoutes);
+  gh.singleton<
+          _i4.StreamQueryUseCase<Iterable<_i5.DsaRouteProblemsModel>,
+              _i5.ReadAllRoutesProblemsData>>(
+      useCasesModule.readDsaAllRoutesProblems);
   gh.singleton<_i5.AppRepository>(modelModule.appRepository);
-  gh.singleton<_i5.CrossDsaFacade>(useCasesModule.crossDsaFacade);
+  gh.singleton<_i5.DashboardFacade>(useCasesModule.dashboardUseCasesFacade);
+  gh.singleton<_i7.DashboardViewModel>(viewModelModule.dashboardViewModel);
+  gh.singleton<_i8.DsaRoutesViewModel>(viewModelModule.dsaRoutesViewModel);
   gh.singleton<_i4.FutureCommandUseCase<_i5.SaveDsaRoutesProblemsData>>(
       useCasesModule.saveDsaRoutesProblems);
   gh.singleton<_i4.FutureCommandUseCase<_i5.SaveDsaProblemData>>(
@@ -73,21 +87,6 @@ Future<_i1.GetIt> $initGetIt(
           _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
               _i5.ReadAllDsaProblemsFilteringData>>(
       useCasesModule.readAllDsaProblemsFiltering);
-  gh.singleton<_i4.StreamQueryUseCase<_i5.StatsModel, _i5.ReadStatsData>>(
-      useCasesModule.readStatsUseCase);
-  gh.singleton<
-      _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
-          _i5.ReadSimilarProblemsData>>(useCasesModule.readSimilarProblems);
-  gh.singleton<
-      _i4.StreamQueryUseCase<_i5.DsaProblemModel?,
-          _i5.ReadRandomProblemsData>>(useCasesModule.readRandomProblems);
-  gh.singleton<
-          _i4.StreamQueryUseCase<Iterable<_i5.DsaRouteProblemsModel>,
-              _i5.ReadAllRoutesProblemsData>>(
-      useCasesModule.readDsaAllRoutesProblems);
-  gh.singleton<_i5.DashboardFacade>(useCasesModule.dashboardUseCasesFacade);
-  gh.singleton<_i7.DashboardViewModel>(viewModelModule.dashboardViewModel);
-  gh.singleton<_i8.DsaRoutesViewModel>(viewModelModule.dsaRoutesViewModel);
   gh.singleton<_i5.DsaUseCasesFacade>(useCasesModule.dsaUseCasesFacade);
   gh.singleton<_i4.FutureCommandUseCase<_i5.AppInitFirstTimeData>>(
       useCasesModule.appInitFirstTime);
@@ -136,12 +135,51 @@ class _$UseCasesModule extends _i12.UseCasesModule {
   _i5.ReadAllDsaProblems get readAllDsaProblems =>
       _i5.ReadAllDsaProblems(_getIt<_i5.DsaRepository>());
   @override
+  _i5.ReadStatsUseCase get readStatsUseCase => _i5.ReadStatsUseCase(
+        _getIt<
+            _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
+                _i5.ReadAllDsaProblemsData>>(),
+        _getIt<_i5.DsaRepository>(),
+      );
+  @override
+  _i5.ReadSimilarProblemsUseCase get readSimilarProblems =>
+      _i5.ReadSimilarProblemsUseCase(
+        _getIt<
+            _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
+                _i5.ReadAllDsaProblemsData>>(),
+        _getIt<_i5.DsaRepository>(),
+      );
+  @override
+  _i5.ReadRandomProblemsUseCase get readRandomProblems =>
+      _i5.ReadRandomProblemsUseCase(
+        _getIt<
+            _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
+                _i5.ReadAllDsaProblemsData>>(),
+        _getIt<_i5.DsaRepository>(),
+      );
+  @override
   _i5.ReadAllRoutes get readAllRoutes =>
       _i5.ReadAllRoutes(_getIt<_i5.DsaRoutesRepository>());
   @override
-  _i5.CrossDsaFacade get crossDsaFacade => _i5.CrossDsaFacade(_getIt<
-      _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
-          _i5.ReadAllDsaProblemsData>>());
+  _i5.ReadAllRoutesProblems get readDsaAllRoutesProblems =>
+      _i5.ReadAllRoutesProblems(
+        _getIt<
+            _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
+                _i5.ReadAllDsaProblemsData>>(),
+        _getIt<
+            _i4.StreamQueryUseCase<Iterable<_i5.DsaRouteModel>,
+                _i5.ReadAllRoutesData>>(),
+      );
+  @override
+  _i5.DashboardFacade get dashboardUseCasesFacade => _i5.DashboardFacade(
+        _getIt<
+            _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
+                _i5.ReadSimilarProblemsData>>(),
+        _getIt<_i4.StreamQueryUseCase<_i5.StatsModel, _i5.ReadStatsData>>(),
+        _getIt<
+            _i4.StreamQueryUseCase<_i5.DsaProblemModel?,
+                _i5.ReadRandomProblemsData>>(),
+      );
   @override
   _i5.SaveDsaRoutesProblems get saveDsaRoutesProblems =>
       _i5.SaveDsaRoutesProblems(_getIt<_i5.AppRepository>());
@@ -164,43 +202,10 @@ class _$UseCasesModule extends _i12.UseCasesModule {
   @override
   _i5.ReadAllDsaProblemsFiltering get readAllDsaProblemsFiltering =>
       _i5.ReadAllDsaProblemsFiltering(
-        _getIt<_i5.CrossDsaFacade>(),
-        _getIt<_i5.DsaRepository>(),
-      );
-  @override
-  _i5.ReadStatsUseCase get readStatsUseCase => _i5.ReadStatsUseCase(
-        _getIt<_i5.CrossDsaFacade>(),
-        _getIt<_i5.DsaRepository>(),
-      );
-  @override
-  _i5.ReadSimilarProblemsUseCase get readSimilarProblems =>
-      _i5.ReadSimilarProblemsUseCase(
-        _getIt<_i5.CrossDsaFacade>(),
-        _getIt<_i5.DsaRepository>(),
-      );
-  @override
-  _i5.ReadRandomProblemsUseCase get readRandomProblems =>
-      _i5.ReadRandomProblemsUseCase(
-        _getIt<_i5.CrossDsaFacade>(),
-        _getIt<_i5.DsaRepository>(),
-      );
-  @override
-  _i5.ReadAllRoutesProblems get readDsaAllRoutesProblems =>
-      _i5.ReadAllRoutesProblems(
-        _getIt<_i5.CrossDsaFacade>(),
         _getIt<
-            _i4.StreamQueryUseCase<Iterable<_i5.DsaRouteModel>,
-                _i5.ReadAllRoutesData>>(),
-      );
-  @override
-  _i5.DashboardFacade get dashboardUseCasesFacade => _i5.DashboardFacade(
-        _getIt<
-            _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
-                _i5.ReadSimilarProblemsData>>(),
-        _getIt<_i4.StreamQueryUseCase<_i5.StatsModel, _i5.ReadStatsData>>(),
-        _getIt<
-            _i4.StreamQueryUseCase<_i5.DsaProblemModel?,
-                _i5.ReadRandomProblemsData>>(),
+            _i4.StreamQueryUseCase<Iterable<_i5.DsaRouteProblemsModel>,
+                _i5.ReadAllRoutesProblemsData>>(),
+        _getIt<_i5.DsaRepository>(),
       );
   @override
   _i5.DsaUseCasesFacade get dsaUseCasesFacade => _i5.DsaUseCasesFacade(

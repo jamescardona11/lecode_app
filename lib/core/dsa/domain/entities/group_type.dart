@@ -20,7 +20,7 @@ enum GroupType {
         'Top Interview': GroupType.topInterview,
         'Curated Algo': GroupType.algo,
       }[value] ??
-      GroupType.algo;
+      GroupType.others;
 
   @override
   String toString() => value;

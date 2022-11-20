@@ -6,18 +6,17 @@ class DsaListState extends BaseState {
   const DsaListState({
     this.itemsPagination = 0,
     this.items = const [],
-    this.showFilterList = false,
+    this.initialFilteringData = const FilteringData(),
   });
 
   final int itemsPagination;
   final Iterable<DsaProblemModel> items;
-  final bool showFilterList;
+  final FilteringData initialFilteringData;
 
   @override
   List<Object?> get props => [
         itemsPagination,
         items,
-        showFilterList,
       ];
 
   DsaListState copyWith({
@@ -28,7 +27,6 @@ class DsaListState extends BaseState {
     return DsaListState(
       itemsPagination: itemsPagination ?? this.itemsPagination,
       items: items ?? this.items,
-      showFilterList: showFilterList ?? this.showFilterList,
     );
   }
 }
