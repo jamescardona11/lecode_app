@@ -6,3 +6,10 @@ This release allowed me to explore using various packages I created to make it e
 
 ## Version 1
 ![](reusable_ui.png)
+
+
+
+# Version 2
+Goal: 
+- Web version
+- Read information from leetcode
