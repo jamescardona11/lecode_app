@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lepath_app/config/theme/styles/styles.dart';
 
 import 'flexible_bar.dart';
 
@@ -11,11 +10,15 @@ class SliverBar extends StatelessWidget {
     required this.title,
     required this.description,
     this.showProgress = true,
+    required this.icon,
+    required this.color,
   }) : super(key: key);
 
   final String title;
   final String description;
+  final IconData icon;
   final bool showProgress;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +28,8 @@ class SliverBar extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const FaIcon(
-                FontAwesomeIcons.code,
+              FaIcon(
+                icon,
                 size: 18,
               ),
               const SizedBox(width: 5),
@@ -39,11 +42,11 @@ class SliverBar extends StatelessWidget {
           const SizedBox(height: 5),
         ],
       ),
-      backgroundColor: AppColors.blueBlack,
+      backgroundColor: color,
       pinned: false,
       floating: true,
       snap: true,
-      expandedHeight: showProgress ? 210.0 : 150,
+      expandedHeight: showProgress ? 220.0 : 150,
       flexibleSpace: FlexibleSpaceBar(
         background: FlexibleBar(
           description: description,

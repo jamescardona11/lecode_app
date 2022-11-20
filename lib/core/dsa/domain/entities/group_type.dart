@@ -1,6 +1,6 @@
 enum GroupType {
-  blind75('Blind75'),
-  grind75('Grind75'),
+  blind75('Blind 75'),
+  grind75('Grind 75'),
   topLiked('Top Liked'),
   sixtyBasic('Sixty Basic'),
   topInterview('Top Interview'),
@@ -13,8 +13,8 @@ enum GroupType {
 
   static GroupType fromString(String value) =>
       {
-        'Blind75': GroupType.blind75,
-        'Grind75': GroupType.grind75,
+        'Blind 75': GroupType.blind75,
+        'Grind 75': GroupType.grind75,
         'Top Liked': GroupType.topLiked,
         'Sixty Basic': GroupType.sixtyBasic,
         'Top Interview': GroupType.topInterview,

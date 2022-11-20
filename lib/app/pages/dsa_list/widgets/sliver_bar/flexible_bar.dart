@@ -42,7 +42,7 @@ class _FlexibleBarState extends State<FlexibleBar> {
               color: AppColors.white,
             ),
           ),
-          const SizedBox(height: 5),
+          const SizedBox(height: 8),
           if (widget.showProgress)
             Padding(
               padding: const EdgeInsets.only(
@@ -52,12 +52,12 @@ class _FlexibleBarState extends State<FlexibleBar> {
               ),
               child: Row(
                 children: [
-                  Expanded(
+                  const Expanded(
                     child: LinearProgressIndicator(
                       minHeight: 3,
-                      backgroundColor: AppColors.grey3,
+                      backgroundColor: Colors.black12,
                       valueColor: const AlwaysStoppedAnimation<Color>(
-                        AppColors.green,
+                        AppColors.white,
                       ),
                       value: 0.8,
                     ),

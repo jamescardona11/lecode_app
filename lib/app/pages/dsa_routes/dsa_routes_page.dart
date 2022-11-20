@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lepath_app/app/pages/dsa_routes/dsa_route_detail_page.dart';
 import 'package:lepath_app/app/widgets/widgets.dart';
 import 'package:lepath_app/base/base_app/base.dart';
 import 'package:lepath_app/config/di/di.dart';
@@ -74,11 +75,13 @@ class _ItemRoutesWidget extends StatefulWidget {
 class _ItemRoutesWidgetState extends State<_ItemRoutesWidget> {
   bool enable = false;
   late Color color;
+  late IconData icon;
 
   @override
   void initState() {
     super.initState();
     color = colorsForRoutes(widget.routeProblemsModel.id);
+    icon = iconsForRoutes(widget.routeProblemsModel.id);
   }
 
   @override
@@ -86,7 +89,18 @@ class _ItemRoutesWidgetState extends State<_ItemRoutesWidget> {
     return RoundContainer(
       color: AppColors.white,
       showDefaultShadow: true,
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => DsaRouteDetailPage(
+              dsaRouteProblemsModel: widget.routeProblemsModel,
+              color: color,
+              icon: icon,
+            ),
+          ),
+        );
+      },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -99,7 +113,7 @@ class _ItemRoutesWidgetState extends State<_ItemRoutesWidget> {
               padding: const EdgeInsets.all(14.0),
               child: Center(
                 child: FaIcon(
-                  iconsForRoutes(widget.routeProblemsModel.id),
+                  icon,
                   color: AppColors.white,
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:grouped_list/sliver_grouped_list.dart';
 import 'package:lepath_app/app/pages/dsa_list/viewmodel/viewmodel.dart';
 import 'package:lepath_app/app/widgets/problem_item_widget.dart';
@@ -17,6 +18,7 @@ class DsaListView extends MvvMProviderWidget<DsaListViewModel, DsaListState> {
     required this.description,
     this.showProgress = true,
     this.color = AppColors.blueBlack,
+    this.icon = FontAwesomeIcons.code,
     this.filteringData = const FilteringData(),
   });
 
@@ -24,6 +26,7 @@ class DsaListView extends MvvMProviderWidget<DsaListViewModel, DsaListState> {
   final String description;
   final bool showProgress;
   final Color color;
+  final IconData icon;
   final FilteringData filteringData;
 
   @override
@@ -38,6 +41,8 @@ class DsaListView extends MvvMProviderWidget<DsaListViewModel, DsaListState> {
           title: title,
           description: description,
           showProgress: showProgress,
+          icon: icon,
+          color: color,
         ),
         SliverPadding(
           padding: const EdgeInsets.only(
