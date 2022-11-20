@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class FilteringData {
   const FilteringData({
     this.route = '',
@@ -20,4 +21,9 @@ class FilteringData {
   bool get byAnyDifficulty => isDifficultyEmpty || difficulty.length == 3;
 
   bool get isEmpty => isTopicsEmpty && isDifficultyEmpty && groupBy.isEmpty;
+
+  @override
+  String toString() {
+    return 'FilteringData(route: $route, topics: $topics, difficulty: $difficulty, groupBy: $groupBy, onlySolved: $onlySolved, onlyUnsolved: $onlyUnsolved)';
+  }
 }

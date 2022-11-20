@@ -50,8 +50,6 @@ class DsaListView extends MvvMProviderWidget<DsaListViewModel, DsaListState> {
             groupSeparatorBuilder: (String groupByValue) => Text(groupByValue),
             itemBuilder: (_, problem) => ProblemItemWidget(
               problem: problem,
-              // isLast: s == state.items.length - 1,
-
               onTapCheckbox: () {
                 viewModel.markProblemAsRead(problem.id);
               },

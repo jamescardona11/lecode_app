@@ -8,6 +8,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 Future<T> showFloatingModalBottomSheet<T>({
   required BuildContext context,
+  FilteringData? initialData,
   ValueChanged<FilteringData>? onFilterTap,
 }) async {
   final result = await showCustomModalBottomSheet(
@@ -15,6 +16,7 @@ Future<T> showFloatingModalBottomSheet<T>({
     builder: (_) => const SizedBox(),
     containerWidget: (_, animation, child) => FloatingModal(
       onFilterTap: onFilterTap,
+      initialData: initialData,
     ),
     expand: false,
   );
@@ -26,16 +28,31 @@ class FloatingModal extends StatefulWidget {
   const FloatingModal({
     Key? key,
     this.onFilterTap,
+    this.initialData,
   }) : super(key: key);
 
   final ValueChanged<FilteringData>? onFilterTap;
+  final FilteringData? initialData;
 
   @override
   State<FloatingModal> createState() => _FloatingModalState();
 }
 
 class _FloatingModalState extends State<FloatingModal> {
-  bool checked = false;
+  List<String> difficultyTags = [];
+  String groupByTag = '';
+  List<String> topicsTags = [];
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialData != null) {
+      difficultyTags.addAll(widget.initialData!.difficulty);
+      groupByTag = widget.initialData!.groupBy;
+      topicsTags.addAll(widget.initialData!.topics);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -163,20 +180,17 @@ class _FloatingModalState extends State<FloatingModal> {
     );
   }
 
-  List<String> difficultyTags = [];
   List<String> difficultyOptions = [
     'Easy',
     'Medium',
     'Hard',
   ];
 
-  String groupByTag = '';
   List<String> groupsOptions = [
     'Difficulty',
     'Topic',
   ];
 
-  List<String> topicsTags = [];
   List<String> topicOptions = [
     'Array',
     'Stack',

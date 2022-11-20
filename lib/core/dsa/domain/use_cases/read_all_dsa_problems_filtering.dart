@@ -66,16 +66,18 @@ class ReadAllDsaProblemsFiltering
   ) {
     return Stream.value(items.where(
       (item) {
-        bool matchTopics = data.filteringData.topics.any(
-          (topic) => item.topics.contains(topic),
-        );
+        bool matchTopics = data.filteringData.isTopicsEmpty
+            ? true
+            : data.filteringData.topics.any(
+                (topic) => item.topics.contains(topic),
+              );
 
         bool matchDifficulty = data.filteringData.byAnyDifficulty
             ? true
             : data.filteringData.difficulty
                 .any((difficulty) => item.difficulty == difficulty);
 
-        return matchTopics || matchDifficulty;
+        return matchTopics && matchDifficulty;
       },
     ).take(data.takeX));
   }

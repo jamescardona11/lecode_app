@@ -17,7 +17,7 @@ class DsaListViewModel extends BaseViewModel<DsaListState> {
 
   @override
   void close() {
-    _streamProblemsSubscription.cancel();
+    // _streamProblemsSubscription.cancel();
     super.close();
   }
 
