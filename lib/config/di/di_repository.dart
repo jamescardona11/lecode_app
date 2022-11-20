@@ -10,5 +10,5 @@ abstract class ModelModule {
   DsaRepository get dsaRepository;
 
   @singleton
-  DsaContentRepository get dsaContentRepository;
+  DsaRoutesRepository get dsaRoutesRepository;
 }

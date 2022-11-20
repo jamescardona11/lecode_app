@@ -20,8 +20,8 @@ abstract class UseCasesModule {
   @Singleton(as: FutureCommandUseCase<AppInitFirstTimeData>)
   AppInitFirstTime get appInitFirstTime;
 
-  @Singleton(as: FutureCommandUseCase<SaveDsaGroupsProblemsData>)
-  SaveDsaGroupsProblems get saveDsaGroupsProblems;
+  @Singleton(as: FutureCommandUseCase<SaveDsaRoutesProblemsData>)
+  SaveDsaRoutesProblems get saveDsaRoutesProblems;
 
   @Singleton(as: FutureCommandUseCase<SaveDsaProblemData>)
   SaveDsaProblem get saveDsaProblem;
@@ -57,13 +57,12 @@ abstract class UseCasesModule {
   @Singleton(as: StreamQueryUseCase<DsaProblemModel?, ReadRandomProblemsData>)
   ReadRandomProblemsUseCase get readRandomProblems;
 
-  /// dsa content ↓
-  @Singleton(
-      as: StreamQueryUseCase<Iterable<DsaGroupsModel>, ReadAllGroupsData>)
-  ReadAllGroups get readAllGroups;
+  /// dsa routes ↓
+  @Singleton(as: StreamQueryUseCase<Iterable<DsaRouteModel>, ReadAllRoutesData>)
+  ReadAllRoutes get readAllRoutes;
 
   @Singleton(
-      as: StreamQueryUseCase<Iterable<DsaGroupsProblemsModel>,
-          ReadAllGroupsProblemsData>)
-  ReadAllGroupsProblems get readDsaAllGroupsProblems;
+      as: StreamQueryUseCase<Iterable<DsaRouteProblemsModel>,
+          ReadAllRoutesProblemsData>)
+  ReadAllRoutesProblems get readDsaAllRoutesProblems;
 }

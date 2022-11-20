@@ -12,8 +12,8 @@ DsaContentProblemsAggregateDto _$DsaContentProblemsAggregateDtoFromJson(
       dsaProblemDto: (json['entries'] as List<dynamic>)
           .map((e) => DsaProblemDto.fromJson(e as Map<String, dynamic>))
           .toList(),
-      groups: (json['groups'] as List<dynamic>)
-          .map((e) => DsaGroupsDto.fromJson(e as Map<String, dynamic>))
+      routes: (json['routes'] as List<dynamic>)
+          .map((e) => DsaRoutesDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -21,5 +21,5 @@ Map<String, dynamic> _$DsaContentProblemsAggregateDtoToJson(
         DsaContentProblemsAggregateDto instance) =>
     <String, dynamic>{
       'entries': instance.dsaProblemDto,
-      'groups': instance.groups,
+      'routes': instance.routes,
     };

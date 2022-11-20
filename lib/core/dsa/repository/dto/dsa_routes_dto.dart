@@ -2,11 +2,11 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:lepath_app/core/core.dart';
 import 'package:pocket/pocket.dart';
 
-part 'dsa_groups_dto.g.dart';
+part 'dsa_routes_dto.g.dart';
 
 @JsonSerializable()
-class DsaGroupsDto extends IPocketModel {
-  DsaGroupsDto({
+class DsaRoutesDto extends IPocketModel {
+  DsaRoutesDto({
     required this.id,
     required this.description,
     required this.entries,
@@ -21,17 +21,17 @@ class DsaGroupsDto extends IPocketModel {
   final List<int> entries;
 
   @override
-  Map<String, dynamic> toJson() => _$DsaGroupsDtoToJson(this);
+  Map<String, dynamic> toJson() => _$DsaRoutesDtoToJson(this);
 
-  DsaGroupsModel toEntity() => DsaGroupsModel(
+  DsaRouteModel toEntity() => DsaRouteModel(
         id: id,
         description: description,
         setProblems: entries,
       );
 
-  static DsaGroupsModel toEntityByJson(Map<String, dynamic> json) =>
-      DsaGroupsDto.fromJson(json).toEntity();
+  static DsaRouteModel toEntityByJson(Map<String, dynamic> json) =>
+      DsaRoutesDto.fromJson(json).toEntity();
 
-  factory DsaGroupsDto.fromJson(Map<String, dynamic> json) =>
-      _$DsaGroupsDtoFromJson(json);
+  factory DsaRoutesDto.fromJson(Map<String, dynamic> json) =>
+      _$DsaRoutesDtoFromJson(json);
 }

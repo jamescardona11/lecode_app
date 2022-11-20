@@ -13,7 +13,7 @@ class DsaProblemDto extends IPocketModel {
     required this.url,
     required this.difficulty,
     required this.topics,
-    required this.groups,
+    required this.routes,
     required this.acceptanceRate,
     required this.myRate,
     required this.notes,
@@ -29,7 +29,7 @@ class DsaProblemDto extends IPocketModel {
   final String url;
   final String difficulty;
   final List<String> topics;
-  final List<String> groups;
+  final List<String> routes;
   final String notes;
   final List<String> explanation;
   final bool solved;
@@ -54,7 +54,7 @@ class DsaProblemDto extends IPocketModel {
         url: url,
         difficulty: difficulty,
         topics: topics,
-        groups: groups.map((e) => GroupType.fromString(e)).toList(),
+        routes: routes.map((e) => GroupType.fromString(e)).toList(),
         acceptanceRate: acceptanceRate,
         myRate: myRate,
         notes: notes,
@@ -76,7 +76,7 @@ class DsaProblemDto extends IPocketModel {
     String? url,
     String? difficulty,
     List<String>? topics,
-    List<String>? groups,
+    List<String>? routes,
     String? notes,
     List<String>? explanation,
     bool? solved,
@@ -91,7 +91,7 @@ class DsaProblemDto extends IPocketModel {
       url: url ?? this.url,
       difficulty: difficulty ?? this.difficulty,
       topics: topics ?? this.topics,
-      groups: groups ?? this.groups,
+      routes: routes ?? this.routes,
       notes: notes ?? this.notes,
       explanation: explanation ?? this.explanation,
       solved: solved ?? this.solved,
@@ -104,6 +104,6 @@ class DsaProblemDto extends IPocketModel {
 
   @override
   String toString() {
-    return 'DsaProblemDto(id: $id, name: $name, url: $url, difficulty: $difficulty, topics: $topics, groups: $groups, notes: $notes, explanation: $explanation, solved: $solved, solvedDate: $solvedDate, acceptanceRate: $acceptanceRate, myRate: $myRate, mySolution: $mySolution)';
+    return 'DsaProblemDto(id: $id, name: $name, url: $url, difficulty: $difficulty, topics: $topics, routes: $routes, notes: $notes, explanation: $explanation, solved: $solved, solvedDate: $solvedDate, acceptanceRate: $acceptanceRate, myRate: $myRate, mySolution: $mySolution)';
   }
 }

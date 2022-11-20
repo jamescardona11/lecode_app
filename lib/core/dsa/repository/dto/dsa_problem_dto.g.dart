@@ -14,8 +14,8 @@ DsaProblemDto _$DsaProblemDtoFromJson(Map<String, dynamic> json) =>
       difficulty: json['difficulty'] as String,
       topics:
           (json['topics'] as List<dynamic>).map((e) => e as String).toList(),
-      groups:
-          (json['groups'] as List<dynamic>).map((e) => e as String).toList(),
+      routes:
+          (json['routes'] as List<dynamic>).map((e) => e as String).toList(),
       acceptanceRate: (json['acceptance_rate'] as num).toDouble(),
       myRate: (json['my_rate'] as num).toDouble(),
       notes: json['notes'] as String,
@@ -36,7 +36,7 @@ Map<String, dynamic> _$DsaProblemDtoToJson(DsaProblemDto instance) =>
       'url': instance.url,
       'difficulty': instance.difficulty,
       'topics': instance.topics,
-      'groups': instance.groups,
+      'routes': instance.routes,
       'notes': instance.notes,
       'explanation': instance.explanation,
       'solved': instance.solved,

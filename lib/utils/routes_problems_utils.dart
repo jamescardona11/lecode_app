@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lepath_app/config/theme/styles/styles.dart';
 
-IconData iconsForGroups(String value) =>
+IconData iconsForRoutes(String value) =>
     {
       'Blind 75': FontAwesomeIcons.chessKnight,
       'Grind 75': FontAwesomeIcons.chessRook,
@@ -13,7 +13,7 @@ IconData iconsForGroups(String value) =>
     }[value] ??
     FontAwesomeIcons.feather;
 
-Color colorsForGroups(String value) =>
+Color colorsForRoutes(String value) =>
     {
       'Blind 75': AppColors.blue,
       'Grind 75': AppColors.greenLight,

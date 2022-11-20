@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lepath_app/app/pages/dsa_list/dsa_list_page.dart';
 import 'package:lepath_app/app/widgets/widgets.dart';
 
 import 'dashboard/dashboard_page.dart';
-import 'dsa_content/dsa_content_layout.dart';
+import 'dsa_list/dsa_list_page.dart';
+import 'dsa_routes/dsa_routes_page.dart';
 
 class HomeLayout extends StatefulWidget {
   /// default constructor
@@ -28,7 +28,7 @@ class _HomeLayoutState extends State<HomeLayout> {
         physics: const NeverScrollableScrollPhysics(),
         children: const [
           DashboardPage(),
-          DsaContentLayout(),
+          DsaRoutesPage(),
           DsaListPage(),
           DsaListPage(),
         ],
@@ -41,7 +41,7 @@ class _HomeLayoutState extends State<HomeLayout> {
             icon: FontAwesomeIcons.house,
           ),
           BottomElevenItem(
-            label: 'Groups',
+            label: 'Routes',
             icon: FontAwesomeIcons.barsProgress,
           ),
           BottomElevenItem(

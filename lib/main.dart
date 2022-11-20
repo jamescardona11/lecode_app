@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
+      title: 'LeCode App',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme(),
       home: const HomeLayout(),

@@ -11,8 +11,8 @@ import 'package:pocket/pocket.dart' as _i3;
 import 'package:projectile/projectile.dart' as _i6;
 
 import '../../app/pages/dashboard/viewmodel/dashboard_viewmodel.dart' as _i7;
-import '../../app/pages/dsa_content/viewmodel/viewmodel.dart' as _i8;
 import '../../app/pages/dsa_list/viewmodel/viewmodel.dart' as _i9;
+import '../../app/pages/dsa_routes/viewmodel/viewmodel.dart' as _i8;
 import '../../base/base.dart' as _i4;
 import '../../core/core.dart' as _i5;
 import 'di_external.dart' as _i10;
@@ -45,8 +45,8 @@ Future<_i1.GetIt> $initGetIt(
     instanceName: 'BaseURL',
   );
   gh.singleton<_i4.AppSharedPreferences>(externalModule.appSharedPreferences);
-  gh.singleton<_i5.DsaContentRepository>(modelModule.dsaContentRepository);
   gh.singleton<_i5.DsaRepository>(modelModule.dsaRepository);
+  gh.singleton<_i5.DsaRoutesRepository>(modelModule.dsaRoutesRepository);
   gh.singleton<_i4.FutureCommandUseCase<_i5.MarkAsSolvedData>>(
       useCasesModule.markAsSolved);
   gh.singleton<_i6.Projectile>(
@@ -55,12 +55,12 @@ Future<_i1.GetIt> $initGetIt(
       _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
           _i5.ReadAllDsaProblemsData>>(useCasesModule.readAllDsaProblems);
   gh.singleton<
-      _i4.StreamQueryUseCase<Iterable<_i5.DsaGroupsModel>,
-          _i5.ReadAllGroupsData>>(useCasesModule.readAllGroups);
+      _i4.StreamQueryUseCase<Iterable<_i5.DsaRouteModel>,
+          _i5.ReadAllRoutesData>>(useCasesModule.readAllRoutes);
   gh.singleton<_i5.AppRepository>(modelModule.appRepository);
   gh.singleton<_i5.CrossDsaFacade>(useCasesModule.crossDsaFacade);
-  gh.singleton<_i4.FutureCommandUseCase<_i5.SaveDsaGroupsProblemsData>>(
-      useCasesModule.saveDsaGroupsProblems);
+  gh.singleton<_i4.FutureCommandUseCase<_i5.SaveDsaRoutesProblemsData>>(
+      useCasesModule.saveDsaRoutesProblems);
   gh.singleton<_i4.FutureCommandUseCase<_i5.SaveDsaProblemData>>(
       useCasesModule.saveDsaProblem);
   gh.singleton<
@@ -82,12 +82,12 @@ Future<_i1.GetIt> $initGetIt(
       _i4.StreamQueryUseCase<_i5.DsaProblemModel?,
           _i5.ReadRandomProblemsData>>(useCasesModule.readRandomProblems);
   gh.singleton<
-          _i4.StreamQueryUseCase<Iterable<_i5.DsaGroupsProblemsModel>,
-              _i5.ReadAllGroupsProblemsData>>(
-      useCasesModule.readDsaAllGroupsProblems);
+          _i4.StreamQueryUseCase<Iterable<_i5.DsaRouteProblemsModel>,
+              _i5.ReadAllRoutesProblemsData>>(
+      useCasesModule.readDsaAllRoutesProblems);
   gh.singleton<_i5.DashboardFacade>(useCasesModule.dashboardUseCasesFacade);
   gh.singleton<_i7.DashboardViewModel>(viewModelModule.dashboardViewModel);
-  gh.singleton<_i8.DsaContentViewModel>(viewModelModule.dsaContentModel);
+  gh.singleton<_i8.DsaRoutesViewModel>(viewModelModule.dsaRoutesViewModel);
   gh.singleton<_i5.DsaUseCasesFacade>(useCasesModule.dsaUseCasesFacade);
   gh.singleton<_i4.FutureCommandUseCase<_i5.AppInitFirstTimeData>>(
       useCasesModule.appInitFirstTime);
@@ -111,11 +111,11 @@ class _$ModelModule extends _i11.ModelModule {
   final _i1.GetIt _getIt;
 
   @override
-  _i5.DsaContentRepository get dsaContentRepository =>
-      _i5.DsaContentRepository(_getIt<_i3.IPocketAdapter>());
-  @override
   _i5.DsaRepository get dsaRepository =>
       _i5.DsaRepository(_getIt<_i3.IPocketAdapter>());
+  @override
+  _i5.DsaRoutesRepository get dsaRoutesRepository =>
+      _i5.DsaRoutesRepository(_getIt<_i3.IPocketAdapter>());
   @override
   _i5.AppRepository get appRepository => _i5.AppRepository(
         _getIt<_i3.IPocketAdapter>(),
@@ -136,15 +136,15 @@ class _$UseCasesModule extends _i12.UseCasesModule {
   _i5.ReadAllDsaProblems get readAllDsaProblems =>
       _i5.ReadAllDsaProblems(_getIt<_i5.DsaRepository>());
   @override
-  _i5.ReadAllGroups get readAllGroups =>
-      _i5.ReadAllGroups(_getIt<_i5.DsaContentRepository>());
+  _i5.ReadAllRoutes get readAllRoutes =>
+      _i5.ReadAllRoutes(_getIt<_i5.DsaRoutesRepository>());
   @override
   _i5.CrossDsaFacade get crossDsaFacade => _i5.CrossDsaFacade(_getIt<
       _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
           _i5.ReadAllDsaProblemsData>>());
   @override
-  _i5.SaveDsaGroupsProblems get saveDsaGroupsProblems =>
-      _i5.SaveDsaGroupsProblems(_getIt<_i5.AppRepository>());
+  _i5.SaveDsaRoutesProblems get saveDsaRoutesProblems =>
+      _i5.SaveDsaRoutesProblems(_getIt<_i5.AppRepository>());
   @override
   _i5.SaveDsaProblem get saveDsaProblem =>
       _i5.SaveDsaProblem(_getIt<_i5.AppRepository>());
@@ -158,7 +158,7 @@ class _$UseCasesModule extends _i12.UseCasesModule {
                 _i4.AppEither<_i4.RemoteError,
                     _i4.RemoteSuccess<_i5.DsaContentProblemsAggregateDto>>,
                 _i5.FetchDsaProblemsData>>(),
-        _getIt<_i4.FutureCommandUseCase<_i5.SaveDsaGroupsProblemsData>>(),
+        _getIt<_i4.FutureCommandUseCase<_i5.SaveDsaRoutesProblemsData>>(),
         _getIt<_i4.FutureCommandUseCase<_i5.SaveDsaProblemData>>(),
       );
   @override
@@ -185,12 +185,12 @@ class _$UseCasesModule extends _i12.UseCasesModule {
         _getIt<_i5.DsaRepository>(),
       );
   @override
-  _i5.ReadAllGroupsProblems get readDsaAllGroupsProblems =>
-      _i5.ReadAllGroupsProblems(
+  _i5.ReadAllRoutesProblems get readDsaAllRoutesProblems =>
+      _i5.ReadAllRoutesProblems(
         _getIt<_i5.CrossDsaFacade>(),
         _getIt<
-            _i4.StreamQueryUseCase<Iterable<_i5.DsaGroupsModel>,
-                _i5.ReadAllGroupsData>>(),
+            _i4.StreamQueryUseCase<Iterable<_i5.DsaRouteModel>,
+                _i5.ReadAllRoutesData>>(),
       );
   @override
   _i5.DashboardFacade get dashboardUseCasesFacade => _i5.DashboardFacade(
@@ -225,9 +225,10 @@ class _$ViewModelModule extends _i13.ViewModelModule {
   _i7.DashboardViewModel get dashboardViewModel =>
       _i7.DashboardViewModel(_getIt<_i5.DashboardFacade>());
   @override
-  _i8.DsaContentViewModel get dsaContentModel => _i8.DsaContentViewModel(_getIt<
-      _i4.StreamQueryUseCase<Iterable<_i5.DsaGroupsProblemsModel>,
-          _i5.ReadAllGroupsProblemsData>>());
+  _i8.DsaRoutesViewModel get dsaRoutesViewModel =>
+      _i8.DsaRoutesViewModel(_getIt<
+          _i4.StreamQueryUseCase<Iterable<_i5.DsaRouteProblemsModel>,
+              _i5.ReadAllRoutesProblemsData>>());
   @override
   _i9.DsaListViewModel get dsaListViewModel =>
       _i9.DsaListViewModel(_getIt<_i5.DsaUseCasesFacade>());

@@ -89,16 +89,16 @@ class _ProblemItemWidgetState extends State<ProblemItemWidget> {
                         Expanded(
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: widget.problem.groups.length,
+                            itemCount: widget.problem.routes.length,
                             itemBuilder: (_, index) {
-                              final group = widget.problem.groups[index];
+                              final group = widget.problem.routes[index];
 
                               return Padding(
                                 padding: const EdgeInsets.only(left: 4),
                                 child: FaIcon(
-                                  iconsForGroups(group.value),
+                                  iconsForRoutes(group.value),
                                   size: 12,
-                                  color: colorsForGroups(group.value),
+                                  color: colorsForRoutes(group.value),
                                 ),
                               );
                             },
@@ -148,7 +148,7 @@ class _ProblemItemWidgetState extends State<ProblemItemWidget> {
       widget.problem.topics.map((e) => _iconsForTopics(e)).first;
 
   List<IconData> get iconByGroup =>
-      widget.problem.groups.map((e) => iconsForGroups(e.value)).toList();
+      widget.problem.routes.map((e) => iconsForRoutes(e.value)).toList();
 
   IconData _iconsForTopics(String value) =>
       {

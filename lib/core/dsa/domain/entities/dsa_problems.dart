@@ -9,7 +9,7 @@ class DsaProblemModel {
     required this.url,
     required this.difficulty,
     required this.topics,
-    required this.groups,
+    required this.routes,
     required this.acceptanceRate,
     required this.myRate,
     required this.notes,
@@ -24,7 +24,7 @@ class DsaProblemModel {
   final String url;
   final String difficulty;
   final List<String> topics;
-  final List<GroupType> groups;
+  final List<GroupType> routes;
   final String notes;
   final List<String> explanation;
   final double acceptanceRate;
@@ -39,12 +39,12 @@ class DsaProblemModel {
   bool get isMedium => difficulty == 'Medium';
   bool get isHard => difficulty == 'Hard';
 
-  bool get isGrind75 => groups.contains(GroupType.grind75);
-  bool get isBlind75 => groups.contains(GroupType.blind75);
-  bool get isTopInterview => groups.contains(GroupType.topInterview);
-  bool get isTopLiked => groups.contains(GroupType.topLiked);
-  bool get isLeetCode60 => groups.contains(GroupType.leetCode60);
-  bool get isAlgo => groups.contains(GroupType.algo);
+  bool get isGrind75 => routes.contains(GroupType.grind75);
+  bool get isBlind75 => routes.contains(GroupType.blind75);
+  bool get isTopInterview => routes.contains(GroupType.topInterview);
+  bool get isTopLiked => routes.contains(GroupType.topLiked);
+  bool get isLeetCode60 => routes.contains(GroupType.leetCode60);
+  bool get isAlgo => routes.contains(GroupType.algo);
   bool get isOther =>
       !isGrind75 &&
       !isBlind75 &&
@@ -62,7 +62,7 @@ class DsaProblemModel {
         other.url == url &&
         other.difficulty == difficulty &&
         listEquals(other.topics, topics) &&
-        listEquals(other.groups, groups) &&
+        listEquals(other.routes, routes) &&
         other.notes == notes &&
         listEquals(other.explanation, explanation) &&
         other.acceptanceRate == acceptanceRate &&
@@ -79,7 +79,7 @@ class DsaProblemModel {
         url.hashCode ^
         difficulty.hashCode ^
         topics.hashCode ^
-        groups.hashCode ^
+        routes.hashCode ^
         notes.hashCode ^
         explanation.hashCode ^
         acceptanceRate.hashCode ^
@@ -91,6 +91,6 @@ class DsaProblemModel {
 
   @override
   String toString() {
-    return 'DsaProblemModel(id: $id, name: $name, url: $url, difficulty: $difficulty, topics: $topics, groups: $groups, notes: $notes, explanation: $explanation, acceptanceRate: $acceptanceRate, myRate: $myRate, solved: $solved, mySolution: $mySolution, solvedDate: $solvedDate)';
+    return 'DsaProblemModel(id: $id, name: $name, url: $url, difficulty: $difficulty, topics: $topics, routes: $routes, notes: $notes, explanation: $explanation, acceptanceRate: $acceptanceRate, myRate: $myRate, solved: $solved, mySolution: $mySolution, solvedDate: $solvedDate)';
   }
 }

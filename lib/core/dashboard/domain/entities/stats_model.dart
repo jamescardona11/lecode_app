@@ -7,8 +7,8 @@ class StatsModel {
     this.daysLabel = const [],
     this.difficulty = const {},
     this.difficultySolved = const {},
-    this.groups = const {},
-    this.groupsSolved = const {},
+    this.routes = const {},
+    this.routesSolved = const {},
     this.topics = const {},
     this.topicsSolved = const {},
     this.total = 0,
@@ -22,8 +22,8 @@ class StatsModel {
   final List<String> daysLabel;
   final Map<String, int> difficulty;
   final Map<String, int> difficultySolved;
-  final Map<String, int> groups;
-  final Map<String, int> groupsSolved;
+  final Map<String, int> routes;
+  final Map<String, int> routesSolved;
   final Map<String, int> topics;
   final Map<String, int> topicsSolved;
   final int total;
@@ -49,8 +49,8 @@ class StatsModel {
         listEquals(other.daysStats, daysStats) &&
         mapEquals(other.difficulty, difficulty) &&
         mapEquals(other.difficultySolved, difficultySolved) &&
-        mapEquals(other.groups, groups) &&
-        mapEquals(other.groupsSolved, groupsSolved) &&
+        mapEquals(other.routes, routes) &&
+        mapEquals(other.routesSolved, routesSolved) &&
         mapEquals(other.topics, topics) &&
         mapEquals(other.topicsSolved, topicsSolved) &&
         other.total == total &&
@@ -65,8 +65,8 @@ class StatsModel {
         daysStats.hashCode ^
         difficulty.hashCode ^
         difficultySolved.hashCode ^
-        groups.hashCode ^
-        groupsSolved.hashCode ^
+        routes.hashCode ^
+        routesSolved.hashCode ^
         topics.hashCode ^
         topicsSolved.hashCode ^
         total.hashCode ^
@@ -77,6 +77,6 @@ class StatsModel {
 
   @override
   String toString() {
-    return 'StatsModel(total: $total, solved: $solved, averageAcceptanceRate: $averageAcceptanceRate, averageRate: $averageRate, last30Days: $last30Days, daysStats: $daysStats, daysLabel: $daysLabel, difficulty: $difficulty, difficultySolved: $difficultySolved, groups: $groups, groupsSolved: $groupsSolved, topics: $topics, topicsSolved: $topicsSolved)';
+    return 'StatsModel(total: $total, solved: $solved, averageAcceptanceRate: $averageAcceptanceRate, averageRate: $averageRate, last30Days: $last30Days, daysStats: $daysStats, daysLabel: $daysLabel, difficulty: $difficulty, difficultySolved: $difficultySolved, routes: $routes, routesSolved: $routesSolved, topics: $topics, topicsSolved: $topicsSolved)';
   }
 }

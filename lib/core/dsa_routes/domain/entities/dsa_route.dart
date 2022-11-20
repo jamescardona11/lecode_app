@@ -1,5 +1,5 @@
-class DsaGroupsModel {
-  DsaGroupsModel({
+class DsaRouteModel {
+  DsaRouteModel({
     required this.id,
     this.setProblems = const [],
     this.description = '',

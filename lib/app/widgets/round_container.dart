@@ -44,10 +44,10 @@ class RoundContainer extends StatelessWidget {
   List<BoxShadow>? get shadow => showDefaultShadow
       ? const [
           BoxShadow(
-            color: Colors.black38,
-            blurRadius: 3,
-            spreadRadius: -2,
-            offset: Offset(1, 1),
+            color: Colors.black26,
+            blurRadius: 10,
+            spreadRadius: -4,
+            // offset: Offset(1, 1),
           )
         ]
       : null;

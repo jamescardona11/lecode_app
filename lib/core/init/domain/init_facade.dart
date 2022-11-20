@@ -4,11 +4,11 @@ import 'package:lepath_app/core/core.dart';
 class InitUseCasesFacade {
   InitUseCasesFacade(
     this.fetchDsaProblems,
-    this.saveDsaGroupsProblems,
+    this.saveDsaRoutesProblems,
     this.saveDsaProblem,
   );
 
-  final FutureCommandUseCase<SaveDsaGroupsProblemsData> saveDsaGroupsProblems;
+  final FutureCommandUseCase<SaveDsaRoutesProblemsData> saveDsaRoutesProblems;
 
   final FutureCommandUseCase<SaveDsaProblemData> saveDsaProblem;
 

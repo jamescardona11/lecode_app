@@ -1,8 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pocket/pocket.dart';
 
-import 'dsa_groups_dto.dart';
 import 'dsa_problem_dto.dart';
+import 'dsa_routes_dto.dart';
 
 part 'dsa_content_problems_aggregate_dto.g.dart';
 
@@ -10,13 +10,13 @@ part 'dsa_content_problems_aggregate_dto.g.dart';
 class DsaContentProblemsAggregateDto extends IPocketModel {
   DsaContentProblemsAggregateDto({
     required this.dsaProblemDto,
-    required this.groups,
+    required this.routes,
   });
 
   factory DsaContentProblemsAggregateDto.def() =>
       DsaContentProblemsAggregateDto(
         dsaProblemDto: [],
-        groups: [],
+        routes: [],
       );
 
   @override
@@ -25,7 +25,7 @@ class DsaContentProblemsAggregateDto extends IPocketModel {
   @JsonKey(name: 'entries')
   final List<DsaProblemDto> dsaProblemDto;
 
-  final List<DsaGroupsDto> groups;
+  final List<DsaRoutesDto> routes;
 
   @override
   Map<String, dynamic> toJson() => _$DsaContentProblemsAggregateDtoToJson(this);

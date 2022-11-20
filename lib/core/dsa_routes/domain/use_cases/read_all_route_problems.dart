@@ -4,46 +4,46 @@ import 'package:lepath_app/base/base.dart';
 import 'package:lepath_app/core/core.dart';
 import 'package:rxdart/rxdart.dart';
 
-class ReadAllGroupsProblemsData implements CommandData {
-  const ReadAllGroupsProblemsData();
+class ReadAllRoutesProblemsData implements CommandData {
+  const ReadAllRoutesProblemsData();
 }
 
-class ReadAllGroupsProblems
+class ReadAllRoutesProblems
     implements
-        StreamQueryUseCase<Iterable<DsaGroupsProblemsModel>,
-            ReadAllGroupsProblemsData> {
-  ReadAllGroupsProblems(
+        StreamQueryUseCase<Iterable<DsaRouteProblemsModel>,
+            ReadAllRoutesProblemsData> {
+  ReadAllRoutesProblems(
     this.crossDsaFacade,
-    this.readAllGroups,
+    this.readAllRoutes,
   ) {
     _listenStreams();
   }
 
   final CrossDsaFacade crossDsaFacade;
-  final StreamQueryUseCase<Iterable<DsaGroupsModel>, ReadAllGroupsData>
-      readAllGroups;
+  final StreamQueryUseCase<Iterable<DsaRouteModel>, ReadAllRoutesData>
+      readAllRoutes;
 
-  final BehaviorSubject<Iterable<DsaGroupsProblemsModel>>
-      _dsaGroupsProblemsListStream =
-      BehaviorSubject<Iterable<DsaGroupsProblemsModel>>.seeded([]);
+  final BehaviorSubject<Iterable<DsaRouteProblemsModel>>
+      _dsaRoutesProblemsListStream =
+      BehaviorSubject<Iterable<DsaRouteProblemsModel>>.seeded([]);
 
   @override
-  Stream<Iterable<DsaGroupsProblemsModel>> call(
-          ReadAllGroupsProblemsData data) =>
-      _dsaGroupsProblemsListStream;
+  Stream<Iterable<DsaRouteProblemsModel>> call(
+          ReadAllRoutesProblemsData data) =>
+      _dsaRoutesProblemsListStream;
 
   void _listenStreams() {
     final allDsaStream =
         crossDsaFacade.readAllDsaProblems.call(const ReadAllDsaProblemsData());
 
-    final groupsStream = readAllGroups.call(const ReadAllGroupsData());
+    final routesStream = readAllRoutes.call(const ReadAllRoutesData());
 
     CombineLatestStream.combine2(
         allDsaStream,
-        groupsStream,
-        (dsa, groups) => groups.map((group) {
+        routesStream,
+        (dsa, routes) => routes.map((route) {
               Iterable<DsaProblemModel> problems = dsa.where((element) =>
-                  group.setProblems.contains(int.parse(element.id)));
+                  route.setProblems.contains(int.parse(element.id)));
 
               final secureLength = problems.isEmpty ? 1 : problems.length;
               double averageRate = 0.0;
@@ -57,15 +57,15 @@ class ReadAllGroupsProblems
               averageRate = averageRate / secureLength;
               averageAcceptance = averageAcceptance / secureLength;
 
-              return DsaGroupsProblemsModel(
-                id: group.id,
-                description: group.description,
+              return DsaRouteProblemsModel(
+                id: route.id,
+                description: route.description,
                 setProblems: problems,
                 averageRate: averageRate,
                 averageAcceptance: averageAcceptance,
               );
             })).listen((value) {
-      _dsaGroupsProblemsListStream.add(value);
+      _dsaRoutesProblemsListStream.add(value);
     });
   }
 }

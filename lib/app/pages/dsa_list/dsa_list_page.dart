@@ -1,7 +1,6 @@
 import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:grouped_list/grouped_list.dart';
 import 'package:grouped_list/sliver_grouped_list.dart';
 import 'package:lepath_app/app/pages/dsa_list/viewmodel/viewmodel.dart';
 import 'package:lepath_app/app/pages/dsa_list/widgets/search_bar.dart';

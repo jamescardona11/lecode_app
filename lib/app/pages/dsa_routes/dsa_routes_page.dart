@@ -9,107 +9,107 @@ import 'package:lepath_app/utils/utils.dart';
 
 import 'viewmodel/viewmodel.dart';
 
-class DsaContentPage
-    extends MvvMProviderWidget<DsaContentViewModel, DsaContentState> {
+class DsaRoutesPage
+    extends MvvMProviderWidget<DsaRoutesViewModel, DsaRoutesState> {
   /// default constructor
-  const DsaContentPage({
+  const DsaRoutesPage({
     super.key,
   });
 
   @override
-  DsaContentViewModel get viewModel => getIt<DsaContentViewModel>();
+  DsaRoutesViewModel get viewModel => getIt<DsaRoutesViewModel>();
 
   @override
-  Widget buildWidget(BuildContext context, DsaContentState state) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        top: 0,
-        left: AppSizes.defPadding,
-        right: AppSizes.defPadding,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.9,
-                crossAxisSpacing: 15,
-                mainAxisSpacing: 15,
-              ),
-              itemCount: state.groups.length,
-              itemBuilder: (_, index) => _ItemContentWidget(
-                groupsProblemsModel: state.groups[index],
+  Widget buildWidget(BuildContext context, DsaRoutesState state) {
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.only(
+          top: 0,
+          left: AppSizes.defPadding,
+          right: AppSizes.defPadding,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.9,
+                  crossAxisSpacing: 15,
+                  mainAxisSpacing: 15,
+                ),
+                itemCount: state.routes.length,
+                itemBuilder: (_, index) => _ItemRoutesWidget(
+                  routeProblemsModel: state.routes[index],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
 
-class _ItemContentWidget extends StatefulWidget {
+class _ItemRoutesWidget extends StatefulWidget {
   /// default constructor
-  const _ItemContentWidget({
+  const _ItemRoutesWidget({
     super.key,
-    required this.groupsProblemsModel,
+    required this.routeProblemsModel,
   });
 
-  final DsaGroupsProblemsModel groupsProblemsModel;
+  final DsaRouteProblemsModel routeProblemsModel;
 
   @override
-  State<_ItemContentWidget> createState() => _ItemContentWidgetState();
+  State<_ItemRoutesWidget> createState() => _ItemRoutesWidgetState();
 }
 
-class _ItemContentWidgetState extends State<_ItemContentWidget> {
+class _ItemRoutesWidgetState extends State<_ItemRoutesWidget> {
   bool enable = false;
   late Color color;
 
   @override
   void initState() {
     super.initState();
-    color = colorsForGroups(widget.groupsProblemsModel.id);
+    color = colorsForRoutes(widget.routeProblemsModel.id);
   }
 
   @override
   Widget build(BuildContext context) {
     return RoundContainer(
-      color: color,
+      color: AppColors.white,
       showDefaultShadow: true,
       onTap: () {},
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           DecoratedBox(
-            decoration: const BoxDecoration(
-              color: AppColors.white,
+            decoration: BoxDecoration(
+              color: color,
               shape: BoxShape.circle,
             ),
             child: Padding(
               padding: const EdgeInsets.all(14.0),
               child: Center(
                 child: FaIcon(
-                  iconsForGroups(widget.groupsProblemsModel.id),
-                  color: color,
+                  iconsForRoutes(widget.routeProblemsModel.id),
+                  color: AppColors.white,
                 ),
               ),
             ),
           ),
           const SizedBox(height: 10),
           Text(
-            widget.groupsProblemsModel.id,
+            widget.routeProblemsModel.id,
             style: Theme.of(context).textTheme.headline6!.copyWith(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
           ),
           Text(
-            '${widget.groupsProblemsModel.solved}/${widget.groupsProblemsModel.total}',
-            style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                  color: AppColors.pureWhite,
-                ),
+            '${widget.routeProblemsModel.solved}/${widget.routeProblemsModel.total}',
+            style: Theme.of(context).textTheme.bodyText2,
           ),
         ],
       ),

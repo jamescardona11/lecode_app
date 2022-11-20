@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:lepath_app/core/core.dart';
 
-class DsaGroupsProblemsModel {
-  DsaGroupsProblemsModel({
+class DsaRouteProblemsModel {
+  DsaRouteProblemsModel({
     required this.id,
     this.setProblems = const [],
     this.description = '',
@@ -22,7 +22,7 @@ class DsaGroupsProblemsModel {
   int get solved => setProblems.where((element) => element.isSolved).length;
 
   @override
-  bool operator ==(covariant DsaGroupsProblemsModel other) {
+  bool operator ==(covariant DsaRouteProblemsModel other) {
     if (identical(this, other)) return true;
 
     return other.id == id &&
@@ -45,6 +45,6 @@ class DsaGroupsProblemsModel {
 
   @override
   String toString() {
-    return 'DsaGroupsProblemsModel(id: $id, description: $description, setProblems: $setProblems, topics: $topics, averageRate: $averageRate, averageAcceptance: $averageAcceptance)';
+    return 'DsaRoutesProblemsModel(id: $id, description: $description, setProblems: $setProblems, topics: $topics, averageRate: $averageRate, averageAcceptance: $averageAcceptance)';
   }
 }

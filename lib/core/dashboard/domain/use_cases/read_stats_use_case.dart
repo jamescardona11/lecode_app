@@ -29,8 +29,8 @@ class ReadStatsUseCase
     final difficulty = <String, int>{};
     final difficultySolved = <String, int>{};
 
-    final groups = <String, int>{};
-    final groupsSolved = <String, int>{};
+    final routes = <String, int>{};
+    final routesSolved = <String, int>{};
 
     final topics = <String, int>{};
     final topicsSolved = <String, int>{};
@@ -43,7 +43,7 @@ class ReadStatsUseCase
     for (var item in items) {
       // All stats
       _getDifficulty(difficulty, item);
-      _getGroups(groups, item);
+      _getRoutes(routes, item);
       _getTopics(topics, item);
 
       // solved stats
@@ -55,7 +55,7 @@ class ReadStatsUseCase
         _statsForSolved(
           item,
           difficultySolved,
-          groupsSolved,
+          routesSolved,
           topicsSolved,
           daysBefore,
           now,
@@ -69,8 +69,8 @@ class ReadStatsUseCase
       last30Days: last30Days,
       difficulty: difficulty,
       difficultySolved: difficultySolved,
-      groups: groups,
-      groupsSolved: groupsSolved,
+      routes: routes,
+      routesSolved: routesSolved,
       topics: topics,
       topicsSolved: topicsSolved,
       total: items.length,
@@ -83,13 +83,13 @@ class ReadStatsUseCase
   void _statsForSolved(
     DsaProblemModel item,
     Map<String, int> difficultyCompleted,
-    Map<String, int> groupsCompleted,
+    Map<String, int> routesSolved,
     Map<String, int> topicsCompleted,
     List<int> daysBefore,
     DateTime now,
   ) {
     _getDifficulty(difficultyCompleted, item);
-    _getGroups(groupsCompleted, item);
+    _getRoutes(routesSolved, item);
     _getTopics(topicsCompleted, item);
 
     _updateDaysBefore(daysBefore, now, item.solvedDate!);
@@ -101,7 +101,7 @@ class ReadStatsUseCase
     if (item.isHard) _countMap('Hard', map);
   }
 
-  void _getGroups(Map<String, int> map, DsaProblemModel item) {
+  void _getRoutes(Map<String, int> map, DsaProblemModel item) {
     if (item.isBlind75) _countMap('Blind75', map);
     if (item.isGrind75) _countMap('Grind75', map);
     if (item.isLeetCode60) _countMap('LeetCode60', map);

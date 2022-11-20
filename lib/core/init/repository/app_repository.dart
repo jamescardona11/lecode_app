@@ -53,10 +53,10 @@ class AppRepository
     );
   }
 
-  Future<void> saveDsaGroupsProblems(
+  Future<void> saveDsaRoutesProblems(
       DsaContentProblemsAggregateDto problemsAggregate) async {
     await createMany(
-      problemsAggregate.groups,
+      problemsAggregate.routes,
       tableDsaGroupProblems,
     );
   }

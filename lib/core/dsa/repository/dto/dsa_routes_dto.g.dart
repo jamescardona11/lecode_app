@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dsa_groups_dto.dart';
+part of 'dsa_routes_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-DsaGroupsDto _$DsaGroupsDtoFromJson(Map<String, dynamic> json) => DsaGroupsDto(
+DsaRoutesDto _$DsaRoutesDtoFromJson(Map<String, dynamic> json) => DsaRoutesDto(
       id: json['id'] as String,
       description: json['description'] as String,
       entries:
@@ -14,7 +14,7 @@ DsaGroupsDto _$DsaGroupsDtoFromJson(Map<String, dynamic> json) => DsaGroupsDto(
               [],
     );
 
-Map<String, dynamic> _$DsaGroupsDtoToJson(DsaGroupsDto instance) =>
+Map<String, dynamic> _$DsaRoutesDtoToJson(DsaRoutesDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'description': instance.description,
