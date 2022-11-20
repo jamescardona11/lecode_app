@@ -42,7 +42,8 @@ class ReadAllRoutesProblems
     CombineLatestStream.combine2(
         allDsaStream,
         routesStream,
-        (dsa, routes) => routes.map((route) {
+        (Iterable<DsaProblemModel> dsa, Iterable<DsaRouteModel> routes) =>
+            routes.map((route) {
               Iterable<DsaProblemModel> problems = dsa.where((element) =>
                   route.setProblems.contains(int.parse(element.id)));
 

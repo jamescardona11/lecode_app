@@ -34,10 +34,9 @@ class AppRepository
   // crear my either dynamic para este caso
   Future<RemoteAppResponse<UpdateInfoModel>> getUpdatesInformation() {
     return getSingle<UpdateInfoModel>(
-      RemotePackage.get(
-        'exec',
-        queries: {'action': 'getUpdateInfo'},
-      ),
+      RemotePackage.get('exec',
+          queries: {'action': 'getUpdateInfo'},
+          headers: {'Content-Type': 'text/plain'}),
       UpdateInfoModel.fromJson,
     );
   }
