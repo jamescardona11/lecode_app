@@ -104,7 +104,7 @@ class ReadStatsUseCase
   void _getRoutes(Map<String, int> map, DsaProblemModel item) {
     if (item.isBlind75) _countMap('Blind75', map);
     if (item.isGrind75) _countMap('Grind75', map);
-    if (item.isLeetCode60) _countMap('LeetCode60', map);
+    if (item.isSixtyBasic) _countMap('Sixty Basic', map);
     if (item.isTopInterview) _countMap('Top Interview', map);
     if (item.isTopLiked) _countMap('Top Liked', map);
     if (item.isAlgo) _countMap('Curated Algo', map);

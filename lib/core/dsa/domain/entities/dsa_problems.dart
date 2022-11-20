@@ -43,14 +43,14 @@ class DsaProblemModel {
   bool get isBlind75 => routes.contains(GroupType.blind75);
   bool get isTopInterview => routes.contains(GroupType.topInterview);
   bool get isTopLiked => routes.contains(GroupType.topLiked);
-  bool get isLeetCode60 => routes.contains(GroupType.leetCode60);
+  bool get isSixtyBasic => routes.contains(GroupType.sixtyBasic);
   bool get isAlgo => routes.contains(GroupType.algo);
   bool get isOther =>
       !isGrind75 &&
       !isBlind75 &&
       !isTopInterview &&
       !isTopLiked &&
-      !isLeetCode60 &&
+      !isSixtyBasic &&
       !isAlgo;
 
   @override

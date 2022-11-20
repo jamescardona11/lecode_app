@@ -153,16 +153,17 @@ class _GraphBoxes extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Seek a random problem',
+                        'Pick one',
                         style: Theme.of(context)
                             .textTheme
                             .headline6!
                             .copyWith(color: AppColors.white),
                       ),
-                      const SizedBox(width: 5),
+                      const SizedBox(width: 8),
                       const FaIcon(
-                        FontAwesomeIcons.hurricane,
+                        FontAwesomeIcons.shuffle,
                         color: AppColors.white,
+                        size: 18,
                       )
                     ],
                   ),

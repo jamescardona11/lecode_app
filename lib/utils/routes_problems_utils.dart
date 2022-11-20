@@ -7,7 +7,7 @@ IconData iconsForRoutes(String value) =>
       'Blind 75': FontAwesomeIcons.chessKnight,
       'Grind 75': FontAwesomeIcons.chessRook,
       'Top Liked': FontAwesomeIcons.heartPulse,
-      'LeetCode Basic 60': FontAwesomeIcons.droplet,
+      'Sixty Basic': FontAwesomeIcons.droplet,
       'Top Interview': FontAwesomeIcons.brain,
       'Curated Algo': FontAwesomeIcons.cookieBite,
     }[value] ??
@@ -18,8 +18,7 @@ Color colorsForRoutes(String value) =>
       'Blind 75': AppColors.blue,
       'Grind 75': AppColors.greenLight,
       'Top Liked': AppColors.secondary,
-      'LeetCode Basic 60': AppColors.yellow,
-      'Leetcode basic 60': AppColors.yellow,
+      'Sixty Basic': AppColors.yellow,
       'Top Interview': AppColors.orange,
       'Top interview': AppColors.orange,
       'Curated Algo': AppColors.purple,
