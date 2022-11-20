@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lepath_app/app/pages/dsa_list/dsa_all_problems_page.dart';
-import 'package:lepath_app/app/pages/dsa_list/dsa_solved_problems_page.dart';
+import 'package:lepath_app/app/pages/solved_list/dsa_solved_problems_page.dart';
 import 'package:lepath_app/app/widgets/widgets.dart';
 
 import 'dashboard/dashboard_page.dart';

@@ -20,12 +20,10 @@ class ReadAllDsaProblemsFiltering
             ReadAllDsaProblemsFilteringData> {
   ReadAllDsaProblemsFiltering(
     this.readAllRoutesProblems,
-    this.repository,
   );
 
   final StreamQueryUseCase<Iterable<DsaRouteProblemsModel>,
       ReadAllRoutesProblemsData> readAllRoutesProblems;
-  final DsaRepository repository;
 
   // review this don't sent iterable
   @override

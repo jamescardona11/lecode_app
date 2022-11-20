@@ -11,14 +11,16 @@ import 'package:pocket/pocket.dart' as _i3;
 import 'package:projectile/projectile.dart' as _i6;
 
 import '../../app/pages/dashboard/viewmodel/dashboard_viewmodel.dart' as _i7;
-import '../../app/pages/dsa_list/viewmodel/viewmodel.dart' as _i9;
+import '../../app/pages/dsa_list/viewmodel/dsa_list_viewmodel.dart' as _i9;
 import '../../app/pages/dsa_routes/viewmodel/viewmodel.dart' as _i8;
+import '../../app/pages/solved_list/viewmodel/dsa_solved_list_viewmodel.dart'
+    as _i10;
 import '../../base/base.dart' as _i4;
 import '../../core/core.dart' as _i5;
-import 'di_external.dart' as _i10;
-import 'di_repository.dart' as _i11;
-import 'di_use_cases.dart' as _i12;
-import 'di_viewmodel.dart' as _i13; // ignore_for_file: unnecessary_lambdas
+import 'di_external.dart' as _i11;
+import 'di_repository.dart' as _i12;
+import 'di_use_cases.dart' as _i13;
+import 'di_viewmodel.dart' as _i14; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -54,6 +56,10 @@ Future<_i1.GetIt> $initGetIt(
   gh.singleton<
       _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
           _i5.ReadAllDsaProblemsData>>(useCasesModule.readAllDsaProblems);
+  gh.singleton<
+          _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
+              _i5.ReadAllSolvedDsaProblemsData>>(
+      useCasesModule.readAllSolvedDsaProblems);
   gh.singleton<_i4.StreamQueryUseCase<_i5.StatsModel, _i5.ReadStatsData>>(
       useCasesModule.readStatsUseCase);
   gh.singleton<
@@ -91,10 +97,12 @@ Future<_i1.GetIt> $initGetIt(
   gh.singleton<_i4.FutureCommandUseCase<_i5.AppInitFirstTimeData>>(
       useCasesModule.appInitFirstTime);
   gh.singleton<_i9.DsaListViewModel>(viewModelModule.dsaListViewModel);
+  gh.singleton<_i10.DsaSolvedListViewModel>(
+      viewModelModule.dsaSolvedListViewModel);
   return get;
 }
 
-class _$ExternalModule extends _i10.ExternalModule {
+class _$ExternalModule extends _i11.ExternalModule {
   _$ExternalModule(this._getIt);
 
   final _i1.GetIt _getIt;
@@ -104,7 +112,7 @@ class _$ExternalModule extends _i10.ExternalModule {
       _i4.AppSharedPreferences(_getIt<_i3.IPocketAdapter>());
 }
 
-class _$ModelModule extends _i11.ModelModule {
+class _$ModelModule extends _i12.ModelModule {
   _$ModelModule(this._getIt);
 
   final _i1.GetIt _getIt;
@@ -123,7 +131,7 @@ class _$ModelModule extends _i11.ModelModule {
       );
 }
 
-class _$UseCasesModule extends _i12.UseCasesModule {
+class _$UseCasesModule extends _i13.UseCasesModule {
   _$UseCasesModule(this._getIt);
 
   final _i1.GetIt _getIt;
@@ -134,6 +142,11 @@ class _$UseCasesModule extends _i12.UseCasesModule {
   @override
   _i5.ReadAllDsaProblems get readAllDsaProblems =>
       _i5.ReadAllDsaProblems(_getIt<_i5.DsaRepository>());
+  @override
+  _i5.ReadAllSolvedDsaProblems get readAllSolvedDsaProblems =>
+      _i5.ReadAllSolvedDsaProblems(_getIt<
+          _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
+              _i5.ReadAllDsaProblemsData>>());
   @override
   _i5.ReadStatsUseCase get readStatsUseCase => _i5.ReadStatsUseCase(
         _getIt<
@@ -201,18 +214,18 @@ class _$UseCasesModule extends _i12.UseCasesModule {
       );
   @override
   _i5.ReadAllDsaProblemsFiltering get readAllDsaProblemsFiltering =>
-      _i5.ReadAllDsaProblemsFiltering(
-        _getIt<
-            _i4.StreamQueryUseCase<Iterable<_i5.DsaRouteProblemsModel>,
-                _i5.ReadAllRoutesProblemsData>>(),
-        _getIt<_i5.DsaRepository>(),
-      );
+      _i5.ReadAllDsaProblemsFiltering(_getIt<
+          _i4.StreamQueryUseCase<Iterable<_i5.DsaRouteProblemsModel>,
+              _i5.ReadAllRoutesProblemsData>>());
   @override
   _i5.DsaUseCasesFacade get dsaUseCasesFacade => _i5.DsaUseCasesFacade(
         _getIt<_i4.FutureCommandUseCase<_i5.MarkAsSolvedData>>(),
         _getIt<
             _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
                 _i5.ReadAllDsaProblemsFilteringData>>(),
+        _getIt<
+            _i4.StreamQueryUseCase<Iterable<_i5.DsaProblemModel>,
+                _i5.ReadAllSolvedDsaProblemsData>>(),
       );
   @override
   _i5.AppInitFirstTime get appInitFirstTime => _i5.AppInitFirstTime(
@@ -221,7 +234,7 @@ class _$UseCasesModule extends _i12.UseCasesModule {
       );
 }
 
-class _$ViewModelModule extends _i13.ViewModelModule {
+class _$ViewModelModule extends _i14.ViewModelModule {
   _$ViewModelModule(this._getIt);
 
   final _i1.GetIt _getIt;
@@ -237,4 +250,7 @@ class _$ViewModelModule extends _i13.ViewModelModule {
   @override
   _i9.DsaListViewModel get dsaListViewModel =>
       _i9.DsaListViewModel(_getIt<_i5.DsaUseCasesFacade>());
+  @override
+  _i10.DsaSolvedListViewModel get dsaSolvedListViewModel =>
+      _i10.DsaSolvedListViewModel(_getIt<_i5.DsaUseCasesFacade>());
 }

@@ -5,11 +5,14 @@ class DsaUseCasesFacade {
   DsaUseCasesFacade(
     this.markAsSolved,
     this.readAllDsaProblemsWithPagination,
-    // this.readAllDsaProblems,
+    this.readAllSolvedDsaProblems,
   );
 
   final FutureCommandUseCase<MarkAsSolvedData> markAsSolved;
 
   final StreamQueryUseCase<Iterable<DsaProblemModel>,
       ReadAllDsaProblemsFilteringData> readAllDsaProblemsWithPagination;
+
+  final StreamQueryUseCase<Iterable<DsaProblemModel>,
+      ReadAllSolvedDsaProblemsData> readAllSolvedDsaProblems;
 }

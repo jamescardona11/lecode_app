@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:grouped_list/sliver_grouped_list.dart';
-import 'package:lepath_app/app/pages/dsa_list/viewmodel/viewmodel.dart';
 import 'package:lepath_app/app/widgets/problem_item_widget.dart';
 import 'package:lepath_app/base/base.dart';
 import 'package:lepath_app/config/di/di.dart';
 import 'package:lepath_app/config/theme/styles/styles.dart';
 import 'package:lepath_app/core/core.dart';
 
+import 'viewmodel/dsa_list_state.dart';
+import 'viewmodel/dsa_list_viewmodel.dart';
 import 'widgets/sliver_bar/sliver_app_bar.dart';
 
 class DsaListView extends MvvMProviderWidget<DsaListViewModel, DsaListState> {

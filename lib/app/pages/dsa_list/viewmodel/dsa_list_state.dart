@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:lepath_app/base/base.dart';
 import 'package:lepath_app/core/core.dart';
 
@@ -17,16 +16,18 @@ class DsaListState extends BaseState {
   List<Object?> get props => [
         itemsPagination,
         items,
+        initialFilteringData,
       ];
 
   DsaListState copyWith({
     int? itemsPagination,
     Iterable<DsaProblemModel>? items,
-    bool? showFilterList,
+    FilteringData? initialFilteringData,
   }) {
     return DsaListState(
       itemsPagination: itemsPagination ?? this.itemsPagination,
       items: items ?? this.items,
+      initialFilteringData: initialFilteringData ?? this.initialFilteringData,
     );
   }
 }

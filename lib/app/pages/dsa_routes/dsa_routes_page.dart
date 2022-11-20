@@ -25,35 +25,33 @@ class DsaRoutesPage
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(
-          top: 0,
+          top: 60,
           left: AppSizes.defPadding,
           right: AppSizes.defPadding,
         ),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Learning Routes',
-                style: Theme.of(context).textTheme.headline5,
-              ),
-              const SizedBox(height: 20),
-              Expanded(
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.9,
-                    crossAxisSpacing: 15,
-                    mainAxisSpacing: 15,
-                  ),
-                  itemCount: state.routes.length,
-                  itemBuilder: (_, index) => _ItemRoutesWidget(
-                    routeProblemsModel: state.routes[index],
-                  ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Learning Routes',
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            Expanded(
+              child: GridView.builder(
+                padding: const EdgeInsets.only(top: 20),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.9,
+                  crossAxisSpacing: 15,
+                  mainAxisSpacing: 15,
+                ),
+                itemCount: state.routes.length,
+                itemBuilder: (_, index) => _ItemRoutesWidget(
+                  routeProblemsModel: state.routes[index],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

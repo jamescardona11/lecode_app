@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class FilteringData {
   const FilteringData({
@@ -5,16 +7,12 @@ class FilteringData {
     this.topics = const [],
     this.difficulty = const [],
     this.groupBy = '',
-    this.onlySolved = false,
-    this.onlyUnsolved = false,
   });
 
   final String route;
   final List<String> topics;
   final List<String> difficulty;
   final String groupBy;
-  final bool onlySolved;
-  final bool onlyUnsolved;
 
   bool get isTopicsEmpty => topics.isEmpty;
   bool get isDifficultyEmpty => difficulty.isEmpty;
@@ -24,6 +22,24 @@ class FilteringData {
 
   @override
   String toString() {
-    return 'FilteringData(route: $route, topics: $topics, difficulty: $difficulty, groupBy: $groupBy, onlySolved: $onlySolved, onlyUnsolved: $onlyUnsolved)';
+    return 'FilteringData(route: $route, topics: $topics, difficulty: $difficulty, groupBy: $groupBy)';
+  }
+
+  @override
+  bool operator ==(covariant FilteringData other) {
+    if (identical(this, other)) return true;
+
+    return other.route == route &&
+        listEquals(other.topics, topics) &&
+        listEquals(other.difficulty, difficulty) &&
+        other.groupBy == groupBy;
+  }
+
+  @override
+  int get hashCode {
+    return route.hashCode ^
+        topics.hashCode ^
+        difficulty.hashCode ^
+        groupBy.hashCode;
   }
 }

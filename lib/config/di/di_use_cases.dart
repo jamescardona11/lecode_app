@@ -42,6 +42,11 @@ abstract class UseCasesModule {
           ReadAllDsaProblemsFilteringData>)
   ReadAllDsaProblemsFiltering get readAllDsaProblemsFiltering;
 
+  @Singleton(
+      as: StreamQueryUseCase<Iterable<DsaProblemModel>,
+          ReadAllSolvedDsaProblemsData>)
+  ReadAllSolvedDsaProblems get readAllSolvedDsaProblems;
+
   /// facade dashboard ↓
   @singleton
   DashboardFacade get dashboardUseCasesFacade;

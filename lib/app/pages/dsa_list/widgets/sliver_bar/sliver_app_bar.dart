@@ -23,23 +23,18 @@ class SliverBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      title: Column(
+      title: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              FaIcon(
-                icon,
-                size: 18,
-              ),
-              const SizedBox(width: 5),
-              Text(
-                title,
-                style: const TextStyle(fontSize: 20.0),
-              ),
-            ],
+          FaIcon(
+            icon,
+            size: 18,
           ),
-          const SizedBox(height: 5),
+          const SizedBox(width: 5),
+          Text(
+            title,
+            style: const TextStyle(fontSize: 20.0),
+          ),
         ],
       ),
       backgroundColor: color,
