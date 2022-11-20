@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:lepath_app/core/core.dart';
+import 'package:lecode_app/core/core.dart';
 
 @module
 abstract class ModelModule {

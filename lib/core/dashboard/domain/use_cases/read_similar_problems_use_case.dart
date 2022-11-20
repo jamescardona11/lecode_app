@@ -1,6 +1,6 @@
-import 'package:lepath_app/base/base.dart';
-import 'package:lepath_app/core/core.dart';
-import 'package:lepath_app/utils/utils.dart';
+import 'package:lecode_app/base/base.dart';
+import 'package:lecode_app/core/core.dart';
+import 'package:lecode_app/utils/utils.dart';
 
 class ReadSimilarProblemsData extends CommandData {}
 

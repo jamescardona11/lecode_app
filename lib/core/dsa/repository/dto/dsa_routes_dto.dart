@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:lepath_app/core/core.dart';
+import 'package:lecode_app/core/core.dart';
 import 'package:pocket/pocket.dart';
 
 part 'dsa_routes_dto.g.dart';

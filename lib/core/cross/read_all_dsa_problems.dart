@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:lepath_app/base/base.dart';
-import 'package:lepath_app/core/core.dart';
+import 'package:lecode_app/base/base.dart';
+import 'package:lecode_app/core/core.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ReadAllDsaProblemsData implements CommandData {

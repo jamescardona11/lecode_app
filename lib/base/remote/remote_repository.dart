@@ -1,5 +1,5 @@
-import 'package:lepath_app/base/base_app/misc/either/either.dart';
-import 'package:lepath_app/base/base_app/remote/remote_package.dart';
+import 'package:lecode_app/base/base_app/misc/either/either.dart';
+import 'package:lecode_app/base/base_app/remote/remote_package.dart';
 import 'package:projectile/projectile.dart';
 
 import '../base_app/remote/i_remote_repository.dart';

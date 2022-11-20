@@ -1,4 +1,4 @@
-import 'package:lepath_app/base/base_app/remote/remote_package.dart';
+import 'package:lecode_app/base/base_app/remote/remote_package.dart';
 import 'remote_app_response.dart';
 
 typedef FromJson<R> = R Function(Map<String, dynamic> json);

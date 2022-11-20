@@ -1,4 +1,4 @@
-import 'package:lepath_app/base/base_app/errors/app_error.dart';
+import 'package:lecode_app/base/base_app/errors/app_error.dart';
 
 abstract class AppRemoteError extends AppError {}
 

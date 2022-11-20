@@ -1,8 +1,8 @@
 import 'package:drip/drip.dart';
 import 'package:flutter/material.dart';
-import 'package:lepath_app/app/pages/dsa_list/viewmodel/dsa_list_viewmodel.dart';
-import 'package:lepath_app/config/theme/styles/styles.dart';
-import 'package:lepath_app/core/core.dart';
+import 'package:lecode_app/app/pages/dsa_list/viewmodel/dsa_list_viewmodel.dart';
+import 'package:lecode_app/config/theme/styles/styles.dart';
+import 'package:lecode_app/core/core.dart';
 
 import '../show_modal.dart';
 import 'search_bar.dart';

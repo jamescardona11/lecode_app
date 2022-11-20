@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:lepath_app/app/pages/home_layout.dart';
+import 'package:lecode_app/app/pages/home_layout.dart';
 
 import 'base/base.dart';
 import 'config/di/di.dart';

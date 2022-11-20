@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lepath_app/config/theme/styles/styles.dart';
+import 'package:lecode_app/config/theme/styles/styles.dart';
 
 import 'bottom_bar_controller.dart';
 import 'bottom_item.dart';

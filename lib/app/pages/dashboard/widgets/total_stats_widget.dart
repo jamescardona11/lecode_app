@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lepath_app/app/widgets/widgets.dart';
-import 'package:lepath_app/config/theme/styles/app_colors.dart';
-import 'package:lepath_app/core/core.dart';
-import 'package:lepath_app/utils/app_formatter.dart';
+import 'package:lecode_app/app/widgets/widgets.dart';
+import 'package:lecode_app/config/theme/styles/app_colors.dart';
+import 'package:lecode_app/core/core.dart';
+import 'package:lecode_app/utils/app_formatter.dart';
 
 class TotalStatsWidget extends StatefulWidget {
   /// default constructor

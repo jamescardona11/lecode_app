@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
-import 'package:lepath_app/core/core.dart';
+import 'package:lecode_app/core/core.dart';
 import 'package:pocket/pocket.dart';
 
 part 'dsa_problem_dto.g.dart';

@@ -1,4 +1,4 @@
-import 'package:lepath_app/base/base_app/misc/either/either.dart';
+import 'package:lecode_app/base/base_app/misc/either/either.dart';
 
 import 'remote_app_errors.dart';
 

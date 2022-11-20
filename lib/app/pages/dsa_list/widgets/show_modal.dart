@@ -1,9 +1,9 @@
 import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/material.dart';
-import 'package:lepath_app/app/widgets/eleventh_button_widget.dart';
-import 'package:lepath_app/config/context_extension.dart';
-import 'package:lepath_app/config/theme/styles/styles.dart';
-import 'package:lepath_app/core/core.dart';
+import 'package:lecode_app/app/widgets/eleventh_button_widget.dart';
+import 'package:lecode_app/config/context_extension.dart';
+import 'package:lecode_app/config/theme/styles/styles.dart';
+import 'package:lecode_app/core/core.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 Future<T> showFloatingModalBottomSheet<T>({

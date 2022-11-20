@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lepath_app/app/pages/dsa_routes/dsa_route_detail_page.dart';
-import 'package:lepath_app/app/widgets/widgets.dart';
-import 'package:lepath_app/base/base_app/base.dart';
-import 'package:lepath_app/config/di/di.dart';
-import 'package:lepath_app/config/theme/styles/styles.dart';
-import 'package:lepath_app/core/core.dart';
-import 'package:lepath_app/utils/utils.dart';
+import 'package:lecode_app/app/pages/dsa_routes/dsa_route_detail_page.dart';
+import 'package:lecode_app/app/widgets/widgets.dart';
+import 'package:lecode_app/base/base_app/base.dart';
+import 'package:lecode_app/config/di/di.dart';
+import 'package:lecode_app/config/theme/styles/styles.dart';
+import 'package:lecode_app/core/core.dart';
+import 'package:lecode_app/utils/utils.dart';
 
 import 'viewmodel/viewmodel.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:lepath_app/core/core.dart';
+import 'package:lecode_app/core/core.dart';
 
 class DsaRouteProblemsModel {
   DsaRouteProblemsModel({

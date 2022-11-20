@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lepath_app/app/pages/dsa_list/dsa_list_view.dart';
+import 'package:lecode_app/app/pages/dsa_list/dsa_list_view.dart';
 
 class DsaAllProblemsPage extends StatelessWidget {
   /// default constructor

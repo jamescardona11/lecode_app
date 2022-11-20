@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lepath_app/app/widgets/round_container.dart';
-import 'package:lepath_app/config/theme/styles/app_colors.dart';
-import 'package:lepath_app/core/core.dart';
-import 'package:lepath_app/utils/utils.dart';
+import 'package:lecode_app/app/widgets/round_container.dart';
+import 'package:lecode_app/config/theme/styles/app_colors.dart';
+import 'package:lecode_app/core/core.dart';
+import 'package:lecode_app/utils/utils.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 
 class ProblemItemWidget extends StatefulWidget {

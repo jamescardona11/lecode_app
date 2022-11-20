@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lepath_app/app/widgets/problem_item_widget.dart';
-import 'package:lepath_app/base/base.dart';
-import 'package:lepath_app/config/di/di.dart';
-import 'package:lepath_app/config/theme/styles/styles.dart';
+import 'package:lecode_app/app/widgets/problem_item_widget.dart';
+import 'package:lecode_app/base/base.dart';
+import 'package:lecode_app/config/di/di.dart';
+import 'package:lecode_app/config/theme/styles/styles.dart';
 
 import 'viewmodel/dsa_solved_list_state.dart';
 import 'viewmodel/dsa_solved_list_viewmodel.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lepath_app/app/widgets/stepper/stepper_data.dart';
-import 'package:lepath_app/app/widgets/stepper/stepper_widget.dart';
+import 'package:lecode_app/app/widgets/stepper/stepper_data.dart';
+import 'package:lecode_app/app/widgets/stepper/stepper_widget.dart';
 
 class PathStepsPage extends StatefulWidget {
   /// default constructor

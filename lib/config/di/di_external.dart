@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:lepath_app/base/base.dart';
+import 'package:lecode_app/base/base.dart';
 import 'package:pocket/pocket.dart';
 import 'package:projectile/projectile.dart';
 
@@ -19,7 +19,7 @@ abstract class ExternalModule {
 
   @preResolve
   Future<IPocketAdapter> get dbApp async {
-    return await SembastPocket.initAdapter('lepath_app.db', 2);
+    return await SembastPocket.initAdapter('lecode_app.db', 2);
   }
 
   @singleton

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lepath_app/app/pages/dsa_list/dsa_list_view.dart';
-import 'package:lepath_app/core/core.dart';
+import 'package:lecode_app/app/pages/dsa_list/dsa_list_view.dart';
+import 'package:lecode_app/core/core.dart';
 
 class DsaRouteDetailPage extends StatelessWidget {
   /// default constructor
