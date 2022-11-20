@@ -39,6 +39,7 @@ class _ProblemItemWidgetState extends State<ProblemItemWidget> {
         //     ),
         //   ),
         // );
+
         print(widget.problem.toString());
       },
       child: Padding(
@@ -212,9 +213,10 @@ class _CheckboxWidgetState extends State<_CheckboxWidget> {
     return GestureDetector(
       onTap: changeSelectedState,
       child: AbsorbPointer(
-        child: SizedBox(
+        child: Container(
           height: 70,
           width: 50,
+          color: Colors.transparent,
           child: Center(
             child: MSHCheckbox(
               size: 25,

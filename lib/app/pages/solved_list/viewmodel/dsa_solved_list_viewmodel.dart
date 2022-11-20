@@ -38,7 +38,6 @@ class DsaSolvedListViewModel extends BaseViewModel<DsaSolvedListState> {
         .call(const ReadAllSolvedDsaProblemsData())
         .doOnData(_emitNewDsaItems)
         .listen((items) {
-      print('HERE ${items.length}');
       if (items.isNotEmpty) {
         _streamProblemsSubscription.cancel();
       }

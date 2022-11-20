@@ -24,15 +24,11 @@ class DsaRepository with PocketMultiDataSourceMixin<IPocketAdapter> {
 
     DsaProblemDto problem = DsaProblemDto.fromJson(dto.data);
     final r = randomDate();
-    print('randomDate() $r');
-    print('randomDate() ${problem}');
 
     final dateFormat = DateTime(r.year, r.month, r.day);
 
     problem = problem.copyWith(
         solvedDate: problem.solvedDate == null ? dateFormat : null);
-
-    print('randomDate() ${problem.toJson()}');
 
     await adapterDb.update(
         table: tableDsaProblem, item: AdapterDto(id, problem.toJson()));

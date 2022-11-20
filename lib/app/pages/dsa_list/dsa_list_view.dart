@@ -55,8 +55,10 @@ class DsaListView extends MvvMProviderWidget<DsaListViewModel, DsaListState> {
             groupBy: (element) => '',
             groupSeparatorBuilder: (String groupByValue) => Text(groupByValue),
             itemBuilder: (_, problem) => ProblemItemWidget(
+              // key: ValueKey(problem.id),
               problem: problem,
               onTapCheckbox: () {
+                print('HERE: ${problem.id}');
                 viewModel.markProblemAsRead(problem.id);
               },
             ),
