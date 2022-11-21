@@ -235,9 +235,11 @@ packages:
   drip:
     dependency: "direct main"
     description:
-      path: "/Users/zoro/dev/flutter-projects/starter_kit_flutter/drip"
-      relative: false
-    source: path
+      path: drip
+      ref: HEAD
+      resolved-ref: ddb2e98e233fadf05123c12a3c140726dc47da43
+      url: "https://github.com/jamescardona11/starter_kit_flutter.git"
+    source: git
     version: "0.0.1"
   easy_web_view:
     dependency: "direct main"
@@ -506,13 +508,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.2"
-  idb_shim:
-    dependency: transitive
-    description:
-      name: idb_shim
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.1+1"
   image:
     dependency: transitive
     description:
@@ -817,9 +812,11 @@ packages:
   pocket:
     dependency: "direct main"
     description:
-      path: "/Users/zoro/dev/flutter-projects/starter_kit_flutter/pocket"
-      relative: false
-    source: path
+      path: pocket
+      ref: HEAD
+      resolved-ref: ddb2e98e233fadf05123c12a3c140726dc47da43
+      url: "https://github.com/jamescardona11/starter_kit_flutter.git"
+    source: git
     version: "0.0.1"
   pool:
     dependency: transitive
@@ -838,9 +835,11 @@ packages:
   projectile:
     dependency: "direct main"
     description:
-      path: "/Users/zoro/dev/flutter-projects/starter_kit_flutter/projectile"
-      relative: false
-    source: path
+      path: projectile
+      ref: HEAD
+      resolved-ref: ddb2e98e233fadf05123c12a3c140726dc47da43
+      url: "https://github.com/jamescardona11/starter_kit_flutter.git"
+    source: git
     version: "0.0.1"
   provider:
     dependency: transitive
@@ -877,13 +876,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.3.1"
-  sembast_web:
-    dependency: transitive
-    description:
-      name: sembast_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.1+1"
   shared_preferences:
     dependency: transitive
     description:
